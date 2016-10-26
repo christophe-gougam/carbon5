@@ -11,7 +11,11 @@
 
 ###Récupérer (cloner) le projet :
 ```
-$ git clone https://github.com/ulyssejdv/jassur
+$ git clone https://github.com/hauserpierre/carbon5
+```
+###Récupérer les modifications des autres contributeurs :
+```
+$ git pull https://github.com/hauserpierre/carbon5
 ```
 ###Partager ses modifications :
 ```
