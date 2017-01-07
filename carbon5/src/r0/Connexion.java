@@ -9,7 +9,7 @@ import java.sql.SQLException;
  */
 public class Connexion {
     
-    private String url= "jdbc:mysql://localhost:3306/gsb_frais";
+    private String url= "jdbc:mysql://localhost:3306/carbon5";
     private String user = "root";
     private String password = "";
     private static Connection conn;
