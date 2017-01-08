@@ -6,12 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class CarManager {
+public class CarManager{
 
 	public static void main(String[] args) {
-		//supprimerEnBase("Audi");
-		//sauverEnBase("Peugeot");
-		modifierEnBase("Peugeot","Porsche");
+		supprimerEnBase("Audi");
+		//sauverEnBase("BMW");
+		//modifierEnBase("BMW","Porsche");
 		lireEnBase();
 	}
 
@@ -126,7 +126,7 @@ public class CarManager {
 			// Etape 3 : Création d'un statement
 			st = cn.createStatement();
 
-			String sql = "DELETE FROM car WHERE marque=(marque)";
+			String sql = "DELETE FROM car WHERE marque='"+marque+"'";
 
 			// Etape 4 : exécution requête
 			st.executeUpdate(sql);
@@ -170,7 +170,7 @@ public class CarManager {
 			// Etape 3 : Création d'un statement
 			st = cn.createStatement();
 
-			String sql = "UPDATE car" + "SET marque =(marque2)" + "WHERE marque =(marque1)";
+			String sql = "UPDATE car " + "SET marque ='"+marque2+"' " + " WHERE marque ='"+marque1+"' ";
 
 			// Etape 4 : exécution requête
 			st.executeUpdate(sql);
