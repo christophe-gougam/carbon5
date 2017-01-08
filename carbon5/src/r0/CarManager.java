@@ -101,7 +101,7 @@ public class CarManager extends JFrame {
         }
       }
     });
-
+   
     //Do Insert car Button
     insertCarButton = new JButton("Insert car");
     insertCarButton.addActionListener(new ActionListener() {
