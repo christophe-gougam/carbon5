@@ -1,4 +1,4 @@
-package R1;
+package R1Serveur;
 import org.json.JSONObject;
 
 import org.json.JSONArray;

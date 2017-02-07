@@ -1,4 +1,4 @@
-package R1;
+package R1Serveur;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

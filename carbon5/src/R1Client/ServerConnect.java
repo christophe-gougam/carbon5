@@ -1,4 +1,4 @@
-package r1Client;
+package R1Client;
 
 import java.net.Socket;
 import java.util.ArrayList;
@@ -22,6 +22,7 @@ public class ServerConnect implements Runnable{
 		try{
 			socket = new Socket(serverAdress, portServer);
 			t2 = new Thread(new Connection(socket, data, identifier));
+			t2.start();
 		}catch (Exception e){
 			System.out.println("Erreur de connexion au serveur");
 		}

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package r1Client;
+package R1Client;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -26,7 +26,7 @@ import javax.swing.JTextField;
  *
  * @author CongThuan
  */
-public class Fenetre extends JFrame {
+public class Fenetre extends JFrame implements Runnable{
     private JPanel container = new JPanel();
     
     private JTextField jtf = new JTextField();
@@ -43,6 +43,10 @@ public class Fenetre extends JFrame {
     
     private JButton bouton = new JButton("Ajouter");
     private JButton bouton2 = new JButton("Annuler");
+    
+    public void run(){
+    	
+    }
     
     public Fenetre(){
         this.setTitle("Ajouter un véhicule");

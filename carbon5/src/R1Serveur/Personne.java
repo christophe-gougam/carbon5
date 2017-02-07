@@ -1,4 +1,4 @@
-package R1;
+package R1Serveur;
 public class Personne {
  
     private String nom;

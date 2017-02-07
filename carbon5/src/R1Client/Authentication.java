@@ -1,4 +1,4 @@
-package r1Client;
+package R1Client;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -93,6 +93,7 @@ public class Authentication extends JFrame {
         	String identifier = "Authentication";
         	
         	t1 = new Thread(new ServerConnect(data, identifier));
+        	t1.start();
         }
     }
     

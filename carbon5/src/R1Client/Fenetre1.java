@@ -1,4 +1,4 @@
-package r1Client;
+package R1Client;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;

@@ -1,4 +1,4 @@
-package R1;
+package R1Serveur;
 
 import java.util.*;
 import java.io.*;
