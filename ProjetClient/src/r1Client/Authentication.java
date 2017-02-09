@@ -38,7 +38,6 @@ public class Authentication extends JFrame {
     public Authentication(){
     	this.setTitle("Authentification");
         this.setSize(500, 250);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         
         container.setBackground(Color.white);
@@ -55,8 +54,8 @@ public class Authentication extends JFrame {
         jtf2.setForeground(Color.BLUE);
 
         //Ajouter boutons
-        bouton.addActionListener(new BoutonListener());
-        bouton2.addActionListener(new Bouton2Listener());
+        bouton.addActionListener(new BoutonListener(this));
+        bouton2.addActionListener(new Bouton2Listener(this));
         //bouton2.setEnabled(false);
         JPanel south = new JPanel();
         south.add(bouton);
@@ -82,6 +81,11 @@ public class Authentication extends JFrame {
     }
   //Classe écoutant bouton OK
     class BoutonListener implements ActionListener{
+    	JFrame frame=null;
+    	//son constructeur
+    	public BoutonListener  (JFrame f){
+    	this.frame=f;
+    	}
         public void actionPerformed(ActionEvent arg0){
         	
         	String login = jtf.getText();
@@ -94,16 +98,24 @@ public class Authentication extends JFrame {
         	System.out.println("Authentification demandée par le client");
         	t1 = new Thread(new ServerConnect(data, identifier));
         	t1.start();
+        	frame.dispose();
+        	
         	
         }
     }
     
     //Classe écoutant bouton2 ANNULER
     class Bouton2Listener implements ActionListener{
-        public void actionPerformed(ActionEvent e){
+    	JFrame frame=null;
+    	//son constructeur
+    	public Bouton2Listener  (JFrame f){
+    	this.frame=f;
+    	}
+    	public void actionPerformed(ActionEvent e){
             //code
-        	jtf.setText("");
-        	jtf2.setText("");
+        	//jtf.setText("");
+        	//jtf2.setText("");
+    		frame.dispose();
         }
     }
 }

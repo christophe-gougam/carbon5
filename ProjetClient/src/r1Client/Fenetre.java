@@ -12,6 +12,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -42,7 +43,10 @@ public class Fenetre extends JFrame implements Runnable{
     private JLabel label3 = new JLabel("Numéro parking");
     
     private JButton bouton = new JButton("Ajouter");
-    private JButton bouton2 = new JButton("Annuler");
+    private JButton bouton2 = new JButton("Fermer");
+    private JButton bouton3 = new JButton("Log in");
+    private JButton bouton4 = new JButton("EntrerDeStock");
+    private JButton bouton5 = new JButton("SortieDeStock");
     
     public void run(){
     	
@@ -50,7 +54,7 @@ public class Fenetre extends JFrame implements Runnable{
     
     public Fenetre(){
         this.setTitle("Ajouter un véhicule");
-        this.setSize(300, 160);
+        this.setSize(500, 500);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         
@@ -65,13 +69,20 @@ public class Fenetre extends JFrame implements Runnable{
 
         //Ajouter boutons
         bouton.addActionListener(new BoutonListener());
-        bouton2.addActionListener(new Bouton2Listener());
+        bouton2.addActionListener(new Bouton2Listener(this));
+        bouton3.addActionListener(new Bouton3Listener());
+        bouton4.addActionListener(new Bouton4Listener());
+        bouton5.addActionListener(new Bouton5Listener());
         //bouton2.setEnabled(false);
         JPanel south = new JPanel();
         south.add(bouton);
         south.add(bouton2);
+        south.add(bouton3);
         container.add(south,BorderLayout.SOUTH);
-        
+        JPanel center = new JPanel();
+        center.add(bouton4);
+        center.add(bouton5);
+        container.add(center,BorderLayout.CENTER);
         //Ajouter item dans la liste véhicule
         combo.addItem("Vélo");
         combo.addItem("Voiture");
@@ -145,10 +156,38 @@ public class Fenetre extends JFrame implements Runnable{
         }
     }
     
-    //Classe écoutant bouton2 ANNULER
+    //Classe écoutant bouton2 Fermer
     class Bouton2Listener implements ActionListener{
-        public void actionPerformed(ActionEvent e){
+    	JFrame frame=null;
+    	//son constructeur
+    	public Bouton2Listener  (JFrame f){
+    	this.frame=f;
+    	}
+    	public void actionPerformed(ActionEvent e){
             //code
+    		frame.dispose();
+        }
+    }
+ 
+    //Classe écoutant bouton2 LOG IN
+    class Bouton3Listener implements ActionListener{
+    		public void actionPerformed(ActionEvent arg0){
+        	
+    			Authentication auth = new Authentication();
+        }
+    }
+  //Classe écoutant bouton4 EntrerEnStock
+    class Bouton4Listener implements ActionListener{
+    		public void actionPerformed(ActionEvent arg0){
+        	
+    			  Fenetre1 EntrerEnStock = new Fenetre1();
+        }
+    }
+  //Classe écoutant bouton5 SortieDeStock
+    class Bouton5Listener implements ActionListener{
+    		public void actionPerformed(ActionEvent arg0){
+        	
+    			Fenetre2 SortieDeStock = new Fenetre2();
         }
     }
 }

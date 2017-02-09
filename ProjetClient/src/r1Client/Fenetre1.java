@@ -45,7 +45,6 @@ public class Fenetre1 extends JFrame {
     public Fenetre1(){
         this.setTitle("Entrée en stock de pièce");
         this.setSize(300, 160);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         
         container.setBackground(Color.white);
@@ -62,8 +61,8 @@ public class Fenetre1 extends JFrame {
         jtf2.setForeground(Color.RED);
 
         //Ajouter boutons
-        bouton.addActionListener(new BoutonListener());
-        bouton2.addActionListener(new Bouton2Listener());
+        bouton.addActionListener(new BoutonListener(this));
+        bouton2.addActionListener(new Bouton2Listener(this));
         //bouton2.setEnabled(false);
         JPanel south = new JPanel();
         south.add(bouton);
@@ -144,15 +143,27 @@ public class Fenetre1 extends JFrame {
     
     //Classe écoutant bouton AJOUTER
     class BoutonListener implements ActionListener{
+    	JFrame frame=null;
+    	//son constructeur
+    	public BoutonListener  (JFrame f){
+    	this.frame=f;
+    	}
         public void actionPerformed(ActionEvent arg0){
             //code
+        	frame.dispose();
         }
     }
     
     //Classe écoutant bouton2 ANNULER
     class Bouton2Listener implements ActionListener{
-        public void actionPerformed(ActionEvent e){
+    	JFrame frame=null;
+    	//son constructeur
+    	public Bouton2Listener  (JFrame f){
+    	this.frame=f;
+    	}
+    	public void actionPerformed(ActionEvent e){
             //code
+        	frame.dispose();
         }
     }
 }

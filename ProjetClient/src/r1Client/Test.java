@@ -12,10 +12,6 @@ package r1Client;
 public class Test {
 	
     public static void main(String[] args) {
-        //Fenetre fenetre = new Fenetre();
-        //Fenetre1 f1 = new Fenetre1();
-        //Fenetre2 f2 = new Fenetre2();
-    	
-    	Authentication auth = new Authentication();
+    	Fenetre AjoutVehicule = new Fenetre();
     }
 }
