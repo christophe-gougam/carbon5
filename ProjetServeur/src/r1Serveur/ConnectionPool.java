@@ -45,7 +45,7 @@ public class ConnectionPool{
 		{
 			System.out.println("Connection Pool is NOT full. Proceeding with adding new connections");
 			//Adding new connection instance until the pool is full
-			connectionsList.add(createNewConnectionForPoolTest());
+			connectionsList.add(createNewConnectionForPool());
 		}
 		System.out.println("Connection Pool is full. "+ connectionsList.size() +" connections created");
 		
@@ -74,29 +74,7 @@ public class ConnectionPool{
 	 * @throws SQLexception if the connection fails to be created
 	 * @throxs exception if the input doesn't close
 	 */
-	private Connection createNewConnectionForPoolTest(){
-		String url = "jdbc:mysql://localhost:3306/carbon5";
-		String login = "root";
-		String passwd = "castell";
-		Connection cn =null;
-		
-		try {
-			// Etape 1 : Chargement du driver
-			try {
-				Class.forName("com.mysql.jdbc.Driver");
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			// Etape 2 : récupération de la connexion
-			cn = DriverManager.getConnection(url, login, passwd);
-			System.out.println("connexion crée");
-		}catch(SQLException e){
-			System.out.println("no can do");
-			return null;
-		}
-		return cn;
-	}
+
 	private Connection createNewConnectionForPool()
 	{
 		Connection connection = null;
