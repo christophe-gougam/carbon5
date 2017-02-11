@@ -22,6 +22,7 @@ public class ProcessData implements Runnable{
 	private BufferedReader in = null;
 	private PrintWriter out = null;
 	private String identifier = null;
+	int retour;
 	ArrayList<String> data = new ArrayList();
 	public ProcessData(ServerSocket serverSocket){
 		this.serverSocket = serverSocket;
@@ -51,13 +52,22 @@ public class ProcessData implements Runnable{
 				case("AjoutVehicule"):
 					try{
 					ArrayList<String> result = LectureJson.LectureFichier(message_distant);
-					CarManager.sauverEnBase(result);
-					System.out.println("Véhicule ajouter dans la base");
-					data.add("Véhicule ajouter dans la base");
-					String JsonMessage = EcritureJson.WriteJson("QueryAjoutSuccess", data);
-					System.out.println("Sending JSON to Client");
-					out.println(JsonMessage);
-					out.flush();
+					retour=CarManager.sauverEnBase(result);
+					if(retour==1){
+						System.out.println("Véhicule ajouter dans la base");
+						data.add("Véhicule ajouter dans la base");
+						String JsonMessage = EcritureJson.WriteJson("QueryAjoutSuccess", data);
+						System.out.println("Sending JSON to Client");
+						out.println(JsonMessage);
+						out.flush();
+					}else{
+						System.out.println("Une erreur survenue lors de l'ajout merci de recommencer");
+						data.add("Une erreur survenue lors de l'ajout merci de recommencer");
+						String JsonMessage = EcritureJson.WriteJson("Erreur_Ajout", data);
+						System.out.println("Sending JSON to Client");
+						out.println(JsonMessage);
+						out.flush();
+					}
 					
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block

@@ -157,12 +157,12 @@ public class Fenetre extends JFrame{
         	String IDVehicule = jtf.getText();
         	String NumParking = jtf1.getText();
         	String TypeVehicule = combo.getSelectedItem().toString();
-        	String Statut =combo1.getSelectedItem().toString();
-        	System.out.println(IDVehicule+""+TypeVehicule+""+Statut+""+""+NumParking);
+        	String statut =combo1.getSelectedItem().toString();
+        	System.out.println(IDVehicule+""+TypeVehicule+""+statut+""+""+NumParking);
         	ArrayList<String> data = new ArrayList();
         	data.add(IDVehicule);
         	data.add(TypeVehicule);
-        	data.add(Statut);
+        	data.add(statut);
         	data.add(NumParking);
         	String identifier = "AjoutVehicule";
         	System.out.println("Authentification demandée par le client");

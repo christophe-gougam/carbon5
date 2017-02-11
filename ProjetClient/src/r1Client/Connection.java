@@ -84,6 +84,13 @@ public class Connection{
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
 			break;
+			case("Erreur_Ajout"):
+				objet = new JSONObject(reponse);
+		    	System.out.println("Afficage du resultat de l'ajout vehicule : ");
+		    	System.out.println(reponse);
+		    	tableau = objet.getJSONArray("data");
+				JOptionPane.showMessageDialog(frame, tableau.get(0));
+			break;
 			}
 			
 		}catch (Exception e){

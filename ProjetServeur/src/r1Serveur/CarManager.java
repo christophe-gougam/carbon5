@@ -2,6 +2,7 @@ package r1Serveur;
 
 import java.io.IOException;
 
+
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,7 +23,7 @@ public class CarManager{
 		//modifierEnBase("BMW","Porsche");
 		//lireEnBase();
 	//}
-	public static void sauverEnBase(ArrayList<String> infoVehicule) {
+	public static int sauverEnBase(ArrayList<String> infoVehicule) {
 
 		// Information d'accès à la base de données
 		Connection cn =null;
@@ -33,7 +34,7 @@ public class CarManager{
 		String database;
 		String dbuser;
 		String dbpassword;
-
+		int result=0;
 		String filename = "config.properties";
 		input = ConnectionPool.class.getClassLoader().getResourceAsStream(filename);
 		if (input == null) {
@@ -71,11 +72,12 @@ public class CarManager{
 
 			// Etape 3 : Création d'un statement
 			st = cn.createStatement();
-			String sql = "INSERT INTO `car` (`IDVehicule, TypeVehicule, statut, NumParking `) VALUES ('"
-					+ IDVehicule + TypeVehicule + statut + NumParking + "')";
+			String sql = "INSERT INTO carentrance (IDVehicule, TypeVehicule, statut, NumParking ) "
+					+ "VALUES ('"+IDVehicule+"','" + TypeVehicule+"','"+ statut+"','"+ NumParking+"'"+")";
 
 			// Etape 4 : exécution requête
-			st.executeUpdate(sql);
+			result = st.executeUpdate(sql);
+			System.out.println(result);	
 			// Si récup données alors étapes 5 (parcours Resultset)
 
 		} catch (SQLException e) {
@@ -92,6 +94,7 @@ public class CarManager{
 				e.printStackTrace();
 			}
 		}
+		return result;
 	}
 	
 	public static ArrayList<String> authentication(Connection con, String login, String mdp){
