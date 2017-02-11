@@ -7,7 +7,9 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.ServerSocket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.io.PrintWriter;
@@ -20,7 +22,7 @@ public class ProcessData implements Runnable{
 	private BufferedReader in = null;
 	private PrintWriter out = null;
 	private String identifier = null;
-
+	ArrayList<String> data = new ArrayList();
 	public ProcessData(ServerSocket serverSocket){
 		this.serverSocket = serverSocket;
 	}
@@ -45,9 +47,23 @@ public class ProcessData implements Runnable{
 				case("Authentication"):
 					t1 = new Thread(new Authentication(socket, message_distant, out));
 					t1.start();
+				break;
+				case("AjoutVehicule"):
+					try{
+					ArrayList<String> result = LectureJson.LectureFichier(message_distant);
+					CarManager.sauverEnBase(result);
+					System.out.println("Véhicule ajouter dans la base");
+					data.add("Véhicule ajouter dans la base");
+					String JsonMessage = EcritureJson.WriteJson("QueryAjoutSuccess", data);
+					System.out.println("Sending JSON to Client");
+					out.println(JsonMessage);
+					out.flush();
 					
-				case("query"):
-					
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				break;
 				}
 			}
 		} catch (IOException e) {

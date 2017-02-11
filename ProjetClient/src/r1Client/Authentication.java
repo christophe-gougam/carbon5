@@ -33,8 +33,6 @@ public class Authentication extends JFrame {
     private JButton bouton = new JButton("OK");
     private JButton bouton2 = new JButton("Annuler");
     
-    private static Thread t1;
-    
     public Authentication(){
     	this.setTitle("Authentification");
         this.setSize(500, 250);
@@ -96,8 +94,7 @@ public class Authentication extends JFrame {
         	data.add(mdp);
         	String identifier = "Authentication";
         	System.out.println("Authentification demandée par le client");
-        	t1 = new Thread(new ServerConnect(data, identifier));
-        	t1.start();
+        	new ServerConnect(data, identifier, frame);
         	frame.dispose();
         	
         	

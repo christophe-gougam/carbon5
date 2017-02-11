@@ -12,6 +12,7 @@ package r1Client;
 public class Test {
 	
     public static void main(String[] args) {
-    	Authentication auth = new Authentication();
+    	Fenetre fenetre=new Fenetre();
+    	fenetre.setVisible(true);
     }
 }

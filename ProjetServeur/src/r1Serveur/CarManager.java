@@ -1,5 +1,8 @@
 package r1Serveur;
 
+import java.io.IOException;
+
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -7,6 +10,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Properties;
+
+//import r1Client.ServerConnect;
 
 public class CarManager{
 
@@ -16,33 +22,60 @@ public class CarManager{
 		//modifierEnBase("BMW","Porsche");
 		//lireEnBase();
 	//}
-
-	public static void sauverEnBase(String marque) {
+	public static void sauverEnBase(ArrayList<String> infoVehicule) {
 
 		// Information d'accès à la base de données
-		String url = "jdbc:mysql://localhost:3306/carbon5";
-		String login = "root";
-		String passwd = "";
 		Connection cn =null;
 		Statement st =null;
+		Properties prop = new Properties();
+		InputStream input = null;
+		String DriverName;
+		String database;
+		String dbuser;
+		String dbpassword;
 
+		String filename = "config.properties";
+		input = ConnectionPool.class.getClassLoader().getResourceAsStream(filename);
+		if (input == null) {
+			System.out.println("Sorry, unable to find " + filename);
+		}
+		// load a properties file
+		try {
+			prop.load(input);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		DriverName = prop.getProperty("DriverName");
+		database = prop.getProperty("database");
+		dbuser = prop.getProperty("dbuser");
+		dbpassword = prop.getProperty("dbpassword");
+		
+		String IDVehicule=null;
+		String TypeVehicule=null;
+		String statut=null;
+		String NumParking=null;
+		
+		IDVehicule=infoVehicule.get(0);
+		TypeVehicule=infoVehicule.get(1);
+		statut=infoVehicule.get(2);
+		NumParking=infoVehicule.get(3);
 		try {
 
+
 			// Etape 1 : Chargement du driver
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName(DriverName);
 
 			// Etape 2 : récupération de la connexion
-			cn = DriverManager.getConnection(url, login, passwd);
+			cn = DriverManager.getConnection(database, dbuser, dbpassword);
 
 			// Etape 3 : Création d'un statement
 			st = cn.createStatement();
-
-			String sql = "INSERT INTO `car` (`marque`) VALUES ('"
-					+ marque + "')";
+			String sql = "INSERT INTO `car` (`IDVehicule, TypeVehicule, statut, NumParking `) VALUES ('"
+					+ IDVehicule + TypeVehicule + statut + NumParking + "')";
 
 			// Etape 4 : exécution requête
 			st.executeUpdate(sql);
-
 			// Si récup données alors étapes 5 (parcours Resultset)
 
 		} catch (SQLException e) {
@@ -97,20 +130,19 @@ public class CarManager{
 				income = rs.getFloat("incomingPerHour");
 				System.out.println("Retrieved data from bdd");
 			}
-			System.out.println(mdp);
-			System.out.println(mdpCheck);
+			System.out.println("passwor= "+mdp);
 			if(mdp.equals(mdpCheck)){
 				User user = new User(firstName,lastName,address,town,postCode,login,email,hire,income);
 				System.out.println(user.getIncome());
+				dataResult.add("GrantAuth");
 				dataResult.add(User.serialize(user));
 			}
 			else{
-				dataResult.add("Aucune donnée trouvée");
+				dataResult.add("Erreur de mot de passe");
 			}
 		}
 		catch(SQLException e){
 			e.printStackTrace();
-			System.out.println("Problème de connexion à la base de donnée");
 		}
 		return dataResult;
 	}
@@ -118,20 +150,40 @@ public class CarManager{
 	public static void lireEnBase() {
 
 		//Information d'accès à la base de données
-		String url = "jdbc:mysql://localhost:3306/carbon5";
-		String login = "root";
-		String passwd = "";
 		Connection cn =null;
 		Statement st =null;
 		ResultSet rs =null;
+		Properties prop = new Properties();
+		InputStream input = null;
+		String DriverName;
+		String database;
+		String dbuser;
+		String dbpassword;
+
+		String filename = "config.properties";
+		input = ConnectionPool.class.getClassLoader().getResourceAsStream(filename);
+		if (input == null) {
+			System.out.println("Sorry, unable to find " + filename);
+		}
+		// load a properties file
+		try {
+			prop.load(input);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		DriverName = prop.getProperty("DriverName");
+		database = prop.getProperty("database");
+		dbuser = prop.getProperty("dbuser");
+		dbpassword = prop.getProperty("dbpassword");
 		
 		try {
 
 			// Etape 1 : Chargement du driver
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("DriverName");
 
 			// Etape 2 : récupération de la connexion
-			cn = DriverManager.getConnection(url, login, passwd);
+			cn = DriverManager.getConnection(database, dbuser, dbpassword);
 
 			// Etape 3 : Création d'un statement
 			st = cn.createStatement();
@@ -165,19 +217,38 @@ public class CarManager{
 	public static void supprimerEnBase(String marque) {
 
 		// Information d'accès à la base de données
-		String url = "jdbc:mysql://localhost:3306/carbon5";
-		String login = "root";
-		String passwd = "";
 		Connection cn =null;
 		Statement st =null;
+		Properties prop = new Properties();
+		InputStream input = null;
+		String DriverName;
+		String database;
+		String dbuser;
+		String dbpassword;
 
+		String filename = "config.properties";
+		input = ConnectionPool.class.getClassLoader().getResourceAsStream(filename);
+		if (input == null) {
+			System.out.println("Sorry, unable to find " + filename);
+		}
+		// load a properties file
+		try {
+			prop.load(input);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		DriverName = prop.getProperty("DriverName");
+		database = prop.getProperty("database");
+		dbuser = prop.getProperty("dbuser");
+		dbpassword = prop.getProperty("dbpassword");
 		try {
 
 			// Etape 1 : Chargement du driver
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName(DriverName);
 
 			// Etape 2 : récupération de la connexion
-			cn = DriverManager.getConnection(url, login, passwd);
+			cn = DriverManager.getConnection(database, dbuser, dbpassword);
 
 			// Etape 3 : Création d'un statement
 			st = cn.createStatement();
@@ -209,19 +280,38 @@ public class CarManager{
 	public static void modifierEnBase(String marque1, String marque2) {
 
 		// Information d'accès à la base de données
-		String url = "jdbc:mysql://localhost:3306/carbon5";
-		String login = "root";
-		String passwd = "";
 		Connection cn =null;
 		Statement st =null;
+		Properties prop = new Properties();
+		InputStream input = null;
+		String DriverName;
+		String database;
+		String dbuser;
+		String dbpassword;
 
+		String filename = "config.properties";
+		input = ConnectionPool.class.getClassLoader().getResourceAsStream(filename);
+		if (input == null) {
+			System.out.println("Sorry, unable to find " + filename);
+		}
+		// load a properties file
+		try {
+			prop.load(input);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		DriverName = prop.getProperty("DriverName");
+		database = prop.getProperty("database");
+		dbuser = prop.getProperty("dbuser");
+		dbpassword = prop.getProperty("dbpassword");
 		try {
 
 			// Etape 1 : Chargement du driver
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName(DriverName);
 
 			// Etape 2 : récupération de la connexion
-			cn = DriverManager.getConnection(url, login, passwd);
+			cn = DriverManager.getConnection(database, dbuser, dbpassword);
 
 			// Etape 3 : Création d'un statement
 			st = cn.createStatement();

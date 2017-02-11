@@ -33,21 +33,19 @@ public static ArrayList<String> LectureFichier(String json) throws JSONException
 	System.out.println("\nparcours du fichier Json :");
 	JSONArray tableau = objet.getJSONArray("data");
 	ArrayList<String> result = new ArrayList();
+	for(int i = 0; i < tableau.length(); i++) {
+
+		result.add((String) tableau.get(i));
+	}
 	String identifier = (String) objet.get("identifier");
-	
 	switch(identifier){
 	
 	case("Authentication"):
-		
-		for(int i = 0; i < tableau.length(); i++) {
-
-			result.add((String) tableau.get(i));
-		}
-			System.out.print("login=" + tableau.get(0));
-			System.out.println(", mdp=" + tableau.get(1));
+		System.out.print("login=" + result.get(0));
+		System.out.println(", mdp=" + result.get(1));
 	break;
-	case("request"):
-		System.out.println("Fonctionnalité non prise en charge pour l'instant");
+	case("AjoutVehicule"):
+		System.out.print("ajout Véhicule=" + result.get(0)+"\n");
 	break;
 	default :
 		System.out.println("erreur default");

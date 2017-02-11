@@ -6,6 +6,7 @@
 package r1Client;
 
 import java.awt.BorderLayout;
+
 import java.awt.GridLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -27,7 +28,7 @@ import javax.swing.JTextField;
  *
  * @author CongThuan
  */
-public class Fenetre extends JFrame implements Runnable{
+public class Fenetre extends JFrame{
     private JPanel container = new JPanel();
     
     private JTextField jtf = new JTextField();
@@ -47,11 +48,6 @@ public class Fenetre extends JFrame implements Runnable{
     private JButton bouton3 = new JButton("Log in");
     private JButton bouton4 = new JButton("EntrerDeStock");
     private JButton bouton5 = new JButton("SortieDeStock");
-    
-    public void run(){
-    	
-    }
-    
     public Fenetre(){
         this.setTitle("Ajouter un véhicule");
         this.setSize(500, 500);
@@ -68,7 +64,7 @@ public class Fenetre extends JFrame implements Runnable{
         jtf.setForeground(Color.BLUE);
 
         //Ajouter boutons
-        bouton.addActionListener(new BoutonListener());
+        bouton.addActionListener(new BoutonListener(this));
         bouton2.addActionListener(new Bouton2Listener(this));
         bouton3.addActionListener(new Bouton3Listener());
         bouton4.addActionListener(new Bouton4Listener());
@@ -151,8 +147,26 @@ public class Fenetre extends JFrame implements Runnable{
     
     //Classe écoutant bouton AJOUTER
     class BoutonListener implements ActionListener{
-        public void actionPerformed(ActionEvent arg0){
+    	JFrame frame=null;
+    	//son constructeur
+    	public BoutonListener  (JFrame f){
+    	this.frame=f;
+    	}
+    	public void actionPerformed(ActionEvent arg0){
             //code
+        	String IDVehicule = jtf.getText();
+        	String NumParking = jtf1.getText();
+        	String TypeVehicule = combo.getSelectedItem().toString();
+        	String Statut =combo1.getSelectedItem().toString();
+        	System.out.println(IDVehicule+""+TypeVehicule+""+Statut+""+""+NumParking);
+        	ArrayList<String> data = new ArrayList();
+        	data.add(IDVehicule);
+        	data.add(TypeVehicule);
+        	data.add(Statut);
+        	data.add(NumParking);
+        	String identifier = "AjoutVehicule";
+        	System.out.println("Authentification demandée par le client");
+        	new ServerConnect(data, identifier, frame);
         }
     }
     

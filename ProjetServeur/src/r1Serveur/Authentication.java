@@ -1,6 +1,7 @@
 package r1Serveur;
 
 import java.io.BufferedReader;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -14,7 +15,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.JOptionPane;
+
 import org.json.JSONObject;
+
+//import r1Client.User;
 
 import org.json.JSONException;
 
@@ -34,7 +39,7 @@ public class Authentication implements Runnable{
 	String nom;
 	String age;
 	ArrayList<String> data = new ArrayList();
-	
+	String JsonMessage;
 		
 		public Authentication(Socket s, String in, PrintWriter out){
 			 this.socket = s;
@@ -61,19 +66,22 @@ public class Authentication implements Runnable{
 				ConnectionPool pool = new ConnectionPool();
 				con = pool.getConnectionFromPool();
 				
+				//////attention dans data on a in id et le truc serialiser ///////////////////////
+				
 				data = CarManager.authentication(con, login, mdp);
-				if(data.get(0).equals("No data recieved")){
-					data.add(new String("Wrong login or password"));
-					String JsonMessage = EcritureJson.WriteJson("ErrorAuth", data);
-					System.out.println("Sending JSON error to Client");
-					out.println(JsonMessage);
-					out.flush();
-				}
-				else{
-					String JsonMessage = EcritureJson.WriteJson("GrantAuth", data);
+				switch(data.get(0)){
+				case("GrantAuth"):
+					JsonMessage = EcritureJson.WriteJson("GrantAuth", data);
 					System.out.println("Sending JSON succès to Client");
 					out.println(JsonMessage);
 					out.flush();
+				break;
+				case("Erreur de mot de passe"):
+					JsonMessage = EcritureJson.WriteJson("Erreur de mot de passe", data);
+					System.out.println("Erreur de mot de passe");
+					out.println(JsonMessage);
+					out.flush();
+				break;
 				}
 				System.out.println("Returning connection to pool");
 			 	ConnectionPool.returnConnectionToPool(con);
