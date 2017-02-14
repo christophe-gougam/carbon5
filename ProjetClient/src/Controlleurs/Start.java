@@ -3,16 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package r1Client;
+package r1Client.Controlleurs;
+
+import r1Client.Vues.Authentication;
 
 /**
  *
  * @author CongThuan
  */
-public class Test {
+public class Start {
 	
     public static void main(String[] args) {
-    	Fenetre fenetre=new Fenetre();
-    	fenetre.setVisible(true);
+    	Authentication auth = new Authentication();
     }
 }

@@ -1,4 +1,4 @@
-package r1Client;
+package r1Client.Vues;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -24,7 +24,7 @@ import javax.swing.JTextField;
  *
  * @author CongThuan
  */
-public class Fenetre1 extends JFrame {
+public class Fenetre2 extends JFrame {
     private JPanel container = new JPanel();
     
     private JComboBox combo = new JComboBox();
@@ -34,7 +34,7 @@ public class Fenetre1 extends JFrame {
     private JLabel label1 = new JLabel("Pièce");
     
     private JFormattedTextField jtf1 = new JFormattedTextField(DateFormat.getDateInstance());
-    private JLabel label2 = new JLabel("Date d'entrée");
+    private JLabel label2 = new JLabel("Date de sortie");
     
     private JFormattedTextField jtf2 = new JFormattedTextField(NumberFormat.getNumberInstance());
     private JLabel label3 = new JLabel("Quantité");
@@ -42,8 +42,8 @@ public class Fenetre1 extends JFrame {
     private JButton bouton = new JButton("Enregistrer");
     private JButton bouton2 = new JButton("Annuler");
     
-    public Fenetre1(){
-        this.setTitle("Entrée en stock de pièce");
+    public Fenetre2(){
+        this.setTitle("Sortie de stock");
         this.setSize(300, 160);
         this.setLocationRelativeTo(null);
         
@@ -148,9 +148,9 @@ public class Fenetre1 extends JFrame {
     	public BoutonListener  (JFrame f){
     	this.frame=f;
     	}
-        public void actionPerformed(ActionEvent arg0){
+    	public void actionPerformed(ActionEvent arg0){
             //code
-        	frame.dispose();
+    		frame.dispose();
         }
     }
     

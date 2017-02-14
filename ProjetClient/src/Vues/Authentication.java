@@ -1,4 +1,4 @@
-package r1Client;
+package r1Client.Vues;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -18,9 +18,8 @@ import javax.swing.JTextField;
 
 import org.json.JSONObject;
 
-import r1Client.Fenetre.Bouton2Listener;
-import r1Client.Fenetre.BoutonListener;
-import r1Client.Authentication;
+import r1Client.Controlleurs.ServerConnect;
+import r1Client.Vues.Authentication;
 public class Authentication extends JFrame {
 	
 	private JPanel container = new JPanel();

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package r1Client;
+package r1Client.Vues;
 
 import java.awt.BorderLayout;
 
@@ -23,6 +23,8 @@ import javax.swing.JPanel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import r1Client.Controlleurs.ServerConnect;
 
 /**
  *

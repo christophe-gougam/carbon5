@@ -1,4 +1,4 @@
-package r1Client;
+package r1Client.Controlleurs;
 import org.json.JSONObject;
 import org.json.JSONString;
 import org.json.JSONArray;

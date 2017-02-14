@@ -1,4 +1,4 @@
-package r1Serveur;
+package r1Serveur.Controlleurs;
 
 import java.io.BufferedReader;
 
@@ -18,9 +18,6 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 import org.json.JSONObject;
-
-//import r1Client.User;
-
 import org.json.JSONException;
 
 import java.io.PrintWriter;
@@ -30,14 +27,8 @@ public class Authentication implements Runnable{
 	private Socket socket = null;
 	String in;
 	private PrintWriter out = null;
-	private boolean authentifier = false;
 	public Thread t2;
 	Connection con=null;
-	Statement s=null;
-	ResultSet rs=null;
-	String prenom;
-	String nom;
-	String age;
 	ArrayList<String> data = new ArrayList();
 	String JsonMessage;
 		
@@ -68,7 +59,7 @@ public class Authentication implements Runnable{
 				
 				//////attention dans data on a in id et le truc serialiser ///////////////////////
 				
-				data = CarManager.authentication(con, login, mdp);
+				data = CRUD.authentication(con, login, mdp);
 				switch(data.get(0)){
 				case("GrantAuth"):
 					JsonMessage = EcritureJson.WriteJson("GrantAuth", data);

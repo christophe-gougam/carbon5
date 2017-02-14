@@ -1,4 +1,4 @@
-package r1Serveur;
+package r1Serveur.Controlleurs;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,6 +19,7 @@ public class ProcessData implements Runnable{
 	private ServerSocket serverSocket;
 	private Socket socket = null;
 	private Thread t1;
+	private Thread t2;
 	private BufferedReader in = null;
 	private PrintWriter out = null;
 	private String identifier = null;
@@ -50,32 +51,37 @@ public class ProcessData implements Runnable{
 					t1.start();
 				break;
 				case("AjoutVehicule"):
-					try{
-					ArrayList<String> result = LectureJson.LectureFichier(message_distant);
-					retour=CarManager.sauverEnBase(result);
-					if(retour==1){
-						System.out.println("Véhicule ajouter dans la base");
-						data.add("Véhicule ajouter dans la base");
-						String JsonMessage = EcritureJson.WriteJson("QueryAjoutSuccess", data);
-						System.out.println("Sending JSON to Client");
-						out.println(JsonMessage);
-						out.flush();
-					}else{
-						System.out.println("Une erreur survenue lors de l'ajout merci de recommencer");
-						data.add("Une erreur survenue lors de l'ajout merci de recommencer");
-						String JsonMessage = EcritureJson.WriteJson("Erreur_Ajout", data);
-						System.out.println("Sending JSON to Client");
-						out.println(JsonMessage);
-						out.flush();
-					}
+					t2 = new Thread(new CarController(socket, message_distant, out));
+					t2.start();
+					//try{
+					//ArrayList<String> result = LectureJson.LectureFichier(message_distant);
+					//retour=CarManager.sauverEnBase(result);
+					//if(retour==1){
+						//System.out.println("Véhicule ajouter dans la base");
+						//data.add("Véhicule ajouter dans la base");
+						//String JsonMessage = EcritureJson.WriteJson("QueryAjoutSuccess", data);
+						//System.out.println("Sending JSON to Client");
+						//out.println(JsonMessage);
+						//out.flush();
+					//}else{
+						//System.out.println("Une erreur survenue lors de l'ajout merci de recommencer");
+						//data.add("Une erreur survenue lors de l'ajout merci de recommencer");
+						//String JsonMessage = EcritureJson.WriteJson("Erreur_Ajout", data);
+						//System.out.println("Sending JSON to Client");
+						//out.println(JsonMessage);
+						//out.flush();
+					//}
 					
-					} catch (JSONException e) {
+					//} catch (JSONException e) {
 						// TODO Auto-generated catch block
-						e.printStackTrace();
+						//e.printStackTrace();
+					break;
+					default:
+						System.out.println("Fonctionnalité non prise en charge pour le moment");
 					}
-				break;
+				//break;
 				}
-			}
+			//}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

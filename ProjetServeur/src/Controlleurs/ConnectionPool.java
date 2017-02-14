@@ -1,4 +1,4 @@
-package r1Serveur;
+package r1Serveur.Controlleurs;
 
 import java.io.IOException;
 import java.io.InputStream;

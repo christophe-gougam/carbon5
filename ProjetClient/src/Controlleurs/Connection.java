@@ -1,4 +1,4 @@
-package r1Client;
+package r1Client.Controlleurs;
 
 import java.io.BufferedReader;
 
@@ -14,10 +14,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-//import r1Serveur.Authentication;
-//import r1Serveur.CarManager;
-//import r1Serveur.EcritureJson;
-//import r1Serveur.LectureJson;
+import r1Client.Modele.*;
+import r1Client.Vues.Authentication;
+import r1Client.Vues.Fenetre;
 
 public class Connection{
 	
@@ -32,7 +31,9 @@ public class Connection{
 	private JSONObject objet;
 	private JSONArray tableau;
 	User user;
+	Car car;
 	JFrame frame=null; 
+	
 	public Connection(Socket socket, ArrayList<String> data, String identifier, JFrame f){
 		this.socket = socket;
 		this.data = data;
@@ -46,10 +47,11 @@ public class Connection{
 			System.out.println("Envoie du JSON au serveur");
 			out.println(json);
 			out.flush();
+			
+			System.out.println("Reception du JSON envoyé du serveur");
 			String reponse = in.readLine();
 			try {
 				
-				System.out.println("Reception du JSON envoyé du serveur");
 				repId = LectureJson.Identifier(reponse);
 				System.out.println(repId);
 			} catch (JSONException e) {
@@ -59,8 +61,9 @@ public class Connection{
 			
 			switch(repId){
 			case("Erreur de mot de passe"):
-				//faire une popup d'erreur
+				//Pop up displaying error
 				JOptionPane.showMessageDialog(frame, "Erreur: Mauvaise identification");
+				Authentication auth = new Authentication();
 			break;
 			case("GrantAuth"):
 				objet = new JSONObject(reponse);
@@ -76,15 +79,25 @@ public class Connection{
 	   
 		    	user = User.unSerialize(result.get(1));
 				JOptionPane.showMessageDialog(frame, "Bienvenue "+user.getFirstName());
-			break;
-			case("QueryAjoutSuccess"):
+				Fenetre ajout = new Fenetre();
+			//break;
+			
+			case("OKCarInput"):
 				objet = new JSONObject(reponse);
-		    	System.out.println("Afficage du resultat de l'ajout vehicule : ");
-		    	System.out.println(reponse);
+		    	//System.out.println("Afficage du resultat de l'ajout vehicule : ");
+		    	//System.out.println(reponse);
 		    	tableau = objet.getJSONArray("data");
-				JOptionPane.showMessageDialog(frame, tableau.get(0));
+				//JOptionPane.showMessageDialog(frame, tableau.get(0));
+		    	result = new ArrayList();
+	    		for(int i = 0; i < tableau.length(); i++) {
+	
+	    			result.add((String) tableau.get(i));
+	    		}
+	    		car = Car.unSerialize(result.get(1));
+	    		JOptionPane.showMessageDialog(frame, "Voiture immatriculée "+car.getMatriculation()+ " ajoutée");
+	    		Fenetre newFenetre = new Fenetre();
 			break;
-			case("Erreur_Ajout"):
+			case("KOCarInput"):
 				objet = new JSONObject(reponse);
 		    	System.out.println("Afficage du resultat de l'ajout vehicule : ");
 		    	System.out.println(reponse);

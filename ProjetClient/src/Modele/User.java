@@ -1,4 +1,4 @@
-package r1Client;
+package r1Client.Modele;
 
 import java.lang.reflect.Array;
 import java.text.DateFormat;
@@ -6,6 +6,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import r1Serveur.Modele.TypeUser;
 
 public class User {
 	
@@ -18,8 +20,9 @@ public class User {
 	private String email;
 	private Date hireDate;
 	private float income;
+	private TypeUser type;
 	
-	public User(String firstname, String lastname, String address, String town, int postcode, String login, String email, Date hire, float income){
+	public User(String firstname, String lastname, String address, String town, int postcode, String login, String email, Date hire, float income, TypeUser type){
 		this.firstName = firstname;
 		this.lastName = lastname;
 		this.address = address;
@@ -29,6 +32,7 @@ public class User {
 		this.email = email;
 		this.hireDate = hire;
 		this.income = income;
+		this.type = type;
 	}
 	
 	public String getFirstName(){
@@ -99,8 +103,16 @@ public class User {
 		this.income = newIncome;
 	}
 	
+	public TypeUser getTypeUser(){
+		return this.type;
+	}
+	
+	public void setTypeUser(TypeUser type){
+		this.type = type;
+	}
+	
 	public static String serialize(User user){
-		String serialUser = user.firstName+"///"+user.lastName+"///"+user.address+"///"+user.town+"///"+user.postCode+"///"+user.login+"///"+user.email+"///"+user.hireDate+"///"+user.income;
+		String serialUser = user.firstName+"///"+user.lastName+"///"+user.address+"///"+user.town+"///"+user.postCode+"///"+user.login+"///"+user.email+"///"+user.hireDate+"///"+user.income+"///"+user.type.serialize();
 		return serialUser;
 	}
 	
@@ -117,7 +129,7 @@ public class User {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		User user = new User(values.get(0).toString(),values.get(1).toString(),values.get(2).toString(),values.get(3).toString(),Integer.parseInt(values.get(4).toString()),values.get(5).toString(),values.get(6).toString(),date,Float.parseFloat(values.get(8).toString()));
+		User user = new User(values.get(0).toString(),values.get(1).toString(),values.get(2).toString(),values.get(3).toString(),Integer.parseInt(values.get(4).toString()),values.get(5).toString(),values.get(6).toString(),date,Float.parseFloat(values.get(8).toString()), new TypeUser(values.get(9).toString()));
 		return user;
 	}
 	

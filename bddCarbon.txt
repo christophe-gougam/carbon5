@@ -1,0 +1,74 @@
+CREATE TABLE Users(
+id int PRIMARY KEY AUTO_INCREMENT,
+idTypeUser int NOT NULL,
+firstName varchar(100),
+lastName varchar(100),
+address varchar(150),
+town varchar(100),
+postalCode varchar(5),
+login varchar(100),
+password varchar(20),
+email varchar(50),
+hiringDate date,
+incomingPerHour decimal(4,2));
+
+CREATE TABLE TypeUser(
+id int PRIMARY KEY AUTO_INCREMENT,
+workingTypeUser varchar(55));
+
+CREATE TABLE CardState(
+id int PRIMARY KEY AUTO_INCREMENT,
+description varchar(100));
+
+CREATE TABLE Parking(
+id int PRIMARY KEY AUTO_INCREMENT,
+occupied boolean);
+
+CREATE TABLE UrgencyDegree(
+id int PRIMARY KEY AUTO_INCREMENT,
+description varchar(100));
+
+CREATE TABLE IF NOT EXISTS car (
+  IDVehicule varchar(100) PRIMARY KEY,
+  TypeVehicule varchar(200) DEFAULT NULL,
+  statut varchar(200) DEFAULT NULL,
+  NumParking int DEFAULT NULL
+);
+
+CREATE TABLE ReparationForm(
+id int PRIMARY KEY AUTO_INCREMENT,
+idCardState int,
+idUrgencyDegree int,
+idParking int,
+idVehicle int,
+entryDate DATE,
+outDate DATE,
+diagnosis TEXT,
+reparationDetail TEXT);
+
+CREATE TABLE Part(
+id int PRIMARY KEY AUTO_INCREMENT,
+stock int,
+description varchar(100),
+purchasePrice DECIMAL(5,2));
+
+CREATE TABLE CanUsingPart(
+idVehicle int AUTO_INCREMENT,
+idPart int,
+PRIMARY KEY (idVehicle, idPart));
+
+ALTER TABLE users ADD CONSTRAINT fk_Users_TypeUser FOREIGN KEY (idTypeUser) REFERENCES TypeUser(id);
+
+ALTER TABLE car ADD CONSTRAINT fk_Car_Parking FOREIGN KEY (NumParking) REFERENCES Parking(id);
+
+ALTER TABLE reparationForm ADD CONSTRAINT fk_reparationForm_cardState FOREIGN KEY (idCardState) REFERENCES cardState(id);
+
+ALTER TABLE reparationForm ADD CONSTRAINT fk_reparationForm_urgencyDegree FOREIGN KEY (idUrgencyDegree) REFERENCES urgencyDegree(id);
+
+ALTER TABLE reparationForm ADD CONSTRAINT fk_reparationForm_parking FOREIGN KEY (idParking) REFERENCES parking(id);
+
+ALTER TABLE reparationForm ADD CONSTRAINT fk_reparationForm_car FOREIGN KEY (idVehicle) REFERENCES car(id);
+
+ALTER TABLE canUsingPart ADD CONSTRAINT fk_canUsingPart_car FOREIGN KEY (idVehicle) REFERENCES car(id);
+
+ALTER TABLE canUsingPart ADD CONSTRAINT fk_canUsingPart_part FOREIGN KEY (idPart) REFERENCES part(id);
