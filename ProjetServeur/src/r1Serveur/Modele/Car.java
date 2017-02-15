@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package r1Serveur.Modele;
+package r1Client.Modele;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -11,8 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 /**
- *
- * @author CongThuan
+ * Class creates a vehicle
+ * @author Carbon5
  */
 public class Car {
     private String matriculation;
@@ -20,6 +20,13 @@ public class Car {
     private String statut;
     private Parking parking;
     
+    /**
+     * Class constructor
+     * @param matriculation
+     * @param type
+     * @param statut
+     * @param parking 
+     */
     public Car (String matriculation, String type, String statut, Parking parking){
         this.matriculation = matriculation;
         this.type = type;
@@ -27,43 +34,85 @@ public class Car {
         this.parking = parking;
     }
     
+    /**
+     * Method get matriculation number
+     * @return matriculation number
+     */
     public String getMatriculation(){
         return matriculation;
     }
     
+    /**
+     * Method set new matriculation number
+     * @param newMatriculation 
+     */
     public void setId(String newMatriculation){
         this.matriculation = newMatriculation;
     }
     
+    /**
+     * Method get type vehicle
+     * @return type vehicle
+     */
     public String getType(){
         return this.type;
     }
     
+    /**
+     * Method set new type vehicle
+     * @param type 
+     */
     public void setType(String type){
         this.type = type;
     }
     
+    /**
+     * Method get vehicle's status
+     * @return vehicle's status
+     */
     public String getStatut(){
         return this.statut;
     }
     
+    /**
+     * Method set new vehicle's status
+     * @param statut 
+     */
     public void setStatut(String statut){
         this.statut = statut;
     }
     
+    /**
+     * Method get vehicle's parking
+     * @return vehicle's parking
+     */
     public Parking getParking(){
     	return this.parking;
     }
     
+    /**
+     * Method set new vehicle's parking
+     * @param newParking 
+     */
     public void setParking(Parking newParking){
     	this.parking = newParking;
     }
     
+    /**
+     * Method transform object vehicle to String
+     * @param car
+     * @return String carSerial
+     */
     public static String serialize(Car car){
     	String carSerial = car.matriculation+"///"+car.type+"///"+car.statut+"///"+car.parking.getNumParking();
     	return carSerial;
     }
     
+    /**
+     * Method recreates object Car from String
+     * @param serializedCar
+     * @return object car
+     */
     public static Car unSerialize(String serializedCar){
     	ArrayList values = new ArrayList();
 		for (String retval: serializedCar.split("///")){
