@@ -32,10 +32,12 @@ public class CRUD{
 		
 		try{
 			st = cn.createStatement();
+			System.out.println("insert execution");
 			System.out.println("Statement created");
-			String request = "INSERT INTO car(matricule,type,statut,parking) VALUES('"+matricule+"','"+type+"','"+statut+"','"+parking+"')";
-			rs = st.executeQuery(request);
-			System.out.println("Query execution");
+			String request = "INSERT INTO car(IDVehicule,TypeVehicule,statut,NumParking) VALUES('"+matricule+"','"+type+"','"+statut+"','"+parking+"')";
+			System.out.println(request);
+			st.executeUpdate(request);
+			System.out.println("insert execution");
 		}catch(SQLException e){
 			e.printStackTrace();
 			dataResult.add("Erreur lors de l'execution de la requête");

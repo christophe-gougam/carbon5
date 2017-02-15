@@ -110,7 +110,7 @@ public class User {
 	}
 	
 	public static String serialize(User user){
-		String serialUser = user.firstName+"///"+user.lastName+"///"+user.address+"///"+user.town+"///"+user.postCode+"///"+user.login+"///"+user.email+"///"+user.hireDate+"///"+user.income+"///"+user.type.serialize();
+		String serialUser = user.firstName+"///"+user.lastName+"///"+user.address+"///"+user.town+"///"+user.postCode+"///"+user.login+"///"+user.email+"///"+user.hireDate+"///"+user.income+"///"+user.type.serialize(user.getTypeUser());
 		return serialUser;
 	}
 	

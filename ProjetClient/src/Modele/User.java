@@ -7,8 +7,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import r1Serveur.Modele.TypeUser;
-
 public class User {
 	
 	private String firstName;
@@ -112,11 +110,12 @@ public class User {
 	}
 	
 	public static String serialize(User user){
-		String serialUser = user.firstName+"///"+user.lastName+"///"+user.address+"///"+user.town+"///"+user.postCode+"///"+user.login+"///"+user.email+"///"+user.hireDate+"///"+user.income+"///"+user.type.serialize();
+		String serialUser = user.firstName+"///"+user.lastName+"///"+user.address+"///"+user.town+"///"+user.postCode+"///"+user.login+"///"+user.email+"///"+user.hireDate+"///"+user.income+"///"+user.type.serialize(user.getTypeUser());
 		return serialUser;
 	}
 	
 	public static User unSerialize(String serializedUser){
+		System.out.println("Enter unserilization");
 		ArrayList values = new ArrayList();
 		for (String retval: serializedUser.split("///")){
 			values.add(retval);
@@ -129,7 +128,9 @@ public class User {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("Begin unserilization");
 		User user = new User(values.get(0).toString(),values.get(1).toString(),values.get(2).toString(),values.get(3).toString(),Integer.parseInt(values.get(4).toString()),values.get(5).toString(),values.get(6).toString(),date,Float.parseFloat(values.get(8).toString()), new TypeUser(values.get(9).toString()));
+		System.out.println("Success unserilization");
 		return user;
 	}
 	

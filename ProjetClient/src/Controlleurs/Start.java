@@ -14,6 +14,6 @@ import r1Client.Vues.Authentication;
 public class Start {
 	
     public static void main(String[] args) {
-    	Authentication auth = new Authentication();
+    	new Authentication();
     }
 }

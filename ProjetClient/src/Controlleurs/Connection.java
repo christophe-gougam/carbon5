@@ -45,6 +45,7 @@ public class Connection{
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			String json = EcritureJson.WriteJson(identifier, data);
 			System.out.println("Envoie du JSON au serveur");
+			System.out.println(json);
 			out.println(json);
 			out.flush();
 			
@@ -60,12 +61,12 @@ public class Connection{
 			}
 			
 			switch(repId){
-			case("Erreur de mot de passe"):
+			case "Erreur de mot de passe" :
 				//Pop up displaying error
 				JOptionPane.showMessageDialog(frame, "Erreur: Mauvaise identification");
 				Authentication auth = new Authentication();
 			break;
-			case("GrantAuth"):
+			case "GrantAuth" :
 				objet = new JSONObject(reponse);
 		    	System.out.println("Afficage du JSON : ");
 		    	System.out.println(reponse);
@@ -76,13 +77,14 @@ public class Connection{
 	
 	    			result.add((String) tableau.get(i));
 	    		}
-	   
+	    		System.out.println(result.get(1));
 		    	user = User.unSerialize(result.get(1));
 				JOptionPane.showMessageDialog(frame, "Bienvenue "+user.getFirstName());
 				Fenetre ajout = new Fenetre();
-			//break;
+				
+			break;
 			
-			case("OKCarInput"):
+			case "OKCarInput" :
 				objet = new JSONObject(reponse);
 		    	//System.out.println("Afficage du resultat de l'ajout vehicule : ");
 		    	//System.out.println(reponse);
@@ -95,15 +97,19 @@ public class Connection{
 	    		}
 	    		car = Car.unSerialize(result.get(1));
 	    		JOptionPane.showMessageDialog(frame, "Voiture immatriculée "+car.getMatriculation()+ " ajoutée");
-	    		Fenetre newFenetre = new Fenetre();
+	    		//Fenetre newFenetre = new Fenetre();
+	    		
 			break;
-			case("KOCarInput"):
+			
+			case "KOCarInput" :
 				objet = new JSONObject(reponse);
 		    	System.out.println("Afficage du resultat de l'ajout vehicule : ");
 		    	System.out.println(reponse);
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
 			break;
+			default : 
+				System.out.println("default");
 			}
 			
 		}catch (Exception e){

@@ -15,12 +15,12 @@ public class TypeUser {
 		this.workingTypeUser = type;
 	}
 	
-	public String serialize(){
-		String objetSerial = workingTypeUser;
+	public static String serialize(TypeUser type){
+		String objetSerial = type.workingTypeUser;
 		return objetSerial;
 	}
 	
-	public TypeUser unSerialize(String objetSerial){
+	public static TypeUser unSerialize(String objetSerial){
 		return new TypeUser(objetSerial);
 	}
 }
