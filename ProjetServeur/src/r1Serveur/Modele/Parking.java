@@ -1,4 +1,4 @@
-package r1Client.Modele;
+package r1Serveur.Modele;
 
 /**
  * Class creates a parking

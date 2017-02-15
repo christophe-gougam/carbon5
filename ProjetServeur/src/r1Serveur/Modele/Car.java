@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package r1Client.Modele;
+package r1Serveur.Modele;
 
 import java.text.DateFormat;
 import java.text.ParseException;
