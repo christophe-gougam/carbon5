@@ -39,7 +39,3 @@ public class Serveur {
 		}
 	}
 }
-
-//https://openclassrooms.com/courses/introduction-aux-sockets-1
-
-// lancer une classe processdata; process data lit le json et renvoie là ou il faut
