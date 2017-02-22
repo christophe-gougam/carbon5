@@ -20,7 +20,7 @@ import r1Serveur.Modele.Parking;
 
 
 /**
- * Class CarManager manage the vehicles
+ * Class CRUD manage the vehicles
  * @author Carbon5
  */
 public class CRUD{
