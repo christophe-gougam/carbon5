@@ -125,12 +125,10 @@ public class IHM extends JFrame {
         liste1.addListSelectionListener(new Liste1Listener());
         liste2.addListSelectionListener(new Liste2Listener());
         liste3.addListSelectionListener(new Liste3Listener());
-        
-        pan2.setBackground(Color.pink);
-        
+                
         pan.setLayout(new BorderLayout());
         pan.add(pan1, BorderLayout.WEST);
-        pan.add(pan2);
+        //pan.add(pan2);
     }
     
     /*
