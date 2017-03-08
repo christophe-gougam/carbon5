@@ -138,6 +138,8 @@ public class IHM extends JFrame {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == bouton1){
                 //code
+                pan.add(new PanDiagnostic());
+                pan.revalidate();
             }
             if(e.getSource() == bouton2){
                 //code
@@ -216,5 +218,6 @@ public class IHM extends JFrame {
     
     public static void main(String[] args) {
         IHM a = new IHM();
+        a.revalidate();
     }
 }
