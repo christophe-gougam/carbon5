@@ -24,33 +24,14 @@ import javax.swing.event.ListSelectionListener;
 
 /**
  *
- * @author CongThuan
+ * @author Carbon5
  */
 public class IHM extends JFrame {
-    private JPanel pan = new JPanel();
+    public JPanel pan = new JPanel();
     private JMenuBar menubar = new JMenuBar();
     
     private JPanel pan1 = new JPanel();
     private JPanel pan2 = new JPanel();
-    
-    /*
-    private JPanel panDiagnostic = new JPanel();
-    private JPanel panParking = new JPanel();
-    private JPanel panOrdreReparation = new JPanel();
-    private JPanel panDetailOperation = new JPanel();
-    private JPanel panStock = new JPanel();
-    private JPanel panEntreeStock = new JPanel();
-    private JPanel panSortieStock = new JPanel();
-    private JPanel panPieceDetache = new JPanel();
-    private JPanel panAjouterPiece = new JPanel();
-    private JPanel panModifierPiece = new JPanel();
-    private JPanel panSupprimerPiece = new JPanel();
-    private JPanel panVehicule = new JPanel();
-    private JPanel panAjouterVehicule = new JPanel();
-    private JPanel panModifierVehicule = new JPanel();
-    private JPanel panSupprimerVehicule = new JPanel();
-    private JPanel panStatistique = new JPanel();
-    */
     
     private JButton bouton1 = new JButton("Diagnostic") ;
     private JButton bouton2 = new JButton("Parking");
@@ -65,21 +46,21 @@ public class IHM extends JFrame {
     private String[] l1 = {"Entree","Sortie"};
     
     private JList liste2;
-    private String[] l2 = {"Ajouter", "Modifier", "Supprimer"};
+    private String[] l2 = {"Ajouter", "Modifier"};
     
     private JList liste3;
-    private String[] l3 = {"Ajouter", "Modifier", "Supprimer"};
+    private String[] l3 = {"Ajouter", "Modifier"};
             
     public IHM(){
         this.setTitle("Main menu");
-        this.setSize(800,800);
+        this.setSize(600,600);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         this.setContentPane(pan);
         this.setJMenuBar(menubar);
         
-        pan1.setBackground(Color.red);
+        pan1.setBackground(Color.GRAY);
         pan1.setLayout(new GridLayout(11,1));
         
         //Add component to panel
@@ -90,14 +71,17 @@ public class IHM extends JFrame {
         pan1.add(bouton5);
         liste1 = new JList(l1);
         liste1.setBackground(Color.orange);
+        liste1.setVisible(false);
         pan1.add(liste1);
         pan1.add(bouton6);
         liste2 = new JList(l2);
         liste2.setBackground(Color.orange);
+        liste2.setVisible(false);
         pan1.add(liste2);
         pan1.add(bouton7);
         liste3 = new JList(l3);
         liste3.setBackground(Color.orange);
+        liste3.setVisible(false);
         pan1.add(liste3);
         pan1.add(bouton8);
         
@@ -125,7 +109,9 @@ public class IHM extends JFrame {
         liste1.addListSelectionListener(new Liste1Listener());
         liste2.addListSelectionListener(new Liste2Listener());
         liste3.addListSelectionListener(new Liste3Listener());
-                
+        
+        pan2.setBackground(Color.pink);
+        
         pan.setLayout(new BorderLayout());
         pan.add(pan1, BorderLayout.WEST);
         //pan.add(pan2);
@@ -138,29 +124,65 @@ public class IHM extends JFrame {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == bouton1){
                 //code
-                pan.add(new PanDiagnostic());
+                pan.add(new PanelDiagnostic());
+                liste1.setVisible(false);
+                liste2.setVisible(false);
+                liste3.setVisible(false);
                 pan.revalidate();
             }
             if(e.getSource() == bouton2){
                 //code
+                pan.add(new PanParking());
+                liste1.setVisible(false);
+                liste2.setVisible(false);
+                liste3.setVisible(false);
+                pan.revalidate();
             }
             if(e.getSource() == bouton3){
                 //code
+                pan.add(new PanOrdreReparation());
+                liste1.setVisible(false);
+                liste2.setVisible(false);
+                liste3.setVisible(false);
+                pan.revalidate();
             }
             if(e.getSource() == bouton4){
                 //code
+                pan.add(new PanelDetailOperation());
+                liste1.setVisible(false);
+                liste2.setVisible(false);
+                liste3.setVisible(false);
+                pan.revalidate();
             }
             if(e.getSource() == bouton5){
                 //code
+                pan.add(new PanStock());
+                liste1.setVisible(true);
+                liste2.setVisible(false);
+                liste3.setVisible(false);
+                pan.revalidate();
             }
             if(e.getSource() == bouton6){
                 //code
+                pan.add(new PanPiece());
+                liste1.setVisible(false);
+                liste2.setVisible(true);
+                liste3.setVisible(false);
+                pan.revalidate();
             }
             if(e.getSource() == bouton7){
                 //code
+                pan.add(new PanVehicule());
+                liste1.setVisible(false);
+                liste2.setVisible(false);
+                liste3.setVisible(true);
+                pan.revalidate();
             }
             if(e.getSource() == bouton8){
                 //code
+                liste1.setVisible(false);
+                liste2.setVisible(false);
+                liste3.setVisible(false);
             }
         }  
     }
@@ -174,9 +196,16 @@ public class IHM extends JFrame {
             if (!e.getValueIsAdjusting()) {
             Object[] valeur = liste1.getSelectedValues();
             for (int i = 0; i < valeur.length; i++) {
-                JLabel label = new JLabel((String) valeur[i]);
-                pan2.add(label);
-                setVisible(true);
+                switch ((String) valeur[i]){
+                    case "Entree": 
+                        pan.add(new PanEntreeStock());
+                        pan.revalidate();
+                        break;
+                    case "Sortie":
+                        pan.add(new PanSortieStock());
+                        pan.revalidate();
+                        break;
+                }
             }
             }
         }
@@ -191,9 +220,16 @@ public class IHM extends JFrame {
             if (!e.getValueIsAdjusting()) {
             Object[] valeur = liste2.getSelectedValues();
             for (int i = 0; i < valeur.length; i++) {
-                JLabel label = new JLabel((String) valeur[i]);
-                pan2.add(label);
-                setVisible(true);
+                switch((String) valeur[i]){
+                    case "Ajouter":
+                        pan.add(new PanAjoutPiece());
+                        pan.revalidate();
+                        break;
+                    case "Modifier":
+                        pan.add(new PanModifPiece());
+                        pan.revalidate();
+                        break;
+                }
             }
             }
         }  
@@ -208,9 +244,16 @@ public class IHM extends JFrame {
             if (!e.getValueIsAdjusting()) {
             Object[] valeur = liste3.getSelectedValues();
             for (int i = 0; i < valeur.length; i++) {
-                JLabel label = new JLabel((String) valeur[i]);
-                pan2.add(label);
-                setVisible(true);
+                switch((String) valeur[i]){
+                    case "Ajouter":
+                        pan.add(new PanAjoutVehicule());
+                        pan.revalidate();
+                        break;
+                    case "Modifier":
+                        pan.add(new PanModifVehicule());
+                        pan.revalidate();
+                        break;
+                }
             }
             }
         }
