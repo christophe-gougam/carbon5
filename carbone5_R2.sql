@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Mar 07 Mars 2017 à 13:59
+-- Généré le : Dim 12 Mars 2017 à 23:28
 -- Version du serveur: 5.1.53
 -- Version de PHP: 5.3.4
 
@@ -24,6 +24,9 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Structure de la table `car`
 --
+-- Création: Mar 07 Mars 2017 à 14:49
+-- Dernière modification: Mar 07 Mars 2017 à 14:49
+--
 
 DROP TABLE IF EXISTS `car`;
 CREATE TABLE IF NOT EXISTS `car` (
@@ -41,6 +44,10 @@ CREATE TABLE IF NOT EXISTS `car` (
 
 --
 -- Structure de la table `carddefect`
+--
+-- Création: Mar 07 Mars 2017 à 14:49
+-- Dernière modification: Mar 07 Mars 2017 à 14:49
+-- Dernière vérification: Mar 07 Mars 2017 à 14:49
 --
 
 DROP TABLE IF EXISTS `carddefect`;
@@ -61,6 +68,9 @@ CREATE TABLE IF NOT EXISTS `carddefect` (
 --
 -- Structure de la table `cardrepairs`
 --
+-- Création: Mar 07 Mars 2017 à 14:49
+-- Dernière modification: Mar 07 Mars 2017 à 14:49
+--
 
 DROP TABLE IF EXISTS `cardrepairs`;
 CREATE TABLE IF NOT EXISTS `cardrepairs` (
@@ -78,6 +88,9 @@ CREATE TABLE IF NOT EXISTS `cardrepairs` (
 
 --
 -- Structure de la table `cardstate`
+--
+-- Création: Mar 07 Mars 2017 à 14:49
+-- Dernière modification: Mar 07 Mars 2017 à 14:49
 --
 
 DROP TABLE IF EXISTS `cardstate`;
@@ -97,6 +110,9 @@ CREATE TABLE IF NOT EXISTS `cardstate` (
 --
 -- Structure de la table `defect`
 --
+-- Création: Mar 07 Mars 2017 à 14:49
+-- Dernière modification: Mar 07 Mars 2017 à 14:49
+--
 
 DROP TABLE IF EXISTS `defect`;
 CREATE TABLE IF NOT EXISTS `defect` (
@@ -114,6 +130,9 @@ CREATE TABLE IF NOT EXISTS `defect` (
 
 --
 -- Structure de la table `parking`
+--
+-- Création: Mar 07 Mars 2017 à 14:49
+-- Dernière modification: Mar 07 Mars 2017 à 14:49
 --
 
 DROP TABLE IF EXISTS `parking`;
@@ -133,6 +152,9 @@ CREATE TABLE IF NOT EXISTS `parking` (
 
 --
 -- Structure de la table `part`
+--
+-- Création: Mar 07 Mars 2017 à 14:49
+-- Dernière modification: Mar 07 Mars 2017 à 14:49
 --
 
 DROP TABLE IF EXISTS `part`;
@@ -154,6 +176,10 @@ CREATE TABLE IF NOT EXISTS `part` (
 --
 -- Structure de la table `partdefect`
 --
+-- Création: Mar 07 Mars 2017 à 14:49
+-- Dernière modification: Mar 07 Mars 2017 à 14:49
+-- Dernière vérification: Mar 07 Mars 2017 à 14:49
+--
 
 DROP TABLE IF EXISTS `partdefect`;
 CREATE TABLE IF NOT EXISTS `partdefect` (
@@ -172,6 +198,10 @@ CREATE TABLE IF NOT EXISTS `partdefect` (
 
 --
 -- Structure de la table `partrepairs`
+--
+-- Création: Mar 07 Mars 2017 à 14:49
+-- Dernière modification: Mar 07 Mars 2017 à 14:49
+-- Dernière vérification: Mar 07 Mars 2017 à 14:49
 --
 
 DROP TABLE IF EXISTS `partrepairs`;
@@ -192,6 +222,9 @@ CREATE TABLE IF NOT EXISTS `partrepairs` (
 --
 -- Structure de la table `place`
 --
+-- Création: Mar 07 Mars 2017 à 14:49
+-- Dernière modification: Mar 07 Mars 2017 à 14:49
+--
 
 DROP TABLE IF EXISTS `place`;
 CREATE TABLE IF NOT EXISTS `place` (
@@ -210,6 +243,10 @@ CREATE TABLE IF NOT EXISTS `place` (
 
 --
 -- Structure de la table `repaircard`
+--
+-- Création: Mar 07 Mars 2017 à 14:49
+-- Dernière modification: Mar 07 Mars 2017 à 14:49
+-- Dernière vérification: Mar 07 Mars 2017 à 14:49
 --
 
 DROP TABLE IF EXISTS `repaircard`;
@@ -242,6 +279,9 @@ CREATE TABLE IF NOT EXISTS `repaircard` (
 --
 -- Structure de la table `repairs`
 --
+-- Création: Lun 13 Mars 2017 à 00:26
+-- Dernière modification: Lun 13 Mars 2017 à 00:26
+--
 
 DROP TABLE IF EXISTS `repairs`;
 CREATE TABLE IF NOT EXISTS `repairs` (
@@ -249,7 +289,7 @@ CREATE TABLE IF NOT EXISTS `repairs` (
   `DateRepair` date DEFAULT NULL,
   `Nature` varchar(50) DEFAULT NULL,
   `TimeSpent` float DEFAULT NULL,
-  `Description` text,
+  `Description` varchar(10000) DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -262,6 +302,9 @@ CREATE TABLE IF NOT EXISTS `repairs` (
 
 --
 -- Structure de la table `typeuser`
+--
+-- Création: Mar 07 Mars 2017 à 14:49
+-- Dernière modification: Mar 07 Mars 2017 à 14:49
 --
 
 DROP TABLE IF EXISTS `typeuser`;
@@ -281,6 +324,9 @@ CREATE TABLE IF NOT EXISTS `typeuser` (
 --
 -- Structure de la table `urgencydegree`
 --
+-- Création: Mar 07 Mars 2017 à 14:49
+-- Dernière modification: Mar 07 Mars 2017 à 14:49
+--
 
 DROP TABLE IF EXISTS `urgencydegree`;
 CREATE TABLE IF NOT EXISTS `urgencydegree` (
@@ -298,6 +344,10 @@ CREATE TABLE IF NOT EXISTS `urgencydegree` (
 
 --
 -- Structure de la table `users`
+--
+-- Création: Mar 07 Mars 2017 à 14:49
+-- Dernière modification: Mar 07 Mars 2017 à 14:49
+-- Dernière vérification: Mar 07 Mars 2017 à 14:49
 --
 
 DROP TABLE IF EXISTS `users`;
