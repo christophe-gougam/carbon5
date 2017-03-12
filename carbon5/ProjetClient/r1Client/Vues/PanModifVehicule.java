@@ -7,7 +7,7 @@ package r1Client.Vues;
 
 /**
  *
- * @author CongThuan
+ * @author Carbon5
  */
 public class PanModifVehicule extends javax.swing.JPanel {
 
