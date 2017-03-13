@@ -51,7 +51,7 @@ public class PanelDiagnostic extends javax.swing.JPanel {
 
         jLabel6.setText("Pieces utilises");
 
-        jLabel7.setText("Temps prvu");
+        jLabel7.setText("Temps prévu");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

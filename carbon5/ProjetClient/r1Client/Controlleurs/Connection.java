@@ -108,7 +108,7 @@ public class Connection{
 	    			result.add((String) tableau.get(i));
 	    		}
 	    		car = Car.unSerialize(result.get(1));
-	    		JOptionPane.showMessageDialog(frame, "Voiture immatriculée "+car.getMatriculation()+ " ajoutée");
+	    		JOptionPane.showMessageDialog(frame, "Voiture "+car.getTypeVehicule()+ " ajoutée");
 	    		//Fenetre newFenetre = new Fenetre();
 	    		
 			break;
