@@ -73,18 +73,11 @@ public class Car {
      * @return object car
      */
     public static Car unSerialize(String serializedCar){
-    	ArrayList values = new ArrayList();
+    	ArrayList<String> values = new ArrayList<String>();
 		for (String retval: serializedCar.split("///")){
 			values.add(retval);
 		}
-		Car car = new Car(String.valueOf(values.get(0)), String.valueOf(values.get(1)));
+		Car car = new Car(values.get(0), values.get(1));
 		return car;
-    }
-    /**
-     * Method toString
-     * 
-     */
-    public String toString(Object values) {
-        return String.valueOf(values);
     }
 }

@@ -131,38 +131,22 @@ public class repairs {
      */
     
     public static repairs unSerialize(String serializedrepair){
-    	ArrayList values = new ArrayList();
+    	ArrayList<String> values = new ArrayList<String>();
 		for (String retval: serializedrepair.split("///")){
 			values.add(retval);
 		}
-		repairs repair = new repairs((int) values.get(0), (Date) values.get(1), String.valueOf(values.get(2)), (float) values.get(3), String.valueOf(values.get(4)));
+		Date date=null;
+		String testDate = values.get(1);
+		DateFormat formatter = new SimpleDateFormat("YYYY-MM-DD");
+		try {
+			date = formatter.parse(testDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		repairs repair = new repairs(Integer.parseInt(values.get(0)) , date, values.get(2), Float.valueOf(values.get(3)), values.get(4));
 		return repair;
     }
     
-    /**
-     * Method toString
-     * 
-     */
-    public String toString(Object values) {
-        return String.valueOf(values);
-    }
 }  
-//    public static String serialize(Car car){
-//    	String carSerial = car.matriculation+"///"+car.type+"///"+car.statut+"///"+car.parking.getNumParking();
-//    	return carSerial;
-//    }
-//    
-//    /**
-//     * Method recreates object Car from String
-//     * @param serializedCar
-//     * @return object car
-//     */
-//    public static Car unSerialize(String serializedCar){
-//    	ArrayList values = new ArrayList();
-//		for (String retval: serializedCar.split("///")){
-//			values.add(retval);
-//		}
-//		int numPark = Integer.parseInt(values.get(3).toString());
-//		Car car = new Car(values.get(0).toString(), values.get(1).toString(), values.get(2).toString(), new Parking(numPark));
-//		return car;
-//    }
