@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
+import java.util.Vector;
 
 /**
  * Class ConnectionPool creating the connection pool
@@ -21,9 +22,9 @@ public class ConnectionPool{
 	 */
 	final int MAX_POOL_SIZE = 20;
 	/**
-	 * Array containing the connection objects
+	 * Vector containing the connection objects
 	 */
-	static ArrayList<Connection> connectionsList = new ArrayList<Connection>();
+	static Vector<Connection> connectionsList = new Vector<Connection>();
 
 	/**
 	 * Class constructor, calls the method initializing the connections
