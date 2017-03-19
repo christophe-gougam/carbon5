@@ -1,375 +1,138 @@
--- phpMyAdmin SQL Dump
--- version 3.3.9
--- http://www.phpmyadmin.net
---
--- Serveur: localhost
--- Généré le : Dim 12 Mars 2017 à 23:28
--- Version du serveur: 5.1.53
--- Version de PHP: 5.3.4
-
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
---
--- Base de données: `carbon5`
---
-
--- --------------------------------------------------------
-
---
--- Structure de la table `car`
---
--- Création: Mar 07 Mars 2017 à 14:49
--- Dernière modification: Mar 07 Mars 2017 à 14:49
---
-
-DROP TABLE IF EXISTS `car`;
-CREATE TABLE IF NOT EXISTS `car` (
-  `NumPuce` varchar(100) NOT NULL,
-  `TypeVehicule` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`NumPuce`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `car`
---
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `carddefect`
---
--- Création: Mar 07 Mars 2017 à 14:49
--- Dernière modification: Mar 07 Mars 2017 à 14:49
--- Dernière vérification: Mar 07 Mars 2017 à 14:49
---
-
-DROP TABLE IF EXISTS `carddefect`;
-CREATE TABLE IF NOT EXISTS `carddefect` (
-  `IdDefect` int(11) NOT NULL DEFAULT '0',
-  `IdCard` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`IdDefect`,`IdCard`),
-  KEY `fk_Card_CardDefect` (`IdCard`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `carddefect`
---
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `cardrepairs`
---
--- Création: Mar 07 Mars 2017 à 14:49
--- Dernière modification: Mar 07 Mars 2017 à 14:49
---
-
-DROP TABLE IF EXISTS `cardrepairs`;
-CREATE TABLE IF NOT EXISTS `cardrepairs` (
-  `IdRepair` int(11) NOT NULL DEFAULT '0',
-  `IdCard` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`IdRepair`,`IdCard`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `cardrepairs`
---
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `cardstate`
---
--- Création: Mar 07 Mars 2017 à 14:49
--- Dernière modification: Mar 07 Mars 2017 à 14:49
---
-
-DROP TABLE IF EXISTS `cardstate`;
-CREATE TABLE IF NOT EXISTS `cardstate` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Description` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`Id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Contenu de la table `cardstate`
---
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `defect`
---
--- Création: Mar 07 Mars 2017 à 14:49
--- Dernière modification: Mar 07 Mars 2017 à 14:49
---
-
-DROP TABLE IF EXISTS `defect`;
-CREATE TABLE IF NOT EXISTS `defect` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Description` text,
-  PRIMARY KEY (`Id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Contenu de la table `defect`
---
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `parking`
---
--- Création: Mar 07 Mars 2017 à 14:49
--- Dernière modification: Mar 07 Mars 2017 à 14:49
---
-
-DROP TABLE IF EXISTS `parking`;
-CREATE TABLE IF NOT EXISTS `parking` (
-  `NumParking` int(11) NOT NULL AUTO_INCREMENT,
-  `NomParking` varchar(50) DEFAULT NULL,
-  `Capacity` int(11) DEFAULT NULL,
-  PRIMARY KEY (`NumParking`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Contenu de la table `parking`
---
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `part`
---
--- Création: Mar 07 Mars 2017 à 14:49
--- Dernière modification: Mar 07 Mars 2017 à 14:49
---
-
-DROP TABLE IF EXISTS `part`;
-CREATE TABLE IF NOT EXISTS `part` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Stock` int(11) DEFAULT NULL,
-  `NamePart` varchar(50) DEFAULT NULL,
-  `PurchasePrice` float DEFAULT NULL,
-  PRIMARY KEY (`Id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Contenu de la table `part`
---
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `partdefect`
---
--- Création: Mar 07 Mars 2017 à 14:49
--- Dernière modification: Mar 07 Mars 2017 à 14:49
--- Dernière vérification: Mar 07 Mars 2017 à 14:49
---
-
-DROP TABLE IF EXISTS `partdefect`;
-CREATE TABLE IF NOT EXISTS `partdefect` (
-  `IdPart` int(11) NOT NULL DEFAULT '0',
-  `IdDefect` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`IdPart`,`IdDefect`),
-  KEY `fk_Defect_PartDefect` (`IdDefect`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `partdefect`
---
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `partrepairs`
---
--- Création: Mar 07 Mars 2017 à 14:49
--- Dernière modification: Mar 07 Mars 2017 à 14:49
--- Dernière vérification: Mar 07 Mars 2017 à 14:49
---
-
-DROP TABLE IF EXISTS `partrepairs`;
-CREATE TABLE IF NOT EXISTS `partrepairs` (
-  `IdPart` int(11) NOT NULL DEFAULT '0',
-  `IdRepair` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`IdPart`,`IdRepair`),
-  KEY `fk_Repair_PartRepairs` (`IdRepair`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `partrepairs`
---
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `place`
---
--- Création: Mar 07 Mars 2017 à 14:49
--- Dernière modification: Mar 07 Mars 2017 à 14:49
---
-
-DROP TABLE IF EXISTS `place`;
-CREATE TABLE IF NOT EXISTS `place` (
-  `NumPlace` int(11) NOT NULL,
-  `NumPark` int(11) DEFAULT NULL,
-  `IsOccupied` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`NumPlace`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `place`
---
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `repaircard`
---
--- Création: Mar 07 Mars 2017 à 14:49
--- Dernière modification: Mar 07 Mars 2017 à 14:49
--- Dernière vérification: Mar 07 Mars 2017 à 14:49
---
-
-DROP TABLE IF EXISTS `repaircard`;
-CREATE TABLE IF NOT EXISTS `repaircard` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `IdDegree` int(11) DEFAULT NULL,
-  `IdState` int(11) DEFAULT NULL,
-  `IdCar` int(11) DEFAULT NULL,
-  `IdCard` int(11) DEFAULT NULL,
-  `IdParkPlace` int(11) DEFAULT NULL,
-  `EntryDate` date DEFAULT NULL,
-  `OutDate` date DEFAULT NULL,
-  `OverAllDetails` text,
-  `IdUser` int(11) DEFAULT NULL,
-  PRIMARY KEY (`Id`),
-  KEY `fk_Urgency_RepairCard` (`IdDegree`),
-  KEY `fk_CardState_RepairCard` (`IdCard`),
-  KEY `fk_Car_RepairCard` (`IdCar`),
-  KEY `fk_ParkPlace_RepairCard` (`IdParkPlace`),
-  KEY `fk_User_RepairCard` (`IdUser`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Contenu de la table `repaircard`
---
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `repairs`
---
--- Création: Lun 13 Mars 2017 à 00:26
--- Dernière modification: Lun 13 Mars 2017 à 00:26
---
-
-DROP TABLE IF EXISTS `repairs`;
-CREATE TABLE IF NOT EXISTS `repairs` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `DateRepair` date DEFAULT NULL,
-  `Nature` varchar(50) DEFAULT NULL,
-  `TimeSpent` float DEFAULT NULL,
-  `Description` varchar(10000) DEFAULT NULL,
-  PRIMARY KEY (`Id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Contenu de la table `repairs`
---
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `typeuser`
---
--- Création: Mar 07 Mars 2017 à 14:49
--- Dernière modification: Mar 07 Mars 2017 à 14:49
---
-
-DROP TABLE IF EXISTS `typeuser`;
-CREATE TABLE IF NOT EXISTS `typeuser` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Profil` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`Id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Contenu de la table `typeuser`
---
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `urgencydegree`
---
--- Création: Mar 07 Mars 2017 à 14:49
--- Dernière modification: Mar 07 Mars 2017 à 14:49
---
-
-DROP TABLE IF EXISTS `urgencydegree`;
-CREATE TABLE IF NOT EXISTS `urgencydegree` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Description` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`Id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Contenu de la table `urgencydegree`
---
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `users`
---
--- Création: Mar 07 Mars 2017 à 14:49
--- Dernière modification: Mar 07 Mars 2017 à 14:49
--- Dernière vérification: Mar 07 Mars 2017 à 14:49
---
-
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `TypeUser` int(11) DEFAULT NULL,
-  `FirstName` varchar(50) DEFAULT NULL,
-  `LastName` varchar(50) DEFAULT NULL,
-  `DateOfBirth` date DEFAULT NULL,
-  `Address` varchar(50) DEFAULT NULL,
-  `Town` varchar(50) DEFAULT NULL,
-  `PostalCode` int(11) DEFAULT NULL,
-  `Login` varchar(50) DEFAULT NULL,
-  `PasswordUser` varchar(50) DEFAULT NULL,
-  `Email` varchar(50) DEFAULT NULL,
-  `HiringDate` date DEFAULT NULL,
-  `IncomingPerHour` float DEFAULT NULL,
-  PRIMARY KEY (`Id`),
-  KEY `fk_Type` (`TypeUser`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Contenu de la table `users`
---
+create table Car(
+  NumPuce varchar(100) PRIMARY KEY,
+  TypeVehicule varchar(200) DEFAULT NULL
+
+);
+
+create table Parking(
+  NumParking int Primary Key auto_increment,
+  NomParking varchar(50),
+  Capacity int
+);
+
+create table Place(
+  NumPlace int Primary Key,
+  NumPark int,
+  IsOccupied boolean,
+  IdParking int
+);
+
+ALTER TABLE Place ADD CONSTRAINT fk_place FOREIGN KEY (IdParking) REFERENCES Parking(NumParking);
+
+create table CardState(
+  Id int Primary Key AUTO_INCREMENT,
+  Description varchar(50)
+);
+
+create table UrgencyDegree(
+  Id int Primary Key AUTO_INCREMENT,
+  Description varchar(50)
+);
+
+create table Part(
+  Id int Primary Key AUTO_INCREMENT,
+  Stock int,
+  NamePart varchar(50),
+  PurchasePrice float
+);
+
+create table Users(
+  Id int Primary Key AUTO_INCREMENT,
+  TypeUser int,
+  FirstName varchar(50),
+  LastName varchar (50),
+  DateOfBirth date,
+  Address varchar (50),
+  Town varchar (50),
+  PostalCode int,
+  Login varchar (50),
+  PasswordUser varchar (50),
+  Email varchar (50),
+  HiringDate date,
+  IncomingPerHour float
+);
+
+create table TypeUser(
+  Id int Primary Key AUTO_INCREMENT,
+  Profil varchar(50)
+);
+
+create table RepairCard(
+  Id int Primary Key AUTO_INCREMENT,
+  IdDegree int,
+  IdCard int,
+  IdCar varchar(100),
+  IdParkPlace int,
+  EntryDate date,
+  OutDate date,
+  OverAllDetails text,
+  IdUser int
+);
+
+create table Repairs(
+  Id int Primary Key AUTO_INCREMENT,
+  DateRepair date,
+  Nature varchar(50),
+  TimeSpent float,
+  Description text
+);
+
+create table Defect(
+  Id int Primary Key AUTO_INCREMENT,
+  Description text
+);
+
+create table CardDefect(
+  IdDefect int,
+  IdCard int
+);
+
+ALTER TABLE CardDefect ADD PRIMARY KEY (IdDefect,IdCard);
+ALTER TABLE CardDefect ADD CONSTRAINT fk_Card_CardDefect FOREIGN KEY (IdCard) REFERENCES RepairCard(Id);
+ALTER TABLE CardDefect ADD CONSTRAINT fk_Defect_CardDefect FOREIGN KEY (IdDefect) REFERENCES Defect(Id);
+
+create table CardRepairs(
+  IdRepair int,
+  IdCard int
+);
+
+ALTER TABLE CardRepairs ADD PRIMARY KEY (IdRepair,IdCard);
+ALTER TABLE CardRepairs ADD CONSTRAINT fk_Repairs_CardRepair FOREIGN KEY (IdRepair) REFERENCES Repairs(Id);
+ALTER TABLE CardRepairs ADD CONSTRAINT fk_Card_CardRepair FOREIGN KEY (IdCard) REFERENCES RepairCard(Id);
+
+create table PartDefect(
+  IdPart int,
+  IdDefect int
+);
+
+ALTER TABLE PartDefect ADD PRIMARY KEY (IdPart,IdDefect);
+ALTER TABLE PartDefect ADD CONSTRAINT fk_Part_PartDefect FOREIGN KEY (IdPart) REFERENCES Part(Id);
+ALTER TABLE PartDefect ADD CONSTRAINT fk_Defect_PartDefect FOREIGN KEY (IdDefect) REFERENCES Defect(Id);
+
+create table PartRepairs(
+  IdPart int,
+  IdRepair int
+);
+
+ALTER TABLE PartRepairs ADD PRIMARY KEY (IdPart,IdRepair);
+ALTER TABLE PartRepairs ADD CONSTRAINT fk_Part_PartRepairs FOREIGN KEY (IdPart) REFERENCES Part(Id);
+ALTER TABLE PartRepairs ADD CONSTRAINT fk_Repair_PartRepairs FOREIGN KEY (IdRepair) REFERENCES Repairs(Id);
+
+ALTER TABLE Users ADD CONSTRAINT fk_Type FOREIGN KEY (TypeUser) REFERENCES TypeUser(Id);
+
+ALTER TABLE RepairCard ADD CONSTRAINT fk_Urgency_RepairCard FOREIGN KEY (IdDegree) REFERENCES UrgencyDegree(Id);
+ALTER TABLE RepairCard ADD CONSTRAINT fk_CardState_RepairCard FOREIGN KEY (IdCard) REFERENCES CardState(Id);
+ALTER TABLE RepairCard ADD CONSTRAINT fk_Car_RepairCard FOREIGN KEY (IdCar) REFERENCES Car(NumPuce);
+ALTER TABLE RepairCard ADD CONSTRAINT fk_ParkPlace_RepairCard FOREIGN KEY (IdParkPlace) REFERENCES Place(NumPlace);
+ALTER TABLE RepairCard ADD CONSTRAINT fk_User_RepairCard FOREIGN KEY (IdUser) REFERENCES Users(Id);
+
+create table OrderPart(
+  IdPart int,
+  IdUser int,
+  Qte int
+);
+
+ALTER TABLE OrderPart ADD CONSTRAINT fk_Part_OrderPart FOREIGN KEY (IdPart) REFERENCES Part(Id);
+ALTER TABLE OrderPart ADD CONSTRAINT fk_User_OrderPart FOREIGN KEY (IdUser) REFERENCES Users(Id);
+
 
