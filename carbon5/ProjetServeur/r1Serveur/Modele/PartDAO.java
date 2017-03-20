@@ -43,7 +43,7 @@ public class PartDAO extends DAO<Part> {
     }
 
     @Override
-    public Part create(Part obj) {
+    public boolean create(Part obj) {
         try {
             //Vu que nous sommes sous postgres, nous allons chercher manuellement
             //la prochaine valeur de la séquence correspondant à l'id de notre table
@@ -66,16 +66,16 @@ public class PartDAO extends DAO<Part> {
                     prepare.setFloat(4, obj.getPurchasePrice());
 
                     prepare.executeUpdate();
-                    obj = this.find();
+                    //obj = this.find();
             }
         } catch (SQLException e) {
                 e.printStackTrace();
         }
-        return obj;
+        return true;
     }
 
     @Override
-    public Part update(Part obj) {
+    public boolean update(Part obj) {
         try {	
             this .connect	
                  .createStatement(
@@ -87,15 +87,15 @@ public class PartDAO extends DAO<Part> {
                     "PurchasePrice ='" + obj.getPurchasePrice() + "' " +
                     " WHERE Id = " + obj.getId()
                  );
-                    obj = this.find();
+                    //obj = this.find();
         } catch (SQLException e) {
                 e.printStackTrace();
         }
-        return obj;
+        return true;
     }
 
     @Override
-    public void delete(Part obj) {
+    public boolean delete(Part obj) {
         try {
             this.connect
                 .createStatement(
@@ -107,6 +107,7 @@ public class PartDAO extends DAO<Part> {
         } catch (SQLException e) {
                 e.printStackTrace();
         }
+        return true;
     }
     
 }
