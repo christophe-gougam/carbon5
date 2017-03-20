@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package r1Serveur.Modele;
+package r1Client.Modele;
 
 import com.mysql.jdbc.PreparedStatement;
 import java.sql.Connection;
@@ -21,7 +21,7 @@ public class UrgencyDegreeDAO extends DAO<UrgencyDegree>{
     }
     
     @Override
-    public UrgencyDegree find(long id) {
+    public UrgencyDegree find() {
         UrgencyDegree ud = new UrgencyDegree();
         try {
             ResultSet result = this .connect
@@ -29,11 +29,10 @@ public class UrgencyDegreeDAO extends DAO<UrgencyDegree>{
                                             	ResultSet.TYPE_SCROLL_INSENSITIVE, 
                                                 ResultSet.CONCUR_UPDATABLE
                                              ).executeQuery(
-                                                "SELECT * FROM urgencydegree WHERE Id = " + id
+                                                "SELECT * FROM urgencydegree" 
                                              );
             if(result.first())
             		ud = new UrgencyDegree(
-                                        (int) id, 
                                         result.getString("Description") 
                         );            
         } catch (SQLException e) {
@@ -64,7 +63,7 @@ public class UrgencyDegreeDAO extends DAO<UrgencyDegree>{
                     prepare.setString(2, obj.getDescription());
 
                     prepare.executeUpdate();
-                    obj = this.find(id);
+                    obj = this.find();
             }
         } catch (SQLException e) {
                 e.printStackTrace();
@@ -83,7 +82,7 @@ public class UrgencyDegreeDAO extends DAO<UrgencyDegree>{
                     "UPDATE urgencydegree SET Description = '" + obj.getDescription() + "'"+
                     " WHERE Id = " + obj.getId()
                  );
-                    obj = this.find(obj.getId());
+                    obj = this.find();
         } catch (SQLException e) {
                 e.printStackTrace();
         }

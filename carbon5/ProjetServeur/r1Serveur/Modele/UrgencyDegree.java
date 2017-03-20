@@ -1,10 +1,10 @@
-package r1Serveur.Modele;
+package r1Client.Modele;
 
 public class UrgencyDegree {
         private int id;
 	private String description;
         
-        public UrgencyDegree(int id, String description){
+        public UrgencyDegree(String description){
             
         }
 
@@ -16,8 +16,8 @@ public class UrgencyDegree {
             return id;
         }
         
-        public void setId(int newId){
-            this.id = newId;
+        public void setId(int id){
+            this.id = id;
         }
         
 	public String getDescription() {
