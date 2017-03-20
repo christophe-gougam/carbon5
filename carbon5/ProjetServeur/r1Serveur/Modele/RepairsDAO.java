@@ -6,16 +6,18 @@
 package r1Serveur.Modele;
 
 import java.sql.Connection;
+import com.mysql.jdbc.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * <>
  * @author Carbon5
  */
-public abstract class DAO<T> {
-    public Connection connect = null;
+public abstract class RepairsDAO extends DAO<Repairs> {
     
-    public DAO(Connection conn){
-        this.connect = conn;
+    public RepairsDAO(Connection conn){
+        super(conn);
     }
     
     /**
@@ -23,25 +25,43 @@ public abstract class DAO<T> {
      * @param id
      * @return 
      */
-   public abstract T find(long id);
+    @Override
+    public Repairs find(long id) {
+    	Repairs ud = new Repairs();
+        
+        return ud;
+    }
 
    /**
     * Creates an entry in the database relative to an object
     * @param obj
     * @return 
     */
-   public abstract boolean create(T obj);
+    @Override
+    public boolean delete(Repairs obj) {
+        return true;
+    }
 
    /**
     * Allows to update the data of an entry in the database
     * @param obj
     * @return 
     */
-   public abstract boolean update(T obj);
+
+	@Override
+	public boolean create(Repairs obj) {
+		// TODO Auto-generated method stub
+		return true;
+	}
 
    /**
     * Allows to delete an entry from the database
     * @param obj 
     */
-   public abstract boolean delete(T obj);
+
+	@Override
+	public boolean update(Repairs obj) {
+		// TODO Auto-generated method stub
+		return true;
+	}   
 }

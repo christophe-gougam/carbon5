@@ -14,7 +14,7 @@ import java.util.Date;
  * Class repair a vehicle
  * @author Carbon5
  */
-public class repairs {
+public class Repairs {
     private int Id;
     private Date DateRepair;
     private String Nature;
@@ -29,12 +29,15 @@ public class repairs {
      * @param TimeSpent
      * @param Description 
      */
-    public repairs (int id, Date dateRepair, String nature, float timeSpent, String description){
+    public Repairs (int id, Date dateRepair, String nature, float timeSpent, String description){
         this.Id = id;
         this.DateRepair=dateRepair;
         this.Nature=nature;
         this.TimeSpent = timeSpent;
         this.Description=description;
+    }
+    public Repairs(){
+    	
     }
     
     /**
@@ -115,11 +118,11 @@ public class repairs {
     
     /**
      * Method transform object vehicle to String
-     * @param repairs
+     * @param Repairs
      * @return String carSerial
      */
     
-    public static String serialize(repairs repair){
+    public static String serialize(Repairs repair){
     	String carSerial = repair.Id+"///"+repair.DateRepair+"///"+repair.Nature+"///"+repair.TimeSpent+"///"+repair.Description;
     	return carSerial;
     }
@@ -130,7 +133,7 @@ public class repairs {
      * @return object car
      */
     
-    public static repairs unSerialize(String serializedrepair){
+    public static Repairs unSerialize(String serializedrepair){
     	ArrayList<String> values = new ArrayList<String>();
 		for (String retval: serializedrepair.split("///")){
 			values.add(retval);
@@ -145,7 +148,7 @@ public class repairs {
 			e.printStackTrace();
 		}
 
-		repairs repair = new repairs(Integer.parseInt(values.get(0)) , date, values.get(2), Float.valueOf(values.get(3)), values.get(4));
+		Repairs repair = new Repairs(Integer.parseInt(values.get(0)) , date, values.get(2), Float.valueOf(values.get(3)), values.get(4));
 		return repair;
     }
     

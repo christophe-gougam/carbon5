@@ -23,6 +23,9 @@ public class Place {
         this.numPark = numPark;
         this.isOccupied = isOccupied;
     }
+    public Place(){
+        
+    }
     
     /*
     Method gets numero du parking

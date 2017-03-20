@@ -115,7 +115,7 @@ public class repairs {
     
     /**
      * Method transform object vehicle to String
-     * @param repairs
+     * @param Repairs
      * @return String carSerial
      */
     
