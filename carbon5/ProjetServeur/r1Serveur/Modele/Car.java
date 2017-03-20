@@ -5,106 +5,65 @@
  */
 package r1Serveur.Modele;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+
 /**
  * Class creates a vehicle
  * @author Carbon5
  */
 public class Car {
-    private String matriculation;
-    private String type;
-    private String statut;
-    private Parking parking;
+    private String NumePuce;
+    private String TypeVehicule;
     
     /**
      * Class constructor
-     * @param matriculation
-     * @param type
-     * @param statut
-     * @param parking 
+     * @param NumePuce;
+     * @param TypeVehicule 
      */
-    public Car (String matriculation, String type, String statut, Parking parking){
-        this.matriculation = matriculation;
-        this.type = type;
-        this.statut = statut;
-        this.parking = parking;
+    public Car (String numePuce, String typevehicule){
+        this.NumePuce = numePuce;;
+        this.TypeVehicule = typevehicule;
     }
     
     /**
-     * Method get matriculation number
-     * @return matriculation number
+     * Method get NumePuce
+     * @return NumePuce;
      */
-    public String getMatriculation(){
-        return matriculation;
+    public String getNumePuce(){
+        return NumePuce;
     }
     
     /**
-     * Method set new matriculation number
-     * @param newMatriculation 
+     * Method set NumePuce
+     * @param numepuce
      */
-    public void setId(String newMatriculation){
-        this.matriculation = newMatriculation;
+    public void setNumePuce(String numepuce){
+        this.NumePuce = numepuce;
     }
     
     /**
      * Method get type vehicle
      * @return type vehicle
      */
-    public String getType(){
-        return this.type;
+    public String getTypeVehicule(){
+        return this.TypeVehicule;
     }
     
     /**
      * Method set new type vehicle
      * @param type 
      */
-    public void setType(String type){
-        this.type = type;
+    public void setTypeVehicule(String type){
+        this.TypeVehicule = type;
     }
     
     /**
-     * Method get vehicle's status
-     * @return vehicle's status
-     */
-    public String getStatut(){
-        return this.statut;
-    }
-    
-    /**
-     * Method set new vehicle's status
-     * @param statut 
-     */
-    public void setStatut(String statut){
-        this.statut = statut;
-    }
-    
-    /**
-     * Method get vehicle's parking
-     * @return vehicle's parking
-     */
-    public Parking getParking(){
-    	return this.parking;
-    }
-    
-    /**
-     * Method set new vehicle's parking
-     * @param newParking 
-     */
-    public void setParking(Parking newParking){
-    	this.parking = newParking;
-    }
-    
-    /**
-     * Method transform object vehicle to String
+     * Method transform object Car to String
      * @param car
      * @return String carSerial
      */
     public static String serialize(Car car){
-    	String carSerial = car.matriculation+"///"+car.type+"///"+car.statut+"///"+car.parking.getNumParking();
+    	String carSerial = car.NumePuce+"///"+car.TypeVehicule;
     	return carSerial;
     }
     
@@ -114,12 +73,11 @@ public class Car {
      * @return object car
      */
     public static Car unSerialize(String serializedCar){
-    	ArrayList values = new ArrayList();
+    	ArrayList<String> values = new ArrayList<String>();
 		for (String retval: serializedCar.split("///")){
 			values.add(retval);
 		}
-		int numPark = Integer.parseInt(values.get(3).toString());
-		Car car = new Car(values.get(0).toString(), values.get(1).toString(), values.get(2).toString(), new Parking(numPark));
+		Car car = new Car(values.get(0), values.get(1));
 		return car;
     }
 }
