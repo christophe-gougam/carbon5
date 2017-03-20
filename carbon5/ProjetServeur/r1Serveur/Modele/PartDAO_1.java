@@ -5,7 +5,6 @@
  */
 package r1Client.Modele;
 
-import com.mysql.jdbc.PreparedStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,35 +13,37 @@ import java.sql.SQLException;
  *
  * @author Carbon5
  */
-public class UrgencyDegreeDAO extends DAO<UrgencyDegree>{
+public class PartDAO extends DAO<Part> {
 
-    public UrgencyDegreeDAO(Connection conn) {
+    public PartDAO(Connection conn) {
         super(conn);
     }
-    
+
     @Override
-    public UrgencyDegree find() {
-        UrgencyDegree ud = new UrgencyDegree();
+    public Part find() {
+        Part part = new Part();
         try {
             ResultSet result = this .connect
                                     .createStatement(
                                             	ResultSet.TYPE_SCROLL_INSENSITIVE, 
                                                 ResultSet.CONCUR_UPDATABLE
                                              ).executeQuery(
-                                                "SELECT * FROM urgencydegree" 
+                                                "SELECT * FROM part" 
                                              );
             if(result.first())
-            		ud = new UrgencyDegree(
-                                        result.getString("Description") 
+            		part = new Part(
+                                        result.getInt("stock"),
+                                        result.getString("namePart"), 
+                                        result.getFloat("purchasePrice")
                         );            
         } catch (SQLException e) {
                 e.printStackTrace();
         }
-        return ud;
+        return part;
     }
 
     @Override
-    public boolean create(UrgencyDegree obj) {
+    public boolean create(Part obj) {
         try {
             //Vu que nous sommes sous postgres, nous allons chercher manuellement
             //la prochaine valeur de la séquence correspondant à l'id de notre table
@@ -51,16 +52,18 @@ public class UrgencyDegreeDAO extends DAO<UrgencyDegree>{
                                     ResultSet.TYPE_SCROLL_INSENSITIVE, 
                                     ResultSet.CONCUR_UPDATABLE
                                     ).executeQuery(
-                                    "SELECT NEXTVAL('ud_id_seq') as Id"
+                                    "SELECT NEXTVAL('part_id_seq') as Id"
                                     );
             if(result.first()){
                     long id = result.getLong("id");
                     java.sql.PreparedStatement prepare = this.connect
                                                              .prepareStatement(
-                                                              "INSERT INTO urgencydegree (Id, Description) VALUES(?, ?)"
+                                                              "INSERT INTO part (Id, Stock, NamePart, PurchasePrice) VALUES(?, ?, ?, ?)"
                                                               );
                     prepare.setLong(1, id);
-                    prepare.setString(2, obj.getDescription());
+                    prepare.setInt(2, obj.getStock());
+                    prepare.setString(3, obj.getNamePart());
+                    prepare.setFloat(4, obj.getPurchasePrice());
 
                     prepare.executeUpdate();
                     //obj = this.find();
@@ -72,14 +75,16 @@ public class UrgencyDegreeDAO extends DAO<UrgencyDegree>{
     }
 
     @Override
-    public boolean update(UrgencyDegree obj) {
+    public boolean update(Part obj) {
         try {	
             this .connect	
                  .createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE, 
                     ResultSet.CONCUR_UPDATABLE
                  ).executeUpdate(
-                    "UPDATE urgencydegree SET Description = '" + obj.getDescription() + "'"+
+                    "UPDATE part SET Stock = '" + obj.getStock() + "'"+
+                    "NamePart ='" + obj.getNamePart() + "' " +
+                    "PurchasePrice ='" + obj.getPurchasePrice() + "' " +
                     " WHERE Id = " + obj.getId()
                  );
                     //obj = this.find();
@@ -90,19 +95,19 @@ public class UrgencyDegreeDAO extends DAO<UrgencyDegree>{
     }
 
     @Override
-    public boolean delete(UrgencyDegree obj) {
+    public boolean delete(Part obj) {
         try {
             this.connect
                 .createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE, 
                     ResultSet.CONCUR_UPDATABLE
                ).executeUpdate(
-                    "DELETE FROM urgencydegree WHERE Id = " + obj.getId()
+                    "DELETE FROM part WHERE Id = " + obj.getId()
                );
-
         } catch (SQLException e) {
                 e.printStackTrace();
         }
         return true;
-    }   
+    }
+    
 }
