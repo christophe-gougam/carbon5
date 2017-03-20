@@ -20,10 +20,9 @@ public abstract class DAO<T> {
     
     /**
      * Allows to retrieve an object via its ID
-     * @param id
      * @return 
      */
-   public abstract T find(long id);
+   public abstract T find();
 
    /**
     * Creates an entry in the database relative to an object
