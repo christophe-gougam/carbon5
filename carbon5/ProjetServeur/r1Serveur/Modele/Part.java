@@ -1,4 +1,4 @@
-package r1Serveur.Modele;
+package r1Client.Modele;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -7,16 +7,29 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Part {
+        private int id;
 	private int stock;
 	private String namePart;
 	private float purchasePrice;
 	
+        public Part(){
+            
+        }
+        
 	public Part(int stock, String namePart, float purchasePrice){
 		this.stock = stock;
 		this.namePart = namePart;
 		this.purchasePrice = purchasePrice;
 	}
 	
+        public int getId(){
+                return this.id;
+        }
+        
+        public void setId(int id){
+                this.id = id;
+        }
+        
 	public int getStock(){
 		return this.stock;
 	}
