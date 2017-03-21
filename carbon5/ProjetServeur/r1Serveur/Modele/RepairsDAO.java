@@ -26,7 +26,7 @@ public abstract class RepairsDAO extends DAO<Repairs> {
      * @return 
      */
     @Override
-    public Repairs find(long id) {
+    public Repairs find(long) {
     	Repairs ud = new Repairs();
         
         return ud;
