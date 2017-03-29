@@ -9,6 +9,7 @@ import com.mysql.jdbc.PreparedStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -23,24 +24,82 @@ public class PlaceDAO extends DAO<Place>{
 
     @Override
     public boolean delete(Place obj) {
+    	try {
+            this.connect
+                .createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                    ResultSet.CONCUR_UPDATABLE
+               ).executeUpdate(
+                    "DELETE FROM place WHERE NumPlace = " + obj.getNumPlace()
+               );
+
+        } catch (SQLException e) {
+                e.printStackTrace();
+        }
         return true;
     }
 
 	@Override
 	public boolean create(Place obj) {
-		// TODO Auto-generated method stub
-		return true;
+		try {
+			ResultSet result = this.connect
+                    .createStatement(
+                     ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                     ResultSet.CONCUR_UPDATABLE
+                     ).executeQuery(
+                     "SELECT NEXTVAL('ud_id_seq') as IdParking"
+                     );
+			if(result.first()){
+				long id = result.getLong("IdParking");
+                java.sql.PreparedStatement prepare= 
+                		this.connect.prepareStatement("INSERT INTO place (NumPlace, NumPark, IsOccupied , IdParking) VALUES(?, ?, ?, ?)"
+                										);
+                prepare.setInt(1, obj.getNumPlace());
+                prepare.setInt(2, obj.getNumPark());
+                prepare.setInt(1, obj.getIsOccupied());
+                prepare.setLong	(2, id);
+
+                prepare.executeUpdate();
+            }
+        } catch (SQLException e) {
+                e.printStackTrace();
+        }
+        return true;
 	}
 
 	@Override
 	public boolean update(Place obj) {
-		// TODO Auto-generated method stub
-		return true;
+		try {	
+            this .connect	
+                 .createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                    ResultSet.CONCUR_UPDATABLE
+                 ).executeUpdate(
+                    "UPDATE place SET NumPlace = '" + obj.getNumPlace() + "'"+
+                    " WHERE NumPlace = " + obj.getNumPlace()
+                 );
+        } catch (SQLException e) {
+                e.printStackTrace();
+        }
+        return true;
 	}
 
 	@Override
 	public Place find() {
-		// TODO Auto-generated method stub
-		return null;
-	}   
+		Place ud = new Place();
+        try {
+            ResultSet result = this .connect
+                                    .createStatement(
+                                            	ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                                ResultSet.CONCUR_UPDATABLE
+                                             ).executeQuery(
+                                                "SELECT * FROM place" 
+                                             );
+            if(result.first())
+            		ud = new Place(result.getInt("NumPlace"), result.getInt("NumPark"), result.getInt("IsOccupied")); 
+        } catch (SQLException e) {
+                e.printStackTrace();
+        }
+        return ud;
+	}
 }

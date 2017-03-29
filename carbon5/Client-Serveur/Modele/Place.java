@@ -20,6 +20,7 @@ public class Place {
     Class constructor
     */
     public Place(int numPlace,int numPark, int isOccupied){
+        this.numPlace=numPlace;
         this.numPark = numPark;
         this.isOccupied = isOccupied;
     }
@@ -40,6 +41,19 @@ public class Place {
     public void setNumPark(int newNumPark){
         this.numPark = newNumPark;
     }
+    /*
+    Method gets num place
+    */
+    public int getNumPlace(){
+        return numPlace;
+    }
+    
+    /*
+    Method sets new num place
+    */
+    public void setNumPlace(int newNumPlace){
+        this.numPlace = newNumPlace;
+    }
     
     /*
     Method gets status "occupied"
@@ -52,7 +66,7 @@ public class Place {
     Method sets new status "occupied"
     */
     public void setIsOccupied(int newIsOccupied){
-        this.isOccupied = isOccupied;
+        this.isOccupied = newIsOccupied;
     }
     
     /*
@@ -71,13 +85,13 @@ public class Place {
     * @return object place
     */
     public static Place unSerialize(String serializedPlace){
-    	ArrayList values = new ArrayList();
+    	ArrayList<String> values = new ArrayList<String>();
 		for (String retval: serializedPlace.split("///")){
 			values.add(retval);
 		}
-                int numPlace = Integer.parseInt(values.get(0).toString());
-                int numPark = Integer.parseInt(values.get(1).toString());
-                int isOccupied = Integer.parseInt(values.get(2).toString());
+                int numPlace = Integer.parseInt(values.get(0));
+                int numPark = Integer.parseInt(values.get(1));
+                int isOccupied = Integer.parseInt(values.get(2));
                 Place place = new Place(numPlace, numPark, isOccupied);
 		return place;
     }
