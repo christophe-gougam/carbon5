@@ -45,7 +45,6 @@ public class PartDAO extends DAO<Part> {
     @Override
     public boolean create(Part obj) {
         try {
-            //Vu que nous sommes sous postgres, nous allons chercher manuellement
             //la prochaine valeur de la séquence correspondant à l'id de notre table
             ResultSet result = this.connect
                                    .createStatement(
@@ -108,6 +107,5 @@ public class PartDAO extends DAO<Part> {
                 e.printStackTrace();
         }
         return true;
-    }
-    
+    } 
 }
