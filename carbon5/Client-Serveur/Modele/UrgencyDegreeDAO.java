@@ -20,6 +20,10 @@ public class UrgencyDegreeDAO extends DAO<UrgencyDegree>{
         super(conn);
     }
     
+    /**
+     * Allows to retrieve an object via its ID
+     * @return object
+     */
     @Override
     public UrgencyDegree find() {
         UrgencyDegree ud = new UrgencyDegree();
@@ -41,6 +45,11 @@ public class UrgencyDegreeDAO extends DAO<UrgencyDegree>{
         return ud;
     }
 
+    /**
+     * Creates an entry in the database relative to an object
+     * @param obj
+     * @return true
+     */
     @Override
     public boolean create(UrgencyDegree obj) {
         try {
@@ -71,6 +80,11 @@ public class UrgencyDegreeDAO extends DAO<UrgencyDegree>{
         return true;
     }
 
+    /**
+     * Allows to update the data of an entry in the database
+     * @param obj
+     * @return true
+     */
     @Override
     public boolean update(UrgencyDegree obj) {
         try {	
@@ -89,6 +103,11 @@ public class UrgencyDegreeDAO extends DAO<UrgencyDegree>{
         return true;
     }
 
+    /**
+     * Allows to delete an entry from the database
+     * @param obj
+     * @return true
+     */
     @Override
     public boolean delete(UrgencyDegree obj) {
         try {
