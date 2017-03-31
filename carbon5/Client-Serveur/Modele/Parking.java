@@ -8,65 +8,70 @@ import java.util.ArrayList;
  */
 public class Parking {
 	
-	private int NumParking;
-	private String NameParking;
-	private int Capacity;
+	private int numParking;
+	private String nameParking;
+	private int capacity;
+    
     /**
      * Class constructor
      * @param newParking 
      */
 	public Parking(int numParking, String nameParking, int capacity){
-		this.NumParking = numParking;
-		this.NameParking = nameParking;
-		this.Capacity = capacity;
+		this.numParking = numParking;
+		this.nameParking = nameParking;
+		this.capacity = capacity;
 	}
 	
+        public Parking(){
+            
+        }
+        
     /**
      * Method get parking number
      * @return parking number
      */
 	public int getNumParking(){
-		return this.NumParking;
+		return this.numParking;
 	}
 	/**
      * Method get parking name
      * @return parking number
      */
 	public String getNameParking(){
-		return this.NameParking;
+		return this.nameParking;
 	}
 	/**
      * Method get parking capacity
      * @return parking number
      */
 	public int getCapacity(){
-		return this.Capacity;
+		return this.capacity;
 	}
 	
     /**
      * Method set new parking number
-     * @param newParking 
+     * @param numParking 
      */
 	public void setNumParking(int numParking){
-		this.NumParking = numParking;
+		this.numParking = numParking;
 	}
 	/**
      * Method set new parking name
-     * @param newParking 
+     * @param nameParking 
      */
 	public void setNameParking(String nameParking){
-		this.NameParking = nameParking;
+		this.nameParking = nameParking;
 	}
 	/**
      * Method set new parking Capacity
-     * @param newParking 
+     * @param capacity
      */
 	public void setCapacity(int capacity){
-		this.Capacity = capacity;
+		this.capacity = capacity;
 	}
 	
 	public static String serialize(Parking park){
-		String carSerial = park.NumParking+"///"+park.NameParking+"///"+park.Capacity;
+		String carSerial = park.numParking+"///"+park.nameParking+"///"+park.capacity;
 		return carSerial;
 	}
 
