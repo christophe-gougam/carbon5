@@ -33,7 +33,7 @@ public class RepairsDAO extends DAO<Repairs> {
                     ResultSet.TYPE_SCROLL_INSENSITIVE, 
                     ResultSet.CONCUR_UPDATABLE
                ).executeUpdate(
-                    "DELETE FROM Repairs WHERE Id = " + obj.getId()
+                    "DELETE FROM repairs WHERE Id = " + obj.getId()
                );
         } catch (SQLException e) {
                 e.printStackTrace();
@@ -41,12 +41,11 @@ public class RepairsDAO extends DAO<Repairs> {
         return true;
     }
 
-   /**
-    * Creates an entry in the database relative to an object
-    * @param obj
-    * @return 
-    */
-
+        /**
+         * Creates an entry in the database relative to an object
+         * @param obj
+         * @return 
+         */
 	@Override
 	public boolean create(Repairs obj) {
 		try {
@@ -58,12 +57,12 @@ public class RepairsDAO extends DAO<Repairs> {
                                     "SELECT NEXTVAL('ud_id_seq') as Id"
                                     );
             if(result.first()){
-                    long id = result.getLong("id");
+                    int id = result.getInt("id");
                     java.sql.PreparedStatement prepare = this.connect
                                                              .prepareStatement(
-                                                              "INSERT INTO Repairs (Id, Description) VALUES(?, ?)"
+                                                              "INSERT INTO repairs (Id, DateRepair, Nature, TimeSpent, Description) VALUES(?,?,?,?,?)"
                                                               );
-                    prepare.setLong(1, id);
+                    prepare.setInt(1, id);
                     prepare.setDate(2, (java.sql.Date) obj.getDateRepair());
                     prepare.setString(3, obj.getNature());
                     prepare.setFloat(4, obj.getTimeSpent());
@@ -77,11 +76,10 @@ public class RepairsDAO extends DAO<Repairs> {
         return true;
 	}
 
-   /**
-    * Allows to update the data of an entry in the database
-    * @param obj 
-    */
-
+        /**
+         * Allows to update the data of an entry in the database
+         * @param obj 
+         */
 	@Override
 	public boolean update(Repairs obj) {
 		try {	
@@ -90,7 +88,9 @@ public class RepairsDAO extends DAO<Repairs> {
                     ResultSet.TYPE_SCROLL_INSENSITIVE, 
                     ResultSet.CONCUR_UPDATABLE
                  ).executeUpdate(
-                    "UPDATE Repairs SET Description = '" + obj.getDescription() + "'"+
+                    "UPDATE repairs SET Description = '" + obj.getDescription() + "'"+
+                    "Nature ='" + obj.getNature() + "' " +
+                    "TimeSpent ='" + obj.getTimeSpent() + "' " +
                     " WHERE Id = " + obj.getId()
                  );
         } catch (SQLException e) {
@@ -100,10 +100,10 @@ public class RepairsDAO extends DAO<Repairs> {
 	}
 	
 	/**
-     * Allows to retrieve an object via its ID
-     * @param id
-     * @return 
-     */
+        * Allows to retrieve an object via its ID
+        * @param id
+        * @return 
+        */
 	@Override
 	public Repairs find() {
 		Repairs ud = new Repairs();
@@ -113,7 +113,7 @@ public class RepairsDAO extends DAO<Repairs> {
                                             	ResultSet.TYPE_SCROLL_INSENSITIVE, 
                                                 ResultSet.CONCUR_UPDATABLE
                                              ).executeQuery(
-                                                "SELECT * FROM Repairs" 
+                                                "SELECT * FROM repairs" 
                                              );
             if(result.first())
             		ud = new Repairs(result.getInt("Id"), result.getDate("DateRepair"),

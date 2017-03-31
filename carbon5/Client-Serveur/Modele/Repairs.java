@@ -17,26 +17,26 @@ import java.util.Date;
  * @author Carbon5
  */
 public class Repairs {
-    private int Id;
-    private Date DateRepair;
-    private String Nature;
-    private float TimeSpent;
-    private String Description; 
+    private int id;
+    private Date dateRepair;
+    private String nature;
+    private float timeSpent;
+    private String description; 
     
     /**
      * Class constructor
-     * @param Id
-     * @param DateRepair
-     * @param Nature
-     * @param TimeSpent
-     * @param Description 
+     * @param id
+     * @param dateRepair
+     * @param nature
+     * @param timeSpent
+     * @param description 
      */
     public Repairs (int id, Date dateRepair, String nature, float timeSpent, String description){
-        this.Id = id;
-        this.DateRepair=dateRepair;
-        this.Nature=nature;
-        this.TimeSpent = timeSpent;
-        this.Description=description;
+        this.id = id;
+        this.dateRepair=dateRepair;
+        this.nature=nature;
+        this.timeSpent = timeSpent;
+        this.description=description;
     }
     public Repairs(){
     	
@@ -47,35 +47,35 @@ public class Repairs {
      * @return Id
      */
     public int getId(){
-        return Id;
+        return id;
     }
     /**
      * Method get DateRepair
      * @return DateRepair
      */
     public Date getDateRepair(){
-        return DateRepair;
+        return dateRepair;
     }
     /**
      * Method get Nature
      * @return Nature
      */
     public String getNature(){
-        return Nature;
+        return nature;
     }
     /**
      * Method get TimeSpent
      * @return TimeSpent
      */
     public float getTimeSpent(){
-        return TimeSpent;
+        return timeSpent;
     }
     /**
      * Method get Description
      * @return Description
      */
     public String getDescription(){
-        return Description;
+        return description;
     }
     
     /**
@@ -83,7 +83,7 @@ public class Repairs {
      * @param Id
      */
     public void setId(int id){
-        this.Id = id;
+        this.id = id;
     }
     
     /**
@@ -91,7 +91,7 @@ public class Repairs {
      * @param DateRepair
      */
     public void setDateRepair(Date date){
-        this.DateRepair=date;
+        this.dateRepair=date;
     }
     
     /**
@@ -99,7 +99,7 @@ public class Repairs {
      * @param  Nature
      */
     public void setNature(String nature){
-        this.Nature = nature;
+        this.nature = nature;
     }
     
     /**
@@ -107,7 +107,7 @@ public class Repairs {
      * @param TimeSpent
      */
     public void setTimeSpent(float time){
-        this.TimeSpent=time;
+        this.timeSpent=time;
     }
     
     /**
@@ -115,7 +115,7 @@ public class Repairs {
      * @param Description 
      */
     public void setDescription(String desc){
-        this.Description = desc;
+        this.description = desc;
     }
     
     /**
@@ -125,7 +125,7 @@ public class Repairs {
      */
     
     public static String serialize(Repairs repair){
-    	String carSerial = repair.Id+"///"+repair.DateRepair+"///"+repair.Nature+"///"+repair.TimeSpent+"///"+repair.Description;
+    	String carSerial = repair.id+"///"+repair.dateRepair+"///"+repair.nature+"///"+repair.timeSpent+"///"+repair.description;
     	return carSerial;
     }
     

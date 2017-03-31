@@ -18,7 +18,11 @@ public class PartDAO extends DAO<Part> {
     public PartDAO(Connection conn) {
         super(conn);
     }
-
+    
+    /**
+     * Allows to retrieve an part via its ID
+     * @return part
+     */
     @Override
     public Part find() {
         Part part = new Part();
@@ -41,7 +45,12 @@ public class PartDAO extends DAO<Part> {
         }
         return part;
     }
-
+    
+    /**
+     * Creates an entry in the database relative to an object
+     * @param obj
+     * @return true
+     */
     @Override
     public boolean create(Part obj) {
         try {
@@ -73,6 +82,11 @@ public class PartDAO extends DAO<Part> {
         return true;
     }
 
+     /**
+      * Allows to update the data of an entry in the database
+      * @param obj
+      * @return true
+      */
     @Override
     public boolean update(Part obj) {
         try {	
@@ -93,6 +107,11 @@ public class PartDAO extends DAO<Part> {
         return true;
     }
 
+    /**
+     * Allows to delete an entry from the database
+     * @param obj
+     * @return true
+     */
     @Override
     public boolean delete(Part obj) {
         try {
