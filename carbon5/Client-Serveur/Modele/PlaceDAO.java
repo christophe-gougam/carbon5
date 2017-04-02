@@ -66,7 +66,7 @@ public class PlaceDAO extends DAO<Place>{
                                                                                             );
             prepare.setInt(1, obj.getNumPlace());
             prepare.setInt(2, obj.getNumPark());
-            prepare.setBoolean(1, obj.getIsOccupied());
+            prepare.setInt(1, obj.getIsOccupied());
             prepare.setLong(2, id);
 
             prepare.executeUpdate();
@@ -117,7 +117,7 @@ public class PlaceDAO extends DAO<Place>{
                                             "SELECT * FROM place" 
                                          );
         if(result.first())
-                    ud = new Place(result.getInt("NumPlace"), result.getInt("NumPark"), result.getBoolean("IsOccupied")); 
+                    ud = new Place(result.getInt("NumPlace"), result.getInt("NumPark"), result.getInt("IsOccupied")); 
     } catch (SQLException e) {
             e.printStackTrace();
     }

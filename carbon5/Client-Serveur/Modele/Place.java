@@ -68,7 +68,7 @@ public class Place {
     Method sets new status "occupied"
     */
     public void setIsOccupied(boolean newIsOccupied){
-        this.isOccupied = isOccupied;
+        this.isOccupied = newIsOccupied;
     }
     
     /*
