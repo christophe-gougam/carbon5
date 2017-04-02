@@ -20,6 +20,9 @@ import javax.swing.JOptionPane;
 import org.json.JSONObject;
 import org.json.JSONException;
 
+import Modele.LectureJson;
+import Modele.EcritureJson;
+
 import java.io.PrintWriter;
 
 /**
@@ -29,7 +32,7 @@ import java.io.PrintWriter;
 public class Authentication implements Runnable{
 	
 	private Socket socket = null;
-	String in;
+	BufferedReader in;
 	private PrintWriter out = null;
 	public Thread t2;
 	Connection con=null;
@@ -42,7 +45,7 @@ public class Authentication implements Runnable{
      * @param in
      * @param out 
      */
-		public Authentication(Socket s, String in, PrintWriter out){
+		public Authentication(Socket s, BufferedReader in, PrintWriter out){
 			 this.socket = s;
 			 this.in = in;
 			 this.out=out;

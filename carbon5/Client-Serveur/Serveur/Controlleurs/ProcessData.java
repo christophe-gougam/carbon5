@@ -1,5 +1,8 @@
 package Serveur.Controlleurs;
 
+import Modele.LectureJson;
+import Modele.EcritureJson;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

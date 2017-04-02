@@ -2,6 +2,9 @@ package Serveur.Controlleurs;
 
 import java.io.BufferedReader;
 
+import Modele.LectureJson;
+import Modele.EcritureJson;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -30,7 +33,7 @@ import java.io.PrintWriter;
  */
 public class CarController implements Runnable{
 	private Socket socket = null;
-	String in;
+	BufferedReader in;
 	private PrintWriter out = null;
 	public Thread t2;
 	Connection con=null;
@@ -45,7 +48,7 @@ public class CarController implements Runnable{
 	/**
 	 * Method constructor of controller
 	 */
-	public CarController(Socket s, String in, PrintWriter out){
+	public CarController(Socket s, BufferedReader in, PrintWriter out){
 		 this.socket = s;
 		 this.in = in;
 		 this.out=out;
