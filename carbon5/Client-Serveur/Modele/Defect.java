@@ -22,6 +22,21 @@ public class Defect {
         this.description = description;
     }
     
+    /**
+     * Method get id
+     * @return id
+     */
+    public int getId(){
+        return id;
+    }
+    
+    /**
+     * Method set Id
+     * @param newId 
+     */
+    public void setId(int newId){
+        this.id = newId;
+    }
     /*
     Method get description
     */

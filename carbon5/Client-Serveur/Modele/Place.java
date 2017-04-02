@@ -14,12 +14,12 @@ import java.util.ArrayList;
 public class Place {
     private int numPlace;
     private int numPark;
-    private int isOccupied;
+    private boolean isOccupied;
     
     /*
     Class constructor
     */
-    public Place(int numPlace,int numPark, int isOccupied){
+    public Place(int numPlace,int numPark, boolean isOccupied){
         this.numPark = numPark;
         this.isOccupied = isOccupied;
     }
@@ -60,14 +60,14 @@ public class Place {
     /*
     Method gets status "occupied"
     */
-    public int getIsOccupied(){
+    public boolean getIsOccupied(){
         return isOccupied;
     }
     
     /*
     Method sets new status "occupied"
     */
-    public void setIsOccupied(int newIsOccupied){
+    public void setIsOccupied(boolean newIsOccupied){
         this.isOccupied = isOccupied;
     }
     
@@ -93,7 +93,7 @@ public class Place {
 		}
                 int numPlace = Integer.parseInt(values.get(0).toString());
                 int numPark = Integer.parseInt(values.get(1).toString());
-                int isOccupied = Integer.parseInt(values.get(2).toString());
+                boolean isOccupied = Boolean.parseBoolean(values.get(2).toString());
                 Place place = new Place(numPlace, numPark, isOccupied);
 		return place;
     }
