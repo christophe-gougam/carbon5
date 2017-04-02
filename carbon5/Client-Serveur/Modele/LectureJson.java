@@ -1,4 +1,4 @@
-package Client.Controlleurs;
+package Modele;
 import org.json.JSONObject;
 import org.json.JSONString;
 import org.json.JSONArray;

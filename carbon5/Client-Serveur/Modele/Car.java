@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public class Car {
     private String NumePuce;
+    private String matricule;
     private String TypeVehicule;
     
     /**
@@ -20,8 +21,9 @@ public class Car {
      * @param NumePuce;
      * @param TypeVehicule 
      */
-    public Car (String numePuce, String typevehicule){
-        this.NumePuce = numePuce;;
+    public Car (String numePuce, String matricule, String typevehicule){
+        this.NumePuce = numePuce;
+        this.matricule = matricule;
         this.TypeVehicule = typevehicule;
     }
     
@@ -39,6 +41,22 @@ public class Car {
      */
     public void setNumePuce(String numepuce){
         this.NumePuce = numepuce;
+    }
+    
+    /**
+     * Method get Matricule
+     * @return matricule
+     */
+    public String getMatricule(){
+    	return this.matricule;
+    }
+    
+    /**
+     * Method set matricule
+     * @param newMatricule
+     */
+    public void setMatricule(String newMatricule){
+    	this.matricule = newMatricule;
     }
     
     /**
@@ -63,7 +81,7 @@ public class Car {
      * @return String carSerial
      */
     public static String serialize(Car car){
-    	String carSerial = car.NumePuce+"///"+car.TypeVehicule;
+    	String carSerial = car.NumePuce+"///"+car.matricule+"///"+car.TypeVehicule;
     	return carSerial;
     }
     
@@ -73,11 +91,18 @@ public class Car {
      * @return object car
      */
     public static Car unSerialize(String serializedCar){
-    	ArrayList<String> values = new ArrayList<String>();
+    	ArrayList values = new ArrayList();
 		for (String retval: serializedCar.split("///")){
 			values.add(retval);
 		}
-		Car car = new Car(values.get(0), values.get(1));
+		Car car = new Car(String.valueOf(values.get(0)), String.valueOf(values.get(1)), String.valueOf(values.get(2)));
 		return car;
+    }
+    /**
+     * Method toString
+     * 
+     */
+    public String toString(Object values) {
+        return String.valueOf(values);
     }
 }
