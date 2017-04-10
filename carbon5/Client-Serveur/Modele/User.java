@@ -24,6 +24,8 @@ public class User {
 	private float income;
 	private TypeUser type;
 	
+	private static ArrayList<User> usersCo = new ArrayList<User>();
+	
     /**
      * Class constructor
      * @param firstname
@@ -50,6 +52,13 @@ public class User {
 		this.type = type;
 	}
 	
+	public static ArrayList<User> getAllUsers(){
+		return usersCo;
+	}
+	
+	public static void addAUserToCo(User us){
+		usersCo.add(us);
+	}
     /**
      * Method get first name 
      * @return first name
@@ -232,7 +241,7 @@ public class User {
 			e.printStackTrace();
 		}
 		System.out.println("Begin unserilization");
-		User user = new User(values.get(0).toString(),values.get(1).toString(),values.get(2).toString(),values.get(3).toString(),Integer.parseInt(values.get(4).toString()),values.get(5).toString(),values.get(6).toString(),date,Float.parseFloat(values.get(8).toString()), new TypeUser(values.get(9).toString()));
+		User user = new User(values.get(0).toString(),values.get(1).toString(),values.get(2).toString(),values.get(3).toString(),Integer.parseInt(values.get(4).toString()),values.get(5).toString(),values.get(6).toString(),date,Float.parseFloat(values.get(8).toString()), new TypeUser(Integer.parseInt(values.get(9).toString()),values.get(10).toString()));
 		System.out.println("Success unserilization");
 		return user;
 	}

@@ -9,6 +9,7 @@ import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.reflect.Array;
  
 public class LectureJson {
@@ -22,12 +23,28 @@ public class LectureJson {
 	
     public static ArrayList<String> LectureFichier(BufferedReader fs) throws JSONException {
  
+    	
+    	
+    	StringBuilder sb= new StringBuilder();
+    	String line = "";
+
+    	try {
+			while ((line = fs.readLine()) != null) {
+			    sb.append(line);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+    	String json = sb.toString();
 	// Récupération de la chaïne JSON depuis le fichier
-	String json = new String();
-	Scanner scanner = new Scanner(fs);
-	while(scanner.hasNext())
-	    json += scanner.nextLine();
-	scanner.close();
+//	String json = new String();
+//	Scanner scanner = new Scanner(fs);
+//	System.out.println("Reading BufferedReader");
+//	while(scanner.hasNext())
+//	    json += scanner.nextLine();
+//	scanner.close();
 	
 	// Création d'un objet JSON
 	JSONObject objet = new JSONObject(json);
@@ -51,10 +68,19 @@ public class LectureJson {
 			System.out.print("id=" + element.getString("id"));
 			System.out.print(", mdp=" + element.getString("mdp"));
 		}
-	case("request"):
-		
+	break;
+	case("CreatePart"):
+		for(int i = 0; i < tableau.length(); i++) {
+			JSONObject element = tableau.getJSONObject(i);
+			result.add(element.getString("namePart"));
+			result.add(element.getString("purchasePrice"));
+			System.out.print("id=" + element.getString("id"));
+			System.out.print(", mdp=" + element.getString("mdp"));
+		}
+	break;
 	default:
 		System.out.println("Fonctionnalité non prise en charge pour l'instant");
+	break;
 	}	
 	return result;
     }

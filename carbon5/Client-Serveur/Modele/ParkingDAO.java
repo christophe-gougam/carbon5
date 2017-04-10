@@ -8,6 +8,7 @@ package Modele;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -43,7 +44,8 @@ public class ParkingDAO extends DAO<Parking> {
     }
 
     @Override
-    public boolean create(Parking obj) {
+    public ArrayList<String> create(Parking obj) {
+    	ArrayList<String> queryResult = new ArrayList<String>();
         try {
             //la prochaine valeur de la séquence correspondant à l'id de notre table
             ResultSet result = this.connect
@@ -65,11 +67,13 @@ public class ParkingDAO extends DAO<Parking> {
                     
                     prepare.executeUpdate();
                     //obj = this.find();
+                    queryResult.add("CreateParkOK");
             }
         } catch (SQLException e) {
                 e.printStackTrace();
+                queryResult.add("CreateParkKO");
         }
-        return true;
+        return queryResult;
     }
 
     @Override

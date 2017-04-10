@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Part {
-        private int id;
+    private int id;
 	private int stock;
 	private String namePart;
 	private float purchasePrice;

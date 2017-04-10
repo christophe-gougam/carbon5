@@ -9,6 +9,7 @@ import java.sql.Connection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * <>
@@ -47,7 +48,8 @@ public class RepairsDAO extends DAO<Repairs> {
          * @return 
          */
 	@Override
-	public boolean create(Repairs obj) {
+	public ArrayList<String> create(Repairs obj) {
+		ArrayList<String> queryResult = new ArrayList<String>();
 		try {
             ResultSet result = this.connect
                                    .createStatement(
@@ -69,11 +71,13 @@ public class RepairsDAO extends DAO<Repairs> {
                     prepare.setString(5, obj.getDescription());
 
                     prepare.executeUpdate();
+                    queryResult.add("CreateRepairOK");
             }
         } catch (SQLException e) {
                 e.printStackTrace();
+                queryResult.add("CreateRepairKO");
         }
-        return true;
+        return queryResult;
 	}
 
         /**

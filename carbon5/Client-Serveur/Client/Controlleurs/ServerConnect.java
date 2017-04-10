@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  * Class ServerConnect creating connection to server
@@ -22,7 +23,8 @@ public class ServerConnect{
 	public ArrayList<String> data;
 	public String identifier;
 	public String serverAddress = "";	//"127.0.0.1"
-	JFrame frame=null;
+	JPanel frame=null;
+	JFrame frame2=null;
 	
 	/**
      * Class constructor
@@ -30,7 +32,7 @@ public class ServerConnect{
      * @param identifier
      * @param f 
      */
-	public ServerConnect(ArrayList<String> data, String identifier, JFrame f) {
+	public ServerConnect(ArrayList<String> data, String identifier, JPanel f) {
 	
 		this.identifier = identifier;
 		this.data = data;
@@ -60,6 +62,45 @@ public class ServerConnect{
 			portServer = Integer.parseInt(prop.getProperty("portServer"));
 			serverAddress = prop.getProperty("serverAddress");
 			System.out.println("Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion");
+			System.out.println(serverAddress);
+			socket = new Socket(serverAddress, portServer);
+			new Connection(socket, data, identifier, frame);
+		}catch (Exception e){
+			System.out.println("Erreur de connexion au serveur");
+		}
+	}
+	
+	public ServerConnect(ArrayList<String> data, String identifier, JFrame f) {
+		
+		this.identifier = identifier;
+		this.data = data;
+		this.frame2=f;
+
+		try{
+			
+			Properties prop = new Properties();
+			String portServerFile;
+			String serverAddressFile;
+			InputStream input = null;
+			String filename = "configClient.properties" ;
+			
+			input = ServerConnect.class.getClassLoader().getResourceAsStream(filename);
+			
+			if (input == null) {
+				System.out.println("Sorry, unable to find " + filename);
+			}
+			// load a properties file
+			try {
+				prop.load(input);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			portServer = Integer.parseInt(prop.getProperty("portServer"));
+			serverAddress = prop.getProperty("serverAddress");
+			System.out.println("Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion");
+			System.out.println(serverAddress);
 			socket = new Socket(serverAddress, portServer);
 			new Connection(socket, data, identifier, frame);
 		}catch (Exception e){

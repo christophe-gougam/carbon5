@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JFrame;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -15,6 +16,7 @@ import org.json.JSONObject;
 
 import Vues.Authentication;
 import Vues.Fenetre;
+import Vues.IHM;
 import Modele.*;
 
 /**
@@ -35,7 +37,7 @@ public class Connection{
 	private JSONArray tableau;
 	User user;
 	Car car;
-	JFrame frame=null; 
+	JPanel frame=null; 
 
 	
 	/**
@@ -45,7 +47,7 @@ public class Connection{
      * @param identifier
      * @param f 
      */
-	public Connection(Socket socket, ArrayList<String> data, String identifier, JFrame f){
+	public Connection(Socket socket, ArrayList<String> data, String identifier, JPanel f){
 		this.socket = socket;
 		this.data = data;
 		this.identifier = identifier;
@@ -90,8 +92,9 @@ public class Connection{
 	    		}
 	    		System.out.println(result.get(1));
 		    	user = User.unSerialize(result.get(1));
+		    	User.addAUserToCo(user);
 				JOptionPane.showMessageDialog(frame, "Bienvenue "+user.getFirstName());
-				Fenetre ajout = new Fenetre();
+				IHM ihm = new IHM();
 				
 			break;
 			
@@ -119,6 +122,22 @@ public class Connection{
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
 			break;
+			
+			case "CreatePartOK" :
+				objet = new JSONObject(reponse);
+				System.out.println("Afficage du resultat de l'ajout vehicule : ");
+		    	System.out.println(reponse);
+		    	tableau = objet.getJSONArray("data");
+				JOptionPane.showMessageDialog(frame, tableau.get(0));
+			break;
+			
+			case "CreatePartKO" : 
+				objet = new JSONObject(reponse);
+				System.out.println("Afficage du resultat de l'ajout vehicule : ");
+		    	System.out.println(reponse);
+		    	tableau = objet.getJSONArray("data");
+				JOptionPane.showMessageDialog(frame, tableau.get(0));
+				break;
 			default : 
 				System.out.println("default");
 			}

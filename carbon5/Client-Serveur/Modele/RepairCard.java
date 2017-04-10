@@ -243,8 +243,8 @@ public class RepairCard {
 		int numIndice = numObjRep;
 		ArrayList<Repairs> rep = new ArrayList();
 		for (int i = 0;i<numObjRep;i++){
-				rep.add(new Repairs((Date) values.get(numIndice), String.valueOf(values.get(numIndice+1)), (float) values.get(numIndice+2), String.valueOf(values.get(numIndice+3))));
-				numIndice += 4;
+				rep.add(new Repairs((Integer) values.get(numIndice),(Date) values.get(numIndice+1), String.valueOf(values.get(numIndice+2)), (float) values.get(numIndice+3), String.valueOf(values.get(numIndice+4))));
+				numIndice += 5;
 		}
 		//creating defects, retrieving the number of defects to create as many objects as necessary
 		int numObjDefect = Integer.parseInt(values.get(numIndice).toString());
@@ -261,7 +261,7 @@ public class RepairCard {
 		Date num2 = (Date) values.get(numIndice); numIndice +=1;
 		String dets = (String) values.get(numIndice); numIndice +=1;
 		//creating the user
-		User user = new User((String) values.get(numIndice), (String) values.get(numIndice+1), (String) values.get(numIndice+2), (String) values.get(numIndice+3), (int) values.get(numIndice+4), (String) values.get(numIndice+5), (String) values.get(numIndice+6), (Date) values.get(numIndice+7), (Float) values.get(numIndice+8), new TypeUser((String) values.get(numIndice+9)));
+		User user = new User((String) values.get(numIndice), (String) values.get(numIndice+1), (String) values.get(numIndice+2), (String) values.get(numIndice+3), (int) values.get(numIndice+4), (String) values.get(numIndice+5), (String) values.get(numIndice+6), (Date) values.get(numIndice+7), (Float) values.get(numIndice+8), new TypeUser(Integer.parseInt(values.get(numIndice+9).toString()),(String) values.get(numIndice+10)));
 		//creating the object repairCard with all other objects
 		RepairCard repairCard = new RepairCard(degree, card, car, rep, def, park,num1,num2,dets,user);
 		System.out.println("Success RepairCard unserilization");

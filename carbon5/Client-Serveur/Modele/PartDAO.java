@@ -8,6 +8,7 @@ package Modele;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -52,7 +53,8 @@ public class PartDAO extends DAO<Part> {
      * @return true
      */
     @Override
-    public boolean create(Part obj) {
+    public ArrayList<String> create(Part obj) {
+    	ArrayList<String> queryResult = new ArrayList<String>();
         try {
             //la prochaine valeur de la séquence correspondant à l'id de notre table
             ResultSet result = this.connect
@@ -75,11 +77,15 @@ public class PartDAO extends DAO<Part> {
 
                     prepare.executeUpdate();
                     //obj = this.find();
+                    
+                    String message = "CreatePartOK";
+                    queryResult.add(message);
             }
         } catch (SQLException e) {
                 e.printStackTrace();
+                queryResult.add("CreatePartKO");
         }
-        return true;
+        return queryResult;
     }
 
      /**

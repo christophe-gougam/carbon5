@@ -1,17 +1,28 @@
 package Modele;
 
+import java.util.ArrayList;
+
 /**
  * Class TypeUser creating type user
  * @author Carbon5
  */
 public class TypeUser {
+	private int id;
 	private String workingTypeUser;
 	
+	public int getId(){
+		return this.id;
+	}
+	
+	public void setId(int id){
+		this.id = id;
+	}
     /**
      * Class constructor
      * @param type 
      */
-	public TypeUser(String type){
+	public TypeUser(int id,String type){
+		this.id = id;
 		this.workingTypeUser = type;
 	}
 	
@@ -36,7 +47,7 @@ public class TypeUser {
      * @return String objetSerial 
      */
 	public static String serialize(TypeUser type){
-		String objetSerial = type.workingTypeUser;
+		String objetSerial = type.id+"///"+type.workingTypeUser;
 		return objetSerial;
 	}
 	
@@ -46,6 +57,11 @@ public class TypeUser {
      * @return new type user
      */
 	public static TypeUser unSerialize(String objetSerial){
-		return new TypeUser(objetSerial);
+		ArrayList<String> values = new ArrayList<String>();
+		for (String retval: objetSerial.split("///")){
+			values.add(retval);
+		}
+		TypeUser newTypeUser = new TypeUser(Integer.parseInt(values.get(0)), String.valueOf(values.get(1)));
+		return newTypeUser;
 	}
 }

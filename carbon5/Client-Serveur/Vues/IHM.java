@@ -167,7 +167,7 @@ public class IHM extends JFrame {
                 pan.revalidate();
             }
             if(e.getSource() == bouton5){
-                //code
+                //implement select of all nameParts to fill list
                 cl.show(pan2, listContent[4]);
                 liste1.setVisible(true);
                 liste2.setVisible(false);

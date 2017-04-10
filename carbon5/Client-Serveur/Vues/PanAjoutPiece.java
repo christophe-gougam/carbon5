@@ -5,6 +5,15 @@
  */
 package Vues;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JPanel;
+import Client.Controlleurs.ServerConnect;;
+
+
+
 /**
  *
  * @author Carbon5
@@ -32,22 +41,25 @@ public class PanAjoutPiece extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        
         jTextField2 = new javax.swing.JTextField();
+        jTextField2.disable();
         jTextField3 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         jLabel1.setText("AJOUTER UNE PIECE DETACHEE");
 
-        jLabel2.setText("ID piece");
+        //jLabel2.setText("ID piece");
 
         jLabel3.setText("Nom de piece");
 
         jLabel4.setText("Prix unitaire");
 
         jButton1.setText("Ajouter");
-
+        jButton1.addActionListener(new BoutonListener(this));
         jButton2.setText("Annuler");
+        jButton2.addActionListener(new Bouton2Listener(this));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -113,4 +125,64 @@ public class PanAjoutPiece extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
+    
+    
+    /**
+     * Class BoutonListener listens button ADD
+     */
+    class BoutonListener implements ActionListener{
+    	JPanel frame=null;
+
+        /**
+         * Class constructor
+         * @param f 
+         */
+    	public BoutonListener  (JPanel f){
+    	this.frame=f;
+    	}
+    	
+        /**
+         * Method generate component action
+         * @param arg0 
+         */
+        public void actionPerformed(ActionEvent arg0){
+        	
+        	//String id = jTextField1.getText();
+        	String namePart = jTextField1.getText();
+        	String purchasePrice = jTextField3.getText();
+        	
+        	ArrayList<String> data = new ArrayList();
+        	//data.add(id);
+        	data.add(namePart);
+        	data.add(purchasePrice);
+        	String identifier = "CreatePart";
+        	System.out.println("Création d'une pièce détachée");
+        	new ServerConnect(data, identifier, frame);
+        	
+        	
+        }
+    }
+    
+    /**
+     * Class Bouton2Listener listens button ANNULER
+     */
+    class Bouton2Listener implements ActionListener{
+    	JPanel frame=null;
+    	//son constructeur
+    	public Bouton2Listener  (JPanel f){
+    	this.frame=f;
+    	}
+    	
+        /**
+         * Method generate button action
+         * @param e 
+         * @see dispose()
+         */
+    	public void actionPerformed(ActionEvent e){
+            //code
+    		jTextField1.setText("");
+    		jTextField2.setText("");
+    		jTextField3.setText("");
+        }
+    }
 }

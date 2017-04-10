@@ -6,18 +6,20 @@
 package Modele;
 
 import com.mysql.jdbc.PreparedStatement;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 /**
  *
  * @author Carbon5
  */
-public class UrgencyDegreeDAO extends DAO<UrgencyDegree>{
+public class TypeUserDAO extends DAO<TypeUser>{
 
-    public UrgencyDegreeDAO(Connection conn) {
+    public TypeUserDAO(Connection conn) {
         super(conn);
     }
     
@@ -26,19 +28,20 @@ public class UrgencyDegreeDAO extends DAO<UrgencyDegree>{
      * @return object
      */
     @Override
-    public UrgencyDegree find() {
-        UrgencyDegree ud = new UrgencyDegree();
+    public TypeUser find() {
+    	TypeUser ud = null;
         try {
             ResultSet result = this .connect
                                     .createStatement(
                                             	ResultSet.TYPE_SCROLL_INSENSITIVE, 
                                                 ResultSet.CONCUR_UPDATABLE
                                              ).executeQuery(
-                                                "SELECT * FROM urgencydegree" 
+                                                "SELECT * FROM typeUser" 
                                              );
             if(result.first())
-            		ud = new UrgencyDegree(
-                                        result.getString("Description") 
+            		ud = new TypeUser(
+            							result.getInt("Id"),
+                                        result.getString("Profil") 
                         );            
         } catch (SQLException e) {
                 e.printStackTrace();
@@ -52,7 +55,7 @@ public class UrgencyDegreeDAO extends DAO<UrgencyDegree>{
      * @return true
      */
     @Override
-    public ArrayList<String> create(UrgencyDegree obj) {
+    public ArrayList<String> create(TypeUser obj) {
     	ArrayList<String> queryResult = new ArrayList<String>();
         try {
             //Vu que nous sommes sous postgres, nous allons chercher manuellement
@@ -68,18 +71,18 @@ public class UrgencyDegreeDAO extends DAO<UrgencyDegree>{
                     long id = result.getLong("id");
                     java.sql.PreparedStatement prepare = this.connect
                                                              .prepareStatement(
-                                                              "INSERT INTO urgencydegree (Id, Description) VALUES(?, ?)"
+                                                              "INSERT INTO typeUser (workingTypeUser) VALUES(?)"
                                                               );
                     prepare.setLong(1, id);
-                    prepare.setString(2, obj.getDescription());
+                    prepare.setString(2, obj.getTypeUser());
 
                     prepare.executeUpdate();
                     //obj = this.find();
-                    queryResult.add("CreateUrgencyDegreeOK");
+                    queryResult.add("CreateTypeUserOK");
             }
         } catch (SQLException e) {
                 e.printStackTrace();
-                queryResult.add("CreateUrgencyDegreeKO");
+                queryResult.add("CreateTypeUserKO");
         }
         return queryResult;
     }
@@ -90,14 +93,14 @@ public class UrgencyDegreeDAO extends DAO<UrgencyDegree>{
      * @return true
      */
     @Override
-    public boolean update(UrgencyDegree obj) {
+    public boolean update(TypeUser obj) {
         try {	
             this .connect	
                  .createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE, 
                     ResultSet.CONCUR_UPDATABLE
                  ).executeUpdate(
-                    "UPDATE urgencydegree SET Description = '" + obj.getDescription() + "'"+
+                    "UPDATE typeUser SET Description = '" + obj.getTypeUser() + "'"+
                     " WHERE Id = " + obj.getId()
                  );
                     //obj = this.find();
@@ -113,19 +116,21 @@ public class UrgencyDegreeDAO extends DAO<UrgencyDegree>{
      * @return true
      */
     @Override
-    public boolean delete(UrgencyDegree obj) {
+    public boolean delete(TypeUser obj) {
         try {
             this.connect
                 .createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE, 
                     ResultSet.CONCUR_UPDATABLE
                ).executeUpdate(
-                    "DELETE FROM urgencydegree WHERE Id = " + obj.getId()
+                    "DELETE FROM typeUser WHERE Id = " + obj.getId()
                );
 
         } catch (SQLException e) {
                 e.printStackTrace();
         }
         return true;
-    }   
+    }
+
+
 }

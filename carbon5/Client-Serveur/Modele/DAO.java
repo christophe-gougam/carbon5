@@ -6,6 +6,7 @@
 package Modele;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 /**
  * <>
@@ -29,7 +30,7 @@ public abstract class DAO<T> {
     * @param obj
     * @return 
     */
-   public abstract boolean create(T obj);
+   public abstract ArrayList<String> create(T obj);
 
    /**
     * Allows to update the data of an entry in the database
