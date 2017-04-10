@@ -32,7 +32,7 @@ import java.io.PrintWriter;
 public class Authentication implements Runnable{
 	
 	private Socket socket = null;
-	BufferedReader in;
+	String in;
 	private PrintWriter out = null;
 	public Thread t2;
 	Connection con=null;
@@ -45,7 +45,7 @@ public class Authentication implements Runnable{
      * @param in
      * @param out 
      */
-		public Authentication(Socket s, BufferedReader in, PrintWriter out){
+		public Authentication(Socket s, String in, PrintWriter out){
 			 this.socket = s;
 			 this.in = in;
 			 this.out=out;

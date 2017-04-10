@@ -69,16 +69,16 @@ public class ProcessData implements Runnable{
 				// identifier in JSON recieved routes the action to be performed
 				switch(identifier){
 				case("Authentication"):
-					t1 = new Thread(new Authentication(socket, in, out));
+					t1 = new Thread(new Authentication(socket, message_distant, out));
 					t1.start();
 				break;
 				case("AjoutVehicule"):
-					t2 = new Thread(new CarController(socket, in, out));
+					t2 = new Thread(new CarController(socket, message_distant, out));
 					t2.start();
 				break;
 				case("CreatePart"):
 					System.out.println("Case create Part");
-					t3 = new Thread(new PartController(socket, in, out));
+					t3 = new Thread(new PartController(socket, message_distant, out));
 					t3.run();
 				break;
 				default:

@@ -21,40 +21,18 @@ public class LectureJson {
 		return identifier;
 	}
 	
-    public static ArrayList<String> LectureFichier(BufferedReader fs) throws JSONException {
+    public static ArrayList<String> LectureFichier(String fs) throws JSONException {
  
     	
-    	
-    	StringBuilder sb= new StringBuilder();
-    	String line = "";
-
-    	try {
-			while ((line = fs.readLine()) != null) {
-			    sb.append(line);
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-    	String json = sb.toString();
-	// Récupération de la chaïne JSON depuis le fichier
-//	String json = new String();
-//	Scanner scanner = new Scanner(fs);
-//	System.out.println("Reading BufferedReader");
-//	while(scanner.hasNext())
-//	    json += scanner.nextLine();
-//	scanner.close();
-	
 	// Création d'un objet JSON
-	JSONObject objet = new JSONObject(json);
+	JSONObject objet = new JSONObject(fs);
 	System.out.println("Afficage du JSON : ");
-	System.out.println(json);
+	System.out.println(fs);
  
 	// Traitement du fichier reçu
 	System.out.println("\nparcours du fichier Json :");
 	JSONArray tableau = objet.getJSONArray("data");
-	ArrayList<String> result = new ArrayList();
+	ArrayList<String> result = new ArrayList<String>();
 	String identifier = (String) objet.get("identifier");
 	
 	switch(identifier){
@@ -70,13 +48,11 @@ public class LectureJson {
 		}
 	break;
 	case("CreatePart"):
-		for(int i = 0; i < tableau.length(); i++) {
-			JSONObject element = tableau.getJSONObject(i);
-			result.add(element.getString("namePart"));
-			result.add(element.getString("purchasePrice"));
-			System.out.print("id=" + element.getString("id"));
-			System.out.print(", mdp=" + element.getString("mdp"));
-		}
+	
+			result.add(tableau.getString(0));
+			result.add(tableau.getString(1));
+			System.out.print("namePart=" + tableau.getString(0));
+			System.out.print(", Price=" + tableau.getString(1));
 	break;
 	default:
 		System.out.println("Fonctionnalité non prise en charge pour l'instant");

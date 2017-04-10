@@ -29,7 +29,7 @@ import java.io.PrintWriter;
 public class PartController implements Runnable{
 	
 	private Socket socket = null;
-	BufferedReader in;
+	String in;
 	private PrintWriter out = null;
 	public Thread t2;
 	Connection con=null;
@@ -40,7 +40,7 @@ public class PartController implements Runnable{
 	String namePart = null;
 	Float purchasePrice = null;
 	
-	public PartController(Socket s, BufferedReader in, PrintWriter out){
+	public PartController(Socket s, String in, PrintWriter out){
 		 this.socket = s;
 		 this.in = in;
 		 this.out=out;

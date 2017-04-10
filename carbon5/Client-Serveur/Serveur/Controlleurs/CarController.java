@@ -33,7 +33,7 @@ import java.io.PrintWriter;
  */
 public class CarController implements Runnable{
 	private Socket socket = null;
-	BufferedReader in;
+	String in;
 	private PrintWriter out = null;
 	public Thread t2;
 	Connection con=null;
@@ -48,7 +48,7 @@ public class CarController implements Runnable{
 	/**
 	 * Method constructor of controller
 	 */
-	public CarController(Socket s, BufferedReader in, PrintWriter out){
+	public CarController(Socket s, String in, PrintWriter out){
 		 this.socket = s;
 		 this.in = in;
 		 this.out=out;
