@@ -51,28 +51,19 @@ public class RepairsDAO extends DAO<Repairs> {
 	public ArrayList<String> create(Repairs obj) {
 		ArrayList<String> queryResult = new ArrayList<String>();
 		try {
-            ResultSet result = this.connect
-                                   .createStatement(
-                                    ResultSet.TYPE_SCROLL_INSENSITIVE, 
-                                    ResultSet.CONCUR_UPDATABLE
-                                    ).executeQuery(
-                                    "SELECT NEXTVAL('ud_id_seq') as Id"
-                                    );
-            if(result.first()){
-                    int id = result.getInt("id");
+           
                     java.sql.PreparedStatement prepare = this.connect
                                                              .prepareStatement(
-                                                              "INSERT INTO repairs (Id, DateRepair, Nature, TimeSpent, Description) VALUES(?,?,?,?,?)"
+                                                              "INSERT INTO repairs (DateRepair, Nature, TimeSpent, Description) VALUES(?,?,?,?)"
                                                               );
-                    prepare.setInt(1, id);
-                    prepare.setDate(2, (java.sql.Date) obj.getDateRepair());
-                    prepare.setString(3, obj.getNature());
-                    prepare.setFloat(4, obj.getTimeSpent());
-                    prepare.setString(5, obj.getDescription());
+
+                    prepare.setDate(1, (java.sql.Date) obj.getDateRepair());
+                    prepare.setString(2, obj.getNature());
+                    prepare.setFloat(3, obj.getTimeSpent());
+                    prepare.setString(4, obj.getDescription());
 
                     prepare.executeUpdate();
                     queryResult.add("CreateRepairOK");
-            }
         } catch (SQLException e) {
                 e.printStackTrace();
                 queryResult.add("CreateRepairKO");

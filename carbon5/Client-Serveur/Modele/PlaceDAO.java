@@ -53,26 +53,16 @@ public class PlaceDAO extends DAO<Place>{
 public ArrayList<String> create(Place obj) {
     	ArrayList<String> queryResult = new ArrayList<String>();
             try {
-                    ResultSet result = this.connect
-                .createStatement(
-                 ResultSet.TYPE_SCROLL_INSENSITIVE, 
-                 ResultSet.CONCUR_UPDATABLE
-                 ).executeQuery(
-                 "SELECT NEXTVAL('ud_id_seq') as IdParking"
-                 );
-                    if(result.first()){
-                            long id = result.getLong("IdParking");
+                   
             java.sql.PreparedStatement prepare= 
                             this.connect.prepareStatement("INSERT INTO place (NumPlace, NumPark, IsOccupied , IdParking) VALUES(?, ?, ?, ?)"
                                                                                             );
             prepare.setInt(1, obj.getNumPlace());
             prepare.setInt(2, obj.getNumPark());
-            prepare.setBoolean(1, obj.getIsOccupied());
-            prepare.setLong(2, id);
+            prepare.setBoolean(3, obj.getIsOccupied());
 
             prepare.executeUpdate();
             queryResult.add("CreatePlaceOK");
-        }
     } catch (SQLException e) {
             e.printStackTrace();
             queryResult.add("CreatePlaceKO");

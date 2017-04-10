@@ -58,28 +58,16 @@ public class TypeUserDAO extends DAO<TypeUser>{
     public ArrayList<String> create(TypeUser obj) {
     	ArrayList<String> queryResult = new ArrayList<String>();
         try {
-            //Vu que nous sommes sous postgres, nous allons chercher manuellement
-            //la prochaine valeur de la séquence correspondant à l'id de notre table
-            ResultSet result = this.connect
-                                   .createStatement(
-                                    ResultSet.TYPE_SCROLL_INSENSITIVE, 
-                                    ResultSet.CONCUR_UPDATABLE
-                                    ).executeQuery(
-                                    "SELECT NEXTVAL('ud_id_seq') as Id"
-                                    );
-            if(result.first()){
-                    long id = result.getLong("id");
+
                     java.sql.PreparedStatement prepare = this.connect
                                                              .prepareStatement(
                                                               "INSERT INTO typeUser (workingTypeUser) VALUES(?)"
                                                               );
-                    prepare.setLong(1, id);
-                    prepare.setString(2, obj.getTypeUser());
+                    prepare.setString(1, obj.getTypeUser());
 
                     prepare.executeUpdate();
                     //obj = this.find();
                     queryResult.add("CreateTypeUserOK");
-            }
         } catch (SQLException e) {
                 e.printStackTrace();
                 queryResult.add("CreateTypeUserKO");

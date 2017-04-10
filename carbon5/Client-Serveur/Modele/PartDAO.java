@@ -56,31 +56,21 @@ public class PartDAO extends DAO<Part> {
     public ArrayList<String> create(Part obj) {
     	ArrayList<String> queryResult = new ArrayList<String>();
         try {
-            //la prochaine valeur de la séquence correspondant à l'id de notre table
-            ResultSet result = this.connect
-                                   .createStatement(
-                                    ResultSet.TYPE_SCROLL_INSENSITIVE, 
-                                    ResultSet.CONCUR_UPDATABLE
-                                    ).executeQuery(
-                                    "SELECT NEXTVAL('part_id_seq') as Id"
-                                    );
-            if(result.first()){
-                    long id = result.getLong("id");
-                    java.sql.PreparedStatement prepare = this.connect
-                                                             .prepareStatement(
-                                                              "INSERT INTO part (Id, Stock, NamePart, PurchasePrice) VALUES(?, ?, ?, ?)"
-                                                              );
-                    prepare.setLong(1, id);
-                    prepare.setInt(2, obj.getStock());
-                    prepare.setString(3, obj.getNamePart());
-                    prepare.setFloat(4, obj.getPurchasePrice());
+          java.sql.PreparedStatement prepare = this.connect
+                                                   .prepareStatement(
+                                                    "INSERT INTO part (Stock, NamePart, PurchasePrice) VALUES(?, ?, ?)"
+                                                    );
 
-                    prepare.executeUpdate();
-                    //obj = this.find();
-                    
-                    String message = "CreatePartOK";
-                    queryResult.add(message);
-            }
+          prepare.setInt(1, obj.getStock());
+          prepare.setString(2, obj.getNamePart());
+          prepare.setFloat(3, obj.getPurchasePrice());
+
+          prepare.executeUpdate();
+          //obj = this.find();
+          
+          String message = "CreatePartOK";
+          queryResult.add(message);
+          
         } catch (SQLException e) {
                 e.printStackTrace();
                 queryResult.add("CreatePartKO");
