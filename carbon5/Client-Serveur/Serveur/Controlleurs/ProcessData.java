@@ -79,26 +79,26 @@ public class ProcessData implements Runnable{
 				break;
 				case("CreatePart"):
 					logger.info("Case create Part");
-					t = new Thread(new PartController(socket, message_distant, out));
+					t = new Thread(new PartController(message_distant, out));
 					t.run();
 				break;
 				case("ModificationPart"):
 					logger.info("Case ModificationPart Part");
-					t = new Thread(new PartController(socket, message_distant, out));
+					t = new Thread(new PartController(message_distant, out));
 					t.run();
 				break;
 				case("SelectAllParts"):
 					logger.info("Case Select all parts");
-					t = new Thread(new PartController(socket, message_distant, out));
+					t = new Thread(new PartController(message_distant, out));
 					t.run();
 				break;
 				case("addEntryStock"):
 					logger.info("Case entry stock");
-					t = new Thread(new PartController(socket, message_distant, out));
+					t = new Thread(new PartController(message_distant, out));
 					t.run();
 				break;
 				default:
-					logger.warn("Fonctionnalité non prise en charge pour le moment");
+					logger.info("Fonctionnalité non prise en charge pour le moment");
 				}
 
 				}
