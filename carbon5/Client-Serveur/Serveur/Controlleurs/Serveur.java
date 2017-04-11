@@ -9,6 +9,8 @@ import java.net.ServerSocket;
 import java.net.UnknownHostException;
 import java.io.PrintWriter;
 
+import org.apache.log4j.Logger;
+
 /**
  * Class Serveur 
  * @author Carbon5
@@ -19,6 +21,8 @@ public class Serveur {
 	public static ServerSocket serversocket = null;
 	public static Thread t;
 	public static int portServer = 50000;
+	final static Logger logger = Logger.getLogger(Serveur.class);
+
 	
 	/**
      * Method main: Launch a processdata thread; Process data reads the json and returns where it is needed
@@ -29,13 +33,13 @@ public class Serveur {
 		try {
 			
 			serversocket = new ServerSocket(portServer);
-			System.out.println("Server is listening on port "+portServer);
+			logger.info("Server is listening on port "+portServer);
 			
 			t = new Thread(new ProcessData(serversocket));
 			t.start();
 			
 		} catch (IOException e) {
-			System.err.println("Port server "+portServer+" is already in use !");
+			logger.error("Port server "+portServer+" is already in use !");
 		}
 	}
 }

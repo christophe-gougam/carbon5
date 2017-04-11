@@ -12,6 +12,7 @@ import java.net.ServerSocket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -29,6 +30,8 @@ public class ProcessData implements Runnable{
 	private BufferedReader in = null;
 	private PrintWriter out = null;
 	private String identifier = null;
+	final static Logger logger = Logger.getLogger(ProcessData.class);
+
 	int retour;
 	ArrayList<String> data = new ArrayList();
 	
@@ -52,13 +55,13 @@ public class ProcessData implements Runnable{
 	public void run(){
 		try {
 			while(true){
-				System.out.println("Retrieving client socket");
+				logger.info("Retrieving client socket");
 				socket = serverSocket.accept();
 				in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				out = new PrintWriter(socket.getOutputStream());
 				String message_distant = in.readLine();
 				try {
-					System.out.println("Reading JSON Client");
+					logger.info("Reading JSON Client");
 					identifier = LectureJson.Identifier(message_distant);
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
@@ -75,27 +78,27 @@ public class ProcessData implements Runnable{
 					t.start();
 				break;
 				case("CreatePart"):
-					System.out.println("Case create Part");
+					logger.info("Case create Part");
 					t = new Thread(new PartController(socket, message_distant, out));
 					t.run();
 				break;
 				case("ModificationPart"):
-					System.out.println("Case ModificationPart Part");
+					logger.info("Case ModificationPart Part");
 					t = new Thread(new PartController(socket, message_distant, out));
 					t.run();
 				break;
 				case("SelectAllParts"):
-					System.out.println("Case Select all parts");
+					logger.info("Case Select all parts");
 					t = new Thread(new PartController(socket, message_distant, out));
 					t.run();
 				break;
 				case("addEntryStock"):
-					System.out.println("Case entry stock");
+					logger.info("Case entry stock");
 					t = new Thread(new PartController(socket, message_distant, out));
 					t.run();
 				break;
 				default:
-					System.out.println("Fonctionnalité non prise en charge pour le moment");
+					logger.warn("Fonctionnalité non prise en charge pour le moment");
 				}
 
 				}

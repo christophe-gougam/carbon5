@@ -1,7 +1,6 @@
 package Serveur.Controlleurs;
 
 import java.io.BufferedReader;
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -17,6 +16,7 @@ import java.util.Date;
 
 import javax.swing.JOptionPane;
 
+import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.json.JSONException;
 
@@ -32,6 +32,8 @@ public class PartController implements Runnable{
 	String in;
 	private PrintWriter out = null;
 	public Thread t2;
+	final static Logger logger = Logger.getLogger(PartController.class);
+
 	Connection con=null;
 	ArrayList<String> data = new ArrayList<String>();
 	String JsonMessage;
@@ -48,7 +50,7 @@ public class PartController implements Runnable{
 	
 	public void run() {
 		
-		System.out.println("Retrieving connection from Pool");
+		logger.info("Retrieving connection from Pool");
 		ConnectionPool pool = new ConnectionPool();
 		con = pool.getConnectionFromPool();
 		PartDAO test = new PartDAO(con);
@@ -71,7 +73,7 @@ public class PartController implements Runnable{
 	    		
 	    		if (res.getPurchasePrice()==purchasePrice){
 					Part partUpdate = new Part(stocknew, namePart, purchasePrice);
-					System.out.println("Updating through DAO");
+					logger.info("Updating through DAO");
 					ret=test.update(partUpdate);
 					if (ret)
 						data.add("CreatePartOK");
@@ -81,7 +83,7 @@ public class PartController implements Runnable{
 				//sinon ajouter la pièce
 				else{
 					Part partToAdd = new Part(1, namePart, purchasePrice);
-					System.out.println("Putting through DAO");
+					logger.info("Putting through DAO");
 					data = test.create(partToAdd);
 				}
 			break;
@@ -90,7 +92,7 @@ public class PartController implements Runnable{
 				namePart = result.get(1);
 				purchasePrice = Float.parseFloat(result.get(2));
 				Part partUpdate = new Part(IdPart, namePart, purchasePrice);
-				System.out.println("Updating through DAO");
+				logger.info("Updating through DAO");
 				ret=test.update(partUpdate);
 				if (ret)
 					data.add("ModificationPartOK");
@@ -110,36 +112,36 @@ public class PartController implements Runnable{
 		switch(data.get(0)){
 		case("CreatePartOK"):
 			JsonMessage = EcritureJson.WriteJson("CreatePartOK", data);
-			System.out.println("Sending JSON succès createPart to Client");
+		logger.info("Sending JSON succès createPart to Client");
 			out.println(JsonMessage);
 			out.flush();
 		break;
 		case("CreatePartKO"):
 			JsonMessage = EcritureJson.WriteJson("CreatePartKO", data);
-			System.out.println("Erreur lors de l'ajout de Part");
+		logger.error("Erreur lors de l'ajout de Part");
 			out.println(JsonMessage);
 			out.flush();
 		break;
 		case("ModificationPartOK"):
 			JsonMessage = EcritureJson.WriteJson("ModificationPartOK", data);
-			System.out.println("Sending JSON succès to Client");
+		logger.info("Sending JSON succès to Client");
 			out.println(JsonMessage);
 			out.flush();
 		break;
 		case("ModificationPartKO"):
 			JsonMessage = EcritureJson.WriteJson("ModificationPartKO", data);
-			System.out.println("Erreur lors de la mise à jour de cette pièce");
+		logger.error("Erreur lors de la mise à jour de cette pièce");
 			out.println(JsonMessage);
 			out.flush();
 		break;
 		case("SelectAllPartsOK"):
 			JsonMessage = EcritureJson.WriteJson("SelectAllPartsOK", data);
-			System.out.println("Sending list of part to Client");
+		logger.info("Sending list of part to Client");
 			out.println(JsonMessage);
 			out.flush();
 		break;
 		}
-		System.out.println("Returning connection to pool");
+		logger.info("Returning connection to pool");
 	 	ConnectionPool.returnConnectionToPool(con);
 	}
 }

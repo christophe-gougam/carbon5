@@ -1,7 +1,6 @@
 package Serveur.Controlleurs;
 
 import java.io.BufferedReader;
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -19,6 +18,7 @@ import java.util.Date;
 
 import javax.swing.JOptionPane;
 
+import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.json.JSONException;
 
@@ -33,10 +33,14 @@ public class StockController implements Runnable{
 	String in;
 	private PrintWriter out = null;
 	public Thread t2;
+	final static Logger logger = Logger.getLogger(StockController.class);
+
 	Connection con=null;
 	ArrayList<String> data = new ArrayList<String>();
 	String JsonMessage;
 	
+	int stocknew = 0;
+	float purchasePrice = 0;
 	int quantite = 0;
 	String namePart = null;
 	DateFormat format = new SimpleDateFormat("YYYY-MM-DD");
@@ -51,7 +55,7 @@ public class StockController implements Runnable{
 	
 public void run() {
 		
-		System.out.println("Retrieving connection from Pool");
+		logger.info("Retrieving connection from Pool");
 		ConnectionPool pool = new ConnectionPool();
 		con = pool.getConnectionFromPool();
 		PartDAO test = new PartDAO(con);
@@ -74,8 +78,9 @@ public void run() {
 	    		//////@Thierno Problème de if à ce niveau pensez à declarer comme clé primaire le nom de la pièce dans la base///////////////
 	    		
 	    		
+				
 				Part partUpdate = new Part(stocknew, namePart, purchasePrice);
-				System.out.println("Updating through DAO");
+				logger.info("Updating through DAO");
 				ret=test.update(partUpdate);
 				if (ret){
 					data.add("addEntryStockOK");
@@ -93,42 +98,42 @@ public void run() {
 		switch(data.get(0)){
 		case("CreatePartOK"):
 			JsonMessage = EcritureJson.WriteJson("CreatePartOK", data);
-			System.out.println("Sending JSON succès createPart to Client");
+			logger.info("Sending JSON succès createPart to Client");
 			out.println(JsonMessage);
 			out.flush();
 		break;
 		case("CreatePartKO"):
 			JsonMessage = EcritureJson.WriteJson("CreatePartKO", data);
-			System.out.println("Erreur lors de l'ajout de Part");
+			logger.error("Erreur lors de l'ajout de Part");
 			out.println(JsonMessage);
 			out.flush();
 		break;
 		case("ModificationPartOK"):
 			JsonMessage = EcritureJson.WriteJson("ModificationPartOK", data);
-			System.out.println("Sending JSON succès to Client");
+			logger.info("Sending JSON succès to Client");
 			out.println(JsonMessage);
 			out.flush();
 		break;
 		case("ModificationPartKO"):
 			JsonMessage = EcritureJson.WriteJson("ModificationPartKO", data);
-			System.out.println("Erreur lors de la mise à jour de cette pièce");
+			logger.error("Erreur lors de la mise à jour de cette pièce");
 			out.println(JsonMessage);
 			out.flush();
 		break;
 		case("SelectAllPartsOK"):
 			JsonMessage = EcritureJson.WriteJson("SelectAllPartsOK", data);
-			System.out.println("Sending list of part to Client");
+			logger.info("Sending list of part to Client");
 			out.println(JsonMessage);
 			out.flush();
 		break;
 		case("addEntryStockOK"):
 			JsonMessage = EcritureJson.WriteJson("addEntryStockOK", data);
-			System.out.println("Sending success entry stock");
+			logger.info("Sending success entry stock");
 			out.println(JsonMessage);
 			out.flush();
 		break;
 		}
-		System.out.println("Returning connection to pool");
+		logger.info("Returning connection to pool");
 	 	ConnectionPool.returnConnectionToPool(con);
 	}
 }

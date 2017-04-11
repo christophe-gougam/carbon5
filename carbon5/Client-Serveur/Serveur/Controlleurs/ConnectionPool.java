@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Vector;
 
+import org.apache.log4j.Logger;
+
 /**
  * Class ConnectionPool creating the connection pool
  * @author Pierre
@@ -26,6 +28,9 @@ public class ConnectionPool{
 	 */
 	static Vector<Connection> connectionsList = new Vector<Connection>();
 
+	final static Logger logger = Logger.getLogger(ConnectionPool.class);
+
+	
 	/**
 	 * Class constructor, calls the method initializing the connections
 	 * @see initializeConnectionPool()
@@ -44,11 +49,11 @@ public class ConnectionPool{
 	{
 		while(!checkIfConnectionPoolIsFull())
 		{
-			System.out.println("Connection Pool is NOT full. Proceeding with adding new connections");
+			logger.info("Connection Pool is NOT full. Proceeding with adding new connections");
 			//Adding new connection instance until the pool is full
 			connectionsList.add(createNewConnectionForPool());
 		}
-		System.out.println("Connection Pool is full. "+ connectionsList.size() +" connections created");
+		logger.warn("Connection Pool is full. "+ connectionsList.size() +" connections created");
 		
 	}
 
@@ -90,7 +95,7 @@ public class ConnectionPool{
 		String filename = "config.properties";
 		input = ConnectionPool.class.getClassLoader().getResourceAsStream(filename);
 		if (input == null) {
-			System.out.println("Sorry, unable to find " + filename);
+			logger.error("Sorry, unable to find " + filename);
 		}
 		// load a properties file
 		try {
@@ -108,16 +113,16 @@ public class ConnectionPool{
 		{
 			Class.forName(DriverName);
 			connection = DriverManager.getConnection(database, dbuser, dbpassword);
-			System.out.println("Connection: "+connection);
+			logger.info("Connection: "+connection);
 		}
 		catch(SQLException e)
 		{
-			System.err.println("SQLException: "+e);
+			logger.error("SQLException: "+e);
 			return null;
 		}
 		catch(ClassNotFoundException e)
 		{
-			System.err.println("ClassNotFoundException: "+e);
+			logger.error("ClassNotFoundException: "+e);
 			return null;
 		}
 		try {

@@ -13,15 +13,14 @@ import java.net.ServerSocket;
 import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.ResultSet;
-
 import java.sql.SQLException;
-
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
 
+import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.json.JSONException;
 
@@ -36,6 +35,7 @@ public class CarController implements Runnable{
 	String in;
 	private PrintWriter out = null;
 	public Thread t2;
+	final static Logger logger = Logger.getLogger(CarController.class);
 	Connection con=null;
 	String matriculation = null;
 	String type = null;
@@ -74,7 +74,7 @@ public class CarController implements Runnable{
 				e.printStackTrace();
 				}
 			
-			System.out.println("Retrieving connection from pool");
+				logger.info("Retrieving connection from pool");
 			ConnectionPool pool = new ConnectionPool();
 			con = pool.getConnectionFromPool();
 			
@@ -84,19 +84,19 @@ public class CarController implements Runnable{
 			switch(data.get(0)){
 			case("Voiture enregistrée"):
 				JsonMessage = EcritureJson.WriteJson("OKCarInput", data);
-				System.out.println("Sending JSON succès to Client");
+			logger.info("Sending JSON succès to Client");
 				out.println(JsonMessage);
 				out.flush();
 			break;
 			case("Erreur lors de l'execution de la requête"):
 				JsonMessage = EcritureJson.WriteJson("KOCarInput", data);
-				System.out.println("Erreur de mot de passe");
+			logger.info("Erreur de mot de passe");
 				out.println(JsonMessage);
 				out.flush();
 			break;
 			}
 			//returns connection to pool
-			System.out.println("Returning connection to pool");
+			logger.info("Returning connection to pool");
 		 	ConnectionPool.returnConnectionToPool(con);
 	}
 	
