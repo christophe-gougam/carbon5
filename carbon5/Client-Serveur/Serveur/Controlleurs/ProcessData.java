@@ -84,6 +84,16 @@ public class ProcessData implements Runnable{
 					t = new Thread(new PartController(socket, message_distant, out));
 					t.run();
 				break;
+				case("SelectAllParts"):
+					System.out.println("Case Select all parts");
+					t = new Thread(new PartController(socket, message_distant, out));
+					t.run();
+				break;
+				case("addEntryStock"):
+					System.out.println("Case entry stock");
+					t = new Thread(new PartController(socket, message_distant, out));
+					t.run();
+				break;
 				default:
 					System.out.println("Fonctionnalité non prise en charge pour le moment");
 				}

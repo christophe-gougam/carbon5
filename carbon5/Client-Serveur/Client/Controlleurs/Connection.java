@@ -138,6 +138,24 @@ public class Connection{
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
 				break;
+			case "SelectAllPartsOK":
+				objet = new JSONObject(reponse);
+				System.out.println("Afficage du resultat de mise à jour : ");
+		    	System.out.println(reponse);
+		    	tableau = objet.getJSONArray("data");
+		    	int indice = 2;
+		    	for (int i =0; i<tableau.getInt(1);i++){
+		    		Part.addPartToCo(Part.unSerialize(tableau.getString(indice)));
+		    		indice++;
+		    	}
+		    	break;
+			case "addEntryStockOK":
+				objet = new JSONObject(reponse);
+				System.out.println("Afficage du resultat de mise à jour : ");
+		    	System.out.println(reponse);
+		    	tableau = objet.getJSONArray("data");
+				JOptionPane.showMessageDialog(frame, tableau.get(0));
+				break;
 			default : 
 				System.out.println("default");
 			}

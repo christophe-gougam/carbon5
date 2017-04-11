@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
-import Client.Controlleurs.ServerConnect;;
+import Client.Controlleurs.ServerConnect;
 
 
 

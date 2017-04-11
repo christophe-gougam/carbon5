@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -19,9 +20,36 @@ public class PartDAO extends DAO<Part> {
     public PartDAO(Connection conn) {
         super(conn);
     }
-    
+    public ArrayList<String> getAllParts(){
+    	
+    ArrayList<String> parts = new ArrayList<String>();
+    	try {
+            ResultSet result = this .connect
+                                    .createStatement(
+                                            	ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                                ResultSet.CONCUR_UPDATABLE
+                                             ).executeQuery(
+                                                "SELECT * FROM part"
+                                             );
+            while(result.next()){
+            //if(result.first())
+            		Part.addPartToCo(new Part(
+            							result.getInt("stock"),
+            							result.getString("namePart"), 
+            							result.getFloat("purchasePrice")));
+            				}            
+        } catch (SQLException e) {
+                e.printStackTrace();
+        }
+    	for(Part aPart : Part.getAllParts()){
+    		//Creating array with data and number of parts
+    		parts.add(String.valueOf(Part.getAllParts().size()));
+    		parts.add(Part.serialize(aPart));
+    	}
+        return parts;
+    }
     /**
-     * Allows to retrieve an part via its ID
+     * Allows to retrieve a part via it's name
      * @return part
      */
     public Part find(String name) {
@@ -136,6 +164,23 @@ public class PartDAO extends DAO<Part> {
                ).executeUpdate(
                     "DELETE FROM part WHERE Id = " + obj.getId()
                );
+        } catch (SQLException e) {
+                e.printStackTrace();
+        }
+        return true;
+    }
+    
+    public boolean addEntryStock(Part obj, int qte, Date date){
+    	try {
+            this.connect
+                .createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                    ResultSet.CONCUR_UPDATABLE
+               ).executeUpdate(
+                    "INSERT INTO orderpart(IdPart,IdUser,Qte,date) VALUES ('"+obj.getId()+"','"+User.getAllUsers()+"','"+qte+"','"+date+"')"
+               );
+            obj.setStock(obj.getStock()+qte);
+            this.update(obj);
         } catch (SQLException e) {
                 e.printStackTrace();
         }

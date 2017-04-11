@@ -11,12 +11,18 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+
+import Client.Controlleurs.ServerConnect;
+import Modele.Part;
+import Modele.User;
 
 /**
  *
@@ -168,6 +174,15 @@ public class IHM extends JFrame {
             }
             if(e.getSource() == bouton5){
                 //implement select of all nameParts to fill list
+            	
+            	if (Part.getAllParts().isEmpty()){
+                	
+                	ArrayList<String> data = new ArrayList();
+                	String identifier = "SelectAllParts";
+                	System.out.println("Récupération des pièces");
+                	new ServerConnect(data, identifier, pan2);
+            	}
+            	
                 cl.show(pan2, listContent[4]);
                 liste1.setVisible(true);
                 liste2.setVisible(false);

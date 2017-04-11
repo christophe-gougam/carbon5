@@ -13,6 +13,8 @@ public class Part {
 	private String namePart;
 	private float purchasePrice;
 	
+	private static ArrayList<Part> parts= new ArrayList<Part>();
+	
         public Part(){
             
         }
@@ -65,6 +67,18 @@ public class Part {
 	
 	public void setPurchasePrice(float purchasePrice){
 		this.purchasePrice = purchasePrice;
+	}
+	
+	public static ArrayList<Part> getAllParts(){
+		return parts;
+	}
+	
+	public static void setAllParts(ArrayList<Part> newParts){
+		parts = newParts;
+	}
+	
+	public static void addPartToCo(Part newPart){
+		parts.add(newPart);
 	}
 	
 	public static String serialize(Part part){

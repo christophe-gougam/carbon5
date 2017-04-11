@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -25,8 +27,7 @@ import Modele.EcritureJson;
 import Modele.Part;
 import Modele.PartDAO;
 
-import java.io.PrintWriter;
-public class PartController implements Runnable{
+public class StockController implements Runnable{
 	
 	private Socket socket = null;
 	String in;
@@ -36,17 +37,19 @@ public class PartController implements Runnable{
 	ArrayList<String> data = new ArrayList<String>();
 	String JsonMessage;
 	
-	String IdPart = null;
+	int quantite = 0;
 	String namePart = null;
-	Float purchasePrice = null;
+	DateFormat format = new SimpleDateFormat("YYYY-MM-DD");
+	Date date = new Date();
 	boolean ret;
-	public PartController(Socket s, String in, PrintWriter out){
-		 this.socket = s;
+	
+	public StockController(Socket s, String in, PrintWriter out){
+		this.socket = s;
 		 this.in = in;
 		 this.out=out;
 	}
 	
-	public void run() {
+public void run() {
 		
 		System.out.println("Retrieving connection from Pool");
 		ConnectionPool pool = new ConnectionPool();
@@ -57,50 +60,30 @@ public class PartController implements Runnable{
 			ArrayList<String> result = LectureJson.LectureFichier(in);
 			switch(identifier){
 			
-			case("CreatePart"):
-			
+			case("addEntryStock"):
 				
-	    		namePart = result.get(0);
-	    		purchasePrice = Float.parseFloat(result.get(1));
-	    		Part res=test.find(namePart);
-	    		int stock=res.getStock();
-	    		int stocknew=stock+1;
+				SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+				date = formatter.parse(result.get(0));
+	    		namePart = result.get(1);
+	    		Part obj = test.find(namePart);
+	    		quantite = Integer.parseInt(result.get(1));
+	    		
+	    		ret = test.addEntryStock(obj, quantite, date);
 				//vérifier si la pièce existe, incrémenter le stock
 	    		
 	    		//////@Thierno Problème de if à ce niveau pensez à declarer comme clé primaire le nom de la pièce dans la base///////////////
 	    		
-	    		if (res.getPurchasePrice()==purchasePrice){
-					Part partUpdate = new Part(stocknew, namePart, purchasePrice);
-					System.out.println("Updating through DAO");
-					ret=test.update(partUpdate);
-					if (ret)
-						data.add("CreatePartOK");
-					else
-						data.add("CreatePartKO");
-				}
-				//sinon ajouter la pièce
-				else{
-					Part partToAdd = new Part(1, namePart, purchasePrice);
-					System.out.println("Putting through DAO");
-					data = test.create(partToAdd);
-				}
-			break;
-			case("ModificationPart"):
-				IdPart=result.get(0);
-				namePart = result.get(1);
-				purchasePrice = Float.parseFloat(result.get(2));
-				Part partUpdate = new Part(IdPart, namePart, purchasePrice);
+	    		
+				Part partUpdate = new Part(stocknew, namePart, purchasePrice);
 				System.out.println("Updating through DAO");
 				ret=test.update(partUpdate);
-				if (ret)
-					data.add("ModificationPartOK");
-				else
-					data.add("ModificationPartKO");
+				if (ret){
+					data.add("addEntryStockOK");
+				}else{
+					data.add("addEntryStockKO");
+				}
 			break;
-			case("SelectAllParts"):
-				data = test.getAllParts();
-				data.add(0, "SelectAllPartsOK");
-			break;
+			
 			}
 		}catch (Exception e) {
 		// TODO Auto-generated catch block
@@ -138,8 +121,16 @@ public class PartController implements Runnable{
 			out.println(JsonMessage);
 			out.flush();
 		break;
+		case("addEntryStockOK"):
+			JsonMessage = EcritureJson.WriteJson("addEntryStockOK", data);
+			System.out.println("Sending success entry stock");
+			out.println(JsonMessage);
+			out.flush();
+		break;
 		}
 		System.out.println("Returning connection to pool");
 	 	ConnectionPool.returnConnectionToPool(con);
 	}
 }
+
+
