@@ -123,7 +123,7 @@ public class Connection{
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
 			break;
 			
-			case "CreatePartOK" :
+			case "CreatePartOK" : case "CreatePartKO" : 
 				objet = new JSONObject(reponse);
 				System.out.println("Afficage du resultat de l'ajout vehicule : ");
 		    	System.out.println(reponse);
@@ -131,9 +131,9 @@ public class Connection{
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
 			break;
 			
-			case "CreatePartKO" : 
+			case "ModificationPartOK" : case "ModificationPartKO" : 
 				objet = new JSONObject(reponse);
-				System.out.println("Afficage du resultat de l'ajout vehicule : ");
+				System.out.println("Afficage du resultat de mise à jour : ");
 		    	System.out.println(reponse);
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));

@@ -24,8 +24,7 @@ public class PartDAO extends DAO<Part> {
      * Allows to retrieve an part via its ID
      * @return part
      */
-    @Override
-    public Part find() {
+    public Part find(String name) {
         Part part = new Part();
         try {
             ResultSet result = this .connect
@@ -33,7 +32,7 @@ public class PartDAO extends DAO<Part> {
                                             	ResultSet.TYPE_SCROLL_INSENSITIVE, 
                                                 ResultSet.CONCUR_UPDATABLE
                                              ).executeQuery(
-                                                "SELECT * FROM part" 
+                                                "SELECT * FROM part where NamePart='"+name +"'"
                                              );
             if(result.first())
             		part = new Part(
@@ -55,7 +54,7 @@ public class PartDAO extends DAO<Part> {
     @Override
     public ArrayList<String> create(Part obj) {
     	ArrayList<String> queryResult = new ArrayList<String>();
-        try {
+    	try {
           java.sql.PreparedStatement prepare = this.connect
                                                    .prepareStatement(
                                                     "INSERT INTO part (Stock, NamePart, PurchasePrice) VALUES(?, ?, ?)"
@@ -86,21 +85,37 @@ public class PartDAO extends DAO<Part> {
     @Override
     public boolean update(Part obj) {
         try {	
-            this .connect	
+            if (obj.getStock()!=1){
+            	this .connect	
                  .createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE, 
                     ResultSet.CONCUR_UPDATABLE
                  ).executeUpdate(
-                    "UPDATE part SET Stock = '" + obj.getStock() + "'"+
-                    "NamePart ='" + obj.getNamePart() + "' " +
+                    "UPDATE part SET Stock ='" + obj.getStock() + "', " +
                     "PurchasePrice ='" + obj.getPurchasePrice() + "' " +
-                    " WHERE Id = " + obj.getId()
+                    " WHERE NamePart = '" + obj.getNamePart()+ "' "
                  );
-                    //obj = this.find();
+            	return true;
+            }
+            else{
+            	this .connect	
+                .createStatement(
+                   ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                   ResultSet.CONCUR_UPDATABLE
+                ).executeUpdate(
+                   "UPDATE part SET "+
+                   "NamePart ='" + obj.getNamePart() + "', " +
+                   "PurchasePrice ='" + obj.getPurchasePrice() + "' " +
+                   " WHERE Id = " + obj.getIdPart()
+                );
+            	return true;
+            }
+            		
         } catch (SQLException e) {
                 e.printStackTrace();
+                return false;
         }
-        return true;
+        
     }
 
     /**
@@ -110,7 +125,10 @@ public class PartDAO extends DAO<Part> {
      */
     @Override
     public boolean delete(Part obj) {
-        try {
+    	Part res=find();
+    	int stock=res.getStock();
+    	int stockrestant=stock-1;
+    	try {
             this.connect
                 .createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE, 
@@ -122,5 +140,11 @@ public class PartDAO extends DAO<Part> {
                 e.printStackTrace();
         }
         return true;
-    } 
+    }
+
+	@Override
+	public Part find() {
+		// TODO Auto-generated method stub
+		return null;
+	} 
 }

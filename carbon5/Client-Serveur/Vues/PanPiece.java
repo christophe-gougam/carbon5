@@ -5,6 +5,15 @@
  */
 package Vues;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JPanel;
+
+import Client.Controlleurs.ServerConnect;
+import Vues.PanAjoutPiece.BoutonListener;
+
 /**
  *
  * @author Carbon5
@@ -18,7 +27,7 @@ public class PanPiece extends javax.swing.JPanel {
         initComponents();
     }
 
-    @SuppressWarnings("unchecked")
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -30,7 +39,6 @@ public class PanPiece extends javax.swing.JPanel {
         jLabel1.setText("LISTE DES PIECES DETACHEES");
 
         jButton1.setText("Ajouter");
-
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -78,4 +86,6 @@ public class PanPiece extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+    
+
 }

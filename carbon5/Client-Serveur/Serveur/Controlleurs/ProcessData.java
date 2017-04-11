@@ -25,9 +25,7 @@ public class ProcessData implements Runnable{
 	
 	private ServerSocket serverSocket;
 	private Socket socket = null;
-	private Thread t1;
-	private Thread t2;
-	private Thread t3;
+	private Thread t;
 	private BufferedReader in = null;
 	private PrintWriter out = null;
 	private String identifier = null;
@@ -69,17 +67,22 @@ public class ProcessData implements Runnable{
 				// identifier in JSON recieved routes the action to be performed
 				switch(identifier){
 				case("Authentication"):
-					t1 = new Thread(new Authentication(socket, message_distant, out));
-					t1.start();
+					t = new Thread(new Authentication(socket, message_distant, out));
+					t.start();
 				break;
 				case("AjoutVehicule"):
-					t2 = new Thread(new CarController(socket, message_distant, out));
-					t2.start();
+					t = new Thread(new CarController(socket, message_distant, out));
+					t.start();
 				break;
 				case("CreatePart"):
 					System.out.println("Case create Part");
-					t3 = new Thread(new PartController(socket, message_distant, out));
-					t3.run();
+					t = new Thread(new PartController(socket, message_distant, out));
+					t.run();
+				break;
+				case("ModificationPart"):
+					System.out.println("Case ModificationPart Part");
+					t = new Thread(new PartController(socket, message_distant, out));
+					t.run();
 				break;
 				default:
 					System.out.println("Fonctionnalité non prise en charge pour le moment");
