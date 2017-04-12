@@ -145,8 +145,6 @@ public class PanEntreeStock extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     //private javax.swing.JTextField jTextField2;
-    DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-    JFormattedTextField txtDate = new JFormattedTextField(df);
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables

@@ -165,12 +165,9 @@ public class PanSortieStock extends javax.swing.JPanel {
          */
         public void actionPerformed(ActionEvent arg0){
         	
-        	String date = txtDate.getText();
-        	String namePart = (String) jComboBox1.getSelectedItem();
+        	String namePart =""+ (String) jComboBox1.getSelectedItem() +"";
         	String quantite = jTextField3.getText();
-        	
-        	ArrayList<String> data = new ArrayList();
-        	data.add(date);
+        	ArrayList<String> data = new ArrayList<String>();
         	data.add(namePart);
         	data.add(quantite);
         	String identifier = "addOutStock";
