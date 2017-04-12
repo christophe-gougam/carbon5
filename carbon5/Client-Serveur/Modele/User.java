@@ -52,12 +52,26 @@ public class User {
 		this.type = type;
 	}
 	
+	public User(){
+		
+	}
+	
 	public static ArrayList<User> getAllUsers(){
 		return usersCo;
 	}
 	
 	public static void addAUserToCo(User us){
 		usersCo.add(us);
+	}
+	
+	public static User getManager(){
+		User userToSend = new User();
+		for (User us: usersCo){
+			if (us.getTypeUser().getTypeUser()=="manager"){
+				userToSend = us;
+			}
+		}
+		return userToSend;
 	}
     /**
      * Method get first name 

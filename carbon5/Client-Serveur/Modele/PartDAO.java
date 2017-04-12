@@ -177,9 +177,26 @@ public class PartDAO extends DAO<Part> {
                     ResultSet.TYPE_SCROLL_INSENSITIVE, 
                     ResultSet.CONCUR_UPDATABLE
                ).executeUpdate(
-                    "INSERT INTO orderpart(IdPart,IdUser,Qte,date) VALUES ('"+obj.getId()+"','"+User.getAllUsers()+"','"+qte+"','"+date+"')"
+                    "INSERT INTO orderpart(IdPart,IdUser,Qte,date) VALUES ('"+obj.getId()+"','"+User.getManager()+"','"+qte+"','"+date+"')"
                );
             obj.setStock(obj.getStock()+qte);
+            this.update(obj);
+        } catch (SQLException e) {
+                e.printStackTrace();
+        }
+        return true;
+    }
+    
+    public boolean addOutStock(Part obj, int qte, Date date){
+    	try {
+            this.connect
+                .createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                    ResultSet.CONCUR_UPDATABLE
+               ).executeUpdate(
+                    "INSERT INTO orderpart(IdPart,IdUser,Qte,date) VALUES ('"+obj.getId()+"','"+User.getManager()+"','"+(qte*(-1))+"','"+date+"')"
+               );
+            obj.setStock(obj.getStock()-qte);
             this.update(obj);
         } catch (SQLException e) {
                 e.printStackTrace();

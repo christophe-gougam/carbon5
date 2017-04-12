@@ -45,9 +45,10 @@ public class PartController implements Runnable{
 	String namePart = null;
 	Float purchasePrice = null;
 	boolean ret;
-	public PartController(String in, PrintWriter out){
-		 this.in = in;
-		 this.out=out;
+	public PartController(Socket s, String in, PrintWriter out){
+		this.socket = s; 
+		this.in = in;
+		this.out=out;
 	}
 	
 	public void run() {

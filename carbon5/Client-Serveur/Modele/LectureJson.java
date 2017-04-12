@@ -62,7 +62,15 @@ public class LectureJson {
 		System.out.print("IdPart=" + tableau.getString(0));
 		System.out.print("namePart=" + tableau.getString(1));
 		System.out.print(", Price=" + tableau.getString(2));
-break;
+	break;
+	case("addEntryStock"):	case("addOutStock"):
+		
+		result.add(tableau.getString(0));
+		result.add(tableau.getString(1));
+		result.add(tableau.getString(2));
+		System.out.print("date=" + tableau.getString(0));
+		System.out.print("namePart=" + tableau.getString(1));
+		System.out.print(", Quantite=" + tableau.getString(2));
 	default:
 		System.out.println("Fonctionnalité non prise en charge pour l'instant");
 	break;
