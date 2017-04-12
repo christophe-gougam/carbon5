@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -26,10 +28,11 @@ import Modele.LectureJson;
 import Modele.EcritureJson;
 import Modele.Part;
 import Modele.PartDAO;
+import Modele.User;
+import Modele.UserDAO;
 
 public class StockController implements Runnable{
 	
-	private Socket socket = null;
 	String in;
 	private PrintWriter out = null;
 	public Thread t2;
@@ -39,44 +42,32 @@ public class StockController implements Runnable{
 	
 	int quantite = 0;
 	String namePart = null;
-	DateFormat format = new SimpleDateFormat("YYYY-MM-DD");
-	Date date = new Date();
+	LocalDate date;
 	boolean ret;
 	
-	public StockController(Socket s, String in, PrintWriter out){
-		this.socket = s;
+	public StockController(Connection con, String in, PrintWriter out){
+		this.con=con;
 		 this.in = in;
 		 this.out=out;
 	}
 	
 public void run() {
-		
-		System.out.println("Retrieving connection from Pool");
-		ConnectionPool pool = new ConnectionPool();
-		con = pool.getConnectionFromPool();
+		User us;
 		PartDAO test = new PartDAO(con);
+		UserDAO user = new UserDAO(con);
 		try{
 			String identifier = LectureJson.Identifier(in);
 			ArrayList<String> result = LectureJson.LectureFichier(in);
 			switch(identifier){
 			
 			case("addEntryStock"):
-				
-				SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
-				date = formatter.parse(result.get(0));
-	    		namePart = result.get(1);
+				date = LocalDate.now();
+	    		namePart = result.get(0);
 	    		Part obj = test.find(namePart);
+	    		us=user.find();
 	    		quantite = Integer.parseInt(result.get(1));
 	    		
-	    		ret = test.addEntryStock(obj, quantite, date);
-				//vérifier si la pièce existe, incrémenter le stock
-	    		
-	    		//////@Thierno Problème de if à ce niveau pensez à declarer comme clé primaire le nom de la pièce dans la base///////////////
-	    		
-	    		
-				obj.setStock(obj.getStock()+quantite);
-				System.out.println("Updating through DAO");
-				ret=test.update(obj);
+	    		ret = test.addEntryStock(us, obj, quantite, date);
 				if (ret){
 					data.add("addEntryStockOK");
 				}else{
@@ -85,21 +76,12 @@ public void run() {
 			break;
 			
 			case("addOutStock"):
-				SimpleDateFormat formatter2 = new SimpleDateFormat("dd-MMM-yyyy");
-				date = formatter2.parse(result.get(0));
-				namePart = result.get(1);
+				date = LocalDate.now();
+				namePart = result.get(0);
 				Part obj2 = test.find(namePart);
 				quantite = Integer.parseInt(result.get(1));
-    		
-				ret = test.addOutStock(obj2, quantite, date);
-				//vérifier si la pièce existe, incrémenter le stock
-    		
-				//////@Thierno Problème de if à ce niveau pensez à declarer comme clé primaire le nom de la pièce dans la base///////////////
-    		
-    		
-				obj2.setStock(obj2.getStock()-quantite);
-				System.out.println("Updating through DAO");
-				ret=test.update(obj2);
+				us=user.find();
+				ret = test.addOutStock(us, obj2, quantite, date);
 				if (ret){
 					data.add("addOutStockOK");
 				}else{

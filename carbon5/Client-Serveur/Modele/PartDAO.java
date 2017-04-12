@@ -8,6 +8,7 @@ package Modele;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -164,13 +165,14 @@ public class PartDAO extends DAO<Part> {
                ).executeUpdate(
                     "DELETE FROM part WHERE Id = " + obj.getId()
                );
+            return true;
         } catch (SQLException e) {
                 e.printStackTrace();
+                return false;
         }
-        return true;
     }
     
-    public boolean addEntryStock(Part obj, int qte, Date date){
+    public boolean addEntryStock(User us, Part obj, int qte, LocalDate date){
     	try {
             this.connect
                 .createStatement(
@@ -181,13 +183,14 @@ public class PartDAO extends DAO<Part> {
                );
             obj.setStock(obj.getStock()+qte);
             this.update(obj);
+            return true;
         } catch (SQLException e) {
                 e.printStackTrace();
+                return false;
         }
-        return true;
     }
     
-    public boolean addOutStock(Part obj, int qte, Date date){
+    public boolean addOutStock(User us, Part obj, int qte, LocalDate date){
     	try {
             this.connect
                 .createStatement(
@@ -198,10 +201,11 @@ public class PartDAO extends DAO<Part> {
                );
             obj.setStock(obj.getStock()-qte);
             this.update(obj);
+            return true;
         } catch (SQLException e) {
                 e.printStackTrace();
+                return false;
         }
-        return true;
     }
 
 	@Override

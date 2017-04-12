@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.ServerSocket;
 import java.net.UnknownHostException;
+import java.sql.Connection;
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
@@ -31,7 +32,7 @@ public class ProcessData implements Runnable{
 	private PrintWriter out = null;
 	private String identifier = null;
 	final static Logger logger = Logger.getLogger(ProcessData.class);
-
+	Connection con=null;
 	int retour;
 	ArrayList<String> data = new ArrayList();
 	
@@ -55,6 +56,9 @@ public class ProcessData implements Runnable{
 	public void run(){
 		try {
 			while(true){
+				System.out.println("Retrieving connection from Pool");
+				ConnectionPool pool = new ConnectionPool();
+				con = pool.getConnectionFromPool();
 				logger.info("Retrieving client socket");
 				socket = serverSocket.accept();
 				in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -70,36 +74,36 @@ public class ProcessData implements Runnable{
 				// identifier in JSON recieved routes the action to be performed
 				switch(identifier){
 				case("Authentication"):
-					t = new Thread(new Authentication(socket, message_distant, out));
+					t = new Thread(new Authentication(con, socket, message_distant, out));
 					t.start();
 				break;
 				case("AjoutVehicule"):
-					t = new Thread(new CarController(socket, message_distant, out));
+					t = new Thread(new CarController(con, socket, message_distant, out));
 					t.start();
 				break;
 				case("CreatePart"):
 					logger.info("Case create Part");
-					t = new Thread(new PartController(socket, message_distant, out));
+					t = new Thread(new PartController(con, message_distant, out));
 					t.run();
 				break;
 				case("ModificationPart"):
 					logger.info("Case ModificationPart Part");
-					t = new Thread(new PartController(socket, message_distant, out));
+					t = new Thread(new PartController(con, message_distant, out));
 					t.run();
 				break;
 				case("SelectAllParts"):
 					logger.info("Case Select all parts");
-					t = new Thread(new PartController(socket, message_distant, out));
+					t = new Thread(new PartController(con, message_distant, out));
 					t.run();
 				break;
 				case("addEntryStock"):
 					logger.info("Case entry stock");
-					t = new Thread(new StockController(socket, message_distant, out));
+					t = new Thread(new StockController(con, message_distant, out));
 					t.run();
 				break;
 				case("addOutStock"):
 					logger.info("Case out stock");
-					t = new Thread(new StockController(socket, message_distant, out));
+					t = new Thread(new StockController(con, message_distant, out));
 					t.run();
 				break;
 				default:

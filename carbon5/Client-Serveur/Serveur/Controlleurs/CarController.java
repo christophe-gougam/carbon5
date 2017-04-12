@@ -48,7 +48,8 @@ public class CarController implements Runnable{
 	/**
 	 * Method constructor of controller
 	 */
-	public CarController(Socket s, String in, PrintWriter out){
+	public CarController(Connection con, Socket s, String in, PrintWriter out){
+		 this.con=con;
 		 this.socket = s;
 		 this.in = in;
 		 this.out=out;
@@ -73,11 +74,6 @@ public class CarController implements Runnable{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				}
-			
-				logger.info("Retrieving connection from pool");
-			ConnectionPool pool = new ConnectionPool();
-			con = pool.getConnectionFromPool();
-			
 			//sends data to CRUD to insert new Car create object and serialize it to give to client side
 			//data = CRUD.addCar(con, matriculation, type, statut, parking);
 			

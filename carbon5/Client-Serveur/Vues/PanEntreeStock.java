@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -51,13 +52,13 @@ public class PanEntreeStock extends javax.swing.JPanel {
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         
-        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>();
         ArrayList<String> parts = new ArrayList<String>();
         for (Part aPart : Part.getAllParts()){
         	model.addElement(aPart.getNamePart());
         }
         
-        jComboBox1 = new javax.swing.JComboBox(model);
+        jComboBox1 = new javax.swing.JComboBox<String>(model);
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -170,12 +171,9 @@ class BoutonListener implements ActionListener{
      */
     public void actionPerformed(ActionEvent arg0){
     	
-    	String date = txtDate.getText();
-    	String namePart = (String) jComboBox1.getSelectedItem();
+    	String namePart =""+ (String) jComboBox1.getSelectedItem() +"";
     	String quantite = jTextField3.getText();
-    	
-    	ArrayList<String> data = new ArrayList();
-    	data.add(date);
+    	ArrayList<String> data = new ArrayList<String>();
     	data.add(namePart);
     	data.add(quantite);
     	String identifier = "addEntryStock";

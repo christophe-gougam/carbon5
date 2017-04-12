@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -30,7 +31,6 @@ import Modele.PartDAO;
 import java.io.PrintWriter;
 public class PartController implements Runnable{
 	
-	private Socket socket = null;
 	String in;
 	private PrintWriter out = null;
 	public Thread t2;
@@ -39,23 +39,21 @@ public class PartController implements Runnable{
 	Connection con=null;
 	ArrayList<String> data = new ArrayList<String>();
 	String JsonMessage;
-	Date date = new Date();
+	LocalDate date;
 	int quantite = 0;
 	String IdPart = null;
 	String namePart = null;
 	Float purchasePrice = null;
 	boolean ret;
-	public PartController(Socket s, String in, PrintWriter out){
-		this.socket = s; 
+	public PartController(Connection con, String in, PrintWriter out){
+		this.con=con;
 		this.in = in;
 		this.out=out;
 	}
 	
 	public void run() {
 		
-		logger.info("Retrieving connection from Pool");
-		ConnectionPool pool = new ConnectionPool();
-		con = pool.getConnectionFromPool();
+
 		PartDAO test = new PartDAO(con);
 		try{
 			String identifier = LectureJson.Identifier(in);
@@ -84,22 +82,6 @@ public class PartController implements Runnable{
 			case("SelectAllParts"):
 				data = test.getAllParts();
 				data.add(0, "SelectAllPartsOK");
-			break;
-			case("addEntryStock"):
-				
-				SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-				date = formatter.parse(result.get(0));
-	    		namePart = result.get(1);
-	    		Part obj = test.find(namePart);
-	    		quantite = Integer.parseInt(result.get(1));
-	    		
-	    		ret = test.addEntryStock(obj, quantite, date);
-				//vérifier si la pièce existe, incrémenter le stock
-				if (ret){
-					data.add("addEntryStockOK");
-				}else{
-					data.add("addEntryStockKO");
-				}
 			break;
 			}
 		}catch (Exception e) {

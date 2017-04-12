@@ -47,7 +47,8 @@ public class Authentication implements Runnable{
      * @param in
      * @param out 
      */
-	public Authentication(Socket s, String in, PrintWriter out){
+	public Authentication(Connection con, Socket s, String in, PrintWriter out){
+		 this.con=con;
 		 this.socket = s;
 		 this.in = in;
 		 this.out=out;
@@ -77,9 +78,6 @@ public class Authentication implements Runnable{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			logger.info("Retrieving connection from pool");
-			ConnectionPool pool = new ConnectionPool();
-			con = pool.getConnectionFromPool();
 			//runs method to check in database and retrieve data to create user object and serialize it
 			//data = CRUD.authentication(con, login, mdp);
 			
