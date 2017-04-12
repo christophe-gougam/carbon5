@@ -1,6 +1,10 @@
 package Modele;
 import org.json.JSONObject;
 import org.json.JSONString;
+
+import Serveur.Controlleurs.Serveur;
+
+import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -13,7 +17,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
  
 public class LectureJson {
- 
+	final static Logger logger = Logger.getLogger(Serveur.class);
 	public static String Identifier(String in) throws JSONException {
 		JSONObject objet = new JSONObject(in);
 		String identifier = (String) objet.get("identifier");
@@ -26,11 +30,11 @@ public class LectureJson {
     	
 	// Création d'un objet JSON
 	JSONObject objet = new JSONObject(fs);
-	System.out.println("Afficage du JSON : ");
-	System.out.println(fs);
+	logger.info("Afficage du JSON : ");
+	logger.info(fs);
  
 	// Traitement du fichier reçu
-	System.out.println("\nparcours du fichier Json :");
+	logger.info("\nparcours du fichier Json :");
 	JSONArray tableau = objet.getJSONArray("data");
 	ArrayList<String> result = new ArrayList<String>();
 	String identifier = (String) objet.get("identifier");
@@ -70,7 +74,7 @@ public class LectureJson {
 		System.out.print(", Quantite=" + tableau.getString(1));
 	break;
 	default:
-		System.out.println("Fonctionnalité non prise en charge pour l'instant");
+		logger.info("Fonctionnalité non prise en charge pour l'instant");
 	break;
 	}	
 	return result;

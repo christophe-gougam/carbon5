@@ -6,12 +6,17 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.apache.log4j.Logger;
+
+import Serveur.Controlleurs.Serveur;
+
 /**
  * 
  * @author carbon5
  * class creating the card referring to a vehicule 
  */
 public class RepairCard {
+	final static Logger logger = Logger.getLogger(Serveur.class);
 	private UrgencyDegree degree;
 	private CardState card;
 	private Car car;
@@ -217,7 +222,7 @@ public class RepairCard {
 	 * @return repairCard
 	 */
 	public static RepairCard unSerialize(String serial){
-		System.out.println("Enter RepairCard unserilization");
+		logger.info("Enter RepairCard unserilization");
 		ArrayList values = new ArrayList();
 		//get all the information from the string
 		for (String retval: serial.split("///")){
@@ -227,7 +232,7 @@ public class RepairCard {
 		DateFormat format = new SimpleDateFormat("YYYY-MM-DD");
 		Date date = new Date();
 
-		System.out.println("Begin RepairCard unserilization");
+		logger.info("Begin RepairCard unserilization");
 		//retrieving info in the right order to create all the objects
 		//creating object urgencyDegree
 		UrgencyDegree degree = new UrgencyDegree(values.get(0).toString());
@@ -264,7 +269,7 @@ public class RepairCard {
 		User user = new User((String) values.get(numIndice), (String) values.get(numIndice+1), (String) values.get(numIndice+2), (String) values.get(numIndice+3), (int) values.get(numIndice+4), (String) values.get(numIndice+5), (String) values.get(numIndice+6), (Date) values.get(numIndice+7), (Float) values.get(numIndice+8), new TypeUser(Integer.parseInt(values.get(numIndice+9).toString()),(String) values.get(numIndice+10)));
 		//creating the object repairCard with all other objects
 		RepairCard repairCard = new RepairCard(degree, card, car, rep, def, park,num1,num2,dets,user);
-		System.out.println("Success RepairCard unserilization");
+		logger.info("Success RepairCard unserilization");
 		return repairCard;
 	}
 }

@@ -11,12 +11,16 @@ import java.util.Properties;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import org.apache.log4j.Logger;
+
+import Serveur.Controlleurs.Serveur;
+
 /**
  * Class ServerConnect creating connection to server
  * @author Carbon5
  */
 public class ServerConnect{
-	
+	final static Logger logger = Logger.getLogger(Serveur.class);
 	public static Socket socket = null;
 	public static Thread t2;
 	public static int portServer = 50000;
@@ -49,7 +53,7 @@ public class ServerConnect{
 			input = ServerConnect.class.getClassLoader().getResourceAsStream(filename);
 			
 			if (input == null) {
-				System.out.println("Sorry, unable to find " + filename);
+				logger.info("Sorry, unable to find " + filename);
 			}
 			// load a properties file
 			try {
@@ -61,12 +65,12 @@ public class ServerConnect{
 
 			portServer = Integer.parseInt(prop.getProperty("portServer"));
 			serverAddress = prop.getProperty("serverAddress");
-			System.out.println("Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion");
-			System.out.println(serverAddress);
+			logger.info("Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion");
+			logger.info(serverAddress);
 			socket = new Socket(serverAddress, portServer);
 			new Connection(socket, data, identifier, frame);
 		}catch (Exception e){
-			System.out.println("Erreur de connexion au serveur");
+			logger.info("Erreur de connexion au serveur");
 		}
 	}
 	
@@ -87,7 +91,7 @@ public class ServerConnect{
 			input = ServerConnect.class.getClassLoader().getResourceAsStream(filename);
 			
 			if (input == null) {
-				System.out.println("Sorry, unable to find " + filename);
+				logger.info("Sorry, unable to find " + filename);
 			}
 			// load a properties file
 			try {
@@ -99,12 +103,12 @@ public class ServerConnect{
 
 			portServer = Integer.parseInt(prop.getProperty("portServer"));
 			serverAddress = prop.getProperty("serverAddress");
-			System.out.println("Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion");
-			System.out.println(serverAddress);
+			logger.info("Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion");
+			logger.info(serverAddress);
 			socket = new Socket(serverAddress, portServer);
 			new Connection(socket, data, identifier, frame);
 		}catch (Exception e){
-			System.out.println("Erreur de connexion au serveur");
+			logger.info("Erreur de connexion au serveur");
 		}
 	}
 }

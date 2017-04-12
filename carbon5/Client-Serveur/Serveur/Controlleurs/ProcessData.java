@@ -56,7 +56,7 @@ public class ProcessData implements Runnable{
 	public void run(){
 		try {
 			while(true){
-				System.out.println("Retrieving connection from Pool");
+				logger.info("Retrieving connection from Pool");
 				ConnectionPool pool = new ConnectionPool();
 				con = pool.getConnectionFromPool();
 				logger.info("Retrieving client socket");

@@ -7,12 +7,16 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.apache.log4j.Logger;
+
+import Serveur.Controlleurs.Serveur;
+
 /**
  * Class User creating the user
  * @author Carbon5
  */
 public class User {
-	
+	final static Logger logger = Logger.getLogger(Serveur.class);
 	private String firstName;
 	private String lastName;
 	private String address;
@@ -241,7 +245,7 @@ public class User {
      * @return user
      */
 	public static User unSerialize(String serializedUser){
-		System.out.println("Enter unserilization");
+		logger.info("Enter unserilization");
 		ArrayList values = new ArrayList();
 		for (String retval: serializedUser.split("///")){
 			values.add(retval);
@@ -254,9 +258,9 @@ public class User {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Begin unserilization");
+		logger.info("Begin unserilization");
 		User user = new User(values.get(0).toString(),values.get(1).toString(),values.get(2).toString(),values.get(3).toString(),Integer.parseInt(values.get(4).toString()),values.get(5).toString(),values.get(6).toString(),date,Float.parseFloat(values.get(8).toString()), new TypeUser(Integer.parseInt(values.get(9).toString()),values.get(10).toString()));
-		System.out.println("Success unserilization");
+		logger.info("Success unserilization");
 		return user;
 	}
 	

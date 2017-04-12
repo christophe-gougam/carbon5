@@ -24,14 +24,19 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import org.apache.log4j.Logger;
+
 import Client.Controlleurs.ServerConnect;
+import Serveur.Controlleurs.Serveur;
 
 /**
  * Class creates IHM to add vehicle 
  * @author Carbon5
  */
 public class Fenetre extends JFrame{
-    private JPanel container = new JPanel();
+	final static Logger logger = Logger.getLogger(Serveur.class);
+	
+	private JPanel container = new JPanel();
     
     private JTextField jtf = new JTextField();
     private JLabel label = new JLabel("ID véhicule");
@@ -136,7 +141,7 @@ public class Fenetre extends JFrame{
          * @param e 
          */
         public void itemStateChanged(ItemEvent e) {
-            System.out.println("événement déclenché sur : " + e.getItem());
+            logger.info("événement déclenché sur : " + e.getItem());
         }               
     }
     
@@ -150,7 +155,7 @@ public class Fenetre extends JFrame{
          * @param e 
          */
         public void actionPerformed(ActionEvent e){
-            System.out.println("ActionListener: action sur " + combo.getSelectedItem());
+            logger.info("ActionListener: action sur " + combo.getSelectedItem());
         }
     }
     
@@ -164,7 +169,7 @@ public class Fenetre extends JFrame{
          * @param e 
          */
         public void actionPerformed(ActionEvent e){
-            System.out.println("ActionListener: action sur " + combo1.getSelectedItem());
+            logger.info("ActionListener: action sur " + combo1.getSelectedItem());
         }
     }
     
@@ -192,14 +197,14 @@ public class Fenetre extends JFrame{
         	String NumParking = jtf1.getText();
         	String TypeVehicule = combo.getSelectedItem().toString();
         	String statut =combo1.getSelectedItem().toString();
-        	System.out.println(IDVehicule+""+TypeVehicule+""+statut+""+""+NumParking);
+        	logger.info(IDVehicule+""+TypeVehicule+""+statut+""+""+NumParking);
         	ArrayList<String> data = new ArrayList();
         	data.add(IDVehicule);
         	data.add(TypeVehicule);
         	data.add(statut);
         	data.add(NumParking);
         	String identifier = "AjoutVehicule";
-        	System.out.println("Authentification demandée par le client");
+        	logger.info("Authentification demandée par le client");
         	new ServerConnect(data, identifier, frame);
         }
     }

@@ -6,8 +6,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 import Modele.Car;
 import Modele.Parking;
+import Serveur.Controlleurs.Serveur;
 
 /**
  * Class interacting with database for table Car
@@ -15,7 +18,7 @@ import Modele.Parking;
  *
  */
 public class CarDAO {
-	
+	final static Logger logger = Logger.getLogger(Serveur.class);
 	private static ArrayList<Car> listCar = new ArrayList();
 	
 	/**
@@ -35,11 +38,11 @@ public class CarDAO {
 		
 		try{
 			st = cn.createStatement();
-			System.out.println("Statement created");
+			logger.info("Statement created");
 			//request to give to database to see if user exists and retrieve its information
 			String request = "SELECT NumPuce, Matricule, typeVehicule FROM Car WHERE NumPuce='"+numP+"'";
 			rs = st.executeQuery(request);
-			System.out.println("Query execution");
+			logger.info("Query execution");
 			//
 			while(rs.next()){
 				numPuce = rs.getString("NumPuce");
@@ -49,7 +52,7 @@ public class CarDAO {
 			}
 			listCar.add(new Car(numPuce,matricule,typeVehicule));
 			dataResult.add(Car.serialize(new Car(numPuce,matricule, typeVehicule)));
-			System.out.println("Retrieved data from bdd");
+			logger.info("Retrieved data from bdd");
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -71,13 +74,13 @@ public class CarDAO {
 		
 		try{
 			st = cn.createStatement();
-			System.out.println("insert execution");
-			System.out.println("Statement created");
+			logger.info("insert execution");
+			logger.info("Statement created");
 			//insert request to create new car in database
 			String request = "INSERT INTO car(NumPuce,Matricule,TypeVehicule) VALUES('"+numP+"','"+matricule+"','"+type+"')";
-			System.out.println(request);
+			logger.info(request);
 			st.executeUpdate(request);
-			System.out.println("insert execution");
+			logger.info("insert execution");
 		}catch(SQLException e){
 			e.printStackTrace();
 			dataResult.add("Erreur lors de l'execution de la requête");
@@ -105,11 +108,11 @@ public class CarDAO {
 		
 		try{
 			st = cn.createStatement();
-			System.out.println("Statement created");
+			logger.info("Statement created");
 			//request to give to database to see if user exists and retrieve its information
 			String request = "SELECT NumPuce, Matricule, typeVehicule FROM Car";
 			rs = st.executeQuery(request);
-			System.out.println("Query execution");
+			logger.info("Query execution");
 			//
 			while(rs.next()){
 				numPuce = rs.getString("NumPuce");
@@ -118,7 +121,7 @@ public class CarDAO {
 				listCar.add(new Car(numPuce,matricule,typeVehicule));
 				dataResult.add(Car.serialize(new Car(numPuce,matricule, typeVehicule)));
 			}
-			System.out.println("Retrieved data from bdd");
+			logger.info("Retrieved data from bdd");
 		}catch(SQLException e){
 			e.printStackTrace();
 		}

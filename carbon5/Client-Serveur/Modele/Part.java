@@ -6,8 +6,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.apache.log4j.Logger;
+
+import Serveur.Controlleurs.Serveur;
+
 public class Part {
-    private int id;
+	final static Logger logger = Logger.getLogger(Serveur.class);
+	private int id;
     private String IdPart;
 	private int stock;
 	private String namePart;
@@ -87,15 +92,15 @@ public class Part {
 	}
 	
 	public static Part unSerialize(String serial){
-		System.out.println("Enter unserilization");
+		logger.info("Enter unserilization");
 		ArrayList values = new ArrayList();
 		for (String retval: serial.split("///")){
 			values.add(retval);
 		}
 
-		System.out.println("Begin unserilization");
+		logger.info("Begin unserilization");
 		Part part = new Part(Integer.parseInt(values.get(0).toString()),values.get(1).toString(),Float.parseFloat(values.get(2).toString()));
-		System.out.println("Success unserilization");
+		logger.info("Success unserilization");
 		return part;
 	}
 	

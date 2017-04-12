@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
+
+import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,13 +20,14 @@ import Vues.Authentication;
 import Vues.Fenetre;
 import Vues.IHM;
 import Modele.*;
+import Serveur.Controlleurs.Serveur;
 
 /**
  * Class Connection creating the connection
  * @author Carbon5
  */
 public class Connection{
-	
+	final static Logger logger = Logger.getLogger(Serveur.class);
 	private Socket socket = null;
 	public static Thread t2;
 	private PrintWriter out;
@@ -57,17 +60,17 @@ public class Connection{
 			out = new PrintWriter(socket.getOutputStream());
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			String json = EcritureJson.WriteJson(identifier, data);
-			System.out.println("Envoie du JSON au serveur");
-			System.out.println(json);
+			logger.info("Envoie du JSON au serveur");
+			logger.info(json);
 			out.println(json);
 			out.flush();
 			
-			System.out.println("Reception du JSON envoyé du serveur");
+			logger.info("Reception du JSON envoyé du serveur");
 			String reponse = in.readLine();
 			try {
 				
 				repId = LectureJson.Identifier(reponse);
-				System.out.println(repId);
+				logger.info(repId);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -81,8 +84,8 @@ public class Connection{
 			break;
 			case "GrantAuth" :
 				objet = new JSONObject(reponse);
-		    	System.out.println("Afficage du JSON : ");
-		    	System.out.println(reponse);
+		    	logger.info("Afficage du JSON : ");
+		    	logger.info(reponse);
 		     
 		    	tableau = objet.getJSONArray("data");
 		    	result = new ArrayList();
@@ -90,7 +93,7 @@ public class Connection{
 	
 	    			result.add((String) tableau.get(i));
 	    		}
-	    		System.out.println(result.get(1));
+	    		logger.info(result.get(1));
 		    	user = User.unSerialize(result.get(1));
 		    	User.addAUserToCo(user);
 				JOptionPane.showMessageDialog(frame, "Bienvenue "+user.getFirstName());
@@ -100,8 +103,8 @@ public class Connection{
 			
 			case "OKCarInput" :
 				objet = new JSONObject(reponse);
-		    	//System.out.println("Afficage du resultat de l'ajout vehicule : ");
-		    	//System.out.println(reponse);
+		    	//logger.info("Afficage du resultat de l'ajout vehicule : ");
+		    	//logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 				//JOptionPane.showMessageDialog(frame, tableau.get(0));
 		    	result = new ArrayList();
@@ -117,31 +120,31 @@ public class Connection{
 			
 			case "KOCarInput" :
 				objet = new JSONObject(reponse);
-		    	System.out.println("Afficage du resultat de l'ajout vehicule : ");
-		    	System.out.println(reponse);
+		    	logger.info("Afficage du resultat de l'ajout vehicule : ");
+		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
 			break;
 			
 			case "CreatePartOK" : case "CreatePartKO" : 
 				objet = new JSONObject(reponse);
-				System.out.println("Afficage du resultat de l'ajout vehicule : ");
-		    	System.out.println(reponse);
+				logger.info("Afficage du resultat de l'ajout vehicule : ");
+		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
 			break;
 			
 			case "ModificationPartOK" : case "ModificationPartKO" : 
 				objet = new JSONObject(reponse);
-				System.out.println("Afficage du resultat de mise à jour : ");
-		    	System.out.println(reponse);
+				logger.info("Afficage du resultat de mise à jour : ");
+		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
 				break;
 			case "SelectAllPartsOK":
 				objet = new JSONObject(reponse);
-				System.out.println("Afficage du resultat de mise à jour : ");
-		    	System.out.println(reponse);
+				logger.info("Afficage du resultat de mise à jour : ");
+		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 		    	int indice = 2;
 		    	for (int i =0; i<tableau.getInt(1);i++){
@@ -151,20 +154,20 @@ public class Connection{
 		    	break;
 			case "addEntryStockOK":	case "addEntryStockKO":
 				objet = new JSONObject(reponse);
-				System.out.println("Afficage du resultat de mise à jour : ");
-		    	System.out.println(reponse);
+				logger.info("Afficage du resultat de mise à jour : ");
+		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
 				break;
 			case "addOutStockOK":	case "addOutStockKO":
 				objet = new JSONObject(reponse);
-				System.out.println("Afficage du resultat de mise à jour : ");
-		    	System.out.println(reponse);
+				logger.info("Afficage du resultat de mise à jour : ");
+		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
 			break;
 			default : 
-				System.out.println("default");
+				logger.info("default");
 			}
 			
 		}catch (Exception e){

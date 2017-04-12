@@ -10,7 +10,11 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
-import Client.Controlleurs.ServerConnect;;
+
+import org.apache.log4j.Logger;
+
+import Client.Controlleurs.ServerConnect;
+import Serveur.Controlleurs.Serveur;;
 
 
 
@@ -19,7 +23,6 @@ import Client.Controlleurs.ServerConnect;;
  * @author Carbon5
  */
 public class PanAjoutPiece extends javax.swing.JPanel {
-
     /**
      * Creates new form PanAjoutPiece
      */
@@ -113,6 +116,7 @@ public class PanAjoutPiece extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    final static Logger logger = Logger.getLogger(Serveur.class);
     // End of variables declaration//GEN-END:variables
     
     
@@ -145,7 +149,7 @@ public class PanAjoutPiece extends javax.swing.JPanel {
         	data.add(namePart);
         	data.add(purchasePrice);
         	String identifier = "CreatePart";
-        	System.out.println("Cr�ation d'une pi�ce d�tach�e");
+        	logger.info("Cr�ation d'une pi�ce d�tach�e");
         	new ServerConnect(data, identifier, frame);
         	
         	

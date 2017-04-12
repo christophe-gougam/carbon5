@@ -20,13 +20,17 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import org.apache.log4j.Logger;
+
+import Serveur.Controlleurs.Serveur;
+
 /**
  * Class creates IHM to get out of stock
  * @author Carbon5
  */
 public class Fenetre2 extends JFrame {
     private JPanel container = new JPanel();
-    
+    final static Logger logger = Logger.getLogger(Serveur.class);
     private JComboBox combo = new JComboBox();
     private JLabel label = new JLabel("ID personnel");
     
@@ -128,7 +132,7 @@ public class Fenetre2 extends JFrame {
          * @param e 
          */
         public void itemStateChanged(ItemEvent e) {
-            System.out.println("événement déclenché sur : " + e.getItem());
+            logger.info("événement déclenché sur : " + e.getItem());
         }               
     }
     
@@ -142,7 +146,7 @@ public class Fenetre2 extends JFrame {
          * @param e 
          */
         public void actionPerformed(ActionEvent e){
-            System.out.println("ActionListener: action sur " + combo.getSelectedItem());
+            logger.info("ActionListener: action sur " + combo.getSelectedItem());
         }
     }
     
@@ -156,7 +160,7 @@ public class Fenetre2 extends JFrame {
          * @param e 
          */
         public void actionPerformed(ActionEvent e){
-            System.out.println("ActionListener: action sur " + combo1.getSelectedItem());
+            logger.info("ActionListener: action sur " + combo1.getSelectedItem());
         }
     }
     

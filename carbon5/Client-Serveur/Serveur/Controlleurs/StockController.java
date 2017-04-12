@@ -22,6 +22,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 import org.json.JSONObject;
+import org.apache.log4j.Logger;
 import org.json.JSONException;
 
 import Modele.LectureJson;
@@ -39,7 +40,7 @@ public class StockController implements Runnable{
 	Connection con=null;
 	ArrayList<String> data = new ArrayList<String>();
 	String JsonMessage;
-	
+	final static Logger logger = Logger.getLogger(Serveur.class);
 	int quantite = 0;
 	String namePart = null;
 	LocalDate date;
@@ -98,19 +99,19 @@ public void run() {
 		
 		case("addEntryStockOK"):	case ("addEntryStockKO"):
 			JsonMessage = EcritureJson.WriteJson(data.get(0), data);
-			System.out.println("Sending result entry stock");
+			logger.info("Sending result entry stock");
 			out.println(JsonMessage);
 			out.flush();
 		break;
 		
 		case("addOutStockOK"):	case("addOutStockKO"):
 			JsonMessage = EcritureJson.WriteJson(data.get(0), data);
-			System.out.println("Sending result out stock");
+			logger.info("Sending result out stock");
 			out.println(JsonMessage);
 			out.flush();
 			break;
 		}
-		System.out.println("Returning connection to pool");
+		logger.info("Returning connection to pool");
 	 	ConnectionPool.returnConnectionToPool(con);
 	}
 }

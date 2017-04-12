@@ -11,7 +11,10 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import org.apache.log4j.Logger;
+
 import Client.Controlleurs.ServerConnect;
+import Serveur.Controlleurs.Serveur;
 
 /**
  *
@@ -106,6 +109,7 @@ public class PanModifPiece extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    final static Logger logger = Logger.getLogger(Serveur.class);
     // End of variables declaration//GEN-END:variables
 	
     /**
@@ -137,7 +141,7 @@ public class PanModifPiece extends javax.swing.JPanel {
         	data.add(namePart);
         	data.add(purchasePrice);
         	String identifier = "ModificationPart";
-        	System.out.println("Modification d'une pièce détachée");
+        	logger.info("Modification d'une pièce détachée");
         	new ServerConnect(data, identifier, frame);
         	
         	

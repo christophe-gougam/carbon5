@@ -11,7 +11,10 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import org.apache.log4j.Logger;
+
 import Client.Controlleurs.ServerConnect;
+import Serveur.Controlleurs.Serveur;
 
 /**
  *
@@ -119,6 +122,7 @@ public class PanSortieStock extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    final static Logger logger = Logger.getLogger(Serveur.class);
     // End of variables declaration//GEN-END:variables
     /**
      * Class BoutonListener listens button ENREGISTRER
@@ -147,7 +151,7 @@ public class PanSortieStock extends javax.swing.JPanel {
         	data.add(namePart);
         	data.add(quantite);
         	String identifier = "addOutStock";
-        	System.out.println("Sortie de stock");
+        	logger.info("Sortie de stock");
         	new ServerConnect(data, identifier, frame);
         }
     }

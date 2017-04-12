@@ -20,9 +20,12 @@ import javax.swing.JPanel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import org.apache.log4j.Logger;
+
 import Client.Controlleurs.ServerConnect;
 import Modele.Part;
 import Modele.User;
+import Serveur.Controlleurs.Serveur;
 
 /**
  *
@@ -30,7 +33,7 @@ import Modele.User;
  */
 public class IHM extends JFrame {
     private JPanel pan = new JPanel();
-    
+    final static Logger logger = Logger.getLogger(Serveur.class);
     private JPanel pan1 = new JPanel();
     private JPanel pan2 = new JPanel();
     
@@ -179,7 +182,7 @@ public class IHM extends JFrame {
                 	
                 	ArrayList<String> data = new ArrayList();
                 	String identifier = "SelectAllParts";
-                	System.out.println("Récupération des pièces");
+                	logger.info("Récupération des pièces");
                 	new ServerConnect(data, identifier, pan2);
             	}
             	

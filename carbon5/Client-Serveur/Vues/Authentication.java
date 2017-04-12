@@ -16,9 +16,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
 import Client.Controlleurs.ServerConnect;
+import Serveur.Controlleurs.Serveur;
 import Vues.Authentication;
 
 /**
@@ -26,7 +28,7 @@ import Vues.Authentication;
  * @author Carbon5
  */
 public class Authentication extends JFrame {
-	
+	final static Logger logger = Logger.getLogger(Serveur.class);
 	private JPanel container = new JPanel();
     private JTextField jtf = new JTextField();
     private JLabel label = new JLabel("Login");
@@ -110,7 +112,7 @@ public class Authentication extends JFrame {
         	data.add(login);
         	data.add(mdp);
         	String identifier = "Authentication";
-        	System.out.println("Authentification demandée par le client");
+        	logger.info("Authentification demandée par le client");
         	new ServerConnect(data, identifier, frame);
         	frame.dispose();
         	
