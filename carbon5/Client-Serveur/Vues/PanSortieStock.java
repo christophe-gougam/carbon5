@@ -5,6 +5,14 @@
  */
 package Vues;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JPanel;
+
+import Client.Controlleurs.ServerConnect;
+
 /**
  *
  * @author Carbon5
@@ -34,7 +42,7 @@ public class PanSortieStock extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         jButton1.setText("Enregistrer");
-
+        jButton1.addActionListener(new BoutonListener(this));
         jButton2.setText("Annuler");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -112,4 +120,35 @@ public class PanSortieStock extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
+    /**
+     * Class BoutonListener listens button ENREGISTRER
+     */
+    class BoutonListener implements ActionListener{
+    	JPanel frame=null;
+
+        /**
+         * Class constructor
+         * @param f 
+         */
+    	public BoutonListener  (JPanel f){
+    	this.frame=f;
+    	}
+    	
+        /**
+         * Method generate component action
+         * @param arg0 
+         */
+        public void actionPerformed(ActionEvent arg0){
+        	
+        	String namePart = ""+(String) jComboBox1.getSelectedItem()+"";
+        	String quantite = jTextField3.getText();
+        	
+        	ArrayList<String> data = new ArrayList();
+        	data.add(namePart);
+        	data.add(quantite);
+        	String identifier = "addOutStock";
+        	System.out.println("Sortie de stock");
+        	new ServerConnect(data, identifier, frame);
+        }
+    }
 }

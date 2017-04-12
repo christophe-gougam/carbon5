@@ -5,6 +5,14 @@
  */
 package Vues;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JPanel;
+
+import Client.Controlleurs.ServerConnect;
+
 /**
  *
  * @author Carbon5
@@ -42,7 +50,7 @@ public class PanModifPiece extends javax.swing.JPanel {
         jLabel4.setText("Prix unitaire");
 
         jButton1.setText("Valider");
-
+        jButton1.addActionListener(new BoutonListener(this));
         jButton2.setText("Annuler");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -93,11 +101,46 @@ public class PanModifPiece extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
+	
+    /**
+     * Class BoutonListener listens button ADD
+     */
+    class BoutonListener implements ActionListener{
+    	JPanel frame=null;
+
+        /**
+         * Class constructor
+         * @param f 
+         */
+    	public BoutonListener  (JPanel f){
+    	this.frame=f;
+    	}
+    	
+        /**
+         * Method generate component action
+         * @param arg0 
+         */
+        public void actionPerformed(ActionEvent arg0){
+        	
+        	String IdPart=jTextField2.getText();
+        	String namePart = jTextField1.getText();
+        	String purchasePrice = jTextField3.getText();
+        	
+        	ArrayList<String> data = new ArrayList<String>();
+        	data.add(IdPart);
+        	data.add(namePart);
+        	data.add(purchasePrice);
+        	String identifier = "ModificationPart";
+        	System.out.println("Modification d'une pièce détachée");
+        	new ServerConnect(data, identifier, frame);
+        	
+        	
+        }
+    }
 }

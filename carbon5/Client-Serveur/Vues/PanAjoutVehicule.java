@@ -36,7 +36,7 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
 
         jLabel1.setText("AJOUTER DU VEHICULE");
-
+        
         jLabel2.setText("Num puce");
 
         jLabel3.setText("Type vehicule");
@@ -44,7 +44,7 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton1.setText("Ajouter");
-
+        
         jButton2.setText("Annuler");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

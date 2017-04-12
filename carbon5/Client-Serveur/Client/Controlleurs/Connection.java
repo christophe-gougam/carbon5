@@ -149,14 +149,14 @@ public class Connection{
 		    		indice++;
 		    	}
 		    	break;
-			case "addEntryStockOK":
+			case "addEntryStockOK":	case "addEntryStockKO":
 				objet = new JSONObject(reponse);
 				System.out.println("Afficage du resultat de mise à jour : ");
 		    	System.out.println(reponse);
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
 				break;
-			case "addOutStock":
+			case "addOutStockOK":	case "addOutStockKO":
 				objet = new JSONObject(reponse);
 				System.out.println("Afficage du resultat de mise à jour : ");
 		    	System.out.println(reponse);

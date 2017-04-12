@@ -105,10 +105,10 @@ public void run() {
 		
 		case("addOutStockOK"):	case("addOutStockKO"):
 			JsonMessage = EcritureJson.WriteJson(data.get(0), data);
-			System.out.println("Sending result entry stock");
+			System.out.println("Sending result out stock");
 			out.println(JsonMessage);
 			out.flush();
-	break;
+			break;
 		}
 		System.out.println("Returning connection to pool");
 	 	ConnectionPool.returnConnectionToPool(con);

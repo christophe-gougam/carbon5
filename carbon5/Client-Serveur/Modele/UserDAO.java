@@ -30,7 +30,7 @@ public class UserDAO extends DAO<User>{
                                             	ResultSet.TYPE_SCROLL_INSENSITIVE, 
                                                 ResultSet.CONCUR_UPDATABLE
                                              ).executeQuery(
-                                                "SELECT * FROM users u,typeuser y where u.TypeUser = y.id" 
+                                            		 "SELECT * FROM users JOIN typeuser where users.TypeUser = typeuser.id"
                                              );
             if(result.first())
             		ud = new User(

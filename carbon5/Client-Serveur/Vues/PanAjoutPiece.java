@@ -46,7 +46,7 @@ public class PanAjoutPiece extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
 
         jLabel1.setText("AJOUTER UNE PIECE DETACHEE");
-
+        jButton1.addActionListener(new BoutonListener(this));
         jLabel3.setText("Nom de piece");
 
         jLabel4.setText("Prix unitaire");
