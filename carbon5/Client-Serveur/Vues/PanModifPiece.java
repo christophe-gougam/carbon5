@@ -111,7 +111,7 @@ public class PanModifPiece extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField3;
     final static Logger logger = Logger.getLogger(Serveur.class);
     // End of variables declaration//GEN-END:variables
-	
+    
     /**
      * Class BoutonListener listens button ADD
      */
@@ -132,12 +132,10 @@ public class PanModifPiece extends javax.swing.JPanel {
          */
         public void actionPerformed(ActionEvent arg0){
         	
-        	String IdPart=jTextField2.getText();
         	String namePart = jTextField1.getText();
         	String purchasePrice = jTextField3.getText();
         	
         	ArrayList<String> data = new ArrayList<String>();
-        	data.add(IdPart);
         	data.add(namePart);
         	data.add(purchasePrice);
         	String identifier = "ModificationPart";

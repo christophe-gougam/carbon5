@@ -41,15 +41,13 @@ public class LectureJson {
 	
 	switch(identifier){
 	
-	case("authentication"):
+	case("Authentication"):
 		
-		for(int i = 0; i < tableau.length(); i++) {
-			JSONObject element = tableau.getJSONObject(i);
-			result.add(element.getString("id"));
-			result.add(element.getString("mdp"));
-			System.out.print("id=" + element.getString("id"));
-			System.out.print(", mdp=" + element.getString("mdp"));
-		}
+			result.add(tableau.getString(0));
+			result.add(tableau.getString(1));
+			System.out.print("id=" + tableau.getString(0));
+			System.out.print(", mdp=" + tableau.getString(1));
+
 	break;
 	case("CreatePart"):
 	
@@ -62,14 +60,16 @@ public class LectureJson {
 		
 		result.add(tableau.getString(0));
 		result.add(tableau.getString(1));
-		result.add(tableau.getString(2));
-		System.out.print("IdPart=" + tableau.getString(0));
-		System.out.print("namePart=" + tableau.getString(1));
-		System.out.print(", Price=" + tableau.getString(2));
+		System.out.print("namePart=" + tableau.getString(0));
+		System.out.print("Price=" + tableau.getString(1));
+	break;
+	case("SelectAllParts"):
+		logger.info("retrieving all parts");
 	break;
 	case("addEntryStock"):	case("addOutStock"):
 		result.add(tableau.getString(0));
 		result.add(tableau.getString(1));
+		result.add(tableau.getString(2));
 		System.out.print("date=" + tableau.getString(0));
 		System.out.print(", Quantite=" + tableau.getString(1));
 	break;

@@ -68,9 +68,8 @@ public class PartController implements Runnable{
 				data = test.create(partToAdd);
 			break;
 			case("ModificationPart"):
-				IdPart=result.get(0);
-				namePart = result.get(1);
-				purchasePrice = Float.parseFloat(result.get(2));
+				namePart = result.get(0);
+				purchasePrice = Float.parseFloat(result.get(1));
 				Part partUpdate = new Part(IdPart, namePart, purchasePrice);
 				logger.info("Updating through DAO");
 				ret=test.update(partUpdate);

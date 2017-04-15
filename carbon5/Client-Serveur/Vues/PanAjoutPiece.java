@@ -149,7 +149,7 @@ public class PanAjoutPiece extends javax.swing.JPanel {
         	data.add(namePart);
         	data.add(purchasePrice);
         	String identifier = "CreatePart";
-        	logger.info("Crï¿½ation d'une piï¿½ce dï¿½tachï¿½e");
+        	logger.info("Création d'une pièce détachée");
         	new ServerConnect(data, identifier, frame);
         	
         	

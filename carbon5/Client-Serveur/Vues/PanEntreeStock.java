@@ -4,18 +4,22 @@
  * and open the template in the editor.
  */
 package Vues;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import org.apache.log4j.Logger;
-
 import Client.Controlleurs.ServerConnect;
+import Modele.Part;
+import Modele.User;
 import Serveur.Controlleurs.Serveur;
-
 /**
  *
  * @author Carbon5
@@ -44,7 +48,14 @@ public class PanEntreeStock extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        ArrayList<String> parts = new ArrayList<String>();
+        for (Part aPart : Part.getAllParts()){
+        	model.addElement(aPart.getNamePart());
+        }
+        
+        jComboBox1 = new javax.swing.JComboBox(model);
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -55,8 +66,6 @@ public class PanEntreeStock extends javax.swing.JPanel {
         jLabel4.setText("Quantite");
 
         jLabel5.setText("Prix unitaire");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton1.setText("Enregistrer");
         jButton1.addActionListener(new BoutonListener(this));
@@ -92,7 +101,6 @@ public class PanEntreeStock extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-       
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -126,35 +134,36 @@ public class PanEntreeStock extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField4;
     final static Logger logger = Logger.getLogger(Serveur.class);
     // End of variables declaration//GEN-END:variables
-    /**
-     * Class BoutonListener listens button ENREGISTRER
-     */
-    class BoutonListener implements ActionListener{
-    	JPanel frame=null;
+/**
+ * Class BoutonListener listens button ENREGISTRER
+ */
+class BoutonListener implements ActionListener{
+	JPanel frame=null;
 
-        /**
-         * Class constructor
-         * @param f 
-         */
-    	public BoutonListener  (JPanel f){
-    	this.frame=f;
-    	}
+    /**
+     * Class constructor
+     * @param f 
+     */
+	public BoutonListener  (JPanel f){
+	this.frame=f;
+	}
+	
+    /**
+     * Method generate component action
+     * @param arg0 
+     */
+    public void actionPerformed(ActionEvent arg0){
     	
-        /**
-         * Method generate component action
-         * @param arg0 
-         */
-        public void actionPerformed(ActionEvent arg0){
-        	
-        	String namePart = ""+(String) jComboBox1.getSelectedItem()+"";
-        	String quantite = jTextField3.getText();
-        	
-        	ArrayList<String> data = new ArrayList<String>();
-        	data.add(namePart);
-        	data.add(quantite);
-        	String identifier = "addEntryStock";
-        	logger.info("Entrée de stock");
-        	new ServerConnect(data, identifier, frame);
-        }
+    	String namePart = ""+(String) jComboBox1.getSelectedItem()+"";
+    	String quantite = jTextField3.getText();
+    	
+    	ArrayList<String> data = new ArrayList<String>();
+    	data.add(namePart);
+    	data.add(quantite);
+    	data.add(""+User.getAllUsers().get(0).getId());
+    	String identifier = "addEntryStock";
+    	logger.info("Entrée de stock");
+    	new ServerConnect(data, identifier, frame);
     }
+	}
 }

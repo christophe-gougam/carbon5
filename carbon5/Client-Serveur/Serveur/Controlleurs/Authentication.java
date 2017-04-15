@@ -22,6 +22,8 @@ import org.json.JSONObject;
 import org.json.JSONException;
 
 import Modele.LectureJson;
+import Modele.User;
+import Modele.UserDAO;
 import Modele.EcritureJson;
 
 import java.io.PrintWriter;
@@ -63,7 +65,7 @@ public class Authentication implements Runnable{
     * @throws Exception if JSON not read properly
     */
 	public void run() {
-	
+		UserDAO test = new UserDAO(con);
 		try {
 			
 			String login = null;
@@ -79,6 +81,14 @@ public class Authentication implements Runnable{
 				e.printStackTrace();
 			}
 			//runs method to check in database and retrieve data to create user object and serialize it
+			
+			User testUser = test.auth(login, mdp);
+			if(testUser.getFirstName() != null){
+				data.add("GrantAuth");
+				data.add(User.serialize(testUser));
+			}else{
+				data.add("Erreur de mot de passe");
+			}
 			//data = CRUD.authentication(con, login, mdp);
 			
 			//check identifier to see if database found the user or not and sends data to client

@@ -17,6 +17,7 @@ import Serveur.Controlleurs.Serveur;
  */
 public class User {
 	final static Logger logger = Logger.getLogger(Serveur.class);
+	private int id;
 	private String firstName;
 	private String lastName;
 	private String address;
@@ -43,7 +44,8 @@ public class User {
      * @param income
      * @param type 
      */
-	public User(String firstname, String lastname, String address, String town, int postcode, String login, String email, Date hire, float income, TypeUser type){
+	public User(int id,String firstname, String lastname, String address, String town, int postcode, String login, String email, Date hire, float income, TypeUser type){
+		this.id = id;
 		this.firstName = firstname;
 		this.lastName = lastname;
 		this.address = address;
@@ -77,6 +79,15 @@ public class User {
 		}
 		return userToSend;
 	}
+	
+	public int getId(){
+		return this.id;
+	}
+	
+	public void setId(int id){
+		this.id = id;
+	}
+	
     /**
      * Method get first name 
      * @return first name
@@ -235,7 +246,7 @@ public class User {
      * @return String serial user
      */
 	public static String serialize(User user){
-		String serialUser = user.firstName+"///"+user.lastName+"///"+user.address+"///"+user.town+"///"+user.postCode+"///"+user.login+"///"+user.email+"///"+user.hireDate+"///"+user.income+"///"+user.type.serialize(user.getTypeUser());
+		String serialUser = user.id+"///"+user.firstName+"///"+user.lastName+"///"+user.address+"///"+user.town+"///"+user.postCode+"///"+user.login+"///"+user.email+"///"+user.hireDate+"///"+user.income+"///"+user.type.serialize(user.getTypeUser());
 		return serialUser;
 	}
 	
@@ -253,13 +264,13 @@ public class User {
 		DateFormat format = new SimpleDateFormat("YYYY-MM-DD");
 		Date date = new Date();
 		try {
-			date = format.parse(values.get(7).toString());
+			date = format.parse(values.get(8).toString());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		logger.info("Begin unserilization");
-		User user = new User(values.get(0).toString(),values.get(1).toString(),values.get(2).toString(),values.get(3).toString(),Integer.parseInt(values.get(4).toString()),values.get(5).toString(),values.get(6).toString(),date,Float.parseFloat(values.get(8).toString()), new TypeUser(Integer.parseInt(values.get(9).toString()),values.get(10).toString()));
+		User user = new User(Integer.parseInt(values.get(0).toString()),values.get(1).toString(),values.get(2).toString(),values.get(3).toString(),values.get(4).toString(),Integer.parseInt(values.get(5).toString()),values.get(6).toString(),values.get(7).toString(),date,Float.parseFloat(values.get(9).toString()), new TypeUser(Integer.parseInt(values.get(10).toString()),values.get(11).toString()));
 		logger.info("Success unserilization");
 		return user;
 	}

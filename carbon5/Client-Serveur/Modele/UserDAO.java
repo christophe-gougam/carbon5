@@ -17,6 +17,38 @@ public class UserDAO extends DAO<User>{
         super(conn);
     }
 	
+	public User auth(String login, String mdp){
+		User ud = null;
+		try{
+			ResultSet result = this .connect
+                    .createStatement(
+                            	ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                ResultSet.CONCUR_UPDATABLE
+                             	).executeQuery(
+                            		 "SELECT * FROM users JOIN typeuser where users.TypeUser = typeuser.id AND login='"+login+"' AND PasswordUser='"+mdp+"'"
+                             );
+				if(result.first())
+				ud = new User(
+                        //result.getString("id"),
+                        result.getInt("Id"),
+                        result.getString("FirstName"),
+                        result.getString("LastName"),
+                        result.getString("Address"),
+                        result.getString("Town"),
+                        result.getInt("PostalCode"),
+                        result.getString("login"),
+                        result.getString("Email"),
+                        result.getDate("HiringDate"),
+                        result.getFloat("IncomingPerHour"),
+                        (new TypeUser(result.getInt("typeuser.id"),result.getString("Profil")))
+						);            
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+			return ud;
+		}
+
+	
 	/**
      * Allows to retrieve an object via its ID
      * @return object
@@ -35,7 +67,7 @@ public class UserDAO extends DAO<User>{
             if(result.first())
             		ud = new User(
                                         //result.getString("id"),
-                                        
+            							result.getInt("Id"),
                                         result.getString("FirstName"),
                                         result.getString("LastName"),
                                         result.getString("Address"),

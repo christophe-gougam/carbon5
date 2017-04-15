@@ -128,8 +128,8 @@ public class IHM extends JFrame {
         pan2.add(new PanOrdreReparation(), listContent[2]);
         pan2.add(new PanelDetailOperation(), listContent[3]);
         pan2.add(new PanStock(), listContent[4]);
-        pan2.add(new PanEntreeStock(), listContent[5]);
-        pan2.add(new PanSortieStock(), listContent[6]);
+        
+        
         pan2.add(new PanPiece(), listContent[7]);
         pan2.add(new PanAjoutPiece(), listContent[8]);
         pan2.add(new PanModifPiece(), listContent[9]);
@@ -185,7 +185,8 @@ public class IHM extends JFrame {
                 	logger.info("Récupération des pièces");
                 	new ServerConnect(data, identifier, pan2);
             	}
-            	
+            	pan2.add(new PanEntreeStock(), listContent[5]);
+            	pan2.add(new PanSortieStock(), listContent[6]);
                 cl.show(pan2, listContent[4]);
                 liste1.setVisible(true);
                 liste2.setVisible(false);
@@ -289,8 +290,8 @@ public class IHM extends JFrame {
         }
     }
     
-    public static void main(String[] args) {
-        IHM a = new IHM();
-        a.revalidate();
-    }
+//    public static void main(String[] args) {
+//        IHM a = new IHM();
+//        a.revalidate();
+//    }
 }

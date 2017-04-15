@@ -9,11 +9,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
-
 import org.apache.log4j.Logger;
-
 import Client.Controlleurs.ServerConnect;
+import Modele.Part;
+import Modele.User;
+import Vues.PanEntreeStock.BoutonListener;
 import Serveur.Controlleurs.Serveur;
 
 /**
@@ -36,8 +38,16 @@ public class PanSortieStock extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jTextField4 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jTextField3 = new javax.swing.JTextField();
+        
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        ArrayList<String> parts = new ArrayList<String>();
+        for (Part aPart : Part.getAllParts()){
+        	model.addElement(aPart.getNamePart());
+        }
+        
+        jComboBox1 = new javax.swing.JComboBox(model);
+        
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -47,8 +57,6 @@ public class PanSortieStock extends javax.swing.JPanel {
         jButton1.setText("Enregistrer");
         jButton1.addActionListener(new BoutonListener(this));
         jButton2.setText("Annuler");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel5.setText("Imputation");
 
@@ -88,7 +96,6 @@ public class PanSortieStock extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -119,11 +126,11 @@ public class PanSortieStock extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     final static Logger logger = Logger.getLogger(Serveur.class);
     // End of variables declaration//GEN-END:variables
+    
     /**
      * Class BoutonListener listens button ENREGISTRER
      */
@@ -150,6 +157,7 @@ public class PanSortieStock extends javax.swing.JPanel {
         	ArrayList<String> data = new ArrayList();
         	data.add(namePart);
         	data.add(quantite);
+        	data.add(""+User.getAllUsers().get(0).getId());
         	String identifier = "addOutStock";
         	logger.info("Sortie de stock");
         	new ServerConnect(data, identifier, frame);

@@ -29,6 +29,13 @@ public class Part {
 		this.namePart = namePart;
 		this.purchasePrice = purchasePrice;
 	}
+	public Part(String IdPart, int stock, String namePart, float purchasePrice){
+		this.IdPart = IdPart;
+		this.stock = stock;
+		this.namePart = namePart;
+		this.purchasePrice = purchasePrice;
+	}
+	
 	public Part(String IdPart, String namePart, float purchasePrice){
 		this.IdPart = IdPart;
 		this.namePart = namePart;

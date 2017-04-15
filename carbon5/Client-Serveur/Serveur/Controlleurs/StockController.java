@@ -65,10 +65,10 @@ public void run() {
 				date = LocalDate.now();
 	    		namePart = result.get(0);
 	    		Part obj = test.find(namePart);
-	    		us=user.find();
+	    		int userId = Integer.parseInt(result.get(2));
 	    		quantite = Integer.parseInt(result.get(1));
 	    		
-	    		ret = test.addEntryStock(us, obj, quantite, date);
+	    		ret = test.addEntryStock(userId, obj, quantite, date);
 				if (ret){
 					data.add("addEntryStockOK");
 				}else{
@@ -81,8 +81,8 @@ public void run() {
 				namePart = result.get(0);
 				Part obj2 = test.find(namePart);
 				quantite = Integer.parseInt(result.get(1));
-				us=user.find();
-				ret = test.addOutStock(us, obj2, quantite, date);
+				int userId2 = Integer.parseInt(result.get(2));
+				ret = test.addOutStock(userId2, obj2, quantite, date);
 				if (ret){
 					data.add("addOutStockOK");
 				}else{

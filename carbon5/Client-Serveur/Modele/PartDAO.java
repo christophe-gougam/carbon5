@@ -30,21 +30,22 @@ public class PartDAO extends DAO<Part> {
                                             	ResultSet.TYPE_SCROLL_INSENSITIVE, 
                                                 ResultSet.CONCUR_UPDATABLE
                                              ).executeQuery(
-                                                "SELECT * FROM part"
+                                                "SELECT Stock,NamePart,PurchasePrice FROM part"
                                              );
             while(result.next()){
             //if(result.first())
             		Part.addPartToCo(new Part(
-            							result.getInt("stock"),
-            							result.getString("namePart"), 
-            							result.getFloat("purchasePrice")));
+            							result.getInt("Stock"),
+            							result.getString("NamePart"), 
+            							result.getFloat("PurchasePrice")));
             				}            
         } catch (SQLException e) {
                 e.printStackTrace();
         }
+    	//Getting number of parts
+    	parts.add(String.valueOf(Part.getAllParts().size()));
     	for(Part aPart : Part.getAllParts()){
-    		//Creating array with data and number of parts
-    		parts.add(String.valueOf(Part.getAllParts().size()));
+    		//adding parts
     		parts.add(Part.serialize(aPart));
     	}
         return parts;
@@ -65,6 +66,7 @@ public class PartDAO extends DAO<Part> {
                                              );
             if(result.first())
             		part = new Part(
+            							result.getString("Id"),
                                         result.getInt("stock"),
                                         result.getString("namePart"), 
                                         result.getFloat("purchasePrice")
@@ -172,14 +174,14 @@ public class PartDAO extends DAO<Part> {
         }
     }
     
-    public boolean addEntryStock(User us, Part obj, int qte, LocalDate date){
+    public boolean addEntryStock(int userID, Part obj, int qte, LocalDate date){
     	try {
             this.connect
                 .createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE, 
                     ResultSet.CONCUR_UPDATABLE
                ).executeUpdate(
-                    "INSERT INTO orderpart(IdPart,IdUser,Qte,date) VALUES ('"+obj.getId()+"','"+User.getManager()+"','"+qte+"','"+date+"')"
+                    "INSERT INTO orderpart(IdPart,IdUser,Qte,date) VALUES ('"+obj.getIdPart()+"','"+userID+"','"+qte+"','"+date+"')"
                );
             obj.setStock(obj.getStock()+qte);
             this.update(obj);
@@ -190,14 +192,14 @@ public class PartDAO extends DAO<Part> {
         }
     }
     
-    public boolean addOutStock(User us, Part obj, int qte, LocalDate date){
+    public boolean addOutStock(int us, Part obj, int qte, LocalDate date){
     	try {
             this.connect
                 .createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE, 
                     ResultSet.CONCUR_UPDATABLE
                ).executeUpdate(
-                    "INSERT INTO orderpart(IdPart,IdUser,Qte,date) VALUES ('"+obj.getId()+"','"+User.getManager()+"','"+(qte*(-1))+"','"+date+"')"
+                    "INSERT INTO orderpart(IdPart,IdUser,Qte,date) VALUES ('"+obj.getIdPart()+"','"+us+"','"+(qte*(-1))+"','"+date+"')"
                );
             obj.setStock(obj.getStock()-qte);
             this.update(obj);

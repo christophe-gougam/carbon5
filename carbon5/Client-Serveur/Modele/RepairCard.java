@@ -266,7 +266,7 @@ public class RepairCard {
 		Date num2 = (Date) values.get(numIndice); numIndice +=1;
 		String dets = (String) values.get(numIndice); numIndice +=1;
 		//creating the user
-		User user = new User((String) values.get(numIndice), (String) values.get(numIndice+1), (String) values.get(numIndice+2), (String) values.get(numIndice+3), (int) values.get(numIndice+4), (String) values.get(numIndice+5), (String) values.get(numIndice+6), (Date) values.get(numIndice+7), (Float) values.get(numIndice+8), new TypeUser(Integer.parseInt(values.get(numIndice+9).toString()),(String) values.get(numIndice+10)));
+		User user = new User((int) values.get(numIndice),(String) values.get(numIndice), (String) values.get(numIndice+1), (String) values.get(numIndice+2), (String) values.get(numIndice+3), (int) values.get(numIndice+4), (String) values.get(numIndice+5), (String) values.get(numIndice+6), (Date) values.get(numIndice+7), (Float) values.get(numIndice+8), new TypeUser(Integer.parseInt(values.get(numIndice+9).toString()),(String) values.get(numIndice+10)));
 		//creating the object repairCard with all other objects
 		RepairCard repairCard = new RepairCard(degree, card, car, rep, def, park,num1,num2,dets,user);
 		logger.info("Success RepairCard unserilization");
