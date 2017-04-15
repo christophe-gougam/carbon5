@@ -178,13 +178,13 @@ public class IHM extends JFrame {
             if(e.getSource() == bouton5){
                 //implement select of all nameParts to fill list
             	
-            	if (Part.getAllParts().isEmpty()){
+            	//if (Part.getAllParts().isEmpty()){
                 	
-                	ArrayList<String> data = new ArrayList();
+                	ArrayList<String> data = new ArrayList<String>();
                 	String identifier = "SelectAllParts";
                 	logger.info("Récupération des pièces");
                 	new ServerConnect(data, identifier, pan2);
-            	}
+            	//}
             	pan2.add(new PanEntreeStock(), listContent[5]);
             	pan2.add(new PanSortieStock(), listContent[6]);
                 cl.show(pan2, listContent[4]);
@@ -195,13 +195,13 @@ public class IHM extends JFrame {
             }
             if(e.getSource() == bouton6){
             	//implement select of all nameParts to fill list
-            	if (Part.getAllParts().isEmpty()){
+            	//if (Part.getAllParts().isEmpty()){
                 	
-                	ArrayList<String> data = new ArrayList();
+                	ArrayList<String> data = new ArrayList<String>();
                 	String identifier = "SelectAllParts";
                 	logger.info("Récupération des pièces");
                 	new ServerConnect(data, identifier, pan2);
-            	}
+            	//}
                 pan2.add(new PanModifPiece(), listContent[9]);
                 cl.show(pan2, listContent[7]);
                 liste1.setVisible(false);

@@ -30,14 +30,18 @@ public class PartDAO extends DAO<Part> {
                                             	ResultSet.TYPE_SCROLL_INSENSITIVE, 
                                                 ResultSet.CONCUR_UPDATABLE
                                              ).executeQuery(
-                                                "SELECT Stock,NamePart,PurchasePrice FROM part"
+                                                "SELECT Id,Stock,NamePart,PurchasePrice FROM part"
                                              );
             while(result.next()){
             //if(result.first())
-            		Part.addPartToCo(new Part(
-            							result.getInt("Stock"),
-            							result.getString("NamePart"), 
-            							result.getFloat("PurchasePrice")));
+            if(!Part.isInCollection(result.getString("Id"))){
+            	Part.addPartToCo(new Part(
+						String.valueOf(result.getInt("Id")),
+						result.getInt("Stock"),
+						result.getString("NamePart"), 
+						result.getFloat("PurchasePrice")));
+            }
+            		
             				}            
         } catch (SQLException e) {
                 e.printStackTrace();

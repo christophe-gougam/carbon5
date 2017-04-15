@@ -140,7 +140,7 @@ public class Connection{
 		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
-				break;
+			break;
 			case "SelectAllPartsOK":
 				objet = new JSONObject(reponse);
 				logger.info("Afficage du resultat de mise à jour : ");
@@ -148,17 +148,20 @@ public class Connection{
 		    	tableau = objet.getJSONArray("data");
 		    	int indice = 2;
 		    	for (int i =0; i<tableau.getInt(1);i++){
-		    		Part.addPartToCo(Part.unSerialize(tableau.getString(indice)));
+		    		Part aPart = Part.unSerialize(tableau.getString(indice));
+		    		if(!Part.isInCollection(aPart.getIdPart())){
+		    			Part.addPartToCo(aPart);
+		    		}	
 		    		indice++;
 		    	}
-		    	break;
+		    break;
 			case "addEntryStockOK":	case "addEntryStockKO":
 				objet = new JSONObject(reponse);
 				logger.info("Afficage du resultat de mise à jour : ");
 		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
-				break;
+			break;
 			case "addOutStockOK":	case "addOutStockKO":
 				objet = new JSONObject(reponse);
 				logger.info("Afficage du resultat de mise à jour : ");

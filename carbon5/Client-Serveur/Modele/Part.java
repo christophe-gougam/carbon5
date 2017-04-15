@@ -93,8 +93,18 @@ public class Part {
 		parts.add(newPart);
 	}
 	
+	public static boolean isInCollection(String id){
+		Boolean check = false;
+		for(Part aPart: parts){
+			if (aPart.IdPart == id){
+				check = true;
+			}
+		}
+		return check;
+	}
+	
 	public static String serialize(Part part){
-		String serialize = part.getStock()+"///"+part.getNamePart()+"///"+part.getPurchasePrice();
+		String serialize = part.IdPart+"///"+part.getStock()+"///"+part.getNamePart()+"///"+part.getPurchasePrice();
 		return serialize;
 	}
 	
@@ -106,7 +116,7 @@ public class Part {
 		}
 
 		logger.info("Begin unserilization");
-		Part part = new Part(Integer.parseInt(values.get(0).toString()),values.get(1).toString(),Float.parseFloat(values.get(2).toString()));
+		Part part = new Part(values.get(0).toString(),Integer.parseInt(values.get(1).toString()),values.get(2).toString(),Float.parseFloat(values.get(3).toString()));
 		logger.info("Success unserilization");
 		return part;
 	}
