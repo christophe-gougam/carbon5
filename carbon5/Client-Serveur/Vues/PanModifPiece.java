@@ -9,11 +9,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
 
 import org.apache.log4j.Logger;
 
 import Client.Controlleurs.ServerConnect;
+import Modele.Part;
 import Serveur.Controlleurs.Serveur;
 
 /**
@@ -41,7 +43,15 @@ public class PanModifPiece extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        //jTextField1 = new javax.swing.JTextField();
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        ArrayList<String> parts = new ArrayList<String>();
+        for (Part aPart : Part.getAllParts()){
+        	model.addElement(aPart.getNamePart());
+        }
+        
+        jComboBox1 = new javax.swing.JComboBox(model);
+        
         jTextField3 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -70,7 +80,7 @@ public class PanModifPiece extends javax.swing.JPanel {
                             .addComponent(jLabel4))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
+                        	 .addComponent(jComboBox1, 0, 248, Short.MAX_VALUE)
                             .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
@@ -86,7 +96,7 @@ public class PanModifPiece extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -106,7 +116,8 @@ public class PanModifPiece extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
+    //private javax.swing.JTextField jTextField1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     final static Logger logger = Logger.getLogger(Serveur.class);
@@ -132,7 +143,7 @@ public class PanModifPiece extends javax.swing.JPanel {
          */
         public void actionPerformed(ActionEvent arg0){
         	
-        	String namePart = jTextField1.getText();
+        	String namePart = ""+(String) jComboBox1.getSelectedItem()+"";
         	String purchasePrice = jTextField3.getText();
         	
         	ArrayList<String> data = new ArrayList<String>();

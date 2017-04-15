@@ -132,7 +132,7 @@ public class IHM extends JFrame {
         
         pan2.add(new PanPiece(), listContent[7]);
         pan2.add(new PanAjoutPiece(), listContent[8]);
-        pan2.add(new PanModifPiece(), listContent[9]);
+
         pan2.add(new PanVehicule(), listContent[10]);
         pan2.add(new PanAjoutVehicule(), listContent[11]);
         pan2.add(new PanModifVehicule(), listContent[12]);
@@ -194,7 +194,15 @@ public class IHM extends JFrame {
                 pan.revalidate();
             }
             if(e.getSource() == bouton6){
-                //code
+            	//implement select of all nameParts to fill list
+            	if (Part.getAllParts().isEmpty()){
+                	
+                	ArrayList<String> data = new ArrayList();
+                	String identifier = "SelectAllParts";
+                	logger.info("Récupération des pièces");
+                	new ServerConnect(data, identifier, pan2);
+            	}
+                pan2.add(new PanModifPiece(), listContent[9]);
                 cl.show(pan2, listContent[7]);
                 liste1.setVisible(false);
                 liste2.setVisible(true);
