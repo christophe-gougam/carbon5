@@ -179,7 +179,7 @@ public class IHM extends JFrame {
                 //implement select of all nameParts to fill list
             	
             	//if (Part.getAllParts().isEmpty()){
-                	
+                	Part.emptyCollection();
                 	ArrayList<String> data = new ArrayList<String>();
                 	String identifier = "SelectAllParts";
                 	logger.info("Récupération des pièces");
@@ -196,7 +196,7 @@ public class IHM extends JFrame {
             if(e.getSource() == bouton6){
             	//implement select of all nameParts to fill list
             	//if (Part.getAllParts().isEmpty()){
-                	
+                	Part.emptyCollection();
                 	ArrayList<String> data = new ArrayList<String>();
                 	String identifier = "SelectAllParts";
                 	logger.info("Récupération des pièces");

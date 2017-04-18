@@ -55,6 +55,7 @@ public class PanModifPiece extends javax.swing.JPanel {
         jTextField3 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         jLabel1.setText("MODIFIER UNE PIECE DETACHEE");
 
@@ -65,6 +66,8 @@ public class PanModifPiece extends javax.swing.JPanel {
         jButton1.setText("Valider");
         jButton1.addActionListener(new BoutonListener(this));
         jButton2.setText("Annuler");
+        jButton3.setText("Supprimer");
+        jButton3.addActionListener(new BoutonListener2(this));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -85,7 +88,9 @@ public class PanModifPiece extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3)))
                 .addContainerGap(158, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -104,7 +109,8 @@ public class PanModifPiece extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                	.addComponent(jButton3))
                 .addContainerGap(120, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -113,6 +119,7 @@ public class PanModifPiece extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -154,6 +161,36 @@ public class PanModifPiece extends javax.swing.JPanel {
         	new ServerConnect(data, identifier, frame);
         	
         	
+        }
+    }
+    
+    /**
+     * Class BoutonListener listens button DELETE
+     */
+    class BoutonListener2 implements ActionListener{
+    	JPanel frame=null;
+
+        /**
+         * Class constructor
+         * @param f 
+         */
+    	public BoutonListener2  (JPanel f){
+    	this.frame=f;
+    	}
+    	
+        /**
+         * Method generate component action
+         * @param arg0 
+         */
+        public void actionPerformed(ActionEvent arg0){
+        	
+        	String namePart = ""+(String) jComboBox1.getSelectedItem()+"";
+        	
+        	ArrayList<String> data = new ArrayList<String>();
+        	data.add(namePart);
+        	String identifier = "DeletePart";
+        	logger.info("Modification d'une pièce détachée");
+        	new ServerConnect(data, identifier, frame);
         }
     }
 }

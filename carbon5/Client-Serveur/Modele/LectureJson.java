@@ -63,6 +63,10 @@ public class LectureJson {
 		System.out.print("namePart=" + tableau.getString(0));
 		System.out.print("Price=" + tableau.getString(1));
 	break;
+	case("DeletePart"):
+		result.add(tableau.getString(0));
+		System.out.print("namePart=" + tableau.getString(0));
+	break;
 	case("SelectAllParts"):
 		logger.info("retrieving all parts");
 	break;

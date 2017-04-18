@@ -91,6 +91,11 @@ public class ProcessData implements Runnable{
 					t = new Thread(new PartController(con, message_distant, out));
 					t.run();
 				break;
+				case("DeletePart"):
+					logger.info("Case Delete Part");
+					t = new Thread(new PartController(con, message_distant, out));
+					t.run();
+				break;
 				case("SelectAllParts"):
 					logger.info("Case Select all parts");
 					t = new Thread(new PartController(con, message_distant, out));

@@ -103,6 +103,11 @@ public class Part {
 		return check;
 	}
 	
+	public static void emptyCollection(){
+		
+		Part.parts.clear();
+	}
+	
 	public static String serialize(Part part){
 		String serialize = part.IdPart+"///"+part.getStock()+"///"+part.getNamePart()+"///"+part.getPurchasePrice();
 		return serialize;

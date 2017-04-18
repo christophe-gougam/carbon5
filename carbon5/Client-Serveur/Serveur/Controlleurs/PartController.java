@@ -78,6 +78,18 @@ public class PartController implements Runnable{
 				else
 					data.add("ModificationPartKO");
 			break;
+			case("DeletePart"):
+				namePart = result.get(0);
+				Part partDelete = new Part("1", namePart, 2);
+				logger.info("Updating through DAO");
+				ret=test.delete(partDelete);
+				if (ret){
+					data.add("DeletePartOK");
+				}
+				else{
+					data.add("DeletePartKO");
+				}
+			break;
 			case("SelectAllParts"):
 				data = test.getAllParts();
 				data.add(0, "SelectAllPartsOK");
@@ -115,6 +127,12 @@ public class PartController implements Runnable{
 		break;
 		case("SelectAllPartsOK"):
 			JsonMessage = EcritureJson.WriteJson("SelectAllPartsOK", data);
+			logger.info("Sending list of part to Client");
+			out.println(JsonMessage);
+			out.flush();
+		break;
+		case("DeletePartOK"):
+			JsonMessage = EcritureJson.WriteJson("DeletePartOK", data);
 			logger.info("Sending list of part to Client");
 			out.println(JsonMessage);
 			out.flush();

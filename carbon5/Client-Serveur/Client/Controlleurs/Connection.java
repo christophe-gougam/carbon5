@@ -141,6 +141,13 @@ public class Connection{
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
 			break;
+			case "DeletePartOK"	: case "DeletePartKO":
+				objet = new JSONObject(reponse);
+				logger.info("Afficage du resultat de mise à jour : ");
+		    	logger.info(reponse);
+		    	tableau = objet.getJSONArray("data");
+				JOptionPane.showMessageDialog(frame, tableau.get(0));
+			break;
 			case "SelectAllPartsOK":
 				objet = new JSONObject(reponse);
 				logger.info("Afficage du resultat de mise à jour : ");

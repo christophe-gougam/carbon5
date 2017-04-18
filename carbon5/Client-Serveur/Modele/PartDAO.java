@@ -32,17 +32,18 @@ public class PartDAO extends DAO<Part> {
                                              ).executeQuery(
                                                 "SELECT Id,Stock,NamePart,PurchasePrice FROM part"
                                              );
+            Part.emptyCollection();
             while(result.next()){
             //if(result.first())
-            if(!Part.isInCollection(result.getString("Id"))){
+            	
             	Part.addPartToCo(new Part(
 						String.valueOf(result.getInt("Id")),
 						result.getInt("Stock"),
 						result.getString("NamePart"), 
 						result.getFloat("PurchasePrice")));
-            }
+            
             		
-            				}            
+            }            
         } catch (SQLException e) {
                 e.printStackTrace();
         }
@@ -160,16 +161,13 @@ public class PartDAO extends DAO<Part> {
      */
     @Override
     public boolean delete(Part obj) {
-    	Part res=find();
-    	int stock=res.getStock();
-    	int stockrestant=stock-1;
     	try {
             this.connect
                 .createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE, 
                     ResultSet.CONCUR_UPDATABLE
                ).executeUpdate(
-                    "DELETE FROM part WHERE Id = " + obj.getId()
+                    "DELETE FROM part WHERE NamePart = '"+obj.getNamePart()+"'"
                );
             return true;
         } catch (SQLException e) {
