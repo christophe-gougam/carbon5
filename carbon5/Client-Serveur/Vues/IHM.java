@@ -131,7 +131,7 @@ public class IHM extends JFrame {
         
         
         pan2.add(new PanPiece(), listContent[7]);
-        pan2.add(new PanAjoutPiece(), listContent[8]);
+        
 
         pan2.add(new PanVehicule(), listContent[10]);
         pan2.add(new PanAjoutVehicule(), listContent[11]);
@@ -202,6 +202,7 @@ public class IHM extends JFrame {
                 	logger.info("Récupération des pièces");
                 	new ServerConnect(data, identifier, pan2);
             	//}
+                pan2.add(new PanAjoutPiece(), listContent[8]);
                 pan2.add(new PanModifPiece(), listContent[9]);
                 cl.show(pan2, listContent[7]);
                 liste1.setVisible(false);

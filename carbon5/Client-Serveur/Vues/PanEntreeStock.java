@@ -134,36 +134,36 @@ public class PanEntreeStock extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField4;
     final static Logger logger = Logger.getLogger(Serveur.class);
     // End of variables declaration//GEN-END:variables
-/**
- * Class BoutonListener listens button ENREGISTRER
- */
-class BoutonListener implements ActionListener{
-	JPanel frame=null;
+    /**
+ 	* Class BoutonListener listens button ENREGISTRER
+ 	*/
+    class BoutonListener implements ActionListener{
+    	JPanel frame=null;
 
-    /**
-     * Class constructor
-     * @param f 
-     */
-	public BoutonListener  (JPanel f){
-	this.frame=f;
-	}
+    	/**
+     	* Class constructor
+     	* @param f 
+     	*/
+    	public BoutonListener  (JPanel f){
+    		this.frame=f;
+    	}
 	
-    /**
-     * Method generate component action
-     * @param arg0 
-     */
-    public void actionPerformed(ActionEvent arg0){
+    	/**
+    	 * Method generate component action
+    	 * @param arg0 
+    	 */
+    	public void actionPerformed(ActionEvent arg0){
     	
-    	String namePart = ""+(String) jComboBox1.getSelectedItem()+"";
-    	String quantite = jTextField3.getText();
+    		String namePart = ""+(String) jComboBox1.getSelectedItem()+"";
+    		String quantite = jTextField3.getText();
     	
-    	ArrayList<String> data = new ArrayList<String>();
-    	data.add(namePart);
-    	data.add(quantite);
-    	data.add(""+User.getAllUsers().get(0).getId());
-    	String identifier = "addEntryStock";
-    	logger.info("Entrée de stock");
-    	new ServerConnect(data, identifier, frame);
-    }
+    		ArrayList<String> data = new ArrayList<String>();
+    		data.add(namePart);
+    		data.add(quantite);
+    		data.add(""+User.getAllUsers().get(0).getId());
+    		String identifier = "addEntryStock";
+    		logger.info("Entrée de stock");
+    		new ServerConnect(data, identifier, frame);
+    	}
 	}
 }

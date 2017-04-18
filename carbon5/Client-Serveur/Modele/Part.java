@@ -96,7 +96,7 @@ public class Part {
 	public static boolean isInCollection(String id){
 		Boolean check = false;
 		for(Part aPart: parts){
-			if (aPart.IdPart == id){
+			if (aPart.IdPart.equalsIgnoreCase(id)){
 				check = true;
 			}
 		}
