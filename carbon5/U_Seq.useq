@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.1.13" icons="true" automaticImage="PNG">  
+  <object id="1" language="java" name="Vues.PanAjoutPiece" project="carbon5" 
+    file="/carbon5/Client-Serveur/Vues/PanAjoutPiece.java" binary="false" label="panAjoutPiece" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="271" y="0"/>    
+    <execution id="2">      
+      <position height="651" width="106" x="416" y="78"/>    
+    </execution>  
+  </object>  
+  <object id="5" language="java" name="Client.Controlleurs.ServerConnect" project="carbon5" 
+    file="/carbon5/Client-Serveur/Client/Controlleurs/ServerConnect.java" binary="false" label="serverConnect" 
+    type="class" autoSize="true">    
+    <position height="-1" width="-1" x="572" y="0"/>    
+    <execution id="4">      
+      <position height="609" width="108" x="526" y="99"/>    
+    </execution>  
+  </object>  
+  <object id="12" language="java" name="Client.Controlleurs.Connection" project="carbon5" 
+    file="/carbon5/Client-Serveur/Client/Controlleurs/Connection.java" binary="false" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="11">      
+      <position height="477" width="0" x="0" y="210"/>    
+    </execution>  
+  </object>  
+  <object id="37" language="java" name="java.io.PrintWriter" project="carbon5" 
+    file="C:/Program Files/Java/jre1.8.0_102/lib/rt.jar" binary="true" label="out" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="16">      
+      <position height="21" width="0" x="0" y="250"/>    
+    </execution>    
+    <execution id="28">      
+      <position height="21" width="0" x="0" y="472"/>    
+    </execution>  
+  </object>  
+  <object id="38" language="java" name="java.io.BufferedReader" project="carbon5" 
+    file="C:/Program Files/Java/jre1.8.0_102/lib/rt.jar" binary="true" label="in" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="20">      
+      <position height="21" width="0" x="0" y="315"/>    
+    </execution>    
+    <execution id="30">      
+      <position height="21" width="0" x="0" y="514"/>    
+    </execution>  
+  </object>  
+  <object id="39" language="java" name="java.io.InputStreamReader" project="carbon5" 
+    file="C:/Program Files/Java/jre1.8.0_102/lib/rt.jar" binary="true" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="24">      
+      <position height="21" width="0" x="0" y="399"/>    
+    </execution>  
+  </object>  
+  <object id="40" language="java" name="Modele.EcritureJson" project="carbon5" 
+    file="/carbon5/Client-Serveur/Modele/EcritureJson.java" binary="false" label="&lt;static&gt;" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="26">      
+      <position height="21" width="0" x="0" y="441"/>    
+    </execution>  
+  </object>  
+  <object id="41" language="java" name="Vues.Authentication" project="carbon5" 
+    file="/carbon5/Client-Serveur/Vues/Authentication.java" binary="false" label="auth" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>  
+  </object>  
+  <object id="42" language="java" name="org.json.JSONObject" project="carbon5" 
+    file="C:/Users/Utilisateur/Downloads/JAR/java-json.jar/java-json.jar" binary="true" label="objet" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>  
+  </object>  
+  <object id="43" language="java" name="java.util.ArrayList" project="carbon5" 
+    file="C:/Program Files/Java/jre1.8.0_102/lib/rt.jar" binary="true" label="result" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>  
+  </object>  
+  <object id="44" language="java" name="org.json.JSONArray" project="carbon5" 
+    file="C:/Users/Utilisateur/Downloads/JAR/java-json.jar/java-json.jar" binary="true" label="tableau" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>  
+  </object>  
+  <object id="45" language="java" name="Modele.User" project="carbon5" file="/carbon5/Client-Serveur/Modele/User.java" 
+    binary="false" label="&lt;static&gt;" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>  
+  </object>  
+  <object id="46" language="java" name="Modele.User" project="carbon5" file="/carbon5/Client-Serveur/Modele/User.java" 
+    binary="false" label="user" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>  
+  </object>  
+  <object id="47" language="java" name="Modele.Car" project="carbon5" file="/carbon5/Client-Serveur/Modele/Car.java" 
+    binary="false" label="&lt;static&gt;" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>  
+  </object>  
+  <object id="48" language="java" name="Modele.Car" project="carbon5" file="/carbon5/Client-Serveur/Modele/Car.java" 
+    binary="false" label="car" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>  
+  </object>  
+  <object id="49" language="java" name="java.util.Properties" project="carbon5" 
+    file="C:/Program Files/Java/jre1.8.0_102/lib/rt.jar" binary="true" label="prop" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="7">      
+      <position height="21" width="0" x="0" y="126"/>    
+    </execution>  
+  </object>  
+  <object id="50" language="java" name="java.net.Socket" project="carbon5" 
+    file="C:/Program Files/Java/jre1.8.0_102/lib/rt.jar" binary="true" label="socket" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="9">      
+      <position height="21" width="0" x="0" y="168"/>    
+    </execution>    
+    <execution id="18">      
+      <position height="21" width="0" x="0" y="289"/>    
+    </execution>    
+    <execution id="22">      
+      <position height="21" width="0" x="0" y="357"/>    
+    </execution>  
+  </object>  
+  <object id="51" language="java" name="javax.swing.JOptionPane" project="carbon5" 
+    file="C:/Program Files/Java/jre1.8.0_102/lib/rt.jar" binary="true" label="&lt;static&gt;" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="36">      
+      <position height="21" width="0" x="0" y="645"/>    
+    </execution>  
+  </object>  
+  <object id="52" language="java" name="Vues.IHM" project="carbon5" file="/carbon5/Client-Serveur/Vues/IHM.java" 
+    binary="false" label="ihm" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>  
+  </object>  
+  <object id="53" language="java" name="Modele.Part" project="carbon5" file="/carbon5/Client-Serveur/Modele/Part.java" 
+    binary="false" label="&lt;static&gt;" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="34">      
+      <position height="21" width="0" x="0" y="597"/>    
+    </execution>    
+    <execution id="14">      
+      <position height="21" width="0" x="0" y="227"/>    
+    </execution>  
+  </object>  
+  <object id="54" language="java" name="Serveur.Controlleurs.Serveur" project="carbon5" 
+    file="/carbon5/Client-Serveur/Serveur/Controlleurs/Serveur.java" binary="false" label="serveur" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="265" y="0"/>    
+    <execution id="55">      
+      <position height="287" width="93" x="834" y="193"/>    
+    </execution>  
+  </object>  
+  <object id="58" language="java" name="Serveur.Controlleurs.ProcessData" project="carbon5" 
+    file="/carbon5/Client-Serveur/Serveur/Controlleurs/ProcessData.java" binary="false" label="processData" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="899" y="0"/>    
+    <execution id="57">      
+      <position height="245" width="97" x="931" y="214"/>    
+    </execution>  
+  </object>  
+  <object id="69" language="java" name="Serveur.Controlleurs.ConnectionPool" project="carbon5" 
+    file="/carbon5/Client-Serveur/Serveur/Controlleurs/ConnectionPool.java" binary="false" label="&lt;static&gt;" 
+    type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="60">      
+      <position height="21" width="0" x="0" y="235"/>    
+    </execution>    
+    <execution id="62">      
+      <position height="21" width="0" x="0" y="277"/>    
+    </execution>  
+  </object>  
+  <object id="70" language="java" name="java.net.ServerSocket" project="carbon5" 
+    file="C:/Program Files/Java/jre1.8.0_102/lib/rt.jar" binary="true" label="serverSocket" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="64">      
+      <position height="21" width="0" x="0" y="319"/>    
+    </execution>  
+  </object>  
+  <object id="71" language="java" name="Modele.LectureJson" project="carbon5" 
+    file="/carbon5/Client-Serveur/Modele/LectureJson.java" binary="false" label="&lt;static&gt;" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="66">      
+      <position height="21" width="0" x="0" y="368"/>    
+    </execution>    
+    <execution id="32">      
+      <position height="21" width="0" x="0" y="556"/>    
+    </execution>  
+  </object>  
+  <object id="72" language="java" name="Serveur.Controlleurs.PartController" project="carbon5" 
+    file="/carbon5/Client-Serveur/Serveur/Controlleurs/PartController.java" binary="false" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="68">      
+      <position height="21" width="0" x="0" y="417"/>    
+    </execution>  
+  </object>  
+  <message id="3" 
+    operation="ServerConnect(java.util.ArrayList&lt;java.lang.String&gt;,java.lang.String,javax.swing.JPanel)" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="6" operation="getProperty(java.lang.String):java.lang.String" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="7"/>  
+  </message>  
+  <message id="8" operation="Socket(java.lang.String,int)" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="9"/>  
+  </message>  
+  <message id="10" 
+    operation="Connection(java.net.Socket,java.util.ArrayList&lt;java.lang.String&gt;,java.lang.String,javax.swing.JPanel)" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="11"/>  
+  </message>  
+  <message id="13" operation="addPartToCo(Modele.Part):void" asynchronous="false">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="14"/>  
+  </message>  
+  <message id="15" operation="PrintWriter(java.io.OutputStream)" asynchronous="false">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="16"/>  
+  </message>  
+  <message id="17" operation="getOutputStream():java.io.OutputStream" asynchronous="false">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="18"/>  
+  </message>  
+  <message id="19" operation="BufferedReader(java.io.Reader)" asynchronous="false">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="20"/>  
+  </message>  
+  <message id="21" operation="getInputStream():java.io.InputStream" asynchronous="false">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="22"/>  
+  </message>  
+  <message id="23" operation="InputStreamReader(java.io.InputStream)" asynchronous="false">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="24"/>  
+  </message>  
+  <message id="25" operation="WriteJson(java.lang.String,java.util.ArrayList&lt;java.lang.String&gt;):java.lang.String" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="26"/>  
+  </message>  
+  <message id="27" operation="flush():void" asynchronous="false">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="28"/>  
+  </message>  
+  <message id="29" operation="readLine():java.lang.String" asynchronous="false">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="30"/>  
+  </message>  
+  <message id="31" operation="Identifier(java.lang.String):java.lang.String" asynchronous="false">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="32"/>  
+  </message>  
+  <message id="33" operation="unSerialize(java.lang.String):Modele.Part" asynchronous="false">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="34"/>  
+  </message>  
+  <message id="35" operation="showMessageDialog(java.awt.Component,java.lang.Object):void" asynchronous="false">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="36"/>  
+  </message>  
+  <message id="56" operation="run():void" asynchronous="false">    
+    <end type="SOURCE" refId="55"/>    
+    <end type="TARGET" refId="57"/>  
+  </message>  
+  <message id="59" operation="ConnectionPool()" asynchronous="false">    
+    <end type="SOURCE" refId="57"/>    
+    <end type="TARGET" refId="60"/>  
+  </message>  
+  <message id="61" operation="getConnectionFromPool():java.sql.Connection" asynchronous="false">    
+    <end type="SOURCE" refId="57"/>    
+    <end type="TARGET" refId="62"/>  
+  </message>  
+  <message id="63" operation="accept():java.net.Socket" asynchronous="false">    
+    <end type="SOURCE" refId="57"/>    
+    <end type="TARGET" refId="64"/>  
+  </message>  
+  <message id="65" operation="Identifier(java.lang.String):java.lang.String" asynchronous="false">    
+    <end type="SOURCE" refId="57"/>    
+    <end type="TARGET" refId="66"/>  
+  </message>  
+  <message id="67" operation="PartController(java.sql.Connection,java.lang.String,java.io.PrintWriter)" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="57"/>    
+    <end type="TARGET" refId="68"/>  
+  </message>
+</sequence-diagram>
