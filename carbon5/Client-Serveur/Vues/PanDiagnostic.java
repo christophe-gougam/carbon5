@@ -86,7 +86,8 @@ public class PanDiagnostic extends JPanel implements ActionListener{
     Method generate components actions
     */
     public void actionPerformed(ActionEvent e) {
-        
+    	//need to create the rapairCard to put into database
+		//need to add the repairCard to the waitList to determine oder of repairs
     }
     
 }

@@ -125,7 +125,7 @@ public class IHM extends JFrame {
         
         pan2.add(new PanelDiagnostic(), listContent[0]);
         pan2.add(new PanParking(), listContent[1]);
-        pan2.add(new PanOrdreReparation(), listContent[2]);
+        
         pan2.add(new PanelDetailOperation(), listContent[3]);
         pan2.add(new PanStock(), listContent[4]);
         
@@ -161,6 +161,10 @@ public class IHM extends JFrame {
             }
             if(e.getSource() == bouton3){
                 //code
+            	
+            	//add method to load list
+            	pan2.add(new PanOrdreReparation(), listContent[2]);
+            	
                 cl.show(pan2, listContent[2]);
                 liste1.setVisible(false);
                 liste2.setVisible(false);
@@ -299,8 +303,8 @@ public class IHM extends JFrame {
         }
     }
     
-//    public static void main(String[] args) {
-//        IHM a = new IHM();
-//        a.revalidate();
-//    }
+    public static void main(String[] args) {
+        IHM a = new IHM();
+        a.revalidate();
+    }
 }

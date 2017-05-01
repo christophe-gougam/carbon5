@@ -1,10 +1,16 @@
 package Modele;
 
+import java.awt.List;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import org.apache.log4j.Logger;
 
@@ -16,6 +22,9 @@ import Serveur.Controlleurs.Serveur;
  * class creating the card referring to a vehicule 
  */
 public class RepairCard {
+	
+	private static ArrayList<RepairCard> waitList;
+	
 	final static Logger logger = Logger.getLogger(Serveur.class);
 	private UrgencyDegree degree;
 	private CardState card;
@@ -27,6 +36,7 @@ public class RepairCard {
 	private Date outDate;
 	private String overAllDetails;
 	private User user;
+	private int ponderation;
 	
 	/**
 	 * Constructor of th class
@@ -52,6 +62,14 @@ public class RepairCard {
 		this.outDate = out;
 		this.overAllDetails = details;
 		this.user = user;
+	}
+	
+	public static ArrayList<RepairCard> getWaitList(){
+		return waitList;
+	}
+	
+	public static void setWaitList(ArrayList<RepairCard> list){
+		waitList = list;
 	}
 	/**
 	 * Method get UrgencyDegree
@@ -193,6 +211,95 @@ public class RepairCard {
 	public void setUser(User user){
 		this.user = user;
 	}
+	
+	/**
+	 * Method to add a vehicule to the waitList
+	 * @param vehicule
+	 */
+	public static void addToWaitList(RepairCard vehicule){
+		waitList.add(vehicule);
+		//every time a vehicule is added to the waitList, the order of repairs is re-calculated
+		RepairCard.determineWaitList();
+	}
+	
+	/**
+	 * Method to check if the parts are available for the repairs
+	 * @param aCard
+	 * @return arePartsAvailable
+	 */
+	public Boolean availableParts(){
+		Boolean arePartsAvailable = true;
+		
+		for (Defect aDefect: this.getDefects()){
+			if(Part.getPartFromCollection(aDefect.getPartForRepair()).getStock()<=0){
+				arePartsAvailable = false;
+			}
+		}
+		
+		return arePartsAvailable;
+	}
+	
+	/**
+	 * Method to determine how long a vehicule has been waiting for repairs
+	 * @param entryDate
+	 * @return timeWaited
+	 */
+	public int timeWaiting(Date entryDate){
+		int timeWaited;
+		
+		Calendar calendarToday = Calendar.getInstance();
+		calendarToday.setTime(calendarToday.getTime());
+		
+		Calendar calendarEntry = Calendar.getInstance();
+		calendarEntry.setTime(entryDate);
+		
+		timeWaited = calendarToday.compareTo(calendarEntry);
+		
+//		Calendar calendarWeek = Calendar.getInstance();
+//	    calendarWeek.setTime(entryDate);
+//	    calendarWeek.add(Calendar.DAY_OF_YEAR, 7);
+//	    
+//	    Calendar calendarMonth = Calendar.getInstance();
+//	    calendarMonth.setTime(entryDate);
+//	    calendarMonth.add(Calendar.DAY_OF_YEAR, 30);
+//	    
+//	    if (calendarToday.before(calendarWeek)){
+//	    	if(calendarWeek.before(calendarMonth)){
+//	    		
+//	    	}
+//	    }else{
+//	    	dueDate = "LessThanAWeek";
+//	    }
+	    
+	    return timeWaited;
+	}
+	
+	/**
+	 * Method to determine the order for repairs, executed each time a repairCard is added to the waitList
+	 */
+	public static void determineWaitList(){
+		//algorithm determining order for waitList
+		//criterias: entryDate, parts available, number of defects, (urgencyDegree?)
+		
+		//implementing sorting of Map with time since arrival as criteria
+		SortedMap<RepairCard, Integer> timeCriteria = new TreeMap<RepairCard, Integer>();
+		//implementing sorting of Map with number of Defect as criteria
+		SortedMap<RepairCard, Integer> numberOfDefects = new TreeMap<RepairCard, Integer>();
+		//implement sorting of Map with date as criteria
+		SortedMap<RepairCard, Boolean> availableParts = new TreeMap<RepairCard, Boolean>();
+	    
+		for(RepairCard aVehicule:waitList){
+			timeCriteria.put(aVehicule, aVehicule.timeWaiting(aVehicule.entryDate));
+			availableParts.put(aVehicule, aVehicule.availableParts());
+			numberOfDefects.put(aVehicule, aVehicule.getDefects().size());
+		}
+		
+		//sort all SortedMaps and passing them through th algorithm to set order of repairs
+		
+		
+		
+	}
+	
 	/**
 	 * Method to serialize the repairCard
 	 * @param rep

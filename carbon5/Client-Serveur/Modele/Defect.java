@@ -14,12 +14,19 @@ import java.util.ArrayList;
 public class Defect {
     private String description;
     private int id;
-    
+    private Part partForRepair;
     /*
     Class constructor
     */
-    public Defect(int id, String description){
+    public Defect(int id, String description, Part partForRep){
+    	this.id = id;
         this.description = description;
+        this.partForRepair = partForRep;
+    }
+    
+    public Defect(int id, String description){
+    	this.id = id;
+    	this.description = description;
     }
     
     /**
@@ -51,13 +58,21 @@ public class Defect {
         this.description = newDescription;
     }
     
+    public Part getPartForRepair(){
+    	return this.partForRepair;
+    }
+    
+    public void setPartForRepairs(Part thePart){
+    	this.partForRepair = thePart;
+    }
+    
     /*
     * Method transform object defect to String
     * @param defect
     * @return String defectSerial
     */
     public static String serialize(Defect defect){
-    	String defectSerial = defect.id+"///"+defect.description;
+    	String defectSerial = defect.id+"///"+defect.description+"///"+defect.partForRepair.serialize(defect.getPartForRepair());
     	return defectSerial;
     }
     
@@ -72,7 +87,8 @@ public class Defect {
 			values.add(retval);
 		}
                 int id = Integer.parseInt(values.get(0).toString());
-		Defect defect = new Defect(id, values.get(1).toString());
+                Part thePart = new Part( values.get(2).toString(), Integer.parseInt(values.get(3).toString()), values.get(4).toString(), Float.valueOf(values.get(5).toString()) );
+		Defect defect = new Defect(id, values.get(1).toString(), thePart);
 		return defect;
     }
 }

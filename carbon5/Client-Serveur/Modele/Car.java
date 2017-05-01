@@ -16,6 +16,8 @@ public class Car {
     private String matricule;
     private String TypeVehicule;
     
+    private static ArrayList<Car> listCar = new ArrayList();
+    
     /**
      * Class constructor
      * @param NumePuce;
@@ -73,6 +75,14 @@ public class Car {
      */
     public void setTypeVehicule(String type){
         this.TypeVehicule = type;
+    }
+    
+    public static void addToCollection(Car aCar){
+    	listCar.add(aCar);
+    }
+    
+    public static void removeFromCollection(Car aCar){
+    	listCar.remove(aCar);
     }
     
     /**

@@ -19,7 +19,6 @@ import Serveur.Controlleurs.Serveur;
  */
 public class CarDAO {
 	final static Logger logger = Logger.getLogger(Serveur.class);
-	private static ArrayList<Car> listCar = new ArrayList();
 	
 	/**
 	 * Method to retrieve one car from numPuce id
@@ -50,7 +49,7 @@ public class CarDAO {
 				typeVehicule = rs.getString("typeVehicule");
 				
 			}
-			listCar.add(new Car(numPuce,matricule,typeVehicule));
+			Car.addToCollection(new Car(numPuce,matricule,typeVehicule));
 			dataResult.add(Car.serialize(new Car(numPuce,matricule, typeVehicule)));
 			logger.info("Retrieved data from bdd");
 		}catch(SQLException e){
@@ -118,7 +117,7 @@ public class CarDAO {
 				numPuce = rs.getString("NumPuce");
 				matricule = rs.getString("matricule");
 				typeVehicule = rs.getString("typeVehicule");
-				listCar.add(new Car(numPuce,matricule,typeVehicule));
+				Car.addToCollection(new Car(numPuce,matricule,typeVehicule));
 				dataResult.add(Car.serialize(new Car(numPuce,matricule, typeVehicule)));
 			}
 			logger.info("Retrieved data from bdd");

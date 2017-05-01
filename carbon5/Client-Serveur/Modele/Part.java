@@ -103,6 +103,18 @@ public class Part {
 		return check;
 	}
 	
+	public static Part getPartFromCollection(Part thePart){
+		Part toSend = new Part();
+		
+		for (Part aPart: Part.parts){
+			if(aPart.equals(thePart)){
+				toSend = aPart;
+			}
+		}
+		
+		return toSend;
+	}
+	
 	public static void emptyCollection(){
 		
 		Part.parts.clear();

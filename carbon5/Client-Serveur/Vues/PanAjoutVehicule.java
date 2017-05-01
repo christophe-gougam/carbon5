@@ -5,6 +5,17 @@
  */
 package Vues;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import org.apache.log4j.Logger;
+
+import javax.swing.JPanel;
+
+import Client.Controlleurs.ServerConnect;
+import Modele.User;
+import Serveur.Controlleurs.Serveur;
+
 /**
  *
  * @author Carbon5
@@ -100,5 +111,40 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField jTextField1;
+    final static Logger logger = Logger.getLogger(Serveur.class);
     // End of variables declaration//GEN-END:variables
+    
+    /**
+ 	* Class BoutonListener listens button AJOUTER
+ 	*/
+    class BoutonListener implements ActionListener{
+    	JPanel frame=null;
+
+    	/**
+     	* Class constructor
+     	* @param f 
+     	*/
+    	public BoutonListener  (JPanel f){
+    		this.frame=f;
+    	}
+	
+    	/**
+    	 * Method generate component action
+    	 * @param arg0 
+    	 */
+    	public void actionPerformed(ActionEvent arg0){
+    	
+    		String namePart = ""+(String) jComboBox1.getSelectedItem()+"";
+    		String quantite = jTextField1.getText();
+    	
+    		ArrayList<String> data = new ArrayList<String>();
+    		data.add(namePart);
+    		data.add(quantite);
+    		data.add(""+User.getAllUsers().get(0).getId());
+    		String identifier = "addEntryStock";
+    		logger.info("Entrée de stock");
+    		new ServerConnect(data, identifier, frame);
+    		
+    	}
+	}
 }

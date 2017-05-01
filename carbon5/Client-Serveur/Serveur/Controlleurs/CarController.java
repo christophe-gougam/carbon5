@@ -76,17 +76,22 @@ public class CarController implements Runnable{
 				}
 			//sends data to CRUD to insert new Car create object and serialize it to give to client side
 			//data = CRUD.addCar(con, matriculation, type, statut, parking);
+				
+
 			
 			switch(data.get(0)){
 			case("Voiture enregistrée"):
+				//TODO:
+				//create object and add to waitList
+				
 				JsonMessage = EcritureJson.WriteJson("OKCarInput", data);
-			logger.info("Sending JSON succès to Client");
+				logger.info("Sending JSON succès to Client");
 				out.println(JsonMessage);
 				out.flush();
 			break;
 			case("Erreur lors de l'execution de la requête"):
 				JsonMessage = EcritureJson.WriteJson("KOCarInput", data);
-			logger.info("Erreur de mot de passe");
+				logger.info("Erreur de mot de passe");
 				out.println(JsonMessage);
 				out.flush();
 			break;

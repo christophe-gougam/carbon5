@@ -30,6 +30,7 @@ public class DefectDAO extends DAO<Defect>{
     @Override
     public Defect find() {
         Defect ud = new Defect(0, null);
+        
         try {
             ResultSet result = this .connect
                                     .createStatement(
@@ -40,7 +41,7 @@ public class DefectDAO extends DAO<Defect>{
                                              );
             if(result.first())
             		ud = new Defect(
-                                        0, result.getString("Description") 
+                                        result.getInt("id"), result.getString("Description")
                         );            
         } catch (SQLException e) {
                 e.printStackTrace();
