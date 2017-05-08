@@ -23,6 +23,7 @@ public class Car {
      * @param NumePuce;
      * @param TypeVehicule 
      */
+    public Car (){}
     public Car (String numePuce, String matricule, String typevehicule){
         this.NumePuce = numePuce;
         this.matricule = matricule;

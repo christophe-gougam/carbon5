@@ -24,6 +24,7 @@ import org.apache.log4j.Logger;
 
 import Client.Controlleurs.ServerConnect;
 import Modele.Part;
+import Modele.TypeCar;
 import Modele.User;
 import Serveur.Controlleurs.Serveur;
 
@@ -134,8 +135,7 @@ public class IHM extends JFrame {
         
 
         pan2.add(new PanVehicule(), listContent[10]);
-        pan2.add(new PanAjoutVehicule(), listContent[11]);
-        pan2.add(new PanModifVehicule(), listContent[12]);
+        
     }
     
     /*
@@ -215,8 +215,15 @@ public class IHM extends JFrame {
                 pan.revalidate();
             }
             if(e.getSource() == bouton7){
-                //code
-                cl.show(pan2, listContent[10]);
+            	TypeCar.emptyCollection();
+            	ArrayList<String> data = new ArrayList<String>();
+            	String identifier = "LoadAllComboBox";
+            	logger.info("Chargement des listes deroulantes");
+            	new ServerConnect(data, identifier, pan2);
+            	
+            	pan2.add(new PanAjoutVehicule(), listContent[11]);
+                pan2.add(new PanModifVehicule(), listContent[12]);
+            	cl.show(pan2, listContent[10]);
                 liste1.setVisible(false);
                 liste2.setVisible(false);
                 liste3.setVisible(true);

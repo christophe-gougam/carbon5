@@ -6,14 +6,17 @@
 package Vues;
 
 import java.awt.event.ActionEvent;
+
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
 
 import Client.Controlleurs.ServerConnect;
-import Modele.User;
+import Modele.Defect;
+import Modele.TypeCar;
 import Serveur.Controlleurs.Serveur;
 
 /**
@@ -41,8 +44,14 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox3 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -51,10 +60,32 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
         jLabel2.setText("Num puce");
 
         jLabel3.setText("Type vehicule");
+        
+        jLabel4.setText("Matricule");
+        jLabel5.setText("panne 1");
+        jLabel6.setText("panne 2");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
+        DefaultComboBoxModel<String> modelCar = new DefaultComboBoxModel<String>();
+        for (TypeCar typecar : TypeCar.getAllTypeCar()){
+        	modelCar.addElement(typecar.getType());
+        }
+        
+        jComboBox1 = new javax.swing.JComboBox<String>(modelCar);
+       
+        DefaultComboBoxModel<String> modelpanne1 = new DefaultComboBoxModel<String>();
+        for (Defect typecar : Defect.getAllDefect()){
+        	modelpanne1.addElement(typecar.getDescription());
+        }
+        jComboBox2 = new javax.swing.JComboBox<String>(modelpanne1);
+        
+        DefaultComboBoxModel<String> modelpanne2 = new DefaultComboBoxModel<String>();
+        for (Defect typecar : Defect.getAllDefect()){
+        	modelpanne2.addElement(typecar.getDescription());
+        }
+        jComboBox3 = new javax.swing.JComboBox<String>(modelpanne2);
+        
         jButton1.setText("Ajouter");
+        jButton1.addActionListener(new BoutonListener(this));
         
         jButton2.setText("Annuler");
 
@@ -66,6 +97,8 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(jButton1)
@@ -74,11 +107,15 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3)
+                                .addComponent(jLabel4)
                                 .addComponent(jLabel2))
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jComboBox1, 0, 110, Short.MAX_VALUE)
-                                .addComponent(jTextField1)))))
+                                .addComponent(jComboBox2, 0, 110, Short.MAX_VALUE)
+                                .addComponent(jComboBox3, 0, 110, Short.MAX_VALUE)
+                                .addComponent(jTextField1)
+                                .addComponent(jTextField2)))))
                 .addContainerGap(196, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -92,9 +129,21 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -107,10 +156,16 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField jTextField1;
+	private javax.swing.JTextField jTextField2;
     final static Logger logger = Logger.getLogger(Serveur.class);
     // End of variables declaration//GEN-END:variables
     
@@ -134,15 +189,20 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
     	 */
     	public void actionPerformed(ActionEvent arg0){
     	
-    		String namePart = ""+(String) jComboBox1.getSelectedItem()+"";
-    		String quantite = jTextField1.getText();
-    	
+    		String typeCar = ""+(String) jComboBox1.getSelectedItem()+"";
+    		String numPuce = jTextField1.getText();
+    		String matricule = jTextField2.getText();
+    		String panne1= ""+(String) jComboBox2.getSelectedItem()+"";
+    		String panne2= ""+(String) jComboBox3.getSelectedItem()+"";
     		ArrayList<String> data = new ArrayList<String>();
-    		data.add(namePart);
-    		data.add(quantite);
-    		data.add(""+User.getAllUsers().get(0).getId());
-    		String identifier = "addEntryStock";
-    		logger.info("Entrée de stock");
+    		data.add(numPuce);
+    		data.add(matricule);
+    		data.add(typeCar);
+    		data.add(panne1);
+    		data.add(panne2);
+    		//data.add(""+User.getAllUsers().get(0).getId());
+    		String identifier = "AjoutVehicule";
+    		logger.info("Entrée de"+numPuce);
     		new ServerConnect(data, identifier, frame);
     		
     	}

@@ -17,8 +17,26 @@ public class EcritureJson {
     	JSONObject json = new JSONObject();
     	
     	try {
-			json.put("data", new JSONArray(data));
-			json.put("identifier", identifier2);
+    		json.put("identifier", identifier2);
+    		json.put("data", new JSONArray(data));
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	//convertir le json en String
+    	String file = json.toString();
+    	return file;
+    	
+    }
+    
+    public static String writeJson(String identifier, ArrayList<String> datatypecar, ArrayList<String> datadefect){
+    	String identifier1 = identifier;
+    	JSONObject json = new JSONObject();
+    	
+    	try {
+    		json.put("identifier", identifier1);
+    		json.put("data", new JSONArray(datatypecar));
+			json.put("dataDefect", new JSONArray(datadefect));
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

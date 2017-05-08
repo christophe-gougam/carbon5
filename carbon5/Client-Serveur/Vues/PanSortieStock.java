@@ -40,13 +40,12 @@ public class PanSortieStock extends javax.swing.JPanel {
         jTextField4 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         
-        DefaultComboBoxModel model = new DefaultComboBoxModel();
-        ArrayList<String> parts = new ArrayList<String>();
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>();
         for (Part aPart : Part.getAllParts()){
         	model.addElement(aPart.getNamePart());
         }
         
-        jComboBox1 = new javax.swing.JComboBox(model);
+        jComboBox1 = new javax.swing.JComboBox<String>(model);
         
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -154,7 +153,7 @@ public class PanSortieStock extends javax.swing.JPanel {
         	String namePart = ""+(String) jComboBox1.getSelectedItem()+"";
         	String quantite = jTextField3.getText();
         	
-        	ArrayList<String> data = new ArrayList();
+        	ArrayList<String> data = new ArrayList<String>();
         	data.add(namePart);
         	data.add(quantite);
         	data.add(""+User.getAllUsers().get(0).getId());

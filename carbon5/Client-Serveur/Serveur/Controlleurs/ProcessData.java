@@ -34,7 +34,7 @@ public class ProcessData implements Runnable{
 	final static Logger logger = Logger.getLogger(ProcessData.class);
 	Connection con=null;
 	int retour;
-	ArrayList<String> data = new ArrayList();
+	ArrayList<String> data = new ArrayList<String>();
 	
 	   /**
      * Class constructor
@@ -78,7 +78,7 @@ public class ProcessData implements Runnable{
 					t.start();
 				break;
 				case("AjoutVehicule"):
-					t = new Thread(new CarController(con, socket, message_distant, out));
+					t = new Thread(new CarController(con, message_distant, out));
 					t.start();
 				break;
 				case("CreatePart"):
@@ -99,6 +99,11 @@ public class ProcessData implements Runnable{
 				case("SelectAllParts"):
 					logger.info("Case Select all parts");
 					t = new Thread(new PartController(con, message_distant, out));
+					t.run();
+				break;
+				case("LoadAllComboBox"):
+					logger.info("Case Select all type car");
+					t = new Thread(new CarController(con, message_distant, out));
 					t.run();
 				break;
 				case("addEntryStock"):

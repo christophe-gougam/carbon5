@@ -44,13 +44,12 @@ public class PanModifPiece extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         //jTextField1 = new javax.swing.JTextField();
-        DefaultComboBoxModel model = new DefaultComboBoxModel();
-        ArrayList<String> parts = new ArrayList<String>();
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>();
         for (Part aPart : Part.getAllParts()){
         	model.addElement(aPart.getNamePart());
         }
         
-        jComboBox1 = new javax.swing.JComboBox(model);
+        jComboBox1 = new javax.swing.JComboBox<String>(model);
         
         jTextField3 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();

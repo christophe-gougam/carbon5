@@ -6,19 +6,26 @@
 package Modele;
 
 import java.sql.Connection;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.apache.log4j.Logger;
+
+import Serveur.Controlleurs.PartController;
+
+import org.apache.log4j.Logger;
 /**
  *
  * @author Carbon5
  */
 public class PartDAO extends DAO<Part> {
 
-    public PartDAO(Connection conn) {
+	final static Logger logger = Logger.getLogger(PartController.class);
+	public PartDAO(Connection conn) {
         super(conn);
     }
     public ArrayList<String> getAllParts(){
@@ -34,8 +41,6 @@ public class PartDAO extends DAO<Part> {
                                              );
             Part.emptyCollection();
             while(result.next()){
-            //if(result.first())
-            	
             	Part.addPartToCo(new Part(
 						String.valueOf(result.getInt("Id")),
 						result.getInt("Stock"),

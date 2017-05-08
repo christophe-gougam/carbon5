@@ -3,6 +3,16 @@ package Serveur.Controlleurs;
 import java.io.BufferedReader;
 
 import Modele.LectureJson;
+import Modele.Part;
+import Modele.PartDAO;
+import Modele.TypeCar;
+import Modele.TypeCarDAO;
+import Modele.User;
+import Modele.UserDAO;
+import Modele.Car;
+import Modele.CarDAO;
+import Modele.Defect;
+import Modele.DefectDAO;
 import Modele.EcritureJson;
 
 import java.io.IOException;
@@ -15,6 +25,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -31,8 +42,7 @@ import java.io.PrintWriter;
  * @author Carbon5
  */
 public class CarController implements Runnable{
-	private Socket socket = null;
-	String in;
+	String in=null;
 	private PrintWriter out = null;
 	public Thread t2;
 	final static Logger logger = Logger.getLogger(CarController.class);
@@ -41,16 +51,17 @@ public class CarController implements Runnable{
 	String type = null;
 	String statut = null;
 	String parking = null;
-
-	ArrayList<String> data = new ArrayList();
+	String numP = null;
+	LocalDate date;
+	ArrayList<String> data = new ArrayList<String>();
+	ArrayList<String> dataPanne = new ArrayList<String>();
 	String JsonMessage;
 	
 	/**
 	 * Method constructor of controller
 	 */
-	public CarController(Connection con, Socket s, String in, PrintWriter out){
+	public CarController(Connection con, String in, PrintWriter out){
 		 this.con=con;
-		 this.socket = s;
 		 this.in = in;
 		 this.out=out;
 	}
@@ -63,35 +74,95 @@ public class CarController implements Runnable{
      * @throws Exception if JSON not read properly
 	 */
 	public void run() {
-				
+		
+				CarDAO test = new CarDAO(con);
+				TypeCarDAO test1=new TypeCarDAO(con);
+				DefectDAO test2=new DefectDAO(con);
+				boolean ret = false;
 				try{
+					String identifier = LectureJson.Identifier(in);
 					ArrayList<String> result = LectureJson.LectureFichier(in);
-					matriculation = result.get(0);
-					type = result.get(1);
-					statut = result.get(2);
-					parking = result.get(3);
+					switch(identifier){
+					
+					
+					case("LoadAllComboBox"):
+						//TODO:
+						//create object and add to waitList
+						data=test1.getTypeCar();
+						data.add(0, "LoadAllComboBoxOK");
+						dataPanne=test2.getAllDefect();
+						
+					break;
+					
+					case("AjoutVehicule"):
+						numP=result.get(0);
+						matriculation = result.get(1);
+						type = result.get(2);
+						statut = "free";
+						parking = "1";
+						
+						ArrayList<String> listePanneEntrance= new ArrayList<String>();
+						listePanneEntrance.add(result.get(3));
+						listePanneEntrance.add(result.get(4));
+						int repairTime=0;
+						ArrayList<Defect> defaut= new ArrayList<Defect>();
+						defaut=test2.searchDefect();
+						
+						
+						for (int i =0; i<listePanneEntrance.size();i++){
+							for(Defect p: defaut){
+					    		
+								if(listePanneEntrance.get(i)==p.getDescription())
+								{
+									repairTime+=p.getduration();
+									break;
+								}
+								else
+									continue;
+									
+					    			
+					    	}
+			    		}
+						logger.info(repairTime);
+						//date = LocalDate.now();
+						Car car=new Car(numP, matriculation, type);
+						ret=test.addCar(car);
+						if (ret){
+							data.add("OKCarInput");
+							Car c=new Car(numP, type, matriculation);
+							data.add(Car.serialize(c));
+						}else{
+							data.add("KOCarInput");
+						}
+					break;
+					}
+					
 				}catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				}
-			//sends data to CRUD to insert new Car create object and serialize it to give to client side
-			//data = CRUD.addCar(con, matriculation, type, statut, parking);
-				
-
 			
 			switch(data.get(0)){
-			case("Voiture enregistrée"):
+			case("OKCarInput"):
 				//TODO:
 				//create object and add to waitList
 				
-				JsonMessage = EcritureJson.WriteJson("OKCarInput", data);
+				JsonMessage = EcritureJson.WriteJson(data.get(0), data);
+				logger.info("Succes ajout");
+				out.println(JsonMessage);
 				logger.info("Sending JSON succès to Client");
+				out.flush();
+			break;
+			case("KOCarInput"):
+				JsonMessage = EcritureJson.WriteJson(data.get(0), data);
+				logger.info("Erreur Ajout");
 				out.println(JsonMessage);
 				out.flush();
 			break;
-			case("Erreur lors de l'execution de la requête"):
-				JsonMessage = EcritureJson.WriteJson("KOCarInput", data);
-				logger.info("Erreur de mot de passe");
+			case("LoadAllComboBoxOK"):
+				JsonMessage = EcritureJson.writeJson(data.get(0), data, dataPanne);
+				logger.info("Sending list of type car to Client");
+				logger.info(JsonMessage);
 				out.println(JsonMessage);
 				out.flush();
 			break;

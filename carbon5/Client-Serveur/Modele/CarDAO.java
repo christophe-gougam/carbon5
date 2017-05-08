@@ -17,7 +17,13 @@ import Serveur.Controlleurs.Serveur;
  * @author carbon5
  *
  */
-public class CarDAO {
+public class CarDAO extends DAO<Car>{
+	
+	public CarDAO(Connection conn) {
+		super(conn);
+		// TODO Auto-generated constructor stub
+	}
+
 	final static Logger logger = Logger.getLogger(Serveur.class);
 	
 	/**
@@ -65,29 +71,25 @@ public class CarDAO {
 	 * @param type
 	 * @return dataResult confirming addition of car
 	 */
-	public static ArrayList<String> addCar(Connection con, String numP, String matricule, String type){
-		Connection cn = con;
-		Statement st = null;
-		ResultSet rs = null;
-		ArrayList<String> dataResult = new ArrayList();
+	public boolean addCar(Car car){
 		
-		try{
-			st = cn.createStatement();
-			logger.info("insert execution");
-			logger.info("Statement created");
-			//insert request to create new car in database
-			String request = "INSERT INTO car(NumPuce,Matricule,TypeVehicule) VALUES('"+numP+"','"+matricule+"','"+type+"')";
-			logger.info(request);
-			st.executeUpdate(request);
-			logger.info("insert execution");
+        try{
+        	java.sql.PreparedStatement prepare = this.connect
+                    .prepareStatement(
+                    		"INSERT INTO car(NumPuce,TypeVehicule,matricule) VALUES(?, ?, ?)"
+                     );
+
+			prepare.setString(1, car.getNumePuce());
+			prepare.setString(2, car.getTypeVehicule());
+			prepare.setString(3, car.getMatricule());
+			
+			prepare.executeUpdate();
+			return true;
+			
 		}catch(SQLException e){
 			e.printStackTrace();
-			dataResult.add("Erreur lors de l'execution de la requête");
+			return false;
 		}
-		dataResult.add("Voiture enregistrée");
-		Car newCar = new Car(numP, matricule, type);
-		dataResult.add(Car.serialize(newCar));
-		return dataResult;
 	}
 	
 	/**
@@ -174,5 +176,30 @@ public class CarDAO {
 		return dataResult;
 		
 		
+	}
+	
+
+	@Override
+	public Car find() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<String> create(Car obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean update(Car obj) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delete(Car obj) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

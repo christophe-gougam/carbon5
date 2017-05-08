@@ -362,7 +362,7 @@ public class RepairCard {
 		int numObjDefect = Integer.parseInt(values.get(numIndice).toString());
 		ArrayList<Defect> def = new ArrayList();
 		for (int i = 0;i<numObjDefect;i++){
-			def.add(new Defect(Integer.parseInt(values.get(numIndice).toString()),(String) values.get(numIndice+1)));
+			def.add(new Defect(Integer.parseInt(values.get(numIndice).toString()),(String) values.get(numIndice+1), Integer.parseInt(values.get(numIndice).toString())));
 			numIndice +=2;
 		}
 		//creating object Place (referring to the parking)

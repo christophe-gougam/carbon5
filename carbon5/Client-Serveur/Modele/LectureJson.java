@@ -46,7 +46,7 @@ public class LectureJson {
 			result.add(tableau.getString(0));
 			result.add(tableau.getString(1));
 			System.out.print("id=" + tableau.getString(0));
-			System.out.print(", mdp=" + tableau.getString(1));
+			System.out.print(", mdp=" + tableau.getString(1)+"\n");
 
 	break;
 	case("CreatePart"):
@@ -54,28 +54,37 @@ public class LectureJson {
 			result.add(tableau.getString(0));
 			result.add(tableau.getString(1));
 			System.out.print("namePart=" + tableau.getString(0));
-			System.out.print(", Price=" + tableau.getString(1));
+			System.out.print(", Price=" + tableau.getString(1)+"\n");
 	break;
 	case("ModificationPart"):
 		
 		result.add(tableau.getString(0));
 		result.add(tableau.getString(1));
 		System.out.print("namePart=" + tableau.getString(0));
-		System.out.print("Price=" + tableau.getString(1));
+		System.out.print("Price=" + tableau.getString(1)+"\n");
 	break;
 	case("DeletePart"):
 		result.add(tableau.getString(0));
-		System.out.print("namePart=" + tableau.getString(0));
+		System.out.print("namePart=" + tableau.getString(0)+"\n");
 	break;
 	case("SelectAllParts"):
 		logger.info("retrieving all parts");
+	break;
+	case("LoadAllComboBox"):
+		logger.info("retrieving all typeCar");
 	break;
 	case("addEntryStock"):	case("addOutStock"):
 		result.add(tableau.getString(0));
 		result.add(tableau.getString(1));
 		result.add(tableau.getString(2));
 		System.out.print("date=" + tableau.getString(0));
-		System.out.print(", Quantite=" + tableau.getString(1));
+		System.out.print(", Quantite=" + tableau.getString(1)+"\n");
+	break;
+	case("AjoutVehicule"):
+		result.add(tableau.getString(0));
+		result.add(tableau.getString(1));
+		System.out.print("Puce=" + tableau.getString(0));
+		System.out.print(", Type Véhicule=" + tableau.getString(1)+"\n");
 	break;
 	default:
 		logger.info("Fonctionnalité non prise en charge pour l'instant");

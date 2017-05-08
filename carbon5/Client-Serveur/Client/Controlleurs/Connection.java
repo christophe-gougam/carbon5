@@ -37,7 +37,9 @@ public class Connection{
 	private String identifier;
 	private String repId;
 	private JSONObject objet;
+	private JSONArray tableautypecar;
 	private JSONArray tableau;
+	private JSONArray tableaudefect;
 	User user;
 	Car car;
 	JPanel frame=null; 
@@ -107,14 +109,13 @@ public class Connection{
 		    	//logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 				//JOptionPane.showMessageDialog(frame, tableau.get(0));
-		    	result = new ArrayList();
+		    	result = new ArrayList<String>();
 	    		for(int i = 0; i < tableau.length(); i++) {
 	
 	    			result.add((String) tableau.get(i));
 	    		}
 	    		car = Car.unSerialize(result.get(1));
 	    		JOptionPane.showMessageDialog(frame, "Voiture "+car.getTypeVehicule()+ " ajoutée");
-	    		//Fenetre newFenetre = new Fenetre();
 	    		
 			break;
 			
@@ -153,13 +154,30 @@ public class Connection{
 				logger.info("Afficage du resultat de mise à jour : ");
 		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
-		    	int indice = 2;
 		    	for (int i =0; i<tableau.getInt(1);i++){
-		    		Part aPart = Part.unSerialize(tableau.getString(indice));
+		    		Part aPart = Part.unSerialize(tableau.getString(i+2));
 		    		if(!Part.isInCollection(aPart.getIdPart())){
 		    			Part.addPartToCo(aPart);
 		    		}	
-		    		indice++;
+		    	}
+		    break;
+			case "LoadAllComboBoxOK" :
+				objet = new JSONObject(reponse);
+				logger.info("Afficage du resultat");
+		    	logger.info(reponse);
+		    	tableautypecar = objet.getJSONArray("data");
+		    	tableaudefect = objet.getJSONArray("dataDefect");
+		    	for (int i =0; i<tableautypecar.getInt(1);i++){
+		    		TypeCar atype = TypeCar.unSerialize(tableautypecar.getString(i+2));
+		    		if(!TypeCar.isInCollection(atype.getType())){
+		    			TypeCar.addPartToCo(atype);
+		    		}
+		    	}
+	    		for (int ii =0; ii<tableaudefect.getInt(0);ii++){
+		    		Defect adefect = Defect.unSerialize(tableaudefect.getString(ii+1));
+		    		if(!Defect.isInCollection(adefect.getDescription())){
+		    			Defect.addPartToCo(adefect);
+		    		}	
 		    	}
 		    break;
 			case "addEntryStockOK":	case "addEntryStockKO":
