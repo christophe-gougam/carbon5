@@ -103,8 +103,9 @@ public class CarController implements Runnable{
 						parking = "1";
 						
 						ArrayList<String> listePanneEntrance= new ArrayList<String>();
-						listePanneEntrance.add(result.get(3));
-						listePanneEntrance.add(result.get(4));
+						for(int t=3; t<result.size(); t++){
+							listePanneEntrance.add(result.get(t));
+						}
 						int repairTime=0;
 						ArrayList<Defect> defaut= new ArrayList<Defect>();
 						defaut=test2.searchDefect();
