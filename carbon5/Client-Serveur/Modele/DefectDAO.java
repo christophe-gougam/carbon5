@@ -87,8 +87,8 @@ public class DefectDAO extends DAO<Defect>{
             	
             	pan.add(new Defect(
 						result.getInt("Id"),
-						result.getString("description"),
-						result.getInt("RepairTime")));          		
+						result.getString("Description"),
+						result.getInt("RepairTime")));
             }
             
         } catch (SQLException e) {

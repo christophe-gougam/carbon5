@@ -77,7 +77,7 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
         	modelpanne1.addElement(typecar.getDescription());
         }
         jComboBox2 = new javax.swing.JComboBox<String>(modelpanne1);
-        
+     
         DefaultComboBoxModel<String> modelpanne2 = new DefaultComboBoxModel<String>();
         for (Defect typecar : Defect.getAllDefect()){
         	modelpanne2.addElement(typecar.getDescription());
@@ -192,8 +192,10 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
     		String typeCar = ""+(String) jComboBox1.getSelectedItem()+"";
     		String numPuce = jTextField1.getText();
     		String matricule = jTextField2.getText();
-    		String panne1= ""+(String) jComboBox2.getSelectedItem()+"";
-    		String panne2= ""+(String) jComboBox3.getSelectedItem()+"";
+    		String panne1=null;
+    		String panne2=null;
+    		panne1= ""+(String) jComboBox2.getSelectedItem()+"";
+    		panne2= ""+(String) jComboBox3.getSelectedItem()+"";
     		ArrayList<String> data = new ArrayList<String>();
     		data.add(numPuce);
     		data.add(matricule);

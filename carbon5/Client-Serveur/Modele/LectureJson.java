@@ -83,8 +83,14 @@ public class LectureJson {
 	case("AjoutVehicule"):
 		result.add(tableau.getString(0));
 		result.add(tableau.getString(1));
+		result.add(tableau.getString(2));
+		result.add(tableau.getString(3));
+		result.add(tableau.getString(4));
 		System.out.print("Puce=" + tableau.getString(0));
-		System.out.print(", Type Véhicule=" + tableau.getString(1)+"\n");
+		System.out.print("Puce=" + tableau.getString(1));
+		System.out.print(", Type Véhicule=" + tableau.getString(2)+"\n");
+		System.out.print(", Panne1=" + tableau.getString(3)+"\n");
+		System.out.print(", Panne2=" + tableau.getString(4)+"\n");
 	break;
 	default:
 		logger.info("Fonctionnalité non prise en charge pour l'instant");

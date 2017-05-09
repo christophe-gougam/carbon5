@@ -115,7 +115,8 @@ public class Connection{
 	    			result.add((String) tableau.get(i));
 	    		}
 	    		car = Car.unSerialize(result.get(1));
-	    		JOptionPane.showMessageDialog(frame, "Voiture "+car.getTypeVehicule()+ " ajoutée");
+	    		JOptionPane.showMessageDialog(frame, "Voiture "+car.getTypeVehicule()+ 
+	    									" ajoutée"+"\n"+"Date prévisionnelle="+result.get(2)+"\n");
 	    		
 			break;
 			

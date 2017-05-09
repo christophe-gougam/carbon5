@@ -27,6 +27,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
@@ -107,30 +108,30 @@ public class CarController implements Runnable{
 						int repairTime=0;
 						ArrayList<Defect> defaut= new ArrayList<Defect>();
 						defaut=test2.searchDefect();
-						
-						
-						for (int i =0; i<listePanneEntrance.size();i++){
-							for(Defect p: defaut){
-					    		
-								if(listePanneEntrance.get(i)==p.getDescription())
-								{
-									repairTime+=p.getduration();
+						for (int t =0; t<listePanneEntrance.size();t++){
+							
+							for(int i =0; i<defaut.size();i++){
+								
+								if(listePanneEntrance.get(t).equalsIgnoreCase(defaut.get(i).getDescription())){
+									repairTime+=defaut.get(i).getduration();
 									break;
 								}
-								else
-									continue;
-									
-					    			
-					    	}
+							}
 			    		}
-						logger.info(repairTime);
 						//date = LocalDate.now();
+						Date dat = new Date();
+						Calendar cc = Calendar.getInstance(); 
+						cc.setTime(dat); 
+						cc.add(Calendar.DATE, repairTime);
+						dat = cc.getTime();
+						logger.info("\n"+"Date previsionnelle  : "+dat+"\n");
 						Car car=new Car(numP, matriculation, type);
 						ret=test.addCar(car);
 						if (ret){
 							data.add("OKCarInput");
 							Car c=new Car(numP, type, matriculation);
 							data.add(Car.serialize(c));
+							data.add(String.valueOf(dat));
 						}else{
 							data.add("KOCarInput");
 						}
