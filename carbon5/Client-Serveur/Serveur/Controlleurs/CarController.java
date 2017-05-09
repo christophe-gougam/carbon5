@@ -102,10 +102,14 @@ public class CarController implements Runnable{
 						statut = "free";
 						parking = "1";
 						
+						String listPane= "";
+						
 						ArrayList<String> listePanneEntrance= new ArrayList<String>();
 						for(int t=3; t<result.size(); t++){
 							listePanneEntrance.add(result.get(t));
+								listPane+=result.get(t)+"|";
 						}
+						
 						int repairTime=0;
 						ArrayList<Defect> defaut= new ArrayList<Defect>();
 						defaut=test2.searchDefect();
@@ -126,11 +130,11 @@ public class CarController implements Runnable{
 						cc.add(Calendar.DATE, repairTime);
 						dat = cc.getTime();
 						logger.info("\n"+"Date previsionnelle  : "+dat+"\n");
-						Car car=new Car(numP, matriculation, type);
+						Car car=new Car(numP, matriculation, type, listPane);
 						ret=test.addCar(car);
 						if (ret){
 							data.add("OKCarInput");
-							Car c=new Car(numP, type, matriculation);
+							Car c=new Car(numP, type, matriculation, listPane);
 							data.add(Car.serialize(c));
 							data.add(String.valueOf(dat));
 						}else{

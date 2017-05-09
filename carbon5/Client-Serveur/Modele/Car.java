@@ -15,6 +15,7 @@ public class Car {
     private String NumePuce;
     private String matricule;
     private String TypeVehicule;
+    private String listoperation;
     
     private static ArrayList<Car> listCar = new ArrayList();
     
@@ -24,13 +25,20 @@ public class Car {
      * @param TypeVehicule 
      */
     public Car (){}
-    public Car (String numePuce, String matricule, String typevehicule){
+    public Car (String numePuce, String matricule, String typevehicule, String listOp){
         this.NumePuce = numePuce;
         this.matricule = matricule;
         this.TypeVehicule = typevehicule;
+        this.listoperation=listOp;
     }
     
-    /**
+    public String getListoperation() {
+		return listoperation;
+	}
+	public void setListoperation(String listoperation) {
+		this.listoperation = listoperation;
+	}
+	/**
      * Method get NumePuce
      * @return NumePuce;
      */
@@ -92,7 +100,7 @@ public class Car {
      * @return String carSerial
      */
     public static String serialize(Car car){
-    	String carSerial = car.NumePuce+"///"+car.matricule+"///"+car.TypeVehicule;
+    	String carSerial = car.NumePuce+"///"+car.matricule+"///"+car.TypeVehicule+"///"+car.listoperation;
     	return carSerial;
     }
     
@@ -106,7 +114,7 @@ public class Car {
 		for (String retval: serializedCar.split("///")){
 			values.add(retval);
 		}
-		Car car = new Car(String.valueOf(values.get(0)), String.valueOf(values.get(1)), String.valueOf(values.get(2)));
+		Car car = new Car(String.valueOf(values.get(0)), String.valueOf(values.get(1)), String.valueOf(values.get(2)), String.valueOf(values.get(3)));
 		return car;
     }
     /**

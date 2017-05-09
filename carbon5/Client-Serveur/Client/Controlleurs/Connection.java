@@ -105,10 +105,7 @@ public class Connection{
 			
 			case "OKCarInput" :
 				objet = new JSONObject(reponse);
-		    	//logger.info("Afficage du resultat de l'ajout vehicule : ");
-		    	//logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
-				//JOptionPane.showMessageDialog(frame, tableau.get(0));
 		    	result = new ArrayList<String>();
 	    		for(int i = 0; i < tableau.length(); i++) {
 	

@@ -55,11 +55,9 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
         jComboBox5 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
@@ -67,18 +65,18 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
 
         jLabel1.setText("AJOUTER DU VEHICULE");
-        jLabel.setText("Liste Panne selectionnée:");
+        jLabel.setText("Liste motif :");
         jLabel2.setText("Num puce");
 
         jLabel3.setText("Type vehicule");
         
         jLabel4.setText("Matricule");
-        jLabel5.setText("panne");
-        jLabel7.setText("Motif entrée");
+        jLabel5.setText("Motif entree");
         jLabel8.setText("Place");
         
         DefaultComboBoxModel<String> modelCar = new DefaultComboBoxModel<String>();
         for (TypeCar typecar : TypeCar.getAllTypeCar()){
+        	
         	modelCar.addElement(typecar.getType());
         }
         
@@ -108,7 +106,6 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
                     .addComponent(jLabel5)
                     .addComponent(jLabel)
                     .addComponent(jLabelviewpanne)
-                    .addComponent(jLabel7)
                     .addComponent(jLabel8)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -124,7 +121,6 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jComboBox1, 0, 110, Short.MAX_VALUE)
                                 .addComponent(jComboBox2, 0, 110, Short.MAX_VALUE)
-                                .addComponent(jComboBox4, 0, 110, Short.MAX_VALUE)
                                 .addComponent(jComboBox5, 0, 110, Short.MAX_VALUE)
                                 .addComponent(jTextField1)
                                 .addComponent(jTextField2)))))
@@ -154,11 +150,7 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
                 		.addComponent(jLabel)
                 		.addComponent(jLabelviewpanne)
                 .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
@@ -175,8 +167,8 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox5;
+    private javax.swing.JList<String> jmotif;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -184,13 +176,11 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel;
     private javax.swing.JLabel jLabelviewpanne;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField jTextField1;
 	private javax.swing.JTextField jTextField2;
     final static Logger logger = Logger.getLogger(Serveur.class);
     // End of variables declaration//GEN-END:variables
-    
     
     
     class ItemAction implements ActionListener{

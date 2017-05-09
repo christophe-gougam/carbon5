@@ -39,6 +39,7 @@ public class CarDAO extends DAO<Car>{
 		String numPuce = null;
 		String matricule = null;
 		String typeVehicule = null;
+		String listop = null;
 		ArrayList<String> dataResult = new ArrayList();
 		
 		try{
@@ -53,10 +54,11 @@ public class CarDAO extends DAO<Car>{
 				numPuce = rs.getString("NumPuce");
 				matricule = rs.getString("matricule");
 				typeVehicule = rs.getString("typeVehicule");
+				listop=rs.getString("ListeOperations");
 				
 			}
-			Car.addToCollection(new Car(numPuce,matricule,typeVehicule));
-			dataResult.add(Car.serialize(new Car(numPuce,matricule, typeVehicule)));
+			Car.addToCollection(new Car(numPuce,matricule,typeVehicule, listop));
+			dataResult.add(Car.serialize(new Car(numPuce,matricule, typeVehicule, listop)));
 			logger.info("Retrieved data from bdd");
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -76,13 +78,13 @@ public class CarDAO extends DAO<Car>{
         try{
         	java.sql.PreparedStatement prepare = this.connect
                     .prepareStatement(
-                    		"INSERT INTO car(NumPuce,TypeVehicule,matricule) VALUES(?, ?, ?)"
+                    		"INSERT INTO car(NumPuce,TypeVehicule,matricule, ListeOperations) VALUES(?, ?, ?, ?)"
                      );
 
 			prepare.setString(1, car.getNumePuce());
 			prepare.setString(2, car.getTypeVehicule());
 			prepare.setString(3, car.getMatricule());
-			
+			prepare.setString(4, car.getListoperation());
 			prepare.executeUpdate();
 			return true;
 			
@@ -105,6 +107,7 @@ public class CarDAO extends DAO<Car>{
 		String numPuce = null;
 		String matricule = null;
 		String typeVehicule = null;
+		String listop = null;
 		ArrayList<String> dataResult = new ArrayList();
 		
 		try{
@@ -119,8 +122,9 @@ public class CarDAO extends DAO<Car>{
 				numPuce = rs.getString("NumPuce");
 				matricule = rs.getString("matricule");
 				typeVehicule = rs.getString("typeVehicule");
-				Car.addToCollection(new Car(numPuce,matricule,typeVehicule));
-				dataResult.add(Car.serialize(new Car(numPuce,matricule, typeVehicule)));
+				listop=rs.getString("ListeOperations");
+				Car.addToCollection(new Car(numPuce,matricule,typeVehicule, listop));
+				dataResult.add(Car.serialize(new Car(numPuce,matricule, typeVehicule, listop)));
 			}
 			logger.info("Retrieved data from bdd");
 		}catch(SQLException e){

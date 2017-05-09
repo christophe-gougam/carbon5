@@ -349,7 +349,8 @@ public class RepairCard {
 		String numpuce = values.get(3).toString();
 		String matricule = values.get(4).toString();
 		String typevehic = values.get(5).toString();
-		Car car = new Car(numpuce,matricule,typevehic);
+		String Loperation = values.get(6).toString();
+		Car car = new Car(numpuce,matricule,typevehic, Loperation);
 		//creating repairs, retrieving the number of repairs to create as many objects as necessary
 		int numObjRep = Integer.parseInt(values.get(5).toString());
 		int numIndice = numObjRep;

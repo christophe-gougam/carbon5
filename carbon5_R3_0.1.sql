@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 08 Mai 2017 à 21:35
+-- Généré le :  Mar 09 Mai 2017 à 20:56
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -29,7 +29,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `car` (
   `NumPuce` varchar(100) NOT NULL,
   `TypeVehicule` varchar(50) DEFAULT NULL,
-  `matricule` varchar(50) DEFAULT NULL
+  `matricule` varchar(50) DEFAULT NULL,
+  `ListeOperations` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -426,7 +427,7 @@ ALTER TABLE `parking`
 -- AUTO_INCREMENT pour la table `part`
 --
 ALTER TABLE `part`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `repaircard`
 --
