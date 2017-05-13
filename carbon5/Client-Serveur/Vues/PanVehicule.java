@@ -44,9 +44,9 @@ public class PanVehicule extends javax.swing.JPanel {
         String url = "jdbc:mysql://localhost:3306/carbon5";
         String user = "root";
         String pwd = "";
-        Connection con = DriverManager.getConnection(url, user, pwd);
+        Connection conn = DriverManager.getConnection(url, user, pwd);
         String queryString = "SELECT * FROM Car";
-        Statement stm = con.createStatement();
+        Statement stm = conn.createStatement();
         ResultSet rs = stm.executeQuery(queryString);
         String col[] = {"Numero puce","Type de vehicule","Matricule"};
         String cont[][] = new String[10][3];

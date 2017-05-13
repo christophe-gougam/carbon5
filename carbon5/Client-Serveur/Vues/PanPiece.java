@@ -47,9 +47,9 @@ public class PanPiece extends javax.swing.JPanel {
         String url = "jdbc:mysql://localhost:3306/carbon5";
         String user = "root";
         String pwd = "";
-        Connection con = DriverManager.getConnection(url, user, pwd);
+        Connection connect = DriverManager.getConnection(url, user, pwd);
         String queryString = "SELECT * FROM Part";
-        Statement stm = con.createStatement();
+        Statement stm = connect.createStatement();
         ResultSet rs = stm.executeQuery(queryString);
         String col[] = {"ID","Stock","Nom de piece","Purchase price"};
         String cont[][] = new String[10][4];

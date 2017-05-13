@@ -4,8 +4,11 @@
  * and open the template in the editor.
  */
 package Vues;
-import Modele.Part;
 
+import Modele.Part;
+import javax.swing.*;
+import java.sql.*;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Carbon5
@@ -15,18 +18,36 @@ public class PanStock extends javax.swing.JPanel {
     /**
      * Creates new form PanStock
      */
-    public PanStock() {
+    public PanStock() throws SQLException {
         initComponents();
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents() throws SQLException {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-
+        
+        String url = "jdbc:mysql://localhost:3306/carbon5";
+        String user = "root";
+        String pwd = "";
+        Connection con1 = DriverManager.getConnection(url, user, pwd);
+        String queryString = "SELECT Stock, NamePart FROM Part";
+        Statement stm = con1.createStatement();
+        ResultSet rs = stm.executeQuery(queryString);
+        String col[] = {"Nom de piece","Stock réel"};
+        String cont[][] = new String[10][2];
+        int i = 0;
+        while (rs.next()){
+            int stock = rs.getInt("Stock");
+            String nom = rs.getString("NamePart");
+            cont[i][1] = stock + "";
+            cont[i][0] = nom;
+            i++;
+        }
+        DefaultTableModel model = new DefaultTableModel(cont, col);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
