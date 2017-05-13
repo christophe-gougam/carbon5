@@ -5,7 +5,9 @@
  */
 package Vues;
 
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.sql.*;
+import javax.swing.table.DefaultTableModel;
 
 import Vues.IHM;
 /**
@@ -17,13 +19,13 @@ public class PanVehicule extends javax.swing.JPanel {
     /**
      * Creates new form PanVehicule
      */
-    public PanVehicule() {
+    public PanVehicule() throws SQLException {
         initComponents();
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents() throws SQLException {
 
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -38,18 +40,28 @@ public class PanVehicule extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "ID vehicule", "Type", "Statut", "Parking"
-            }
-        ));
+        
+        String url = "jdbc:mysql://localhost:3306/carbon5";
+        String user = "root";
+        String pwd = "";
+        Connection con = DriverManager.getConnection(url, user, pwd);
+        String queryString = "SELECT * FROM Car";
+        Statement stm = con.createStatement();
+        ResultSet rs = stm.executeQuery(queryString);
+        String col[] = {"Numero puce","Type de vehicule","Matricule"};
+        String cont[][] = new String[10][3];
+        int i = 0;
+        while (rs.next()){
+            String id = rs.getString("NumPuce");
+            String type = rs.getString("TypeVehicule");
+            String matricule = rs.getString("matricule");
+            cont[i][0] = id + "";
+            cont[i][1] = type + "";
+            cont[i][2] = matricule + "";
+            i++;
+        }
+        DefaultTableModel model = new DefaultTableModel(cont, col);
+        jTable1.setModel(model);
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

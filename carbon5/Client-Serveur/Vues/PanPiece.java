@@ -14,6 +14,10 @@ import javax.swing.JPanel;
 import Client.Controlleurs.ServerConnect;
 import Vues.PanAjoutPiece.BoutonListener;
 
+import java.sql.*;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Carbon5
@@ -23,13 +27,13 @@ public class PanPiece extends javax.swing.JPanel {
     /**
      * Creates new form PanPiece
      */
-    public PanPiece() {
+    public PanPiece() throws SQLException {
         initComponents();
     }
 
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents() throws SQLException {
 
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -39,17 +43,30 @@ public class PanPiece extends javax.swing.JPanel {
         jLabel1.setText("LISTE DES PIECES DETACHEES");
 
         jButton1.setText("Ajouter");
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "ID piece", "Nom de piece"
-            }
-        ));
+        
+        String url = "jdbc:mysql://localhost:3306/carbon5";
+        String user = "root";
+        String pwd = "";
+        Connection con = DriverManager.getConnection(url, user, pwd);
+        String queryString = "SELECT * FROM Part";
+        Statement stm = con.createStatement();
+        ResultSet rs = stm.executeQuery(queryString);
+        String col[] = {"ID","Stock","Nom de piece","Purchase price"};
+        String cont[][] = new String[10][4];
+        int i = 0;
+        while (rs.next()){
+            int id = rs.getInt("Id");
+            int stock = rs.getInt("Stock");
+            String nom = rs.getString("NamePart");
+            int price = rs.getInt("PurchasePrice");
+            cont[i][0] = id + "";
+            cont[i][1] = stock + "";
+            cont[i][2] = nom;
+            cont[i][3] = price + "";
+            i++;
+        }
+        DefaultTableModel model = new DefaultTableModel(cont, col);
+        jTable1.setModel(model);
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
