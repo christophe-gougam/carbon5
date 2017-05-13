@@ -48,17 +48,7 @@ public class PanStock extends javax.swing.JPanel {
             i++;
         }
         DefaultTableModel model = new DefaultTableModel(cont, col);
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "ID piece", "Nom du piece", "Stock actuel", "Derniere entree", "Derniere sortie"
-            }
-        ));
+        jTable1.setModel(model);
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setText("LE STOCK DES PIECES DETACHEES");
