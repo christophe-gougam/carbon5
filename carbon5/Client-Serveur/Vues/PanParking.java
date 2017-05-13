@@ -5,6 +5,10 @@
  */
 package Vues;
 
+import javax.swing.*;
+import java.sql.*;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Carbon5
@@ -14,7 +18,7 @@ public class PanParking extends javax.swing.JPanel {
     /**
      * Creates new form PanParking
      */
-    public PanParking() {
+    public PanParking() throws SQLException {
         initComponents();
     }
 
@@ -25,23 +29,33 @@ public class PanParking extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents() throws SQLException {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Num parking", "ID vehicule", "Statut vehicule"
-            }
-        ));
+        
+        String url = "jdbc:mysql://localhost:3306/carbon5";
+        String user = "root";
+        String pwd = "";
+        Connection con = DriverManager.getConnection(url, user, pwd);
+        String queryString = "SELECT * FROM Parking";
+        Statement stm = con.createStatement();
+        ResultSet rs = stm.executeQuery(queryString);
+        String col[] = {"Numero du parking","Nom du parking","Capacite"};
+        String cont[][] = new String[10][3];
+        int i = 0;
+        while (rs.next()){
+            int id = rs.getInt("NumParking");
+            String nom = rs.getString("NomParking");
+            int capacity = rs.getInt("Capacity");
+            cont[i][0] = id + "";
+            cont[i][1] = nom;
+            cont[i][2] = capacity + "";
+            i++;
+        }
+        DefaultTableModel model = new DefaultTableModel(cont, col);
+        jTable1.setModel(model);
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setText("PARKING");
