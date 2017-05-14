@@ -27,6 +27,7 @@ import Modele.Part;
 import Modele.TypeCar;
 import Modele.User;
 import Serveur.Controlleurs.Serveur;
+import java.sql.SQLException;
 
 /**
  *
@@ -60,7 +61,7 @@ public class IHM extends JFrame {
     String[] listContent = {"C1","C2","C3","C4","C5","C6","C7","C8","C9","C10","C11","C12","C13"};
     int indice = 0;
     
-    public IHM(){
+    public IHM() throws SQLException{
         this.setTitle("Main menu");
         this.setSize(600,600);
         this.setLocationRelativeTo(null);
@@ -186,7 +187,7 @@ public class IHM extends JFrame {
                 	Part.emptyCollection();
                 	ArrayList<String> data = new ArrayList<String>();
                 	String identifier = "SelectAllParts";
-                	logger.info("Récupération des pièces");
+                	logger.info("Rï¿½cupï¿½ration des piï¿½ces");
                 	new ServerConnect(data, identifier, pan2);
             	//}
             	pan2.add(new PanEntreeStock(), listContent[5]);
@@ -203,7 +204,7 @@ public class IHM extends JFrame {
                 	Part.emptyCollection();
                 	ArrayList<String> data = new ArrayList<String>();
                 	String identifier = "SelectAllParts";
-                	logger.info("Récupération des pièces");
+                	logger.info("Rï¿½cupï¿½ration des piï¿½ces");
                 	new ServerConnect(data, identifier, pan2);
             	//}
                 pan2.add(new PanAjoutPiece(), listContent[8]);
@@ -310,7 +311,7 @@ public class IHM extends JFrame {
         }
     }
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         IHM a = new IHM();
         a.revalidate();
     }

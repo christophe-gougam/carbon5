@@ -68,7 +68,7 @@ public class Connection{
 			out.println(json);
 			out.flush();
 			
-			logger.info("Reception du JSON envoyé du serveur");
+			logger.info("Reception du JSON envoyï¿½ du serveur");
 			String reponse = in.readLine();
 			try {
 				
@@ -114,7 +114,7 @@ public class Connection{
 	    		}
 	    		car = Car.unSerialize(result.get(1));
 	    		JOptionPane.showMessageDialog(frame, "Voiture "+car.getTypeVehicule()+ 
-	    									" ajoutée"+"\n"+"Date prévisionnelle="+result.get(2)+"\n");
+	    									" ajoutee"+"\n"+"Date previsionnelle="+result.get(2)+"\n");
 	    		
 			break;
 			
@@ -136,21 +136,21 @@ public class Connection{
 			
 			case "ModificationPartOK" : case "ModificationPartKO" : 
 				objet = new JSONObject(reponse);
-				logger.info("Afficage du resultat de mise à jour : ");
+				logger.info("Afficage du resultat de mise ï¿½ jour : ");
 		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
 			break;
 			case "DeletePartOK"	: case "DeletePartKO":
 				objet = new JSONObject(reponse);
-				logger.info("Afficage du resultat de mise à jour : ");
+				logger.info("Afficage du resultat de mise ï¿½ jour : ");
 		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
 			break;
 			case "SelectAllPartsOK":
 				objet = new JSONObject(reponse);
-				logger.info("Afficage du resultat de mise à jour : ");
+				logger.info("Afficage du resultat de mise ï¿½ jour : ");
 		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 		    	for (int i =0; i<tableau.getInt(1);i++){
@@ -188,14 +188,14 @@ public class Connection{
 		    break;
 			case "addEntryStockOK":	case "addEntryStockKO":
 				objet = new JSONObject(reponse);
-				logger.info("Afficage du resultat de mise à jour : ");
+				logger.info("Afficage du resultat de mise ï¿½ jour : ");
 		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
 			break;
 			case "addOutStockOK":	case "addOutStockKO":
 				objet = new JSONObject(reponse);
-				logger.info("Afficage du resultat de mise à jour : ");
+				logger.info("Afficage du resultat de mise ï¿½ jour : ");
 		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
