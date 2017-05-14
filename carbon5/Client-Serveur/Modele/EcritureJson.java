@@ -29,7 +29,7 @@ public class EcritureJson {
     	
     }
     
-    public static String writeJson(String identifier, ArrayList<String> datatypecar, ArrayList<String> datadefect){
+    public static String writeJson(String identifier, ArrayList<String> datatypecar, ArrayList<String> datadefect, ArrayList<String> Emplacement){
     	String identifier1 = identifier;
     	JSONObject json = new JSONObject();
     	
@@ -37,6 +37,7 @@ public class EcritureJson {
     		json.put("identifier", identifier1);
     		json.put("data", new JSONArray(datatypecar));
 			json.put("dataDefect", new JSONArray(datadefect));
+			json.put("placement", new JSONArray(Emplacement));
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

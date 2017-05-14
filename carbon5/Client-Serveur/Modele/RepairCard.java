@@ -1,6 +1,7 @@
 package Modele;
 
 import java.awt.List;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -349,8 +350,11 @@ public class RepairCard {
 		String numpuce = values.get(3).toString();
 		String matricule = values.get(4).toString();
 		String typevehic = values.get(5).toString();
-		String Loperation = values.get(6).toString();
-		Car car = new Car(numpuce,matricule,typevehic, Loperation);
+		Date Entrydate=null;
+		String Loperation = "";
+		int place=0;
+		Car car=new Car();
+		//Car car = new Car(numpuce, matricule,typevehic, Entrydate, Loperation, place);
 		//creating repairs, retrieving the number of repairs to create as many objects as necessary
 		int numObjRep = Integer.parseInt(values.get(5).toString());
 		int numIndice = numObjRep;
@@ -367,7 +371,7 @@ public class RepairCard {
 			numIndice +=2;
 		}
 		//creating object Place (referring to the parking)
-		Place park = new Place((int) values.get(numIndice), (int) values.get(numIndice+1), (boolean) values.get(numIndice+2));
+		Place park = new Place((int) values.get(numIndice), (boolean) values.get(numIndice+2), (int) values.get(numIndice+1));
 		numIndice +=3;
 		//creating objects for the various dates
 		Date num1 = (Date) values.get(numIndice); numIndice +=1;

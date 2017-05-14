@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 09 Mai 2017 à 20:56
+-- Généré le :  Dim 14 Mai 2017 à 16:18
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -30,8 +30,17 @@ CREATE TABLE `car` (
   `NumPuce` varchar(100) NOT NULL,
   `TypeVehicule` varchar(50) DEFAULT NULL,
   `matricule` varchar(50) DEFAULT NULL,
-  `ListeOperations` varchar(500) NOT NULL
+  `EntranceDate` date NOT NULL,
+  `ListeOperations` varchar(500) NOT NULL,
+  `Emplacement` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `car`
+--
+
+INSERT INTO `car` (`NumPuce`, `TypeVehicule`, `matricule`, `EntranceDate`, `ListeOperations`, `Emplacement`) VALUES
+('mldvjzpljajfpzfjv&²', 'c,zdsmlvmvl', 'Auto', '2017-05-14', '', 10001);
 
 -- --------------------------------------------------------
 
@@ -120,6 +129,14 @@ CREATE TABLE `parking` (
   `Capacity` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Contenu de la table `parking`
+--
+
+INSERT INTO `parking` (`NumParking`, `NomParking`, `Capacity`) VALUES
+(1, 'Vehicule entrant', 1000),
+(2, 'Vehicule repare', 1000);
+
 -- --------------------------------------------------------
 
 --
@@ -171,10 +188,18 @@ CREATE TABLE `partrepairs` (
 
 CREATE TABLE `place` (
   `NumPlace` int(11) NOT NULL,
-  `NumPark` int(11) DEFAULT NULL,
   `IsOccupied` tinyint(1) DEFAULT NULL,
-  `IdParking` int(11) DEFAULT NULL
+  `NumPark` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `place`
+--
+
+INSERT INTO `place` (`NumPlace`, `IsOccupied`, `NumPark`) VALUES
+(10001, 1, 1),
+(10005, 1, 2),
+(10007, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -360,7 +385,7 @@ ALTER TABLE `partrepairs`
 --
 ALTER TABLE `place`
   ADD PRIMARY KEY (`NumPlace`),
-  ADD KEY `fk_place` (`IdParking`);
+  ADD KEY `fk_place` (`NumPark`);
 
 --
 -- Index pour la table `repaircard`
@@ -422,7 +447,7 @@ ALTER TABLE `defect`
 -- AUTO_INCREMENT pour la table `parking`
 --
 ALTER TABLE `parking`
-  MODIFY `NumParking` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `NumParking` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `part`
 --
@@ -501,7 +526,7 @@ ALTER TABLE `partrepairs`
 -- Contraintes pour la table `place`
 --
 ALTER TABLE `place`
-  ADD CONSTRAINT `fk_place` FOREIGN KEY (`IdParking`) REFERENCES `parking` (`NumParking`);
+  ADD CONSTRAINT `fk_place` FOREIGN KEY (`NumPark`) REFERENCES `parking` (`NumParking`);
 
 --
 -- Contraintes pour la table `repaircard`

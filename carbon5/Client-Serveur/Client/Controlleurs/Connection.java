@@ -40,6 +40,7 @@ public class Connection{
 	private JSONArray tableautypecar;
 	private JSONArray tableau;
 	private JSONArray tableaudefect;
+	private JSONArray tableaudPlace;
 	User user;
 	Car car;
 	JPanel frame=null; 
@@ -165,6 +166,7 @@ public class Connection{
 		    	logger.info(reponse);
 		    	tableautypecar = objet.getJSONArray("data");
 		    	tableaudefect = objet.getJSONArray("dataDefect");
+		    	tableaudPlace = objet.getJSONArray("placement");
 		    	for (int i =0; i<tableautypecar.getInt(1);i++){
 		    		TypeCar atype = TypeCar.unSerialize(tableautypecar.getString(i+2));
 		    		if(!TypeCar.isInCollection(atype.getType())){
@@ -175,6 +177,12 @@ public class Connection{
 		    		Defect adefect = Defect.unSerialize(tableaudefect.getString(ii+1));
 		    		if(!Defect.isInCollection(adefect.getDescription())){
 		    			Defect.addPartToCo(adefect);
+		    		}	
+		    	}
+	    		for (int iii =0; iii<tableaudPlace.getInt(0);iii++){
+		    		Place aplace = Place.unSerialize(tableaudPlace.getString(iii+1));
+		    		if(!Place.isInCollection(aplace.getNumPlace())){
+		    			Place.addplaceToCo(aplace);
 		    		}	
 		    	}
 		    break;

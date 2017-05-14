@@ -8,17 +8,21 @@ package Vues;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Client.Controlleurs.ServerConnect;
 import Modele.Defect;
+import Modele.Place;
 import Modele.TypeCar;
 import Serveur.Controlleurs.Serveur;
 
@@ -55,6 +59,7 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
@@ -72,6 +77,8 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
         
         jLabel4.setText("Matricule");
         jLabel5.setText("Motif entree");
+               
+        jLabel6.setText("Date entrée:   "+LocalDate.now());
         jLabel8.setText("Place");
         
         DefaultComboBoxModel<String> modelCar = new DefaultComboBoxModel<String>();
@@ -90,6 +97,13 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
         
         jComboBox2.addActionListener(new ItemAction(this));
         
+        DefaultComboBoxModel<Integer> modelplace = new DefaultComboBoxModel<Integer>();
+        for (Place aPlace : Place.getAllplace()){
+        	
+        	modelplace.addElement(aPlace.getNumPlace());
+        }
+        jComboBox5 = new javax.swing.JComboBox<Integer>(modelplace);
+        
         jButton1.setText("Ajouter");
         jButton1.addActionListener(new BoutonListener(this));
         
@@ -106,6 +120,7 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
                     .addComponent(jLabel5)
                     .addComponent(jLabel)
                     .addComponent(jLabelviewpanne)
+                    .addComponent(jLabel6)
                     .addComponent(jLabel8)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -149,6 +164,7 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 		.addComponent(jLabel)
                 		.addComponent(jLabelviewpanne)
+                		.addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
@@ -167,13 +183,14 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox5;
+    private JComboBox<Integer> jComboBox5;
     private javax.swing.JList<String> jmotif;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel;
     private javax.swing.JLabel jLabelviewpanne;
     private javax.swing.JLabel jLabel8;
@@ -242,10 +259,12 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
     		String typeCar = ""+(String) jComboBox1.getSelectedItem()+"";
     		String numPuce = jTextField1.getText();
     		String matricule = jTextField2.getText();
+    		String place = ""+jComboBox5.getSelectedItem()+"";
     		ArrayList<String> data = new ArrayList<String>();
     		data.add(numPuce);
-    		data.add(matricule);
     		data.add(typeCar);
+    		data.add(matricule);
+    		data.add(place);
     		
     		for(String D: datapanne){
         		data.add(D);
