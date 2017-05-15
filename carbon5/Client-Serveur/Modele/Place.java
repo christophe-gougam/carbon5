@@ -15,11 +15,12 @@ public class Place {
     private int numPlace;
     private int numPark;
     private boolean isOccupied;
-    
+    private static ArrayList<Place> aplace= new ArrayList<Place>();
     /*
     Class constructor
     */
-    public Place(int numPlace,int numPark, boolean isOccupied){
+    public Place(int numPlace,boolean isOccupied, int numPark){
+        this.numPlace=numPlace;
         this.numPark = numPark;
         this.isOccupied = isOccupied;
     }
@@ -71,13 +72,39 @@ public class Place {
         this.isOccupied = newIsOccupied;
     }
     
+    public static ArrayList<Place> getAllplace(){
+		return aplace;
+	}
+	public static void setAllplace(ArrayList<Place> newplace){
+		aplace = newplace;
+	}
+	
+	public static void addplaceToCo(Place newplace){
+		aplace.add(newplace);
+	}
+	
+	public static boolean isInCollection(int numplac){
+		Boolean check = false;
+		for(Place atypeC: aplace){
+			if (atypeC.numPlace==numplac){
+				check = true;
+			}
+		}
+		return check;
+	}
+
+	public static void emptyCollection(){
+		
+		Place.aplace.clear();
+	}
+	
     /*
     * Method transform object place to String
     * @param place
     * @return String placeSerial
     */
     public static String serialize(Place place){
-    	String placeSerial = place.numPlace+"///"+place.numPark+"///"+place.isOccupied;
+    	String placeSerial = place.numPlace+"///"+place.isOccupied+"///"+place.numPark;
     	return placeSerial;
     }
     
@@ -92,9 +119,9 @@ public class Place {
 			values.add(retval);
 		}
                 int numPlace = Integer.parseInt(values.get(0).toString());
-                int numPark = Integer.parseInt(values.get(1).toString());
-                boolean isOccupied = Boolean.parseBoolean(values.get(2).toString());
-                Place place = new Place(numPlace, numPark, isOccupied);
+                int numPark = Integer.parseInt(values.get(2).toString());
+                boolean isOccupied = Boolean.parseBoolean(values.get(1).toString());
+                Place place = new Place(numPlace, isOccupied, numPark);
 		return place;
     }
 }

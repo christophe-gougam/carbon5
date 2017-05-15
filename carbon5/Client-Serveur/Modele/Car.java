@@ -5,6 +5,8 @@
  */
 package Modele;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -16,6 +18,8 @@ public class Car {
     private String matricule;
     private String TypeVehicule;
     private String listoperation;
+    private Date date;
+    private int place;
     
     private static ArrayList<Car> listCar = new ArrayList();
     
@@ -25,14 +29,29 @@ public class Car {
      * @param TypeVehicule 
      */
     public Car (){}
-    public Car (String numePuce, String matricule, String typevehicule, String listOp){
+    public Car (String numePuce, String typevehicule, String matricule, Date date, String listOp, int place){
         this.NumePuce = numePuce;
         this.matricule = matricule;
         this.TypeVehicule = typevehicule;
         this.listoperation=listOp;
+        this.date=date;
+        this.place=place;
     }
     
-    public String getListoperation() {
+    
+    public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	public int getPlace() {
+		return place;
+	}
+	public void setPlace(int place) {
+		this.place = place;
+	}
+	public String getListoperation() {
 		return listoperation;
 	}
 	public void setListoperation(String listoperation) {
@@ -100,7 +119,7 @@ public class Car {
      * @return String carSerial
      */
     public static String serialize(Car car){
-    	String carSerial = car.NumePuce+"///"+car.matricule+"///"+car.TypeVehicule+"///"+car.listoperation;
+    	String carSerial = car.NumePuce+"///"+car.TypeVehicule+"///"+car.matricule+"///"+car.date+"///"+car.listoperation+"///"+car.place;
     	return carSerial;
     }
     
@@ -114,7 +133,7 @@ public class Car {
 		for (String retval: serializedCar.split("///")){
 			values.add(retval);
 		}
-		Car car = new Car(String.valueOf(values.get(0)), String.valueOf(values.get(1)), String.valueOf(values.get(2)), String.valueOf(values.get(3)));
+		Car car = new Car(String.valueOf(values.get(0)), String.valueOf(values.get(1)), String.valueOf(values.get(2)), Date.valueOf(String.valueOf(values.get(3))), String.valueOf(values.get(4)), Integer.parseInt(values.get(5).toString()));
 		return car;
     }
     /**

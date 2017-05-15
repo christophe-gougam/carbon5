@@ -2,9 +2,11 @@ package Serveur.Controlleurs;
 
 import java.io.BufferedReader;
 
+
 import Modele.LectureJson;
 import Modele.Part;
 import Modele.PartDAO;
+import Modele.PlaceDAO;
 import Modele.TypeCar;
 import Modele.TypeCarDAO;
 import Modele.User;
@@ -50,12 +52,13 @@ public class CarController implements Runnable{
 	Connection con=null;
 	String matriculation = null;
 	String type = null;
-	String statut = null;
-	String parking = null;
 	String numP = null;
-	LocalDate date;
+	int place=0;
+	Date date;
+	LocalDate entranceDate;
 	ArrayList<String> data = new ArrayList<String>();
 	ArrayList<String> dataPanne = new ArrayList<String>();
+	ArrayList<String> allPlace = new ArrayList<String>();
 	String JsonMessage;
 	
 	/**
@@ -79,6 +82,7 @@ public class CarController implements Runnable{
 				CarDAO test = new CarDAO(con);
 				TypeCarDAO test1=new TypeCarDAO(con);
 				DefectDAO test2=new DefectDAO(con);
+				PlaceDAO test3=new PlaceDAO(con);
 				boolean ret = false;
 				try{
 					String identifier = LectureJson.Identifier(in);
@@ -92,20 +96,21 @@ public class CarController implements Runnable{
 						data=test1.getTypeCar();
 						data.add(0, "LoadAllComboBoxOK");
 						dataPanne=test2.getAllDefect();
+						allPlace=null;
+						allPlace=test3.getPlace();
 						
 					break;
 					
 					case("AjoutVehicule"):
 						numP=result.get(0);
-						matriculation = result.get(1);
-						type = result.get(2);
-						statut = "free";
-						parking = "1";
-						
+						type = result.get(1);
+						matriculation = result.get(2);
+						entranceDate=LocalDate.now();
+						place=Integer.parseInt(result.get(3));
 						String listPane= "";
 						
 						ArrayList<String> listePanneEntrance= new ArrayList<String>();
-						for(int t=3; t<result.size(); t++){
+						for(int t=4; t<result.size(); t++){
 							listePanneEntrance.add(result.get(t));
 								listPane+=result.get(t)+"|";
 						}
@@ -129,13 +134,13 @@ public class CarController implements Runnable{
 						cc.setTime(dat); 
 						cc.add(Calendar.DATE, repairTime);
 						dat = cc.getTime();
-						logger.info("\n"+"Date previsionnelle  : "+dat+"\n");
-						Car car=new Car(numP, matriculation, type, listPane);
-						ret=test.addCar(car);
+						Car car=new Car(numP, type, matriculation, java.sql.Date.valueOf(entranceDate), listPane, place);
+						ret=test.addCar(car, entranceDate);
 						if (ret){
 							data.add("OKCarInput");
-							Car c=new Car(numP, type, matriculation, listPane);
-							data.add(Car.serialize(c));
+							test3.updatePlace(place);
+							logger.info("\n"+"Date previsionnelle  : "+dat+"\n");
+							data.add(Car.serialize(car));
 							data.add(String.valueOf(dat));
 						}else{
 							data.add("KOCarInput");
@@ -166,7 +171,7 @@ public class CarController implements Runnable{
 				out.flush();
 			break;
 			case("LoadAllComboBoxOK"):
-				JsonMessage = EcritureJson.writeJson(data.get(0), data, dataPanne);
+				JsonMessage = EcritureJson.writeJson(data.get(0), data, dataPanne, allPlace);
 				logger.info("Sending list of type car to Client");
 				logger.info(JsonMessage);
 				out.println(JsonMessage);

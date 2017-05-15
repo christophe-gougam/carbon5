@@ -1,9 +1,11 @@
 package Modele;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
@@ -18,6 +20,9 @@ import Serveur.Controlleurs.Serveur;
  *
  */
 public class CarDAO extends DAO<Car>{
+	String listop = null;
+	Date Entrydate;
+	int place=0;
 	
 	public CarDAO(Connection conn) {
 		super(conn);
@@ -32,14 +37,13 @@ public class CarDAO extends DAO<Car>{
 	 * @param numP
 	 * @return dataResult containing serialized car
 	 */
-	public static ArrayList<String> getCar(Connection con, String numP){
+	public ArrayList<String> getCar(Connection con, String numP){
 		Connection cn = con;
 		Statement st = null;
 		ResultSet rs = null;
 		String numPuce = null;
 		String matricule = null;
 		String typeVehicule = null;
-		String listop = null;
 		ArrayList<String> dataResult = new ArrayList();
 		
 		try{
@@ -54,11 +58,13 @@ public class CarDAO extends DAO<Car>{
 				numPuce = rs.getString("NumPuce");
 				matricule = rs.getString("matricule");
 				typeVehicule = rs.getString("typeVehicule");
+				Entrydate=rs.getDate("Date entree");
 				listop=rs.getString("ListeOperations");
+				place=rs.getInt("Emplacement");
 				
 			}
-			Car.addToCollection(new Car(numPuce,matricule,typeVehicule, listop));
-			dataResult.add(Car.serialize(new Car(numPuce,matricule, typeVehicule, listop)));
+			Car.addToCollection(new Car(numPuce,typeVehicule, matricule, Entrydate, listop, place));
+			dataResult.add(Car.serialize(new Car(numPuce,typeVehicule, matricule, Entrydate, listop, place)));
 			logger.info("Retrieved data from bdd");
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -73,18 +79,21 @@ public class CarDAO extends DAO<Car>{
 	 * @param type
 	 * @return dataResult confirming addition of car
 	 */
-	public boolean addCar(Car car){
-		
+	public boolean addCar(Car car, LocalDate dat){
+		Date date = java.sql.Date.valueOf(dat);
         try{
         	java.sql.PreparedStatement prepare = this.connect
                     .prepareStatement(
-                    		"INSERT INTO car(NumPuce,TypeVehicule,matricule, ListeOperations) VALUES(?, ?, ?, ?)"
+                    		"INSERT INTO car(NumPuce,TypeVehicule,matricule, EntranceDate, ListeOperations, Emplacement) VALUES(?, ?, ?, ?, ?, ?)"
                      );
 
 			prepare.setString(1, car.getNumePuce());
 			prepare.setString(2, car.getTypeVehicule());
 			prepare.setString(3, car.getMatricule());
-			prepare.setString(4, car.getListoperation());
+			prepare.setDate(4, date);
+			prepare.setString(5, car.getListoperation());
+			prepare.setInt(6, car.getPlace());
+			logger.info(car.getNumePuce()+"  "+car.getTypeVehicule()+"  "+date+"  "+car.getListoperation()+"  "+car.getPlace());
 			prepare.executeUpdate();
 			return true;
 			
@@ -99,7 +108,7 @@ public class CarDAO extends DAO<Car>{
 	 * @param con
 	 * @return dataResult containing all serialized car
 	 */
-	public static ArrayList<String> getAllCars(Connection con){
+	public ArrayList<String> getAllCars(Connection con){
 		
 		Connection cn = con;
 		Statement st = null;
@@ -122,9 +131,11 @@ public class CarDAO extends DAO<Car>{
 				numPuce = rs.getString("NumPuce");
 				matricule = rs.getString("matricule");
 				typeVehicule = rs.getString("typeVehicule");
+				Entrydate=rs.getDate("Date entree");
 				listop=rs.getString("ListeOperations");
-				Car.addToCollection(new Car(numPuce,matricule,typeVehicule, listop));
-				dataResult.add(Car.serialize(new Car(numPuce,matricule, typeVehicule, listop)));
+				place=rs.getInt("Emplacement");
+				Car.addToCollection(new Car(numPuce,typeVehicule, matricule, Entrydate, listop, place));
+				dataResult.add(Car.serialize(new Car(numPuce,typeVehicule, matricule, Entrydate, listop, place)));
 			}
 			logger.info("Retrieved data from bdd");
 		}catch(SQLException e){

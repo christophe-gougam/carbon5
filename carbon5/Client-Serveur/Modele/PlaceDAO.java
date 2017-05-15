@@ -22,6 +22,40 @@ public class PlaceDAO extends DAO<Place>{
 		// TODO Auto-generated constructor stub
 	}
 
+    
+    
+    public ArrayList<String> getPlace(){
+        ArrayList<String> allplace = new ArrayList<String>();
+	    try {
+		        ResultSet result = this .connect
+		                                .createStatement(
+		                                            ResultSet.TYPE_SCROLL_INSENSITIVE, 
+		                                            ResultSet.CONCUR_UPDATABLE
+		                                         ).executeQuery(
+		                                            "SELECT * FROM place where IsOccupied="+false 
+		                                         );
+		        Place.emptyCollection();
+		        
+		        while(result.next()){
+		        	
+		        	Place.addplaceToCo(new Place(
+							result.getInt("NumPlace"),
+							result.getBoolean("IsOccupied"),     
+		        			result.getInt("NumPark")));
+		        }
+	       	}
+	        catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+		    //Getting number of place
+	    	allplace.add(String.valueOf(Place.getAllplace().size()));
+		  	for(Place typeC : Place.getAllplace()){
+		  		//adding parts
+		  		allplace.add(Place.serialize(typeC));
+		  	}
+		    return allplace;
+	}
+    
     /**
      * Allows to delete an entry from the database
      * @param obj
@@ -75,23 +109,19 @@ public ArrayList<String> create(Place obj) {
      * @param obj
      * @return true
      */
-    @Override
-    public boolean update(Place obj) {
+    public void updatePlace(int obj) {
             try {	
-        this .connect	
-             .createStatement(
-                ResultSet.TYPE_SCROLL_INSENSITIVE, 
-                ResultSet.CONCUR_UPDATABLE
-             ).executeUpdate(
-                "UPDATE place SET NumPlace = '" + obj.getNumPlace() + "'"+
-                "NumPark ='" + obj.getNumPark() + "' " +
-                "IsOccupied ='" + obj.getIsOccupied() + "' " +
-                " WHERE NumPlace = " + obj.getNumPlace()
-             );
-    } catch (SQLException e) {
+		        this .connect	
+		             .createStatement(
+		                ResultSet.TYPE_SCROLL_INSENSITIVE, 
+		                ResultSet.CONCUR_UPDATABLE
+		             ).executeUpdate(
+		                "UPDATE place SET IsOccupied = " + true+
+		                " WHERE NumPlace = " + obj
+		             );
+            }catch (SQLException e) {
             e.printStackTrace();
-    }
-    return true;
+            }
     }
 
     /**
@@ -107,13 +137,21 @@ public ArrayList<String> create(Place obj) {
                                             ResultSet.TYPE_SCROLL_INSENSITIVE, 
                                             ResultSet.CONCUR_UPDATABLE
                                          ).executeQuery(
-                                            "SELECT * FROM place" 
+                                            "SELECT * FROM place where IsOccupied=" 
                                          );
         if(result.first())
-                    ud = new Place(result.getInt("NumPlace"), result.getInt("NumPark"), result.getBoolean("IsOccupied")); 
+                    ud = new Place(result.getInt("NumPlace"), result.getBoolean("IsOccupied"), result.getInt("NumPark")); 
     } catch (SQLException e) {
             e.printStackTrace();
     }
     return ud;
     }
+
+
+
+	@Override
+	public boolean update(Place obj) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
