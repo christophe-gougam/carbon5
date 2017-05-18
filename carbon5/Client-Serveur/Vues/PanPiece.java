@@ -41,6 +41,7 @@ public class PanPiece extends javax.swing.JPanel {
 
         jLabel1.setText("LISTE DES PIECES DETACHEES");
         
+        try{
         String url = "jdbc:mysql://localhost:3306/carbon5";
         String user = "root";
         String pwd = "";
@@ -90,6 +91,9 @@ public class PanPiece extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
                 .addContainerGap())
         );
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }// </editor-fold>//GEN-END:initComponents
 
 
