@@ -7,9 +7,10 @@ package Vues;
 
 import javax.swing.*;
 import java.sql.*;
-import javax.swing.table.DefaultTableModel;
-
-import Vues.IHM;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Vector;
+import javax.swing.table.AbstractTableModel;
 /**
  *
  * @author Carbon5
@@ -21,6 +22,7 @@ public class PanVehicule extends javax.swing.JPanel {
      */
     public PanVehicule() throws SQLException {
         initComponents();
+        this.fillTable();
     }
 
     @SuppressWarnings("unchecked")
@@ -30,30 +32,10 @@ public class PanVehicule extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-
+        jButton = new javax.swing.JButton("Actualiser"); 
+            
         jLabel1.setText("LISTE DES VEHICULES");
-        
-        String url = "jdbc:mysql://localhost:3306/carbon5";
-        String user = "root";
-        String pwd = "";
-        Connection conn = DriverManager.getConnection(url, user, pwd);
-        String queryString = "SELECT * FROM Car";
-        Statement stm = conn.createStatement();
-        ResultSet rs = stm.executeQuery(queryString);
-        String col[] = {"Numero puce","Type de vehicule","Matricule"};
-        String cont[][] = new String[10][3];
-        int i = 0;
-        while (rs.next()){
-            String id = rs.getString("NumPuce");
-            String type = rs.getString("TypeVehicule");
-            String matricule = rs.getString("matricule");
-            cont[i][0] = id + "";
-            cont[i][1] = type + "";
-            cont[i][2] = matricule + "";
-            i++;
-        }
-        DefaultTableModel model = new DefaultTableModel(cont, col);
-        jTable1.setModel(model);
+        jButton.addActionListener(new BoutonListener());
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -63,11 +45,11 @@ public class PanVehicule extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        ))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
+                        .addComponent(jButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -75,22 +57,116 @@ public class PanVehicule extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    )
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
-                .addContainerGap())
+                    .addComponent(jButton)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    /**
+     * Method listens button "Actualiser"
+     */
+    class BoutonListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try{
+            String url = "jdbc:mysql://localhost:3306/carbon5";
+            String user = "root";
+            String pwd = "";
+            Connection connect = DriverManager.getConnection(url, user, pwd);
+            String queryString = "SELECT NumPuce,TypeVehicule,matricule FROM Car";
+            Statement stm = connect.createStatement();
+            ResultSet rs = stm.executeQuery(queryString);
+            RsTableModel model = new RsTableModel(rs);
+            JTable jTableA = new JTable();
+            jTableA.setModel(model);
+            jScrollPane1.setViewportView(jTableA);
+            model.setData();
+            } catch (Exception eve){
+            eve.printStackTrace();
+            }
+        }
+    }
+    
+    /**
+     * Class create model for table 
+     */
+    class RsTableModel extends AbstractTableModel {
+        private Vector colHeaders;
+        private Vector tbData;
+        
+        /**
+         * Class constructor
+         * @param rsData
+         * @throws SQLException 
+         */
+        public RsTableModel(ResultSet rsData) throws SQLException {
+            ResultSetMetaData rsMeta = rsData.getMetaData();
+            int count = rsMeta.getColumnCount();
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+            tbData = new Vector();
+            colHeaders = new Vector(count);
 
+            for(int i = 1; i <= count; i++){
+                colHeaders.addElement(rsMeta.getColumnName(i));
+            }
 
+            while (rsData.next()){
+                Vector dataRow = new Vector(count);
+                for(int i = 1; i <= count; i++){
+                    dataRow.addElement(rsData.getObject(i));
+                }
+                tbData.addElement(dataRow);
+            }
+        }
+        @Override
+        public String getColumnName(int column) {
+            return  (String) (colHeaders.elementAt(column));
+        }
+        
+        @Override
+        public int getRowCount() { return tbData.size(); }
+
+        @Override
+        public int getColumnCount() { return colHeaders.size(); }
+
+        @Override
+        public Object getValueAt(int row, int column) {
+            Vector rowData = (Vector)(tbData.elementAt(row));
+            return rowData.elementAt(column);
+        }
+        
+        public void setData(){
+        super.fireTableDataChanged();
+        }
+    }
+    
+    /**
+     * Method fill data to table
+     * @throws SQLException 
+     */
+    protected void fillTable() throws SQLException{
+        try{
+            String url = "jdbc:mysql://localhost:3306/carbon5";
+            String user = "root";
+            String pwd = "";
+            Connection connect = DriverManager.getConnection(url, user, pwd);
+            String queryString = "SELECT NumPuce,TypeVehicule,matricule FROM Car";
+            Statement stm = connect.createStatement();
+            ResultSet rs = stm.executeQuery(queryString);
+            RsTableModel model = new RsTableModel(rs);
+            this.jTable1.setModel(model);
+            model.setData();
+        } catch (Exception e){
+            e.printStackTrace();
+        }   
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton jButton;
     // End of variables declaration//GEN-END:variables
 }
