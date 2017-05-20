@@ -28,6 +28,7 @@ import Modele.TypeCar;
 import Modele.User;
 import Serveur.Controlleurs.Serveur;
 import java.sql.SQLException;
+import java.util.logging.Level;
 
 /**
  *
@@ -133,10 +134,7 @@ public class IHM extends JFrame {
         
         
         pan2.add(new PanPiece(), listContent[7]);
-        
-
         pan2.add(new PanVehicule(), listContent[10]);
-        
     }
     
     /*

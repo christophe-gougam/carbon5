@@ -38,7 +38,7 @@ public class PanStock extends javax.swing.JPanel {
         Statement stm = con1.createStatement();
         ResultSet rs = stm.executeQuery(queryString);
         String col[] = {"Nom de piece","Stock réel"};
-        String cont[][] = new String[10][2];
+        String cont[][] = new String[40][2];
         int i = 0;
         while (rs.next()){
             int stock = rs.getInt("Stock");
