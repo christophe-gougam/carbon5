@@ -73,7 +73,7 @@ public class PanPiece extends javax.swing.JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             try{
-                String url = "jdbc:mysql://localhost:3306/carbon5";
+            String url = "jdbc:mysql://localhost:3306/carbon5";
             String user = "root";
             String pwd = "";
             Connection connect = DriverManager.getConnection(url, user, pwd);
@@ -160,7 +160,6 @@ public class PanPiece extends javax.swing.JPanel {
             RsTableModel model = new RsTableModel(rs);
             this.jTable1.setModel(model);
             model.setData();
-//            model.fireTableChanged(null);
         } catch (Exception e){
             e.printStackTrace();
         }   
