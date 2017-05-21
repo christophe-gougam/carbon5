@@ -25,10 +25,8 @@ import org.apache.log4j.Logger;
 import Client.Controlleurs.ServerConnect;
 import Modele.Part;
 import Modele.TypeCar;
-import Modele.User;
 import Serveur.Controlleurs.Serveur;
 import java.sql.SQLException;
-import java.util.logging.Level;
 
 /**
  *
@@ -59,12 +57,12 @@ public class IHM extends JFrame {
     private String[] l3 = {"Ajouter", "Modifier"};
     
     CardLayout cl = new CardLayout();
-    String[] listContent = {"C1","C2","C3","C4","C5","C6","C7","C8","C9","C10","C11","C12","C13"};
+    String[] listContent = {"C1","C2","C3","C4","C5","C6","C7","C8","C9","C10","C11","C12","C13","C14"};
     int indice = 0;
     
     public IHM() throws SQLException{
         this.setTitle("Main menu");
-        this.setSize(600,600);
+        this.setSize(600, 600);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
@@ -79,19 +77,25 @@ public class IHM extends JFrame {
         pan1.add(bouton3);
         pan1.add(bouton4);
         pan1.add(bouton5);
+        
         liste1 = new JList(l1);
         liste1.setBackground(Color.orange);
         liste1.setVisible(false);
+        
         pan1.add(liste1);
         pan1.add(bouton6);
+        
         liste2 = new JList(l2);
         liste2.setBackground(Color.orange);
         liste2.setVisible(false);
+        
         pan1.add(liste2);
         pan1.add(bouton7);
+        
         liste3 = new JList(l3);
         liste3.setBackground(Color.orange);
         liste3.setVisible(false);
+        
         pan1.add(liste3);
         pan1.add(bouton8);
         
@@ -135,6 +139,8 @@ public class IHM extends JFrame {
         
         pan2.add(new PanPiece(), listContent[7]);
         pan2.add(new PanVehicule(), listContent[10]);
+        
+        pan2.add(new PanStat(), listContent[13]);
     }
     
     /*
@@ -230,9 +236,11 @@ public class IHM extends JFrame {
             }
             if(e.getSource() == bouton8){
                 //code
+                cl.show(pan2, listContent[13]);
                 liste1.setVisible(false);
                 liste2.setVisible(false);
                 liste3.setVisible(false);
+                pan.revalidate();
             }
         }  
     }
