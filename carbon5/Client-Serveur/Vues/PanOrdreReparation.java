@@ -5,6 +5,10 @@
  */
 package Vues;
 
+import org.apache.log4j.Logger;
+
+import Serveur.Controlleurs.Serveur;
+
 /**
  *
  * @author Carbon5
@@ -27,6 +31,11 @@ public class PanOrdreReparation extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+    	
+    	// TODO : recupération depuis la liste static dans RepairCard,
+    	// 		  affichage des véhicules dans un tableau
+    	//        ajout des champs de préférence indif et veto et enregistrement en base
+    	//        récup des préférences et ajout dans les champs modifiables
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -67,6 +76,21 @@ public class PanOrdreReparation extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
                 .addContainerGap())
         );
+        
+        dayCriteria = new javax.swing.JLabel();
+        timeCriteria = new javax.swing.JLabel();
+        indif = new javax.swing.JLabel();
+        veto = new javax.swing.JLabel();
+        
+        dayCriteria.setText("Jours passés dans le dépôt");
+        timeCriteria.setText("Temps de réparation");
+        indif.setText("Indifférence");
+        veto.setText("Véto");
+        
+        indifDays = new javax.swing.JTextField();
+        vetoDays = new javax.swing.JTextField();
+        indifTime = new javax.swing.JTextField();
+        vetoTime = new javax.swing.JTextField();
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -74,5 +98,19 @@ public class PanOrdreReparation extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    
+    private javax.swing.JLabel dayCriteria;
+    private javax.swing.JLabel timeCriteria;
+    private javax.swing.JLabel indif;
+    private javax.swing.JLabel veto;
+    
+    private javax.swing.JTextField indifDays;
+    private javax.swing.JTextField vetoDays;
+    private javax.swing.JTextField indifTime;
+    private javax.swing.JTextField vetoTime;
+    
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    final static Logger logger = Logger.getLogger(Serveur.class);
     // End of variables declaration//GEN-END:variables
 }

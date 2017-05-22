@@ -16,15 +16,17 @@ public class Defect {
     private int id;
     private int duration;
     private Part partForRepair;
+    private int criticity;
 
 	private static ArrayList<Defect> panne= new ArrayList<Defect>();
     /*
     Class constructor
     */
-    public Defect(int id, String description, Part partForRep){
+    public Defect(int id, String description, Part partForRep, int criticity){
     	this.id = id;
         this.description = description;
         this.partForRepair = partForRep;
+        this.criticity = criticity;
     }
     
     public Defect(int id, String description, int time){
@@ -84,6 +86,14 @@ public class Defect {
     
     public void setPartForRepairs(Part thePart){
     	this.partForRepair = thePart;
+    }
+    
+    public int getCriticity(){
+    	return this.criticity;
+    }
+    
+    public void setCriticity(int crit){
+    	this.criticity = crit;
     }
     
 	public static ArrayList<Defect> getAllDefect(){

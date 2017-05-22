@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 14 Mai 2017 à 16:18
--- Version du serveur :  5.7.14
+-- Généré le :  Dim 21 Mai 2017 à 12:22
+-- Version du serveur :  5.7.17-log
 -- Version de PHP :  5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `carbon5`
+-- Base de données :  `carbontestnew`
 --
 
 -- --------------------------------------------------------
@@ -56,22 +56,6 @@ CREATE TABLE `carddefect` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `preferences`
---
-
-CREATE TABLE `preferences` (
-  `id` int(11) NOT NULL,
-  `indifDays` float DEFAULT NULL,
-  `vetoDays` float DEFAULT NULL,
-  `indifTimeRep` float DEFAULT NULL,
-  `vetoTimeRep` float DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
-
-
---
 -- Structure de la table `cardrepairs`
 --
 
@@ -100,17 +84,19 @@ CREATE TABLE `cardstate` (
 CREATE TABLE `defect` (
   `Id` int(11) NOT NULL,
   `Description` text,
-  `RepairTime` int(100) NOT NULL
+  `RepairTime` int(100) NOT NULL,
+  `criticity` int(11) DEFAULT NULL,
+  `partForRepair` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `defect`
 --
 
-INSERT INTO `defect` (`Id`, `Description`, `RepairTime`) VALUES
-(1, 'Frein', 2),
-(2, 'Levier', 1),
-(3, 'Pneu', 0);
+INSERT INTO `defect` (`Id`, `Description`, `RepairTime`, `criticity`, `partForRepair`) VALUES
+(1, 'Frein', 2, NULL, NULL),
+(2, 'Levier', 1, NULL, NULL),
+(3, 'Pneu', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -171,8 +157,29 @@ CREATE TABLE `part` (
 --
 
 INSERT INTO `part` (`Id`, `Stock`, `NamePart`, `PurchasePrice`) VALUES
-(1, 25, 'moteur', 25),
-(2, 10, 'test', 2);
+(1, 23, 'moteur', 25),
+(2, 0, 'test', 2),
+(3, 1, 'pneu', 24),
+(4, 19, 'lampe', 10),
+(5, 51, 'retroviseur', 10),
+(6, 24, 'pedale', 20),
+(7, 1, 'chaine', 6),
+(8, 14, 'roue', 2),
+(9, 1, 'frein', 50),
+(10, 1, 'porte', 36),
+(11, 1, 'antenne', 49),
+(12, 1, 'piston', 102),
+(13, 1, 'vitrine', 21),
+(14, 1, 'test', 24),
+(15, 1, 'ghost', 22),
+(16, 1, 'fast', 56),
+(17, 1, 'aller', 8),
+(18, 1, 'cac', 5),
+(19, 1, 'volant', 45),
+(21, 1, 'cle', 2),
+(23, 1, 'porte baggage', 9),
+(24, 1, 'baterie', 200),
+(26, 1, 'fils electrique', 15);
 
 -- --------------------------------------------------------
 
@@ -216,6 +223,20 @@ INSERT INTO `place` (`NumPlace`, `IsOccupied`, `NumPark`) VALUES
 (10001, 1, 1),
 (10005, 1, 2),
 (10007, 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `preferences`
+--
+
+CREATE TABLE `preferences` (
+  `id` int(11) NOT NULL,
+  `indifDays` float DEFAULT NULL,
+  `vetoDays` float DEFAULT NULL,
+  `indifTimeRep` float DEFAULT NULL,
+  `vetoTimeRep` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -361,7 +382,8 @@ ALTER TABLE `cardstate`
 -- Index pour la table `defect`
 --
 ALTER TABLE `defect`
-  ADD PRIMARY KEY (`Id`);
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `fk_part` (`partForRepair`);
 
 --
 -- Index pour la table `orderpart`
@@ -516,6 +538,12 @@ ALTER TABLE `carddefect`
 ALTER TABLE `cardrepairs`
   ADD CONSTRAINT `fk_Card_CardRepair` FOREIGN KEY (`IdCard`) REFERENCES `repaircard` (`Id`),
   ADD CONSTRAINT `fk_Repairs_CardRepair` FOREIGN KEY (`IdRepair`) REFERENCES `repairs` (`Id`);
+
+--
+-- Contraintes pour la table `defect`
+--
+ALTER TABLE `defect`
+  ADD CONSTRAINT `fk_part` FOREIGN KEY (`partForRepair`) REFERENCES `part` (`Id`);
 
 --
 -- Contraintes pour la table `orderpart`

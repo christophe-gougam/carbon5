@@ -24,6 +24,7 @@ import org.apache.log4j.Logger;
 
 import Client.Controlleurs.ServerConnect;
 import Modele.Part;
+import Modele.User;
 import Modele.TypeCar;
 import Serveur.Controlleurs.Serveur;
 import java.sql.SQLException;
@@ -138,8 +139,11 @@ public class IHM extends JFrame {
         
         
         pan2.add(new PanPiece(), listContent[7]);
-        pan2.add(new PanVehicule(), listContent[10]);
         
+
+        pan2.add(new PanVehicule(), listContent[10]);
+        pan2.add(new PanAjoutVehicule(), listContent[11]);
+        pan2.add(new PanModifVehicule(), listContent[12]);
         pan2.add(new PanStat(), listContent[13]);
     }
     
@@ -191,7 +195,7 @@ public class IHM extends JFrame {
                 	Part.emptyCollection();
                 	ArrayList<String> data = new ArrayList<String>();
                 	String identifier = "SelectAllParts";
-                	logger.info("Rï¿½cupï¿½ration des piï¿½ces");
+                	logger.info("Récupération des pièces");
                 	new ServerConnect(data, identifier, pan2);
             	//}
             	pan2.add(new PanEntreeStock(), listContent[5]);
@@ -208,7 +212,7 @@ public class IHM extends JFrame {
                 	Part.emptyCollection();
                 	ArrayList<String> data = new ArrayList<String>();
                 	String identifier = "SelectAllParts";
-                	logger.info("Rï¿½cupï¿½ration des piï¿½ces");
+                	logger.info("Récupération des pièces");
                 	new ServerConnect(data, identifier, pan2);
             	//}
                 pan2.add(new PanAjoutPiece(), listContent[8]);
