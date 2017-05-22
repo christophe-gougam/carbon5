@@ -70,6 +70,11 @@ public class LectureJson {
 	case("SelectAllParts"):
 		logger.info("retrieving all parts");
 	break;
+	case("Search"):
+		logger.info("retrieving car info");
+		result.add(tableau.getString(0));
+		System.out.print(", PUce=" + tableau.getString(0)+"\n");
+	break;
 	case("LoadAllComboBox"):
 		logger.info("retrieving all typeCar");
 	break;

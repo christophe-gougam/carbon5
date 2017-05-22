@@ -3,6 +3,7 @@ package Serveur.Controlleurs;
 import java.io.BufferedReader;
 
 
+
 import Modele.LectureJson;
 import Modele.Part;
 import Modele.PartDAO;
@@ -13,6 +14,8 @@ import Modele.User;
 import Modele.UserDAO;
 import Modele.Car;
 import Modele.CarDAO;
+import Modele.CardState;
+import Modele.CardStateDAO;
 import Modele.Defect;
 import Modele.DefectDAO;
 import Modele.EcritureJson;
@@ -59,6 +62,7 @@ public class CarController implements Runnable{
 	ArrayList<String> data = new ArrayList<String>();
 	ArrayList<String> dataPanne = new ArrayList<String>();
 	ArrayList<String> allPlace = new ArrayList<String>();
+	ArrayList<Car> Carinfo = new ArrayList<Car>();
 	String JsonMessage;
 	
 	/**
@@ -83,12 +87,24 @@ public class CarController implements Runnable{
 				TypeCarDAO test1=new TypeCarDAO(con);
 				DefectDAO test2=new DefectDAO(con);
 				PlaceDAO test3=new PlaceDAO(con);
+				CardStateDAO test4= new CardStateDAO(con);
 				boolean ret = false;
 				try{
 					String identifier = LectureJson.Identifier(in);
 					ArrayList<String> result = LectureJson.LectureFichier(in);
 					switch(identifier){
 					
+					case("Search"):
+						Carinfo=test.getCar(result.get(0));
+						if(Carinfo.get(0).getNumePuce().equalsIgnoreCase(result.get(0)))
+						{
+							data.add("SearchOK");
+							data.add(Car.serialize(Carinfo.get(0)));
+						}
+						else
+							data.add(0, "SearchKO");
+						
+					break;
 					
 					case("LoadAllComboBox"):
 						//TODO:
@@ -103,6 +119,8 @@ public class CarController implements Runnable{
 					break;
 					
 					case("AjoutVehicule"):
+						//String status=test4.getCardState();
+						String status="En attente";
 						numP=result.get(0);
 						type = result.get(1);
 						matriculation = result.get(2);
@@ -135,6 +153,7 @@ public class CarController implements Runnable{
 						cc.setTime(dat); 
 						cc.add(Calendar.DATE, repairTime);
 						dat = cc.getTime();
+						
 						Car car=new Car(numP, type, matriculation, java.sql.Date.valueOf(entranceDate), listPane, place);
 						ret=test.addCar(car, entranceDate);
 						if (ret){
@@ -174,6 +193,21 @@ public class CarController implements Runnable{
 			case("LoadAllComboBoxOK"):
 				JsonMessage = EcritureJson.writeJson(data.get(0), data, dataPanne, allPlace);
 				logger.info("Sending list of type car to Client");
+				logger.info(JsonMessage);
+				out.println(JsonMessage);
+				out.flush();
+			break;
+			
+			case("SearchOK"):
+				JsonMessage = EcritureJson.WriteJson("SearchOK", data);
+				logger.info("Sending  car info to Client");
+				logger.info(JsonMessage);
+				out.println(JsonMessage);
+				out.flush();
+			break;
+			case("SearchKO"):
+				JsonMessage = EcritureJson.WriteJson("SearchKO", data);
+				logger.info("Sending error to Client");
 				logger.info(JsonMessage);
 				out.println(JsonMessage);
 				out.flush();
