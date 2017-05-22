@@ -5,10 +5,13 @@
  */
 package Vues;
 
+import Client.Controlleurs.ServerConnect;
+import static Vues.PanAjoutPiece.logger;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -37,7 +40,7 @@ public class PanPiece extends javax.swing.JPanel {
         
         jLabel1.setText("LISTE DES PIECES DETACHEES");     
         
-        jButton.addActionListener(new BoutonListener());
+        jButton.addActionListener(new BoutonListener(this));
         jScrollPane1.setViewportView(jTable1);
         
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -70,24 +73,33 @@ public class PanPiece extends javax.swing.JPanel {
      * Method listens button "Actualiser"
      */
     class BoutonListener implements ActionListener{
+        JPanel frame = null;
+        
+        public BoutonListener(JPanel f){
+            JPanel frame = f;
+        }
         @Override
         public void actionPerformed(ActionEvent e) {
-            try{
-            String url = "jdbc:mysql://localhost:3306/carbon5";
-            String user = "root";
-            String pwd = "";
-            Connection connect = DriverManager.getConnection(url, user, pwd);
-            String queryString = "SELECT * FROM Part";
-            Statement stm = connect.createStatement();
-            ResultSet rs = stm.executeQuery(queryString);
-            RsTableModel model = new RsTableModel(rs);
-            JTable jTableA = new JTable();
-            jTableA.setModel(model);
-            jScrollPane1.setViewportView(jTableA);
-            model.setData();
-            } catch (Exception eve){
-            eve.printStackTrace();
-            }
+//            try{  	
+        	ArrayList<String> data = new ArrayList();
+        	String identifier = "SelectAllParts";
+        	logger.info("Afficher liste des pieces");
+        	new ServerConnect(data, identifier, frame);
+//            String url = "jdbc:mysql://localhost:3306/carbon5";
+//            String user = "root";
+//            String pwd = "";
+//            Connection connect = DriverManager.getConnection(url, user, pwd);
+//            String queryString = "SELECT * FROM Part";
+//            Statement stm = connect.createStatement();
+//            ResultSet rs = stm.executeQuery(queryString);
+//            RsTableModel model = new RsTableModel(rs);
+//            JTable jTableA = new JTable();
+//            jTableA.setModel(model);
+//            jScrollPane1.setViewportView(jTableA);
+//            model.setData();
+//            } catch (Exception eve){
+//            eve.printStackTrace();
+//            }
         }
     }
     
