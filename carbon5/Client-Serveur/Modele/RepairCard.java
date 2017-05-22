@@ -1,7 +1,7 @@
 package Modele;
 
 import java.awt.List;
-
+import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,6 +16,10 @@ import java.util.TreeMap;
 import org.apache.log4j.Logger;
 
 import Serveur.Controlleurs.Serveur;
+
+import Modele.Preferences;
+import Modele.PreferencesDAO;
+import Serveur.Controlleurs.ConnectionPool;
 
 /**
  * 
@@ -63,6 +67,10 @@ public class RepairCard {
 		this.outDate = out;
 		this.overAllDetails = details;
 		this.user = user;
+	}
+	
+	public RepairCard(){
+		
 	}
 	
 	public static ArrayList<RepairCard> getWaitList(){
@@ -279,26 +287,192 @@ public class RepairCard {
 	 * Method to determine the order for repairs, executed each time a repairCard is added to the waitList
 	 */
 	public static void determineWaitList(){
-		//algorithm determining order for waitList
-		//criterias: entryDate, parts available, number of defects, (urgencyDegree?)
+		//algorithm determining order for waitList with ELECTRE method
+		//criterias: entryDate, parts available, time for repair, criticity
 		
-		//implementing sorting of Map with time since arrival as criteria
-		SortedMap<RepairCard, Integer> timeCriteria = new TreeMap<RepairCard, Integer>();
-		//implementing sorting of Map with number of Defect as criteria
-		SortedMap<RepairCard, Integer> numberOfDefects = new TreeMap<RepairCard, Integer>();
-		//implement sorting of Map with date as criteria
-		SortedMap<RepairCard, Boolean> availableParts = new TreeMap<RepairCard, Boolean>();
-	    
-		for(RepairCard aVehicule:waitList){
-			timeCriteria.put(aVehicule, aVehicule.timeWaiting(aVehicule.entryDate));
-			availableParts.put(aVehicule, aVehicule.availableParts());
-			numberOfDefects.put(aVehicule, aVehicule.getDefects().size());
+		waitList.removeAll(getWaitList());
+		
+		//create list car with parts for repairs available (prioritized) and not available
+		ArrayList<RepairCard> partsNotAvailable = new ArrayList<RepairCard>();
+		//fill list with DAO query
+		
+		ArrayList<RepairCard> partsAvailable = new ArrayList<RepairCard>();
+		//fill list with DAO query
+		
+		//get all preferences fort prioritizing
+		PreferencesDAO test = new PreferencesDAO(ConnectionPool.getConnectionFromPool());
+		ArrayList<String> prefsStr = test.getAllPreferences();
+		Preferences prefs = new Preferences(Integer.parseInt(prefsStr.get(0).toString()), Float.parseFloat(prefsStr.get(1).toString()), Float.parseFloat(prefsStr.get(1).toString()), Float.parseFloat(prefsStr.get(1).toString()), Float.parseFloat(prefsStr.get(1).toString()));
+		
+		Array[] globalConcordance = RepairCard.getGlobalConcordanceMatrix(partsAvailable, prefs);
+		Array[] globalDiscordance = RepairCard.getGlobalDiscordanceMatrix(partsAvailable, prefs);
+		
+		RepairCard.getFinalDecision(globalConcordance, globalDiscordance, partsAvailable);
+		
+		Array[] globalConcordanceNotAvailable = RepairCard.getGlobalConcordanceMatrix(partsNotAvailable, prefs);
+		Array[] globalDiscordanceNotAvailable = RepairCard.getGlobalConcordanceMatrix(partsNotAvailable, prefs);
+		
+		RepairCard.getFinalDecision(globalConcordanceNotAvailable, globalDiscordanceNotAvailable, partsNotAvailable);
+		
+		System.out.println("Finished prioritizing");
+	}
+	
+	public static void getFinalDecision(Array[] globalConcordance, Array[] globalDiscordance, ArrayList<RepairCard> list){
+		ArrayList<RepairCard> finalOrder = new ArrayList<RepairCard>();
+		
+		Array[] finalMatrix = new Array[list.size()];
+		for (int i=0; i<list.size(); i++){
+			for (int j=0; j<list.size(); j++){
+				finalMatrix[i][j] = globalConcrodance[i][j]*(1-globalDiscordance[i][j]);
+			}
 		}
 		
-		//sort all SortedMaps and passing them through th algorithm to set order of repairs
+		for (double lambda=0.9; lambda<0.1; lambda+0.1){
+			boolean prioritary = true;
+			
+			for (int i=0; i<list.size(); i++){
+				for (int j=0; j<list.size(); j++){
+					if(finalMatrix[j][i]=< lambda){
+						prioritary = false;
+					}
+				}
+				if(prioritary){
+					if(!waitList.contains(list.get(i))){
+						waitList.add(list.get(i));
+						for (int j=0; j<list.size(); j++){
+								finalMatrix[i][j] = 2;
+								finalMatrix[j][i] = 2;
+						}
+					}				
+				}
+			}
+		}
+	}
+	
+	public static Array[] getGlobalDiscordanceMatrix(ArrayList<RepairCard> list, Preferences prefs){
+		Array[] matrixDate = new Array[list.size()];
+		for (int i=0; i<list.size(); i++){
+			matrixDate[i] = new Array[list.size()];
+			for (int j=0; j<list.size(); j++){
+				if(list.get(i).timeWaiting(list.get(i).getEntryDate()) <= list.get(j).timeWaiting(list.get(j).getEntryDate()) + prefs.getVetoDays()){
+					matrixDate[i][j] = 1;
+				}else{
+					matrixDate[i][j] = 0;
+				}
+				
+			}
+		}
+		
+		Array[] matrixTimeRep = new Array[list.size()];
+		for (int i=0; i<list.size(); i++){
+			matrixTimeRep[i] = new Array[list.size()];
+			float timeRep = 0;
+			float timeRep2 = 0;
+			for (Defect aDef: list.get(i).getDefects()){
+				timeRep += aDef.getduration(); 
+			}			
+			 
+			for (int j=0; j<list.size(); j++){
+				for (Defect aDef: list.get(j).getDefects()){
+					timeRep2 += aDef.getduration(); 
+				}
+				if(timeRep <= timeRep2 + prefs.getVetoTimeRep()){
+					matrixTimeRep[i][j] = 1;
+				}else{
+					matrixTimeRep[i][j] = 0;
+				}
+			}
+		}
+		
+//		Array[] matrixCriticity = new ArrayList[list.size()];
+//		for (int i=0; i<list.size(); i++){
+//			matrixCriticity[i] = new Array[list.size()];
+//			float criticity = 0;
+//			float criticity2 = 0;
+//			for (Defect aDef: list.get(i).getDefects()){
+//				criticity += aDef.getCriticity();
+//			}			
+//			 
+//			for (int j=0; j<list.size(); j++){
+//				for (Defect aDef: list.get(j).getDefects()){
+//					criticity2 += aDef.getCriticity(); 
+//				}
+//				if(criticity <= criticity2){
+//					matrixCriticity[i][j] = 1;
+//				}else{
+//					matrixCriticity[i][j] = 0;
+//				}
+//			}
+//		}
+		
+		//fill Global Concordance matrix with info from all criterias
+		Array[] matrixGlobal = new Array[list.size()];
 		
 		
+		return matrixGlobal;
+	}
+	
+	public static Array[] getGlobalConcordanceMatrix(ArrayList<RepairCard> list, Preferences prefs){
+		Array[] matrixDate = new Array[list.size()];
+		for (int i=0; i<list.size(); i++){
+			matrixDate[i] = new Array[list.size()];
+			for (int j=0; j<list.size(); j++){
+				if(list.get(i).timeWaiting(list.get(i).getEntryDate()) <= list.get(j).timeWaiting(list.get(j).getEntryDate()) + prefs.getIndifDays()){
+					matrixDate[i][j] = 1;
+				}else{
+					matrixDate[i][j] = 0;
+				}
+				
+			}
+		}
 		
+		Array[] matrixTimeRep = new Array[list.size()];
+		for (int i=0; i<list.size(); i++){
+			matrixTimeRep[i] = new Array[list.size()];
+			float timeRep = 0;
+			float timeRep2 = 0;
+			for (Defect aDef: list.get(i).getDefects()){
+				timeRep += aDef.getduration(); 
+			}			
+			 
+			for (int j=0; j<list.size(); j++){
+				for (Defect aDef: list.get(j).getDefects()){
+					timeRep2 += aDef.getduration(); 
+				}
+				if(timeRep <= timeRep2 + prefs.getIndifTimeRep()){
+					matrixTimeRep[i][j] = 1;
+				}else{
+					matrixTimeRep[i][j] = 0;
+				}
+			}
+		}
+		
+		Array[] matrixCriticity = new ArrayList[list.size()];
+		for (int i=0; i<list.size(); i++){
+			matrixCriticity[i] = new Array[list.size()];
+			float criticity = 0;
+			float criticity2 = 0;
+			for (Defect aDef: list.get(i).getDefects()){
+				criticity += aDef.getCriticity();
+			}			
+			 
+			for (int j=0; j<list.size(); j++){
+				for (Defect aDef: list.get(j).getDefects()){
+					criticity2 += aDef.getCriticity(); 
+				}
+				if(criticity <= criticity2){
+					matrixCriticity[i][j] = 1;
+				}else{
+					matrixCriticity[i][j] = 0;
+				}
+			}
+		}
+		
+		//fill Global Concordance matrix with info from all criterias
+		Array[] matrixGlobal = new Array[list.size()];
+		
+		
+		return matrixGlobal;
 	}
 	
 	/**
@@ -367,11 +541,11 @@ public class RepairCard {
 		int numObjDefect = Integer.parseInt(values.get(numIndice).toString());
 		ArrayList<Defect> def = new ArrayList();
 		for (int i = 0;i<numObjDefect;i++){
-			def.add(new Defect(Integer.parseInt(values.get(numIndice).toString()),(String) values.get(numIndice+1), Integer.parseInt(values.get(numIndice).toString())));
+			def.add(new Defect(Integer.parseInt(values.get(numIndice).toString()),(String) values.get(numIndice+1)));
 			numIndice +=2;
 		}
 		//creating object Place (referring to the parking)
-		Place park = new Place((int) values.get(numIndice), (boolean) values.get(numIndice+2), (int) values.get(numIndice+1));
+		Place park = new Place((int) values.get(numIndice), (int) values.get(numIndice+1), (boolean) values.get(numIndice+2));
 		numIndice +=3;
 		//creating objects for the various dates
 		Date num1 = (Date) values.get(numIndice); numIndice +=1;

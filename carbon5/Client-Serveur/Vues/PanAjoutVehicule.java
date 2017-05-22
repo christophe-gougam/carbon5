@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Client.Controlleurs.ServerConnect;
+import Modele.User;
 import Modele.Defect;
 import Modele.Place;
 import Modele.TypeCar;
