@@ -98,6 +98,7 @@ public class CarController implements Runnable{
 						dataPanne=test2.getAllDefect();
 						allPlace=null;
 						allPlace=test3.getPlace();
+						test.getAllCars();
 						
 					break;
 					

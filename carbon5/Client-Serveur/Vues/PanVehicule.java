@@ -6,17 +6,25 @@
 package Vues;
 
 import javax.swing.*;
+
 import java.sql.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 import javax.swing.table.AbstractTableModel;
+
+import org.apache.log4j.Logger;
+
+import Modele.Car;
+import Serveur.Controlleurs.Serveur;
 /**
  *
  * @author Carbon5
  */
 public class PanVehicule extends javax.swing.JPanel {
+	ResultSet car=null;
 
+    final static Logger logger = Logger.getLogger(Serveur.class);
     /**
      * Creates new form PanVehicule
      */
@@ -71,21 +79,17 @@ public class PanVehicule extends javax.swing.JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             try{
-            String url = "jdbc:mysql://localhost:3306/carbon5";
-            String user = "root";
-            String pwd = "";
-            Connection connect = DriverManager.getConnection(url, user, pwd);
-            String queryString = "SELECT NumPuce,TypeVehicule,matricule FROM Car";
-            Statement stm = connect.createStatement();
-            ResultSet rs = stm.executeQuery(queryString);
-            RsTableModel model = new RsTableModel(rs);
-            JTable jTableA = new JTable();
-            jTableA.setModel(model);
-            jScrollPane1.setViewportView(jTableA);
-            model.setData();
-            } catch (Exception eve){
-            eve.printStackTrace();
-            }
+            	for(ResultSet i: Car.getAllCar()){
+                	car=i;
+                }
+            	RsTableModel model = new RsTableModel(car);
+	            JTable jTableA = new JTable();
+	            jTableA.setModel(model);
+	            jScrollPane1.setViewportView(jTableA);
+	            model.setData();
+	            } catch (Exception eve){
+	            eve.printStackTrace();
+	            }
         }
     }
     
@@ -148,14 +152,12 @@ public class PanVehicule extends javax.swing.JPanel {
      */
     protected void fillTable() throws SQLException{
         try{
-            String url = "jdbc:mysql://localhost:3306/carbon5";
-            String user = "root";
-            String pwd = "";
-            Connection connect = DriverManager.getConnection(url, user, pwd);
-            String queryString = "SELECT NumPuce,TypeVehicule,matricule FROM Car";
-            Statement stm = connect.createStatement();
-            ResultSet rs = stm.executeQuery(queryString);
-            RsTableModel model = new RsTableModel(rs);
+        	logger.info("hello\n"+Car.getAllCar().size()+"Après\n");
+            for(ResultSet i: Car.getAllCar()){
+            	car=i;
+            	
+            }
+            RsTableModel model = new RsTableModel(car);
             this.jTable1.setModel(model);
             model.setData();
         } catch (Exception e){

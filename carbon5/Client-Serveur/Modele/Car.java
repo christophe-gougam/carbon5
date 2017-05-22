@@ -6,6 +6,7 @@
 package Modele;
 
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -21,8 +22,8 @@ public class Car {
     private Date date;
     private int place;
     
-    private static ArrayList<Car> listCar = new ArrayList();
-    
+    private static ArrayList<Car> listCar = new ArrayList<Car>();
+    private static ArrayList<ResultSet> AllCar = new ArrayList<ResultSet>();
     /**
      * Class constructor
      * @param NumePuce;
@@ -82,7 +83,7 @@ public class Car {
     }
     
     /**
-     * Method set matricule
+     * Method set Matricule
      * @param newMatricule
      */
     public void setMatricule(String newMatricule){
@@ -109,6 +110,13 @@ public class Car {
     	listCar.add(aCar);
     }
     
+    public static void addCarToCo(ResultSet newCar){
+		AllCar.clear();
+		AllCar.add(newCar);
+	}
+    public static ArrayList<ResultSet> getAllCar(){
+		return AllCar;
+	}
     public static void removeFromCollection(Car aCar){
     	listCar.remove(aCar);
     }
@@ -129,7 +137,7 @@ public class Car {
      * @return object car
      */
     public static Car unSerialize(String serializedCar){
-    	ArrayList values = new ArrayList();
+    	ArrayList<String> values = new ArrayList<String>();
 		for (String retval: serializedCar.split("///")){
 			values.add(retval);
 		}
