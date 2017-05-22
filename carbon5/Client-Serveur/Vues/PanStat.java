@@ -7,7 +7,7 @@ package Vues;
 
 /**
  *
- * @author CongThuan
+ * @author Carbon5
  */
 public class PanStat extends javax.swing.JPanel {
     /**
