@@ -23,7 +23,6 @@ public class CarDAO extends DAO<Car>{
 	String listop = null;
 	Date Entrydate;
 	int place=0;
-	
 	public CarDAO(Connection conn) {
 		super(conn);
 		// TODO Auto-generated constructor stub
@@ -108,40 +107,22 @@ public class CarDAO extends DAO<Car>{
 	 * @param con
 	 * @return dataResult containing all serialized car
 	 */
-	public ArrayList<String> getAllCars(Connection con){
+	public void getAllCars(){
+
 		
-		Connection cn = con;
-		Statement st = null;
-		ResultSet rs = null;
-		String numPuce = null;
-		String matricule = null;
-		String typeVehicule = null;
-		String listop = null;
-		ArrayList<String> dataResult = new ArrayList();
+		try {
+            ResultSet result = this .connect
+                                    .createStatement(
+                                            	ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                                ResultSet.CONCUR_UPDATABLE
+                                             ).executeQuery(
+                                                "SELECT NumPuce, Matricule, typeVehicule FROM car"
+                                             );
+            Car.addCarToCo(result);
+        } catch (SQLException e) {
+                e.printStackTrace();
+        }
 		
-		try{
-			st = cn.createStatement();
-			logger.info("Statement created");
-			//request to give to database to see if user exists and retrieve its information
-			String request = "SELECT NumPuce, Matricule, typeVehicule FROM Car";
-			rs = st.executeQuery(request);
-			logger.info("Query execution");
-			//
-			while(rs.next()){
-				numPuce = rs.getString("NumPuce");
-				matricule = rs.getString("matricule");
-				typeVehicule = rs.getString("typeVehicule");
-				Entrydate=rs.getDate("Date entree");
-				listop=rs.getString("ListeOperations");
-				place=rs.getInt("Emplacement");
-				Car.addToCollection(new Car(numPuce,typeVehicule, matricule, Entrydate, listop, place));
-				dataResult.add(Car.serialize(new Car(numPuce,typeVehicule, matricule, Entrydate, listop, place)));
-			}
-			logger.info("Retrieved data from bdd");
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-		return dataResult;
 	}
 	
 	/**

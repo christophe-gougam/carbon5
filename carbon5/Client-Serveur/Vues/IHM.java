@@ -26,6 +26,7 @@ import Client.Controlleurs.ServerConnect;
 import Modele.Part;
 import Modele.User;
 import Modele.TypeCar;
+import Modele.Car;
 import Serveur.Controlleurs.Serveur;
 import java.sql.SQLException;
 
@@ -48,13 +49,13 @@ public class IHM extends JFrame {
     private JButton bouton7 = new JButton("Vehicule");
     private JButton bouton8 = new JButton("Statistique");    
     
-    private JList liste1;
+    private JList<?> liste1;
     private String[] l1 = {"Entree","Sortie"};
     
-    private JList liste2;
+    private JList<?> liste2;
     private String[] l2 = {"Ajouter", "Modifier"};
     
-    private JList liste3;
+    private JList<?> liste3;
     private String[] l3 = {"Ajouter", "Modifier"};
     
     CardLayout cl = new CardLayout();
@@ -229,7 +230,6 @@ public class IHM extends JFrame {
             	String identifier = "LoadAllComboBox";
             	logger.info("Chargement des listes deroulantes");
             	new ServerConnect(data, identifier, pan2);
-            	
             	pan2.add(new PanAjoutVehicule(), listContent[11]);
                 pan2.add(new PanModifVehicule(), listContent[12]);
             	cl.show(pan2, listContent[10]);

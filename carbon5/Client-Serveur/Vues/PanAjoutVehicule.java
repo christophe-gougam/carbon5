@@ -6,22 +6,18 @@
 package Vues;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Client.Controlleurs.ServerConnect;
-import Modele.User;
 import Modele.Defect;
 import Modele.Place;
 import Modele.TypeCar;

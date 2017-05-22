@@ -80,7 +80,7 @@ public class DefectDAO extends DAO<Defect>{
                                             	ResultSet.TYPE_SCROLL_INSENSITIVE, 
                                                 ResultSet.CONCUR_UPDATABLE
                                              ).executeQuery(
-                                                "SELECT * FROM defect"
+                                                "SELECT Id, Description, RepairTime FROM defect"
                                              );
             
             while(result.next()){
