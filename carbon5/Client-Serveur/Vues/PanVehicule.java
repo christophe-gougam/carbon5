@@ -152,7 +152,7 @@ public class PanVehicule extends javax.swing.JPanel {
      */
     protected void fillTable() throws SQLException{
         try{
-        	logger.info("hello\n"+Car.getAllCar().size()+"Après\n");
+        	
             for(ResultSet i: Car.getAllCar()){
             	car=i;
             	

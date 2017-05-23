@@ -1,15 +1,50 @@
 package Modele;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class RepairCardDAO extends DAO<RepairCard>{
+	
 	public RepairCardDAO(Connection conn) {
         super(conn);
     }
+	
+	/**
+     * Creates an entry in the database relative to an object
+     * @param obj
+     * @return true
+     */
+	public boolean create(RepairCard obj, Date dat) {
+        try{
+        	java.sql.PreparedStatement prepare = this.connect
+                    .prepareStatement(
+                    		"INSERT INTO repaircard(IdDegree,IdCard,IdCar, IdParkPlace, EntryDate, OUtDate, OverAllDetails, IdUser) "
+                    		+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?)"
+                     );
+
+        	prepare.setInt(1, 1);
+        	prepare.setInt(2, obj.getidcard());
+        	prepare.setInt(3, obj.getidcar());
+        	prepare.setInt(4, obj.getidparkplace());
+        	prepare.setDate(5, dat);
+        	prepare.setDate(6, obj.getOutDate());
+			prepare.setString(7, obj.getOverAllDetails());
+			prepare.setInt(8, obj.getuserId());
+			
+			prepare.executeUpdate();
+			return true;
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	
     public ArrayList<String> getAllRepairCard(){
     	
     ArrayList<String> repCards = new ArrayList<String>();
@@ -48,6 +83,13 @@ public class RepairCardDAO extends DAO<RepairCard>{
      * Allows to retrieve a part via it's name
      * @return part
      */
+
+	@Override
+	public RepairCard find() {
+		// TODO Auto-generated method stub
+		return null;
+	} 
+	
     public RepairCard find(String name) {
         RepairCard part = new RepairCard();
         try {
@@ -58,90 +100,13 @@ public class RepairCardDAO extends DAO<RepairCard>{
                                              ).executeQuery(
                                                 "SELECT * FROM part where NamePart='"+name +"'"
                                              );
-            if(result.first())
-            		part = new Part(
-            							result.getString("Id"),
-                                        result.getInt("stock"),
-                                        result.getString("namePart"), 
-                                        result.getFloat("purchasePrice")
-                        );            
+            if(result.first());            
         } catch (SQLException e) {
                 e.printStackTrace();
         }
         return part;
     }
     
-    /**
-     * Creates an entry in the database relative to an object
-     * @param obj
-     * @return true
-     */
-    @Override
-    public ArrayList<String> create(Part obj) {
-    	ArrayList<String> queryResult = new ArrayList<String>();
-    	try {
-          java.sql.PreparedStatement prepare = this.connect
-                                                   .prepareStatement(
-                                                    "INSERT INTO part (Stock, NamePart, PurchasePrice) VALUES(?, ?, ?)"
-                                                    );
-
-          prepare.setInt(1, obj.getStock());
-          prepare.setString(2, obj.getNamePart());
-          prepare.setFloat(3, obj.getPurchasePrice());
-
-          prepare.executeUpdate();
-          //obj = this.find();
-          
-          String message = "CreatePartOK";
-          queryResult.add(message);
-          
-        } catch (SQLException e) {
-                e.printStackTrace();
-                queryResult.add("CreatePartKO");
-        }
-        return queryResult;
-    }
-
-     /**
-      * Allows to update the data of an entry in the database
-      * @param obj
-      * @return true
-      */
-    @Override
-    public boolean update(Part obj) {
-        try {	
-            if (obj.getStock()!=1){
-            	this .connect	
-                 .createStatement(
-                    ResultSet.TYPE_SCROLL_INSENSITIVE, 
-                    ResultSet.CONCUR_UPDATABLE
-                 ).executeUpdate(
-                    "UPDATE part SET Stock ='" + obj.getStock() + "', " +
-                    "PurchasePrice ='" + obj.getPurchasePrice() + "' " +
-                    " WHERE NamePart = '" + obj.getNamePart()+ "' "
-                 );
-            	return true;
-            }
-            else{
-            	this .connect	
-                .createStatement(
-                   ResultSet.TYPE_SCROLL_INSENSITIVE, 
-                   ResultSet.CONCUR_UPDATABLE
-                ).executeUpdate(
-                   "UPDATE part SET "+
-                   "NamePart ='" + obj.getNamePart() + "', " +
-                   "PurchasePrice ='" + obj.getPurchasePrice() + "' " +
-                   " WHERE Id = " + obj.getIdPart()
-                );
-            	return true;
-            }
-            		
-        } catch (SQLException e) {
-                e.printStackTrace();
-                return false;
-        }
-        
-    }
 
     /**
      * Allows to delete an entry from the database
@@ -201,9 +166,52 @@ public class RepairCardDAO extends DAO<RepairCard>{
         }
     }
 
+    
+    /**
+     * Allows to update the data of an entry in the database
+     * @param obj
+     * @return true
+     */
+  
 	@Override
-	public Part find() {
+	public boolean update(RepairCard obj) {
+		try {	
+            if (obj.getStock()!=1){
+            	this .connect	
+                 .createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                    ResultSet.CONCUR_UPDATABLE
+                 ).executeUpdate(
+                    "UPDATE part SET Stock ='" + obj.getStock() + "', " +
+                    "PurchasePrice ='" + obj.getPurchasePrice() + "' " +
+                    " WHERE NamePart = '" + obj.getNamePart()+ "' "
+                 );
+            	return true;
+            }
+            else{
+            	this .connect	
+                .createStatement(
+                   ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                   ResultSet.CONCUR_UPDATABLE
+                ).executeUpdate(
+                   "UPDATE part SET "+
+                   "NamePart ='" + obj.getNamePart() + "', " +
+                   "PurchasePrice ='" + obj.getPurchasePrice() + "' " +
+                   " WHERE Id = " + obj.getIdPart()
+                );
+            	return true;
+            }
+            		
+        } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+        }
+        
+    }
+
+	@Override
+	public ArrayList<String> create(RepairCard obj) {
 		// TODO Auto-generated method stub
 		return null;
-	} 
+	}
 }

@@ -176,6 +176,10 @@ public class Connection{
 			case "SearchKO":
 				JOptionPane.showMessageDialog(frame, "Cette référence ne correspond pas à un aucun vehicule");
 		    break;
+		    
+			case "CarNotExist":
+				JOptionPane.showMessageDialog(frame, "Ce vehivule existe pas, contacter votre administrateur");
+		    break;
 			case "LoadAllComboBoxOK" :
 				objet = new JSONObject(reponse);
 				logger.info("Afficage du resultat");

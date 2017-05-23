@@ -8,6 +8,8 @@ import Modele.LectureJson;
 import Modele.Part;
 import Modele.PartDAO;
 import Modele.PlaceDAO;
+import Modele.RepairCard;
+import Modele.RepairCardDAO;
 import Modele.TypeCar;
 import Modele.TypeCarDAO;
 import Modele.User;
@@ -34,14 +36,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.swing.JOptionPane;
 
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.json.JSONException;
-
-import java.io.PrintWriter;
 
 /**
  * Class CarController runs operation for car 
@@ -84,6 +85,7 @@ public class CarController implements Runnable{
 	public void run() {
 		
 				CarDAO test = new CarDAO(con);
+				RepairCardDAO test5 = new RepairCardDAO(con);
 				TypeCarDAO test1=new TypeCarDAO(con);
 				DefectDAO test2=new DefectDAO(con);
 				PlaceDAO test3=new PlaceDAO(con);
@@ -119,8 +121,9 @@ public class CarController implements Runnable{
 					break;
 					
 					case("AjoutVehicule"):
-						//String status=test4.getCardState();
-						String status="En attente";
+						String status="Attente";
+						int userid=0;
+						
 						numP=result.get(0);
 						type = result.get(1);
 						matriculation = result.get(2);
@@ -133,7 +136,6 @@ public class CarController implements Runnable{
 							listePanneEntrance.add(result.get(t));
 								listPane+=result.get(t)+"|";
 						}
-						
 						int repairTime=0;
 						ArrayList<Defect> defaut= new ArrayList<Defect>();
 						defaut=test2.searchDefect();
@@ -148,23 +150,56 @@ public class CarController implements Runnable{
 							}
 			    		}
 						//date = LocalDate.now();
-						Date dat = new Date();
-						Calendar cc = Calendar.getInstance(); 
-						cc.setTime(dat); 
-						cc.add(Calendar.DATE, repairTime);
-						dat = cc.getTime();
+//						Date dat = new Date();
+//						Calendar cc = Calendar.getInstance(); 
+//						cc.setTime(dat); 
+//						cc.add(Calendar.DATE, repairTime);
+//						dat = cc.getTime();
 						
-						Car car=new Car(numP, type, matriculation, java.sql.Date.valueOf(entranceDate), listPane, place);
-						ret=test.addCar(car, entranceDate);
-						if (ret){
+						LocalDate dat;
+						dat=entranceDate.plusDays(repairTime);
+						
+						///verifier le type date et adapter
+						
+						
+						
+						///recuperer le id user
+						User testUser = test.auth(login, mdp);
+						if(testUser.getFirstName() != null){
+							data.add("GrantAuth");
+							data.add(User.serialize(testUser));
+						}else{
+							data.add("Erreur de mot de passe");
+						}
+						
+						
+						
+						
+						
+						
+						RepairCard carinfo=new RepairCard(1, Integer.parseInt(numP), place, java.sql.Date.valueOf(dat), listPane, userid);
+						//RepairCard carinfo=new RepairCard();
+						Carinfo=test.getCar(numP);
+						if(Carinfo.get(0).getNumePuce().equalsIgnoreCase(numP))
+						{
+							
+							ret=test5.create(carinfo,  java.sql.Date.valueOf(entranceDate));
+							
+							if (ret){
+						
 							data.add("OKCarInput");
 							test3.updatePlace(place);
-							logger.info("\n"+"Date previsionnelle  : "+dat+"\n");
-							data.add(Car.serialize(car));
-							data.add(String.valueOf(dat));
-						}else{
-							data.add("KOCarInput");
+							//data.add(Car.serialize(carinfo));
+							data.add(String.valueOf(java.sql.Date.valueOf(dat)));
+							}else{
+								data.add("KOCarInput");
+							}
 						}
+						//a brancher
+						else{
+							data.add("CarNotExist");
+						}
+
 					break;
 					}
 					
@@ -207,6 +242,13 @@ public class CarController implements Runnable{
 			break;
 			case("SearchKO"):
 				JsonMessage = EcritureJson.WriteJson("SearchKO", data);
+				logger.info("Sending error to Client");
+				logger.info(JsonMessage);
+				out.println(JsonMessage);
+				out.flush();
+			break;
+			case("CarNotExist"):
+				JsonMessage = EcritureJson.WriteJson("CarNotExist", data);
 				logger.info("Sending error to Client");
 				logger.info(JsonMessage);
 				out.println(JsonMessage);

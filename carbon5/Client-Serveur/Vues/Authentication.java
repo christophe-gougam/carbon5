@@ -20,6 +20,7 @@ import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
 import Client.Controlleurs.ServerConnect;
+import Modele.User;
 import Serveur.Controlleurs.Serveur;
 import Vues.Authentication;
 
@@ -29,6 +30,7 @@ import Vues.Authentication;
  */
 public class Authentication extends JFrame {
 	final static Logger logger = Logger.getLogger(Serveur.class);
+	
 	private JPanel container = new JPanel();
     private JTextField jtf = new JTextField();
     private JLabel label = new JLabel("Login");

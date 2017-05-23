@@ -23,7 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
+import Vues.Authentication;
 import Client.Controlleurs.ServerConnect;
 import Modele.Defect;
 import Modele.Place;
@@ -85,7 +85,7 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
         jButton3 = new JButton();
         Commentaires=new JTextArea();
 
-        jLabel1.setText("AJOUTER DU VEHICULE");
+        jLabel1.setText("AJOUTER UN VEHICULE");
         jLabel.setText("Liste motif :");
         jLabel2.setText("Num puce");
 
