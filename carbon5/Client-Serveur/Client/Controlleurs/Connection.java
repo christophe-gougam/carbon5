@@ -21,6 +21,7 @@ import Vues.Fenetre;
 import Vues.IHM;
 import Modele.*;
 import Serveur.Controlleurs.Serveur;
+import java.sql.ResultSet;
 
 /**
  * Class Connection creating the connection
@@ -164,10 +165,17 @@ public class Connection{
 				objet = new JSONObject(reponse);
 				logger.info("Afficage du resultat");
 		    	logger.info(reponse);
+                        tableau = objet.getJSONArray("allCar");
 		    	tableautypecar = objet.getJSONArray("data");
 		    	tableaudefect = objet.getJSONArray("dataDefect");
 		    	tableaudPlace = objet.getJSONArray("placement");
-		    	for (int i =0; i<tableautypecar.getInt(1);i++){
+		    	for (int k =0; k<tableau.getInt(0);k++){
+		    		Car aCar = Car.unSerialize(tableau.getString(k+1));
+		    		if(!Car.isInCollection(aCar.getNumePuce())){
+		    			Car.addCarToCo(aCar);
+		    		}
+                        }
+                        for (int i =0; i<tableautypecar.getInt(1);i++){
 		    		TypeCar atype = TypeCar.unSerialize(tableautypecar.getString(i+2));
 		    		if(!TypeCar.isInCollection(atype.getType())){
 		    			TypeCar.addPartToCo(atype);

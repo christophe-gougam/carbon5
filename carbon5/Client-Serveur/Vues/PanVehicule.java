@@ -5,6 +5,7 @@
  */
 package Vues;
 
+import Client.Controlleurs.ServerConnect;
 import javax.swing.*;
 
 import java.sql.*;
@@ -16,13 +17,16 @@ import javax.swing.table.AbstractTableModel;
 import org.apache.log4j.Logger;
 
 import Modele.Car;
+import Modele.Part;
 import Serveur.Controlleurs.Serveur;
+import static Vues.PanAjoutPiece.logger;
+import java.util.ArrayList;
 /**
  *
  * @author Carbon5
  */
 public class PanVehicule extends javax.swing.JPanel {
-	ResultSet car=null;
+//	ResultSet car=null;
 
     final static Logger logger = Logger.getLogger(Serveur.class);
     /**
@@ -43,7 +47,7 @@ public class PanVehicule extends javax.swing.JPanel {
         jButton = new javax.swing.JButton("Actualiser"); 
             
         jLabel1.setText("LISTE DES VEHICULES");
-        jButton.addActionListener(new BoutonListener());
+        jButton.addActionListener(new BoutonListener(this));
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -76,90 +80,121 @@ public class PanVehicule extends javax.swing.JPanel {
      * Method listens button "Actualiser"
      */
     class BoutonListener implements ActionListener{
+       JPanel frame = null;
+        
+        public BoutonListener(JPanel f){
+            JPanel frame = f;
+        }
         @Override
         public void actionPerformed(ActionEvent e) {
-            try{
-            	for(ResultSet i: Car.getAllCar()){
-                	car=i;
-                }
-            	RsTableModel model = new RsTableModel(car);
-	            JTable jTableA = new JTable();
-	            jTableA.setModel(model);
-	            jScrollPane1.setViewportView(jTableA);
-	            model.setData();
-	            } catch (Exception eve){
-	            eve.printStackTrace();
-	            }
+//            try{  	
+        	ArrayList<String> data = new ArrayList();
+        	String identifier = "SelectAllParts";
+        	logger.info("Afficher liste des pieces");
+        	new ServerConnect(data, identifier, frame);
+            	RsTableModel model = new RsTableModel(Car.getAllCar());
+                JTable jTableA = new JTable();
+                jTableA.setModel(model);
+                jScrollPane1.setViewportView(jTableA);
         }
     }
     
     /**
      * Class create model for table 
      */
-    class RsTableModel extends AbstractTableModel {
-        private Vector colHeaders;
-        private Vector tbData;
-        
-        /**
-         * Class constructor
-         * @param rsData
-         * @throws SQLException 
-         */
-        public RsTableModel(ResultSet rsData) throws SQLException {
-            ResultSetMetaData rsMeta = rsData.getMetaData();
-            int count = rsMeta.getColumnCount();
+//    class RsTableModel extends AbstractTableModel {
+//        private Vector colHeaders;
+//        private Vector tbData;
+//        
+//        /**
+//         * Class constructor
+//         * @param rsData
+//         * @throws SQLException 
+//         */
+//        public RsTableModel(ResultSet rsData) throws SQLException {
+//            ResultSetMetaData rsMeta = rsData.getMetaData();
+//            int count = rsMeta.getColumnCount();
+//
+//            tbData = new Vector();
+//            colHeaders = new Vector(count);
+//
+//            for(int i = 1; i <= count; i++){
+//                colHeaders.addElement(rsMeta.getColumnName(i));
+//            }
+//
+//            while (rsData.next()){
+//                Vector dataRow = new Vector(count);
+//                for(int i = 1; i <= count; i++){
+//                    dataRow.addElement(rsData.getObject(i));
+//                }
+//                tbData.addElement(dataRow);
+//            }
+//        }
+//        @Override
+//        public String getColumnName(int column) {
+//            return  (String) (colHeaders.elementAt(column));
+//        }
+//        
+//        @Override
+//        public int getRowCount() { return tbData.size(); }
+//
+//        @Override
+//        public int getColumnCount() { return colHeaders.size(); }
+//
+//        @Override
+//        public Object getValueAt(int row, int column) {
+//            Vector rowData = (Vector)(tbData.elementAt(row));
+//            return rowData.elementAt(column);
+//        }
+//        
+//        public void setData(){
+//        super.fireTableDataChanged();
+//        }
+//    }
+    public class RsTableModel extends AbstractTableModel {
+        private ArrayList<Car> cars ;
+        private String[] columns ; 
 
-            tbData = new Vector();
-            colHeaders = new Vector(count);
-
-            for(int i = 1; i <= count; i++){
-                colHeaders.addElement(rsMeta.getColumnName(i));
-            }
-
-            while (rsData.next()){
-                Vector dataRow = new Vector(count);
-                for(int i = 1; i <= count; i++){
-                    dataRow.addElement(rsData.getObject(i));
-                }
-                tbData.addElement(dataRow);
-            }
+        public RsTableModel(ArrayList<Car> listCar){
+          super();
+          cars = listCar;
+          columns = new String[]{"Num puce","Type vÃ©hicule","Matricule"};
         }
-        @Override
-        public String getColumnName(int column) {
-            return  (String) (colHeaders.elementAt(column));
-        }
-        
-        @Override
-        public int getRowCount() { return tbData.size(); }
 
-        @Override
-        public int getColumnCount() { return colHeaders.size(); }
-
-        @Override
-        public Object getValueAt(int row, int column) {
-            Vector rowData = (Vector)(tbData.elementAt(row));
-            return rowData.elementAt(column);
+        // Number of column of your table
+        public int getColumnCount() {
+          return columns.length ;
         }
-        
-        public void setData(){
-        super.fireTableDataChanged();
+
+        // Number of row of your table
+        public int getRowCount() {
+          return cars.size();
+        }
+
+        // The object to render in a cell
+        public Object getValueAt(int row, int col) {
+          Car car = cars.get(row);
+          switch(col) {
+            case 0: return car.getNumePuce();
+            case 1: return car.getTypeVehicule();
+            case 2: return car.getMatricule();
+            default: return null;
+          }
+        }
+        // Optional, the name of your column
+        public String getColumnName(int col) {
+          return columns[col] ;
         }
     }
-    
     /**
      * Method fill data to table
      * @throws SQLException 
      */
     protected void fillTable() throws SQLException{
         try{
-        	logger.info("hello\n"+Car.getAllCar().size()+"Après\n");
-            for(ResultSet i: Car.getAllCar()){
-            	car=i;
-            	
-            }
-            RsTableModel model = new RsTableModel(car);
+            RsTableModel model = new RsTableModel(Car.getAllCar());
             this.jTable1.setModel(model);
-            model.setData();
+//            model.setData();
         } catch (Exception e){
             e.printStackTrace();
         }   

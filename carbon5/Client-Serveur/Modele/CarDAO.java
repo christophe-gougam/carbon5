@@ -107,23 +107,37 @@ public class CarDAO extends DAO<Car>{
 	 * @param con
 	 * @return dataResult containing all serialized car
 	 */
-	public void getAllCars(){
-
-		
+	public ArrayList<String> getAllCars(){
+            ArrayList<String> cars = new ArrayList<String>();
 		try {
-            ResultSet result = this .connect
+                ResultSet result = this .connect
                                     .createStatement(
                                             	ResultSet.TYPE_SCROLL_INSENSITIVE, 
                                                 ResultSet.CONCUR_UPDATABLE
                                              ).executeQuery(
-                                                "SELECT NumPuce, Matricule, typeVehicule FROM car"
+                                                "SELECT * FROM car"
                                              );
-            Car.addCarToCo(result);
-        } catch (SQLException e) {
-                e.printStackTrace();
+            Car.emptyCollection();
+            while(result.next()){
+            	Car.addCarToCo(new Car(
+						String.valueOf(result.getString("NumPuce")),
+						result.getString("TypeVehicule"),
+						result.getString("matricule"),
+                                                result.getDate("EntranceDate"),
+						result.getString("ListeOperations"),
+                                                result.getInt("Emplacement")));		
+            }            
+            } catch (SQLException e) {
+                    e.printStackTrace();
+            }
+            //Getting number of parts
+            cars.add(String.valueOf(Car.getAllCar().size()));
+            for(Car aCar: Car.getAllCar()){
+                    //adding parts
+                    cars.add(Car.serialize(aCar));
+            }
+            return cars;
         }
-		
-	}
 	
 	/**
 	 * request to delete a car from database

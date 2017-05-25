@@ -19,6 +19,7 @@ public class Car {
     private String matricule;
     private String TypeVehicule;
     private String listoperation;
+    private String Car;
     private Date date;
     private int place;
     
@@ -30,6 +31,7 @@ public class Car {
      * @param TypeVehicule 
      */
     public Car (){}
+        
     public Car (String numePuce, String typevehicule, String matricule, Date date, String listOp, int place){
         this.NumePuce = numePuce;
         this.matricule = matricule;
@@ -37,6 +39,12 @@ public class Car {
         this.listoperation=listOp;
         this.date=date;
         this.place=place;
+    }
+
+    public Car(String numPuce, String typeVehicule, String matricule) {
+        this.NumePuce = numPuce;
+        this.matricule = matricule;
+        this.TypeVehicule = typeVehicule;
     }
     
     
@@ -106,21 +114,34 @@ public class Car {
         this.TypeVehicule = type;
     }
     
+    public static void emptyCollection(){
+        listCar.clear();
+    }
+    
     public static void addToCollection(Car aCar){
     	listCar.add(aCar);
     }
     
-    public static void addCarToCo(ResultSet newCar){
-		AllCar.clear();
-		AllCar.add(newCar);
+    public static void addCarToCo(Car newCar){
+		listCar.clear();
+		listCar.add(newCar);
 	}
-    public static ArrayList<ResultSet> getAllCar(){
-		return AllCar;
+    public static ArrayList<Car> getAllCar(){
+		return listCar;
 	}
     public static void removeFromCollection(Car aCar){
     	listCar.remove(aCar);
     }
     
+    public static boolean isInCollection(String numPuce){
+		Boolean check = false;
+		for(Car aCar: listCar){
+			if (aCar.NumePuce.equalsIgnoreCase(numPuce)){
+				check = true;
+			}
+		}
+		return check;
+	}
     /**
      * Method transform object Car to String
      * @param car
