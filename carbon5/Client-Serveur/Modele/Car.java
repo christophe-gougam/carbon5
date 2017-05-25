@@ -10,6 +10,10 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
+import Serveur.Controlleurs.Serveur;
+
 /**
  * Class creates a vehicle
  * @author Carbon5
@@ -22,7 +26,9 @@ public class Car {
     private String Car;
     private Date date;
     private int place;
-    
+
+	final static Logger logger = Logger.getLogger(Serveur.class);
+	
     private static ArrayList<Car> listCar = new ArrayList<Car>();
     private static ArrayList<ResultSet> AllCar = new ArrayList<ResultSet>();
     /**
@@ -46,7 +52,6 @@ public class Car {
         this.matricule = matricule;
         this.TypeVehicule = typeVehicule;
     }
-    
     
     public Date getDate() {
 		return date;
@@ -148,7 +153,7 @@ public class Car {
      * @return String carSerial
      */
     public static String serialize(Car car){
-    	String carSerial = car.NumePuce+"///"+car.TypeVehicule+"///"+car.matricule+"///"+car.date+"///"+car.listoperation+"///"+car.place;
+    	String carSerial = car.NumePuce+"///"+car.TypeVehicule+"///"+car.matricule;
     	return carSerial;
     }
     
@@ -162,7 +167,8 @@ public class Car {
 		for (String retval: serializedCar.split("///")){
 			values.add(retval);
 		}
-		Car car = new Car(String.valueOf(values.get(0)), String.valueOf(values.get(1)), String.valueOf(values.get(2)), Date.valueOf(String.valueOf(values.get(3))), String.valueOf(values.get(4)), Integer.parseInt(values.get(5).toString()));
+		Car car = new Car(values.get(0), values.get(1), values.get(2));
+		logger.info(values.get(0)+values.get(1)+values.get(2));
 		return car;
     }
     /**

@@ -77,6 +77,10 @@ public class ProcessData implements Runnable{
 					t = new Thread(new Authentication(con, socket, message_distant, out));
 					t.start();
 				break;
+				case("Search"):
+					t = new Thread(new CarController(con, message_distant, out));
+					t.start();
+				break;
 				case("AjoutVehicule"):
 					t = new Thread(new CarController(con, message_distant, out));
 					t.start();

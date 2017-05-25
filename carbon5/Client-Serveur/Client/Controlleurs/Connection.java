@@ -2,6 +2,7 @@ package Client.Controlleurs;
 
 import java.io.BufferedReader;
 
+
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -144,7 +145,7 @@ public class Connection{
 			break;
 			case "DeletePartOK"	: case "DeletePartKO":
 				objet = new JSONObject(reponse);
-				logger.info("Afficage du resultat de mise ï¿½ jour : ");
+				logger.info("Afficage du resultat de mise à jour : ");
 		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
@@ -160,6 +161,25 @@ public class Connection{
 		    			Part.addPartToCo(aPart);
 		    		}	
 		    	}
+		    break;
+		    
+		    //rechercher vehicule avec sa puce
+			case "SearchOK":
+				objet = new JSONObject(reponse);
+				logger.info("Afficage du resultat de la recherche : ");
+		    	logger.info(reponse);
+		    	tableau = objet.getJSONArray("data");
+		    	
+		    		Car ca=Car.unSerialize(tableau.getString(1));
+		    		///TODO
+		    	
+		    break;
+			case "SearchKO":
+				JOptionPane.showMessageDialog(frame, "Cette référence ne correspond pas à un aucun vehicule");
+		    break;
+		    
+			case "CarNotExist":
+				JOptionPane.showMessageDialog(frame, "Ce vehivule existe pas, contacter votre administrateur");
 		    break;
 			case "LoadAllComboBoxOK" :
 				objet = new JSONObject(reponse);

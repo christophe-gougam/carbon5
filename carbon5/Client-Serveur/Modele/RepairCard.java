@@ -2,6 +2,7 @@ package Modele;
 
 import java.awt.List;
 
+
 import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -9,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -30,7 +31,9 @@ import Serveur.Controlleurs.ConnectionPool;
 public class RepairCard {
 	
 	private static ArrayList<RepairCard> waitList;
-	
+
+    
+    
 	final static Logger logger = Logger.getLogger(Serveur.class);
 	private UrgencyDegree degree;
 	private CardState card;
@@ -42,8 +45,11 @@ public class RepairCard {
 	private Date outDate;
 	private String overAllDetails;
 	private User user;
+	private int userId;
 	private int ponderation;
-	
+	int idcard;
+	int idcar;
+	int idparkplace;
 	/**
 	 * Constructor of th class
 	 * @param urgence
@@ -70,9 +76,61 @@ public class RepairCard {
 		this.user = user;
 	}
 	
+	public RepairCard(int IdCard,int IdCar, int IdParkPlac, Date out, String details, int userid){
+		this.idcard=IdCard;
+		this.idcar = IdCar;
+		this.idparkplace=IdParkPlac;
+		this.outDate = out;
+		this.overAllDetails = details;
+		this.userId = userid;
+	}
+	
 	public RepairCard(){
 		
 	}
+	public int getuserId(){
+		return this.userId;
+	}
+	/**
+	 * Method set the card State 
+	 * @param newCard
+	 */
+	public void setuserId(int newiduser){
+		this.userId = newiduser;
+	}
+	
+	public int getidcard(){
+		return this.idcard;
+	}
+	/**
+	 * Method set the card State 
+	 * @param newCard
+	 */
+	public void setidcard(int newidCard){
+		this.idcard = newidCard;
+	}
+	public int getidcar(){
+		return this.idcar;
+	}
+	/**
+	 * Method set the cardid 
+	 * @param newCar
+	 */
+	public void setidcar(int newidCar){
+		this.idcar = newidCar;
+	}
+	
+	public int getidparkplace(){
+		return this.idparkplace;
+	}
+	/**
+	 * Method set the card State 
+	 * @param newCard
+	 */
+	public void setidparkplace(int idparkplac){
+		this.idparkplace = idparkplac;
+	}
+	
 	
 	public static ArrayList<RepairCard> getWaitList(){
 		return waitList;
