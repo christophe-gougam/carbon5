@@ -28,12 +28,12 @@ public class LectureJson {
     public static ArrayList<String> LectureFichier(String fs) throws JSONException {
  
     	
-	// Création d'un objet JSON
+	// Crï¿½ation d'un objet JSON
 	JSONObject objet = new JSONObject(fs);
 	logger.info("Afficage du JSON : ");
 	logger.info(fs);
  
-	// Traitement du fichier reçu
+	// Traitement du fichier reï¿½u
 	logger.info("\nparcours du fichier Json :");
 	JSONArray tableau = objet.getJSONArray("data");
 	ArrayList<String> result = new ArrayList<String>();
@@ -70,6 +70,9 @@ public class LectureJson {
 	case("SelectAllParts"):
 		logger.info("retrieving all parts");
 	break;
+        case("SelectAllParking"):
+                logger.info("retrieving all parking");
+        break;
 	case("Search"):
 		logger.info("retrieving car info");
 		result.add(tableau.getString(0));
@@ -90,10 +93,10 @@ public class LectureJson {
 		{
 			result.add(tableau.getString(i));
 		}
-		System.out.print("tableau créé \n");
+		System.out.print("tableau crï¿½ï¿½ \n");
 	break;
 	default:
-		logger.info("Fonctionnalité non prise en charge pour l'instant");
+		logger.info("Fonctionnalitï¿½ non prise en charge pour l'instant");
 	break;
 	}	
 	return result;

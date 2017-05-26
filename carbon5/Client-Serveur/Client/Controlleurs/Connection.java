@@ -145,7 +145,7 @@ public class Connection{
 			break;
 			case "DeletePartOK"	: case "DeletePartKO":
 				objet = new JSONObject(reponse);
-				logger.info("Afficage du resultat de mise à jour : ");
+				logger.info("Afficage du resultat de mise ï¿½ jour : ");
 		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
@@ -161,7 +161,20 @@ public class Connection{
 		    			Part.addPartToCo(aPart);
 		    		}	
 		    	}
-		    break;
+                        break;
+                        
+                        case "SelectAllParkingsOK":
+				objet = new JSONObject(reponse);
+				logger.info("Affichage du resultat de mise Ã  jour : ");
+		    	logger.info(reponse);
+		    	tableau = objet.getJSONArray("data");
+		    	for (int i =0; i<tableau.getInt(1);i++){
+		    		Parking aParking = Parking.unSerialize(tableau.getString(i+2));
+		    		if(!Parking.isInCollection(aParking.getNumParking())){
+		    			Parking.addParkingToCo(aParking);
+		    		}	
+		    	}
+                        break;
 		    
 		    //rechercher vehicule avec sa puce
 			case "SearchOK":
@@ -175,7 +188,7 @@ public class Connection{
 		    	
 		    break;
 			case "SearchKO":
-				JOptionPane.showMessageDialog(frame, "Cette référence ne correspond pas à un aucun vehicule");
+				JOptionPane.showMessageDialog(frame, "Cette rï¿½fï¿½rence ne correspond pas ï¿½ un aucun vehicule");
 		    break;
 		    
 			case "CarNotExist":

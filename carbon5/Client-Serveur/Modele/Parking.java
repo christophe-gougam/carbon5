@@ -7,11 +7,12 @@ import java.util.ArrayList;
  * @author Carbon5
  */
 public class Parking {
-	
+
 	private int numParking;
 	private String nameParking;
 	private int capacity;
-    
+        
+        private static ArrayList<Parking> parkings = new ArrayList<Parking>();
     /**
      * Class constructor
      * @param newParking 
@@ -69,7 +70,29 @@ public class Parking {
 	public void setCapacity(int capacity){
 		this.capacity = capacity;
 	}
+        
+        public static void emptyCollection() {
+            parkings.clear();
+        }
 	
+        public static void addParkingToCo(Parking newParking) {
+            parkings.add(newParking);
+        }
+	
+        public static ArrayList<Parking> getAllParkings() {
+            return parkings;
+        }
+        
+        public static boolean isInCollection(int numParking) {
+            Boolean check = false;
+            for(Parking aParking: parkings){
+                    if (aParking.numParking == numParking){
+				check = true;
+                    }
+            }
+            return check;
+        }
+        
 	public static String serialize(Parking park){
 		String carSerial = park.numParking+"///"+park.nameParking+"///"+park.capacity;
 		return carSerial;

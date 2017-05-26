@@ -105,6 +105,11 @@ public class ProcessData implements Runnable{
 					t = new Thread(new PartController(con, message_distant, out));
 					t.run();
 				break;
+                                case("SelectAllParkings"):
+					logger.info("Case Select all parkings");
+					t = new Thread(new ParkingController(con, message_distant, out));
+					t.run();
+				break;
 				case("LoadAllComboBox"):
 					logger.info("Case Select all type car");
 					t = new Thread(new CarController(con, message_distant, out));
@@ -121,7 +126,7 @@ public class ProcessData implements Runnable{
 					t.run();
 				break;
 				default:
-					logger.info("Fonctionnalité non prise en charge pour le moment");
+					logger.info("Fonctionnalitï¿½ non prise en charge pour le moment");
 				}
 
 				}
