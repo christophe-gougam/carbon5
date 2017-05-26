@@ -46,11 +46,18 @@ public class Car {
         this.date=date;
         this.place=place;
     }
+//<<<<<<< HEAD
 
     public Car(String numPuce, String typeVehicule, String matricule) {
         this.NumePuce = numPuce;
         this.matricule = matricule;
         this.TypeVehicule = typeVehicule;
+//=======
+//    public Car (String numePuce, String typevehicule, String matricule){
+//        this.NumePuce = numePuce;
+//        this.matricule = matricule;
+//        this.TypeVehicule = typevehicule;
+//>>>>>>> origin/Develop
     }
     
     public Date getDate() {

@@ -192,7 +192,16 @@ public class PanVehicule extends javax.swing.JPanel {
      */
     protected void fillTable() throws SQLException{
         try{
+//<<<<<<< HEAD
+//            RsTableModel model = new RsTableModel(Car.getAllCar());
+//=======
+//        	
+//            for(ResultSet i: Car.getAllCar()){
+//            	car=i;
+//            	
+//            }
             RsTableModel model = new RsTableModel(Car.getAllCar());
+//>>>>>>> origin/Develop
             this.jTable1.setModel(model);
 //            model.setData();
         } catch (Exception e){

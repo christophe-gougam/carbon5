@@ -70,9 +70,12 @@ public class LectureJson {
 	case("SelectAllParts"):
 		logger.info("retrieving all parts");
 	break;
+//<<<<<<< HEAD
         case("SelectAllParking"):
                 logger.info("retrieving all parking");
         break;
+//=======
+//>>>>>>> origin/Develop
 	case("Search"):
 		logger.info("retrieving car info");
 		result.add(tableau.getString(0));
