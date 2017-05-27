@@ -48,15 +48,15 @@ public class CarDAO extends DAO<Car>{
                                              ).executeQuery(
                                                 "SELECT NumPuce, TypeVehicule, matricule FROM car WHERE NumPuce='"+numP+"'"
                                              );
+            Car.emptyCollection();
             if(result.first())
             	c=new Car(result.getString("NumPuce"), result.getString("TypeVehicule"), result.getString("matricule"));
-            			
-
-            	
+            Car.addCar(c);
+            dataResult.add(c);            	
         } catch (SQLException e) {
                 e.printStackTrace();
         }
-		dataResult.add(c);
+	  	
 		return dataResult;
 	}
 	

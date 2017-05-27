@@ -3,6 +3,7 @@ package Modele;
 import java.awt.List;
 
 
+
 import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -21,6 +22,7 @@ import Serveur.Controlleurs.Serveur;
 
 import Modele.Preferences;
 import Modele.PreferencesDAO;
+import Modele.User;
 import Serveur.Controlleurs.ConnectionPool;
 
 /**
@@ -45,7 +47,6 @@ public class RepairCard {
 	private Date outDate;
 	private String overAllDetails;
 	private User user;
-	private int userId;
 	private int ponderation;
 	int idcard;
 	int idcar;
@@ -76,27 +77,17 @@ public class RepairCard {
 		this.user = user;
 	}
 	
-	public RepairCard(int IdCard,int IdCar, int IdParkPlac, Date out, String details, int userid){
+	public RepairCard(int IdCard,int IdCar, int IdParkPlac, Date out, String details, User userid){
 		this.idcard=IdCard;
 		this.idcar = IdCar;
 		this.idparkplace=IdParkPlac;
 		this.outDate = out;
 		this.overAllDetails = details;
-		this.userId = userid;
+		this.user = userid;
 	}
 	
 	public RepairCard(){
 		
-	}
-	public int getuserId(){
-		return this.userId;
-	}
-	/**
-	 * Method set the card State 
-	 * @param newCard
-	 */
-	public void setuserId(int newiduser){
-		this.userId = newiduser;
 	}
 	
 	public int getidcard(){
@@ -539,6 +530,16 @@ public class RepairCard {
 	 * @param rep
 	 * @return serialized
 	 */
+	
+	
+	public static String serialize(RepairCard rep){
+
+		String serialized = rep.getidcard()+"///"+rep.getidcar()+"///"+rep.getidparkplace()+"///"+
+		rep.getOutDate()+"///"+rep.getOverAllDetails()+"///"+User.serialize(rep.getUser());
+		return serialized;
+	}
+	
+	/*
 	public static String serialize(RepairCard rep){
 		String serialRepairs = null;
 		int i = 0;
@@ -557,11 +558,37 @@ public class RepairCard {
 		String serialized = rep.getDegree().getDescription()+"///"+rep.getCard().getDescription()+"///"+Car.serialize(rep.getCar())+"///"+serialRepairs+serialDefects+Place.serialize(rep.getPark())+"///"+rep.entryDate+"///"+rep.outDate+"///"+User.serialize(rep.user);
 		return serialized;
 	}
+	*/
 	/**
 	 * Method to unserialize the card and to create the object
 	 * @param serial
 	 * @return repairCard
+	 * @throws ParseException 
 	 */
+	
+	public static RepairCard unSerialize(String serialized) throws ParseException{
+    	ArrayList<String> values = new ArrayList<String>();
+		for (String retval: serialized.split("///")){
+			values.add(retval);
+		}
+                int idcd = Integer.parseInt(values.get(0).toString());
+                int idc = Integer.parseInt(values.get(1).toString());
+                int pplace = Integer.parseInt(values.get(2).toString());
+                //dd MMM yyyy
+                java.util.Date utilDate = new SimpleDateFormat("YYYY-MM-DD").parse(values.get(3).toString());
+                Date dat = new Date(utilDate.getTime());
+                String detail =values.get(4);
+                User user=User.unSerialize(values.get(5));
+               
+        		user = new User(user.getId(), user.getFirstName(), user.getLastName(), user.getAddress(), user.getTown(), user.getPostCode(), 
+        				user.getLogin(), user.getEmail(), user.getHireDate(), user.getIncome(), user.getTypeUser());
+        		
+                //creating the object repairCard with all other objects
+        		RepairCard repairCard = new RepairCard(idcd, idc, pplace, dat, detail, user);
+        		logger.info("Success RepairCard unserilization");
+		return repairCard;
+    }
+	/*
 	public static RepairCard unSerialize(String serial){
 		logger.info("Enter RepairCard unserilization");
 		ArrayList values = new ArrayList();
@@ -617,4 +644,12 @@ public class RepairCard {
 		logger.info("Success RepairCard unserilization");
 		return repairCard;
 	}
+	*/
+	/**
+     * Method toString
+     * 
+     */
+    public String toString(Object values) {
+        return String.valueOf(values);
+    }
 }

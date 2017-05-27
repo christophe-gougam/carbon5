@@ -19,6 +19,7 @@ public class UserDAO extends DAO<User>{
 	
 	public User auth(String login, String mdp){
 		User ud = null;
+		
 		try{
 			ResultSet result = this .connect
                     .createStatement(
@@ -41,12 +42,17 @@ public class UserDAO extends DAO<User>{
                         result.getDate("HiringDate"),
                         result.getFloat("IncomingPerHour"),
                         (new TypeUser(result.getInt("typeuser.id"),result.getString("Profil")))
-						);            
+						); 
+				
+				User.emptyCollection();
+
+	            	User.addAUserToCo(ud);          		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-			return ud;
-		}
+		
+		return ud;
+	}
 
 	
 	/**

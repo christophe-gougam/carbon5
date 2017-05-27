@@ -33,7 +33,7 @@ public class RepairCardDAO extends DAO<RepairCard>{
         	prepare.setDate(5, dat);
         	prepare.setDate(6, obj.getOutDate());
 			prepare.setString(7, obj.getOverAllDetails());
-			prepare.setInt(8, obj.getuserId());
+			prepare.setInt(8, obj.getUser().getId());
 			
 			prepare.executeUpdate();
 			return true;
@@ -43,42 +43,6 @@ public class RepairCardDAO extends DAO<RepairCard>{
 			return false;
 		}
 	}
-	
-	
-    public ArrayList<String> getAllRepairCard(){
-    	
-    ArrayList<String> repCards = new ArrayList<String>();
-    	try {
-            ResultSet result = this .connect
-                                    .createStatement(
-                                            	ResultSet.TYPE_SCROLL_INSENSITIVE, 
-                                                ResultSet.CONCUR_UPDATABLE
-                                             ).executeQuery(
-                                                "SELECT Id,Stock,NamePart,PurchasePrice FROM part"
-                                             );
-            Part.emptyCollection();
-            while(result.next()){
-            //if(result.first())
-            	
-            	Part.addPartToCo(new Part(
-						String.valueOf(result.getInt("Id")),
-						result.getInt("Stock"),
-						result.getString("NamePart"), 
-						result.getFloat("PurchasePrice")));
-            
-            		
-            }            
-        } catch (SQLException e) {
-                e.printStackTrace();
-        }
-    	//Getting number of parts
-    	parts.add(String.valueOf(Part.getAllParts().size()));
-    	for(Part aPart : Part.getAllParts()){
-    		//adding parts
-    		parts.add(Part.serialize(aPart));
-    	}
-        return parts;
-    }
     /**
      * Allows to retrieve a part via it's name
      * @return part
@@ -89,23 +53,27 @@ public class RepairCardDAO extends DAO<RepairCard>{
 		// TODO Auto-generated method stub
 		return null;
 	} 
-	
-    public RepairCard find(String name) {
-        RepairCard part = new RepairCard();
-        try {
+	public boolean existRepairCard(String numP){
+		boolean ret=false;
+		try {
             ResultSet result = this .connect
                                     .createStatement(
                                             	ResultSet.TYPE_SCROLL_INSENSITIVE, 
                                                 ResultSet.CONCUR_UPDATABLE
                                              ).executeQuery(
-                                                "SELECT * FROM part where NamePart='"+name +"'"
+                                                "SELECT IdCar FROM repaircard WHERE IdCar='"+numP+"'"
                                              );
-            if(result.first());            
+            if(result.first())
+            	ret= true;
+            			
+
+            	
         } catch (SQLException e) {
                 e.printStackTrace();
+                ret= false;
         }
-        return part;
-    }
+		return ret;
+	}
     
 
     /**
@@ -115,19 +83,8 @@ public class RepairCardDAO extends DAO<RepairCard>{
      */
     @Override
     public boolean delete(RepairCard obj) {
-    	try {
-            this.connect
-                .createStatement(
-                    ResultSet.TYPE_SCROLL_INSENSITIVE, 
-                    ResultSet.CONCUR_UPDATABLE
-               ).executeUpdate(
-                    "DELETE FROM part WHERE NamePart = '"+obj.getNamePart()+"'"
-               );
-            return true;
-        } catch (SQLException e) {
-                e.printStackTrace();
+
                 return false;
-        }
     }
     
     public boolean addEntryStock(int userID, Part obj, int qte, LocalDate date){
@@ -140,7 +97,6 @@ public class RepairCardDAO extends DAO<RepairCard>{
                     "INSERT INTO orderpart(IdPart,IdUser,Qte,date) VALUES ('"+obj.getIdPart()+"','"+userID+"','"+qte+"','"+date+"')"
                );
             obj.setStock(obj.getStock()+qte);
-            this.update(obj);
             return true;
         } catch (SQLException e) {
                 e.printStackTrace();
@@ -158,7 +114,6 @@ public class RepairCardDAO extends DAO<RepairCard>{
                     "INSERT INTO orderpart(IdPart,IdUser,Qte,date) VALUES ('"+obj.getIdPart()+"','"+us+"','"+(qte*(-1))+"','"+date+"')"
                );
             obj.setStock(obj.getStock()-qte);
-            this.update(obj);
             return true;
         } catch (SQLException e) {
                 e.printStackTrace();
@@ -175,37 +130,8 @@ public class RepairCardDAO extends DAO<RepairCard>{
   
 	@Override
 	public boolean update(RepairCard obj) {
-		try {	
-            if (obj.getStock()!=1){
-            	this .connect	
-                 .createStatement(
-                    ResultSet.TYPE_SCROLL_INSENSITIVE, 
-                    ResultSet.CONCUR_UPDATABLE
-                 ).executeUpdate(
-                    "UPDATE part SET Stock ='" + obj.getStock() + "', " +
-                    "PurchasePrice ='" + obj.getPurchasePrice() + "' " +
-                    " WHERE NamePart = '" + obj.getNamePart()+ "' "
-                 );
-            	return true;
-            }
-            else{
-            	this .connect	
-                .createStatement(
-                   ResultSet.TYPE_SCROLL_INSENSITIVE, 
-                   ResultSet.CONCUR_UPDATABLE
-                ).executeUpdate(
-                   "UPDATE part SET "+
-                   "NamePart ='" + obj.getNamePart() + "', " +
-                   "PurchasePrice ='" + obj.getPurchasePrice() + "' " +
-                   " WHERE Id = " + obj.getIdPart()
-                );
-            	return true;
-            }
-            		
-        } catch (SQLException e) {
-                e.printStackTrace();
+		
                 return false;
-        }
         
     }
 

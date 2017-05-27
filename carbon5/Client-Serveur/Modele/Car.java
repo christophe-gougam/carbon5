@@ -30,6 +30,7 @@ public class Car {
 	
     private static ArrayList<Car> listCar = new ArrayList<Car>();
     private static ArrayList<ResultSet> AllCar = new ArrayList<ResultSet>();
+    
     /**
      * Class constructor
      * @param NumePuce;
@@ -124,13 +125,42 @@ public class Car {
 		AllCar.clear();
 		AllCar.add(newCar);
 	}
+    
+    public static void addCar(Car newCar){
+    	listCar.clear();
+    	listCar.add(newCar);
+	}
     public static ArrayList<ResultSet> getAllCar(){
 		return AllCar;
 	}
+    
+    public static ArrayList<Car> getAlCar(){
+		return listCar;
+	}
+    
     public static void removeFromCollection(Car aCar){
     	listCar.remove(aCar);
     }
     
+
+	public static void setAlCar(ArrayList<Car> newplace){
+		listCar= newplace;
+	}
+
+	public static boolean isInCollection(String numplac){
+		Boolean check = false;
+		for(Car atypeC: listCar){
+			if (atypeC.NumePuce.equalsIgnoreCase(numplac)){
+				check = true;
+			}
+		}
+		return check;
+	}
+
+	public static void emptyCollection(){
+		
+		listCar.clear();
+	}
     /**
      * Method transform object Car to String
      * @param car
