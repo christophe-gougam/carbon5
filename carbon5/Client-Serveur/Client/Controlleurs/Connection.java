@@ -23,6 +23,7 @@ import Vues.Fenetre;
 import Vues.IHM;
 import Modele.*;
 import Serveur.Controlleurs.Serveur;
+import java.sql.ResultSet;
 
 /**
  * Class Connection creating the connection
@@ -150,7 +151,7 @@ public class Connection{
 			break;
 			case "DeletePartOK"	: case "DeletePartKO":
 				objet = new JSONObject(reponse);
-				logger.info("Afficage du resultat de mise à jour : ");
+				logger.info("Afficage du resultat de mise ï¿½ jour : ");
 		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
@@ -166,7 +167,20 @@ public class Connection{
 		    			Part.addPartToCo(aPart);
 		    		}	
 		    	}
-		    break;
+                        break;
+                        
+                        case "SelectAllParkingsOK":
+				objet = new JSONObject(reponse);
+				logger.info("Affichage du resultat de mise Ã  jour : ");
+		    	logger.info(reponse);
+		    	tableau = objet.getJSONArray("data");
+		    	for (int i =0; i<tableau.getInt(1);i++){
+		    		Parking aParking = Parking.unSerialize(tableau.getString(i+2));
+		    		if(!Parking.isInCollection(aParking.getNumParking())){
+		    			Parking.addParkingToCo(aParking);
+		    		}	
+		    	}
+                        break;
 		    
 		    //rechercher vehicule avec sa puce
 			case "SearchOK":
@@ -182,7 +196,7 @@ public class Connection{
 		    	
 		    break;
 			case "SearchKO":
-				JOptionPane.showMessageDialog(frame, "Cette référence ne correspond pas à un aucun vehicule");
+				JOptionPane.showMessageDialog(frame, "Cette rï¿½fï¿½rence ne correspond pas ï¿½ un aucun vehicule");
 		    break;
 			case "CarNotExist":
 				JOptionPane.showMessageDialog(frame, "Ce vehicule existe pas, contacter votre administrateur");
@@ -190,14 +204,40 @@ public class Connection{
 			case "AlreadyAdded":
 				JOptionPane.showMessageDialog(frame, "Ce vehiule est déjà en reparation.\n Contacter votre administrateur");
 		    break;
+		    
+		    //rechercher vehicule avec sa puce
+//			case "SearchOK":
+//				objet = new JSONObject(reponse);
+//				logger.info("Afficage du resultat de la recherche : ");
+//		    	logger.info(reponse);
+//		    	tableau = objet.getJSONArray("data");
+//		    	
+//		    		Car ca=Car.unSerialize(tableau.getString(1));
+//		    		///TODO
+//		    	
+//		    break;
+//			case "SearchKO":
+//				JOptionPane.showMessageDialog(frame, "Cette rï¿½fï¿½rence ne correspond pas ï¿½ un aucun vehicule");
+//		    break;
+//		    
+//			case "CarNotExist":
+//				JOptionPane.showMessageDialog(frame, "Ce vehivule existe pas, contacter votre administrateur");
+//		    break;
 			case "LoadAllComboBoxOK" :
 				objet = new JSONObject(reponse);
 				logger.info("Afficage du resultat");
 		    	logger.info(reponse);
+                        tableau = objet.getJSONArray("allCar");
 		    	tableautypecar = objet.getJSONArray("data");
 		    	tableaudefect = objet.getJSONArray("dataDefect");
 		    	tableaudPlace = objet.getJSONArray("placement");
-		    	for (int i =0; i<tableautypecar.getInt(1);i++){
+		    	for (int k =0; k<tableau.getInt(0);k++){
+		    		Car aCar = Car.unSerialize(tableau.getString(k+1));
+		    		if(!Car.isInCollection(aCar.getNumePuce())){
+		    			Car.addCarToCo(aCar);
+		    		}
+                        }
+                        for (int i =0; i<tableautypecar.getInt(1);i++){
 		    		TypeCar atype = TypeCar.unSerialize(tableautypecar.getString(i+2));
 		    		if(!TypeCar.isInCollection(atype.getType())){
 		    			TypeCar.addPartToCo(atype);

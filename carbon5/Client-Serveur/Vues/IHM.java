@@ -27,6 +27,7 @@ import Modele.Part;
 import Modele.User;
 import Modele.TypeCar;
 import Modele.Car;
+import Modele.Parking;
 import Serveur.Controlleurs.Serveur;
 import java.sql.SQLException;
 
@@ -163,6 +164,11 @@ public class IHM extends JFrame {
             }
             if(e.getSource() == bouton2){
                 //code
+                Parking.emptyCollection();
+                    ArrayList<String> data = new ArrayList<String>();
+                    String identifier = "SelectAllParking";
+                    logger.info("Recuperation des parking");
+                    new ServerConnect(data, identifier, pan2);
                 cl.show(pan2, listContent[1]);
                 liste1.setVisible(false);
                 liste2.setVisible(false);
@@ -196,7 +202,7 @@ public class IHM extends JFrame {
                 	Part.emptyCollection();
                 	ArrayList<String> data = new ArrayList<String>();
                 	String identifier = "SelectAllParts";
-                	logger.info("Récupération des pièces");
+                	logger.info("Rï¿½cupï¿½ration des piï¿½ces");
                 	new ServerConnect(data, identifier, pan2);
             	//}
             	pan2.add(new PanEntreeStock(), listContent[5]);
@@ -213,7 +219,7 @@ public class IHM extends JFrame {
                 	Part.emptyCollection();
                 	ArrayList<String> data = new ArrayList<String>();
                 	String identifier = "SelectAllParts";
-                	logger.info("Récupération des pièces");
+                	logger.info("Rï¿½cupï¿½ration des piï¿½ces");
                 	new ServerConnect(data, identifier, pan2);
             	//}
                 pan2.add(new PanAjoutPiece(), listContent[8]);

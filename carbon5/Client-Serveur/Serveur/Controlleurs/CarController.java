@@ -63,6 +63,7 @@ public class CarController implements Runnable{
 	ArrayList<String> data = new ArrayList<String>();
 	ArrayList<String> dataPanne = new ArrayList<String>();
 	ArrayList<String> allPlace = new ArrayList<String>();
+        ArrayList<String> allCar = new ArrayList<String>();
 	ArrayList<Car> Carinfo = new ArrayList<Car>();
 	boolean isIn=false;
 	String JsonMessage;
@@ -112,11 +113,12 @@ public class CarController implements Runnable{
 						//TODO:
 						//create object and add to waitList
 						data=test1.getTypeCar();
+                                                allCar = test.getAllCars();
 						data.add(0, "LoadAllComboBoxOK");
 						dataPanne=test2.getAllDefect();
 						allPlace=null;
 						allPlace=test3.getPlace();
-						test.getAllCars();
+						
 						
 					break;
 					
@@ -202,7 +204,7 @@ public class CarController implements Runnable{
 				JsonMessage = EcritureJson.WriteJson(data.get(0), data);
 				logger.info("Succes ajout");
 				out.println(JsonMessage);
-				logger.info("Sending JSON succès to Client");
+				logger.info("Sending JSON succï¿½s to Client");
 				out.flush();
 			break;
 			case("KOCarInput"):
@@ -212,7 +214,7 @@ public class CarController implements Runnable{
 				out.flush();
 			break;
 			case("LoadAllComboBoxOK"):
-				JsonMessage = EcritureJson.writeJson(data.get(0), data, dataPanne, allPlace);
+				JsonMessage = EcritureJson.writeJson(data.get(0), data, dataPanne, allPlace, allCar);
 				logger.info("Sending list of type car to Client");
 				logger.info(JsonMessage);
 				out.println(JsonMessage);
