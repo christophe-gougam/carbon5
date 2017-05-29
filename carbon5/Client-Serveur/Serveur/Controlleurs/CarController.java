@@ -63,11 +63,9 @@ public class CarController implements Runnable{
 	ArrayList<String> data = new ArrayList<String>();
 	ArrayList<String> dataPanne = new ArrayList<String>();
 	ArrayList<String> allPlace = new ArrayList<String>();
-//<<<<<<< HEAD
         ArrayList<String> allCar = new ArrayList<String>();
-//=======
 	ArrayList<Car> Carinfo = new ArrayList<Car>();
-//>>>>>>> origin/Develop
+	boolean isIn=false;
 	String JsonMessage;
 	
 	/**
@@ -93,7 +91,6 @@ public class CarController implements Runnable{
 				TypeCarDAO test1=new TypeCarDAO(con);
 				DefectDAO test2=new DefectDAO(con);
 				PlaceDAO test3=new PlaceDAO(con);
-				CardStateDAO test4= new CardStateDAO(con);
 				boolean ret = false;
 				try{
 					String identifier = LectureJson.Identifier(in);
@@ -126,20 +123,22 @@ public class CarController implements Runnable{
 					break;
 					
 					case("AjoutVehicule"):
-						String status="Attente";
-						int userid=0;
-						
 						numP=result.get(0);
 						type = result.get(1);
 						matriculation = result.get(2);
 						entranceDate=LocalDate.now();
 						place=Integer.parseInt(result.get(3));
 						String listPane= "";
-						
+
+						User user=User.unSerialize(result.get(result.size()-1));
+
 						ArrayList<String> listePanneEntrance= new ArrayList<String>();
-						for(int t=4; t<result.size(); t++){
+						for(int t=4; t<result.size()-1; t++){
 							listePanneEntrance.add(result.get(t));
-								listPane+=result.get(t)+"|";
+								if(t<(result.size()-2))
+									listPane+=result.get(t)+"|";
+								else
+									listPane+=result.get(t);
 						}
 						int repairTime=0;
 						ArrayList<Defect> defaut= new ArrayList<Defect>();
@@ -163,47 +162,31 @@ public class CarController implements Runnable{
 						
 						LocalDate dat;
 						dat=entranceDate.plusDays(repairTime);
+						///verifier le type date et adapter	pour hour
 						
-						///verifier le type date et adapter
-						
-						
-						
-						///recuperer le id user
-						User testUser = test.auth(login, mdp);
-						if(testUser.getFirstName() != null){
-							data.add("GrantAuth");
-							data.add(User.serialize(testUser));
-						}else{
-							data.add("Erreur de mot de passe");
-						}
-						
-						
-						
-						
-						
-						
-						RepairCard carinfo=new RepairCard(1, Integer.parseInt(numP), place, java.sql.Date.valueOf(dat), listPane, userid);
-						//RepairCard carinfo=new RepairCard();
+						RepairCard carinfo=new RepairCard(1, Integer.parseInt(numP), place, java.sql.Date.valueOf(dat), listPane, user);
 						Carinfo=test.getCar(numP);
-						if(Carinfo.get(0).getNumePuce().equalsIgnoreCase(numP))
+						isIn=test5.existRepairCard(numP);
+						if(Carinfo.get(0).getNumePuce().equalsIgnoreCase(numP) && true)
 						{
-							
-							ret=test5.create(carinfo,  java.sql.Date.valueOf(entranceDate));
+							ret=test5.create(carinfo, java.sql.Date.valueOf(entranceDate));
 							
 							if (ret){
 						
 							data.add("OKCarInput");
 							test3.updatePlace(place);
-							//data.add(Car.serialize(carinfo));
+							data.add(RepairCard.serialize(carinfo));
 							data.add(String.valueOf(java.sql.Date.valueOf(dat)));
 							}else{
 								data.add("KOCarInput");
 							}
 						}
 						//a brancher
-						else{
-							data.add("CarNotExist");
+						else if(isIn=false){
+							data.add("AlreadyAdded");
 						}
+						else
+							data.add("CarNotExist");
 
 					break;
 					}
@@ -254,6 +237,13 @@ public class CarController implements Runnable{
 			break;
 			case("CarNotExist"):
 				JsonMessage = EcritureJson.WriteJson("CarNotExist", data);
+				logger.info("Sending error to Client");
+				logger.info(JsonMessage);
+				out.println(JsonMessage);
+				out.flush();
+			break;
+			case("AlreadyAdded"):
+				JsonMessage = EcritureJson.WriteJson("AlreadyAdded", data);
 				logger.info("Sending error to Client");
 				logger.info(JsonMessage);
 				out.println(JsonMessage);

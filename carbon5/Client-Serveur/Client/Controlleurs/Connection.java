@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -100,7 +101,11 @@ public class Connection{
 	    		}
 	    		logger.info(result.get(1));
 		    	user = User.unSerialize(result.get(1));
-		    	User.addAUserToCo(user);
+		    	
+		    	if(!User.isInCollection(user.getLogin())){
+	    			User.addAUserToCo(user);
+	    		}
+		    	
 				JOptionPane.showMessageDialog(frame, "Bienvenue "+user.getFirstName());
 				IHM ihm = new IHM();
 				
@@ -115,8 +120,9 @@ public class Connection{
 	    			result.add((String) tableau.get(i));
 	    		}
 	    		car = Car.unSerialize(result.get(1));
+
 	    		JOptionPane.showMessageDialog(frame, "Voiture "+car.getTypeVehicule()+ 
-	    									" ajoutee"+"\n"+"Date previsionnelle="+result.get(2)+"\n");
+	    									" ajoutee"+"\n"+"Date previsionnelle : "+result.get(2)+"\n");
 	    		
 			break;
 			
@@ -183,16 +189,20 @@ public class Connection{
 		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 		    	
-		    		Car ca=Car.unSerialize(tableau.getString(1));
-		    		///TODO
+	    		Car ca=Car.unSerialize(tableau.getString(1));
+	    		if(!Car.isInCollection(ca.getNumePuce())){
+	    			Car.addCar(ca);
+	    		}	
 		    	
 		    break;
 			case "SearchKO":
 				JOptionPane.showMessageDialog(frame, "Cette rï¿½fï¿½rence ne correspond pas ï¿½ un aucun vehicule");
 		    break;
-		    
 			case "CarNotExist":
-				JOptionPane.showMessageDialog(frame, "Ce vehivule existe pas, contacter votre administrateur");
+				JOptionPane.showMessageDialog(frame, "Ce vehicule existe pas, contacter votre administrateur");
+		    break;
+			case "AlreadyAdded":
+				JOptionPane.showMessageDialog(frame, "Ce vehiule est déjà en reparation.\n Contacter votre administrateur");
 		    break;
 		    
 		    //rechercher vehicule avec sa puce

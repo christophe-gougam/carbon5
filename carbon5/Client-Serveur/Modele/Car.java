@@ -31,6 +31,7 @@ public class Car {
 	
     private static ArrayList<Car> listCar = new ArrayList<Car>();
     private static ArrayList<ResultSet> AllCar = new ArrayList<ResultSet>();
+    
     /**
      * Class constructor
      * @param NumePuce;
@@ -138,13 +139,32 @@ public class Car {
 		listCar.clear();
 		listCar.add(newCar);
 	}
+<<<<<<< HEAD
+    
+    public static void addCar(Car newCar){
+    	listCar.clear();
+    	listCar.add(newCar);
+	}
+    public static ArrayList<ResultSet> getAllCar(){
+		return AllCar;
+		
     public static ArrayList<Car> getAllCar(){
 		return listCar;
+		
 	}
+    
+    public static ArrayList<Car> getAlCar(){
+		return listCar;
+	}
+    
     public static void removeFromCollection(Car aCar){
     	listCar.remove(aCar);
     }
     
+
+	public static void setAlCar(ArrayList<Car> newc){
+		listCar= newc;
+	}
     public static boolean isInCollection(String numPuce){
 		Boolean check = false;
 		for(Car aCar: listCar){
@@ -153,6 +173,11 @@ public class Car {
 			}
 		}
 		return check;
+	}
+
+	public static void emptyCollection(){
+		
+		listCar.clear();
 	}
     /**
      * Method transform object Car to String

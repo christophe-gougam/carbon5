@@ -1,11 +1,12 @@
 package Modele;
 
 import java.lang.reflect.Array;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 import org.apache.log4j.Logger;
 
@@ -245,6 +246,23 @@ public class User {
      * @param user
      * @return String serial user
      */
+
+	public static boolean isInCollection(String type){
+		Boolean check = false;
+		for(User atypeC: usersCo){
+			if (atypeC.login.equalsIgnoreCase(type)){
+				check = true;
+			}
+		}
+		return check;
+	}
+
+	public static void emptyCollection(){
+		
+		User.usersCo.clear();
+	}
+	
+	
 	public static String serialize(User user){
 		String serialUser = user.id+"///"+user.firstName+"///"+user.lastName+"///"+user.address+"///"+user.town+"///"+user.postCode+"///"+user.login+"///"+user.email+"///"+user.hireDate+"///"+user.income+"///"+user.type.serialize(user.getTypeUser());
 		return serialUser;
@@ -261,10 +279,11 @@ public class User {
 		for (String retval: serializedUser.split("///")){
 			values.add(retval);
 		}
-		DateFormat format = new SimpleDateFormat("YYYY-MM-DD");
-		Date date = new Date();
+        
+		Date date=null;
 		try {
-			date = format.parse(values.get(8).toString());
+			java.util.Date utilDate = new SimpleDateFormat("YYYY-MM-DD").parse(values.get(8).toString());
+	        date = new Date(utilDate.getTime());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -25,9 +25,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import Vues.Authentication;
 import Client.Controlleurs.ServerConnect;
+import Modele.Car;
 import Modele.Defect;
 import Modele.Place;
 import Modele.TypeCar;
+import Modele.User;
 import Serveur.Controlleurs.Serveur;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -293,13 +295,26 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
     	public void actionPerformed(ActionEvent arg0){
     		
     		
-    		String numPuce = jTextField1.getText();
-    		ArrayList<String> data = new ArrayList<String>();
-    		data.add(numPuce);
-
-    		String identifier = "Search";
-    		new ServerConnect(data, identifier, frame);
-    		
+    		if(jTextField1.getText().length()!=0){
+    			String numPuce = ""+jTextField1.getText()+"";
+	    		ArrayList<String> data = new ArrayList<String>();
+	    		data.add(numPuce);
+	    		Car.emptyCollection();
+	    		String identifier = "Search";
+	    		new ServerConnect(data, identifier, frame);
+	    		
+	    		ArrayList<Car> car = new ArrayList<Car>();
+	    		int taille=Car.getAlCar().size();
+	    		car=Car.getAlCar();
+	    		for(int i=0; i<taille; i++){
+	    			if(!car.isEmpty()){
+	    				jTextField1.setText(car.get(i).getNumePuce());
+	        			jTextField2.setText(car.get(i).getMatricule());
+	        			jComboBox1.setSelectedItem(car.get(i).getTypeVehicule());
+	    			}
+	    			
+	            }
+    		}
     	}
 	}
     
@@ -340,9 +355,12 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
         		data.add(D);
     		}
     		data.add(comment);
-    		////////A faire : place et motif entrée////////////////
+    		   		
+    		for (User us : User.getAllUsers()){
+            
+    			data.add(User.serialize(us));
+            }
     		
-    		//data.add(""+User.getAllUsers().get(0).getId());
     		String identifier = "AjoutVehicule";
     		logger.info("Entrée de"+numPuce);
     		new ServerConnect(data, identifier, frame);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 14 Mai 2017 à 16:18
+-- Généré le :  Sam 27 Mai 2017 à 01:31
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -29,18 +29,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `car` (
   `NumPuce` varchar(100) NOT NULL,
   `TypeVehicule` varchar(50) DEFAULT NULL,
-  `matricule` varchar(50) DEFAULT NULL,
-  `EntranceDate` date NOT NULL,
-  `ListeOperations` varchar(500) NOT NULL,
-  `Emplacement` int(10) NOT NULL
+  `matricule` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `car`
 --
 
-INSERT INTO `car` (`NumPuce`, `TypeVehicule`, `matricule`, `EntranceDate`, `ListeOperations`, `Emplacement`) VALUES
-('mldvjzpljajfpzfjv&²', 'c,zdsmlvmvl', 'Auto', '2017-05-14', '', 10001);
+INSERT INTO `car` (`NumPuce`, `TypeVehicule`, `matricule`) VALUES
+('', 'Voiture', ''),
+('l78p', 'Velo', '1234');
 
 -- --------------------------------------------------------
 
@@ -54,22 +52,6 @@ CREATE TABLE `carddefect` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
-
---
--- Structure de la table `preferences`
---
-
-CREATE TABLE `preferences` (
-  `id` int(11) NOT NULL,
-  `indifDays` float DEFAULT NULL,
-  `vetoDays` float DEFAULT NULL,
-  `indifTimeRep` float DEFAULT NULL,
-  `vetoTimeRep` float DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
-
 
 --
 -- Structure de la table `cardrepairs`
@@ -91,6 +73,15 @@ CREATE TABLE `cardstate` (
   `Description` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Contenu de la table `cardstate`
+--
+
+INSERT INTO `cardstate` (`Id`, `Description`) VALUES
+(1, 'Attente'),
+(3, 'Cours'),
+(5, 'Repare');
+
 -- --------------------------------------------------------
 
 --
@@ -100,17 +91,49 @@ CREATE TABLE `cardstate` (
 CREATE TABLE `defect` (
   `Id` int(11) NOT NULL,
   `Description` text,
-  `RepairTime` int(100) NOT NULL
+  `RepairTime` int(100) NOT NULL,
+  `criticity` int(11) DEFAULT NULL,
+  `partForRepair` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `defect`
 --
 
-INSERT INTO `defect` (`Id`, `Description`, `RepairTime`) VALUES
-(1, 'Frein', 2),
-(2, 'Levier', 1),
-(3, 'Pneu', 0);
+INSERT INTO `defect` (`Id`, `Description`, `RepairTime`, `criticity`, `partForRepair`) VALUES
+(1, 'Frein', 2, NULL, NULL),
+(2, 'Levier', 1, NULL, NULL),
+(3, 'Pneu', 0, NULL, NULL),
+(4, 'Batterie', 4, NULL, NULL),
+(5, 'Electronique', 10, NULL, NULL),
+(6, 'Batterie', 1, NULL, NULL),
+(7, 'Boite de vitesse', 6, NULL, NULL),
+(8, 'Plaque Imatriculation', 9, NULL, NULL),
+(9, 'Vidange', 7, NULL, NULL),
+(10, 'CLimatisation', 2, NULL, NULL),
+(11, 'Geometrie', 1, NULL, NULL),
+(12, 'Revision', 0, NULL, NULL),
+(13, 'Vidange', 4, NULL, NULL),
+(14, 'Filtration', 10, NULL, NULL),
+(15, 'Batterie', 1, NULL, NULL),
+(16, 'Eclairage', 6, NULL, NULL),
+(17, 'Atelage', 9, NULL, NULL),
+(18, 'Distribution', 7, NULL, NULL),
+(19, 'Prestation', 10, NULL, NULL),
+(20, 'Echappement', 1, NULL, NULL),
+(21, 'Système de freinage', 6, NULL, NULL),
+(22, 'Controle', 9, NULL, NULL),
+(23, 'Diagnostics', 7, NULL, NULL),
+(24, 'EntretienEchappement', 2, NULL, NULL),
+(25, 'MontageAmortisseur', 1, NULL, NULL),
+(26, 'MontageBatterie', 0, NULL, NULL),
+(27, 'ChangerHydrolique', 4, NULL, NULL),
+(28, 'NettoyerFiltreAir', 10, NULL, NULL),
+(29, 'ChangementRoues', 1, NULL, NULL),
+(30, 'ReglageEclairage', 6, NULL, NULL),
+(31, 'RenovationPhare', 9, NULL, NULL),
+(32, 'ServiceCarteGrise', 7, NULL, NULL),
+(33, 'VidangeBoiteEtPont', 10, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -171,8 +194,29 @@ CREATE TABLE `part` (
 --
 
 INSERT INTO `part` (`Id`, `Stock`, `NamePart`, `PurchasePrice`) VALUES
-(1, 25, 'moteur', 25),
-(2, 10, 'test', 2);
+(1, 23, 'moteur', 25),
+(2, 0, 'test', 2),
+(3, 1, 'pneu', 24),
+(4, 19, 'lampe', 10),
+(5, 51, 'retroviseur', 10),
+(6, 24, 'pedale', 20),
+(7, 1, 'chaine', 6),
+(8, 14, 'roue', 2),
+(9, 1, 'frein', 50),
+(10, 1, 'porte', 36),
+(11, 1, 'antenne', 49),
+(12, 1, 'piston', 102),
+(13, 1, 'vitrine', 21),
+(14, 1, 'test', 24),
+(15, 1, 'ghost', 22),
+(16, 1, 'fast', 56),
+(17, 1, 'aller', 8),
+(18, 1, 'cac', 5),
+(19, 1, 'volant', 45),
+(21, 1, 'cle', 2),
+(23, 1, 'porte baggage', 9),
+(24, 1, 'baterie', 200),
+(26, 1, 'fils electrique', 15);
 
 -- --------------------------------------------------------
 
@@ -213,9 +257,60 @@ CREATE TABLE `place` (
 --
 
 INSERT INTO `place` (`NumPlace`, `IsOccupied`, `NumPark`) VALUES
-(10001, 1, 1),
-(10005, 1, 2),
-(10007, 0, 1);
+(1001, 1, 1),
+(1005, 1, 2),
+(1007, 1, 1),
+(1010, 1, 1),
+(1011, 0, 1),
+(1012, 0, 1),
+(1013, 1, 1),
+(1014, 1, 1),
+(1015, 0, 1),
+(1016, 0, 1),
+(1017, 0, 1),
+(1018, 0, 1),
+(1019, 0, 1),
+(1020, 0, 1),
+(1021, 0, 1),
+(1022, 0, 1),
+(1023, 0, 1),
+(1024, 0, 1),
+(1025, 0, 1),
+(1026, 0, 1),
+(2001, 0, 2),
+(2005, 2, 2),
+(2007, 0, 2),
+(2010, 0, 2),
+(2011, 0, 2),
+(2012, 0, 2),
+(2013, 0, 2),
+(2014, 0, 2),
+(2015, 0, 2),
+(2016, 0, 2),
+(2017, 0, 2),
+(2018, 0, 2),
+(2019, 0, 2),
+(2020, 0, 2),
+(2021, 0, 2),
+(2022, 0, 2),
+(2023, 0, 2),
+(2024, 0, 2),
+(2025, 0, 2),
+(2026, 0, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `preferences`
+--
+
+CREATE TABLE `preferences` (
+  `id` int(11) NOT NULL,
+  `indifDays` float DEFAULT NULL,
+  `vetoDays` float DEFAULT NULL,
+  `indifTimeRep` float DEFAULT NULL,
+  `vetoTimeRep` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -265,7 +360,8 @@ CREATE TABLE `typecar` (
 --
 
 INSERT INTO `typecar` (`Id`, `Type`) VALUES
-(1, 'Auto');
+(1, 'Voiture'),
+(2, 'Velo');
 
 -- --------------------------------------------------------
 
@@ -296,6 +392,13 @@ CREATE TABLE `urgencydegree` (
   `Id` int(11) NOT NULL,
   `Description` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `urgencydegree`
+--
+
+INSERT INTO `urgencydegree` (`Id`, `Description`) VALUES
+(1, NULL);
 
 -- --------------------------------------------------------
 
@@ -361,7 +464,8 @@ ALTER TABLE `cardstate`
 -- Index pour la table `defect`
 --
 ALTER TABLE `defect`
-  ADD PRIMARY KEY (`Id`);
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `fk_part` (`partForRepair`);
 
 --
 -- Index pour la table `orderpart`
@@ -453,12 +557,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `cardstate`
 --
 ALTER TABLE `cardstate`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `defect`
 --
 ALTER TABLE `defect`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT pour la table `parking`
 --
@@ -468,7 +572,7 @@ ALTER TABLE `parking`
 -- AUTO_INCREMENT pour la table `part`
 --
 ALTER TABLE `part`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT pour la table `repaircard`
 --
@@ -483,7 +587,7 @@ ALTER TABLE `repairs`
 -- AUTO_INCREMENT pour la table `typecar`
 --
 ALTER TABLE `typecar`
-  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `typeuser`
 --
@@ -493,7 +597,7 @@ ALTER TABLE `typeuser`
 -- AUTO_INCREMENT pour la table `urgencydegree`
 --
 ALTER TABLE `urgencydegree`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `users`
 --
@@ -516,6 +620,12 @@ ALTER TABLE `carddefect`
 ALTER TABLE `cardrepairs`
   ADD CONSTRAINT `fk_Card_CardRepair` FOREIGN KEY (`IdCard`) REFERENCES `repaircard` (`Id`),
   ADD CONSTRAINT `fk_Repairs_CardRepair` FOREIGN KEY (`IdRepair`) REFERENCES `repairs` (`Id`);
+
+--
+-- Contraintes pour la table `defect`
+--
+ALTER TABLE `defect`
+  ADD CONSTRAINT `fk_part` FOREIGN KEY (`partForRepair`) REFERENCES `part` (`Id`);
 
 --
 -- Contraintes pour la table `orderpart`
