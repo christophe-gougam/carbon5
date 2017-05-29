@@ -139,14 +139,12 @@ public class Car {
 		listCar.clear();
 		listCar.add(newCar);
 	}
-<<<<<<< HEAD
+//<<<<<<< HEAD
     
     public static void addCar(Car newCar){
     	listCar.clear();
     	listCar.add(newCar);
 	}
-    public static ArrayList<ResultSet> getAllCar(){
-		return AllCar;
 		
     public static ArrayList<Car> getAllCar(){
 		return listCar;
@@ -175,10 +173,6 @@ public class Car {
 		return check;
 	}
 
-	public static void emptyCollection(){
-		
-		listCar.clear();
-	}
     /**
      * Method transform object Car to String
      * @param car
