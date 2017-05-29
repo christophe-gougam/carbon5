@@ -21,6 +21,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import Vues.Authentication;
@@ -340,30 +341,34 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
     	
     	public void actionPerformed(ActionEvent arg0){
     		
-    		String typeCar = ""+(String) jComboBox1.getSelectedItem()+"";
-    		String numPuce = jTextField1.getText();
-    		String matricule = jTextField2.getText();
-    		String place = ""+jComboBox5.getSelectedItem()+"";
-    		String comment = ""+Commentaires.getText()+"";
-    		ArrayList<String> data = new ArrayList<String>();
-    		data.add(numPuce);
-    		data.add(typeCar);
-    		data.add(matricule);
-    		data.add(place);
-    		
-    		for(String D: datapanne){
-        		data.add(D);
+    		if(jTextField1.getText().length()!=0 && jTextField2.getText().length()!=0){
+	    		String typeCar = ""+(String) jComboBox1.getSelectedItem()+"";
+	    		String numPuce = jTextField1.getText();
+	    		String matricule = jTextField2.getText();
+	    		String place = ""+jComboBox5.getSelectedItem()+"";
+	    		String comment = ""+Commentaires.getText()+"";
+	    		ArrayList<String> data = new ArrayList<String>();
+	    		data.add(numPuce);
+	    		data.add(typeCar);
+	    		data.add(matricule);
+	    		data.add(place);
+	    		
+	    		for(String D: datapanne){
+	        		data.add(D);
+	    		}
+	    		data.add(comment);
+	    		   		
+	    		for (User us : User.getAllUsers()){
+	            
+	    			data.add(User.serialize(us));
+	            }
+	    		
+	    		String identifier = "AjoutVehicule";
+	    		logger.info("Entrée de"+numPuce);
+	    		new ServerConnect(data, identifier, frame);
     		}
-    		data.add(comment);
-    		   		
-    		for (User us : User.getAllUsers()){
-            
-    			data.add(User.serialize(us));
-            }
-    		
-    		String identifier = "AjoutVehicule";
-    		logger.info("Entrée de"+numPuce);
-    		new ServerConnect(data, identifier, frame);
+	    	else
+	    			JOptionPane.showMessageDialog(frame, "Remplir les champs");
     		
     	}
 	}
