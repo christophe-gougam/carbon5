@@ -111,10 +111,7 @@ public class CarDAO extends DAO<Car>{
             	Car.addCarToCo(new Car(
 						String.valueOf(result.getString("NumPuce")),
 						result.getString("TypeVehicule"),
-						result.getString("matricule"),
-                                                result.getDate("EntranceDate"),
-						result.getString("ListeOperations"),
-                                                result.getInt("Emplacement")));		
+						result.getString("matricule")));		
             }            
             } catch (SQLException e) {
                     e.printStackTrace();

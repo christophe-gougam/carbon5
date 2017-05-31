@@ -113,7 +113,7 @@ public class CarController implements Runnable{
 						//TODO:
 						//create object and add to waitList
 						data=test1.getTypeCar();
-                                                allCar = test.getAllCars();
+                        allCar = test.getAllCars();
 						data.add(0, "LoadAllComboBoxOK");
 						dataPanne=test2.getAllDefect();
 						allPlace=null;
