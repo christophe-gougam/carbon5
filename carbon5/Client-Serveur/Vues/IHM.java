@@ -166,7 +166,7 @@ public class IHM extends JFrame {
                 //code
                 Parking.emptyCollection();
                     ArrayList<String> data = new ArrayList<String>();
-                    String identifier = "SelectAllParking";
+                    String identifier = "SelectAllParkings";
                     logger.info("Recuperation des parking");
                     new ServerConnect(data, identifier, pan2);
                 cl.show(pan2, listContent[1]);

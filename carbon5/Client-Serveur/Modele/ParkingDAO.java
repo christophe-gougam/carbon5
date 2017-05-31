@@ -40,10 +40,10 @@ public class ParkingDAO extends DAO<Parking> {
         } catch (SQLException e) {
                 e.printStackTrace();
         }
-    	//Getting number of parts
+    	//Getting number of parkings
     	parking.add(String.valueOf(Parking.getAllParkings().size()));
     	for(Parking aParking : Parking.getAllParkings()){
-    		//adding parts
+    		//adding parkings
     		parking.add(Parking.serialize(aParking));
     	}
         return parking;
