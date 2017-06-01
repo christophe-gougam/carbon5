@@ -1,20 +1,12 @@
 package Modele;
-import org.json.JSONObject;
-import org.json.JSONString;
-
-import Serveur.Controlleurs.Serveur;
+import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.lang.reflect.Array;
+import Serveur.Controlleurs.Serveur;
  
 public class LectureJson {
 	final static Logger logger = Logger.getLogger(Serveur.class);

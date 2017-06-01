@@ -10,19 +10,15 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import org.apache.log4j.Logger;
-import org.json.JSONObject;
 
 import Client.Controlleurs.ServerConnect;
-import Modele.User;
 import Serveur.Controlleurs.Serveur;
-import Vues.Authentication;
 
 /**
  * Class creates IHM to login

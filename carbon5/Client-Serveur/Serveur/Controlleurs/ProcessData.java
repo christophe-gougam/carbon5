@@ -1,23 +1,18 @@
 package Serveur.Controlleurs;
 
-import Modele.LectureJson;
-import Modele.EcritureJson;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.Socket;
 import java.net.ServerSocket;
-import java.net.UnknownHostException;
+import java.net.Socket;
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
-import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.io.PrintWriter;
+import Modele.LectureJson;
 
 /**
  * Class ProcessData

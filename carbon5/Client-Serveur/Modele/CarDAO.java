@@ -1,7 +1,6 @@
 package Modele;
 
 import java.sql.Connection;
-
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,8 +10,6 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
-import Modele.Car;
-import Modele.Parking;
 import Serveur.Controlleurs.Serveur;
 
 /**

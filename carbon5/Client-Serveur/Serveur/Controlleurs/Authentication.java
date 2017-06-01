@@ -1,32 +1,17 @@
 package Serveur.Controlleurs;
 
-import java.io.BufferedReader;
-
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.ServerSocket;
-import java.net.UnknownHostException;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
-
-import javax.swing.JOptionPane;
 
 import org.apache.log4j.Logger;
-import org.json.JSONObject;
 import org.json.JSONException;
 
+import Modele.EcritureJson;
 import Modele.LectureJson;
 import Modele.User;
 import Modele.UserDAO;
-import Modele.EcritureJson;
-
-import java.io.PrintWriter;
 
 /**
  * Class Authentication check login and password

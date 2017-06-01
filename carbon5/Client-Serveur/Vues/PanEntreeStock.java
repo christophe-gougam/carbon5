@@ -6,16 +6,13 @@
 package Vues;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 import org.apache.log4j.Logger;
+
 import Client.Controlleurs.ServerConnect;
 import Modele.Part;
 import Modele.User;

@@ -1,12 +1,9 @@
 package Modele;
 
-import java.lang.reflect.Array;
-
-import java.text.DateFormat;
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.sql.Date;
 
 import org.apache.log4j.Logger;
 
