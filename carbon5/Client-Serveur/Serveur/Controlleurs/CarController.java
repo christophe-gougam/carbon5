@@ -1,23 +1,15 @@
 package Serveur.Controlleurs;
 
-import java.io.BufferedReader;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 
+import org.apache.log4j.Logger;
 
-
-import Modele.LectureJson;
-import Modele.Part;
-import Modele.PartDAO;
-import Modele.PlaceDAO;
-import Modele.RepairCard;
-import Modele.RepairCardDAO;
-import Modele.TypeCar;
-import Modele.TypeCarDAO;
-import Modele.User;
-import Modele.UserDAO;
 import Modele.Car;
 import Modele.CarDAO;
-import Modele.CardState;
-import Modele.CardStateDAO;
 import Modele.Defect;
 import Modele.DefectDAO;
 import Modele.EcritureJson;
@@ -45,6 +37,13 @@ import javax.swing.JOptionPane;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.json.JSONException;
+
+import Modele.LectureJson;
+import Modele.PlaceDAO;
+import Modele.RepairCard;
+import Modele.RepairCardDAO;
+import Modele.TypeCarDAO;
+import Modele.User;
 
 /**
  * Class CarController runs operation for car 
