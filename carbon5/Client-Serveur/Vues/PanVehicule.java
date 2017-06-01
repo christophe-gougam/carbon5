@@ -89,8 +89,8 @@ public class PanVehicule extends javax.swing.JPanel {
         public void actionPerformed(ActionEvent e) {
 //            try{  	
         	ArrayList<String> data = new ArrayList();
-        	String identifier = "SelectAllParts";
-        	logger.info("Afficher liste des pieces");
+        	String identifier = "LoadAllComboBox";
+        	logger.info("Afficher liste des vehicules");
         	new ServerConnect(data, identifier, frame);
             	RsTableModel model = new RsTableModel(Car.getAllCar());
                 JTable jTableA = new JTable();

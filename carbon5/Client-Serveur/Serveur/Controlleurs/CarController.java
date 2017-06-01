@@ -21,6 +21,8 @@ import Modele.CardStateDAO;
 import Modele.Defect;
 import Modele.DefectDAO;
 import Modele.EcritureJson;
+import static Serveur.Controlleurs.PartController.logger;
+import static Serveur.Controlleurs.ProcessData.logger;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -113,7 +115,7 @@ public class CarController implements Runnable{
 						//TODO:
 						//create object and add to waitList
 						data=test1.getTypeCar();
-                        allCar = test.getAllCars();
+                                                allCar = test.getAllCars();
 						data.add(0, "LoadAllComboBoxOK");
 						dataPanne=test2.getAllDefect();
 						allPlace=null;
@@ -121,6 +123,26 @@ public class CarController implements Runnable{
 						
 						
 					break;
+                                        
+                                        case("getInfoCar_query1"):
+                                            data = test5.getInfoCar();
+                                            data.add(0, "query1_OK");
+                                        break;
+                                        
+//                                        case("getWorkflowCar_query2"):
+//                                            data = test5.getInfoCar();
+//                                            data.add(0, "query2_OK");
+//                                        break;
+//                                        
+//                                        case("getCumulDay_query3"):
+//                                            data = test5.getInfoCar();
+//                                            data.add(0, "query3_OK");
+//                                        break;
+//                                        
+//                                        case("getManutentionnaires_query4"):
+//                                            data = test5.getInfoCar();
+//                                            data.add(0, "query4_OK");
+//                                        break;
 					
 					case("AjoutVehicule"):
 						numP=result.get(0);
@@ -164,7 +186,7 @@ public class CarController implements Runnable{
 						dat=entranceDate.plusDays(repairTime);
 						///verifier le type date et adapter	pour hour
 						
-						RepairCard carinfo=new RepairCard(1, Integer.parseInt(numP), place, java.sql.Date.valueOf(dat), listPane, user);
+						RepairCard carinfo=new RepairCard(1, String.valueOf(numP), place, java.sql.Date.valueOf(dat), listPane, user);
 						Carinfo=test.getCar(numP);
 						isIn=test5.existRepairCard(numP);
 						if(Carinfo.get(0).getNumePuce().equalsIgnoreCase(numP) && true)
@@ -221,6 +243,34 @@ public class CarController implements Runnable{
 				out.flush();
 			break;
 			
+                        case("query1_OK"):
+                                JsonMessage = EcritureJson.WriteJson("query1_OK", data);
+                                logger.info("Sending info car to Client");
+                                out.println(JsonMessage);
+                                out.flush();
+                        break;
+                        
+//                        case("query2_OK"):
+//                                JsonMessage = EcritureJson.WriteJson("query2_OK", data);
+//                                logger.info("Sending workflow car to Client");
+//                                out.println(JsonMessage);
+//                                out.flush();
+//                        break;
+//                        
+//                        case("query3_OK"):
+//                                JsonMessage = EcritureJson.WriteJson("query3_OK", data);
+//                                logger.info("Sending cumulation day to Client");
+//                                out.println(JsonMessage);
+//                                out.flush();
+//                        break;
+//                        
+//                        case("query4_OK"):
+//                                JsonMessage = EcritureJson.WriteJson("query4_OK", data);
+//                                logger.info("Sending warehousemen to Client");
+//                                out.println(JsonMessage);
+//                                out.flush();
+//                        break;
+                        
 			case("SearchOK"):
 				JsonMessage = EcritureJson.WriteJson("SearchOK", data);
 				logger.info("Sending  car info to Client");

@@ -181,7 +181,59 @@ public class Connection{
 		    		}	
 		    	}
                         break;
-		    
+                        
+                        case "query1_OK":
+				objet = new JSONObject(reponse);
+				logger.info("Affichage du resultat de mise à jour : ");
+		    	logger.info(reponse);
+		    	tableau = objet.getJSONArray("data");
+		    	for (int i =0; i<tableau.getInt(1);i++){
+		    		RepairCard aRepairCard = RepairCard.unSerialize(tableau.getString(i+2));
+		    		if(!RepairCard.isInCollection(aRepairCard.getidcard())){
+		    			RepairCard.addRepairCardToCo(aRepairCard);
+		    		}	
+		    	}
+                        break;
+                        
+//                        case "query2_OK":
+//				objet = new JSONObject(reponse);
+//				logger.info("Affichage du resultat de mise à jour : ");
+//		    	logger.info(reponse);
+//		    	tableau = objet.getJSONArray("data");
+//		    	for (int i =0; i<tableau.getInt(1);i++){
+//		    		Parking aParking = Parking.unSerialize(tableau.getString(i+2));
+//		    		if(!Parking.isInCollection(aParking.getNumParking())){
+//		    			Parking.addParkingToCo(aParking);
+//		    		}	
+//		    	}
+//                        break;
+//                        
+//                        case "query3_OK":
+//				objet = new JSONObject(reponse);
+//				logger.info("Affichage du resultat de mise à jour : ");
+//		    	logger.info(reponse);
+//		    	tableau = objet.getJSONArray("data");
+//		    	for (int i =0; i<tableau.getInt(1);i++){
+//		    		Parking aParking = Parking.unSerialize(tableau.getString(i+2));
+//		    		if(!Parking.isInCollection(aParking.getNumParking())){
+//		    			Parking.addParkingToCo(aParking);
+//		    		}	
+//		    	}
+//                        break;
+//                        
+//                        case "query4_OK":
+//				objet = new JSONObject(reponse);
+//				logger.info("Affichage du resultat de mise à jour : ");
+//		    	logger.info(reponse);
+//		    	tableau = objet.getJSONArray("data");
+//		    	for (int i =0; i<tableau.getInt(1);i++){
+//		    		Parking aParking = Parking.unSerialize(tableau.getString(i+2));
+//		    		if(!Parking.isInCollection(aParking.getNumParking())){
+//		    			Parking.addParkingToCo(aParking);
+//		    		}	
+//		    	}
+//                        break;
+                        
 		    //rechercher vehicule avec sa puce
 			case "SearchOK":
 				objet = new JSONObject(reponse);
@@ -202,7 +254,7 @@ public class Connection{
 				JOptionPane.showMessageDialog(frame, "Ce vehicule existe pas, contacter votre administrateur");
 		    break;
 			case "AlreadyAdded":
-				JOptionPane.showMessageDialog(frame, "Ce vehiule est d�j� en reparation.\n Contacter votre administrateur");
+				JOptionPane.showMessageDialog(frame, "Ce vehiule est d�j� en reparation.\n Contacter votre administrateur");
 		    break;
 		    
 		    //rechercher vehicule avec sa puce

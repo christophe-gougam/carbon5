@@ -4,7 +4,7 @@ public class UrgencyDegree {
         private int id;
 	private String description;
         
-        public UrgencyDegree(String description){
+        public UrgencyDegree(int id, String description){
             
         }
 

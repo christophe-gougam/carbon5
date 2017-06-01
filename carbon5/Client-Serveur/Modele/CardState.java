@@ -8,6 +8,7 @@ import java.util.ArrayList;
  */
 public class CardState {
 	private static ArrayList<CardState> state = new ArrayList<CardState>();
+
 	private int id;
 	private String description;
 	/**
@@ -51,6 +52,11 @@ public class CardState {
         public static ArrayList<CardState> getAllState(){
 		return state;
 	}
+        
+        public static void emptyCollection() {
+            state.clear();
+        }
+        
 	/**
 	 * Method to serialize the card state
 	 * @param card

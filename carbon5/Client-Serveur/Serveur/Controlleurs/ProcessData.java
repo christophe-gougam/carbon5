@@ -110,6 +110,29 @@ public class ProcessData implements Runnable{
 					t = new Thread(new ParkingController(con, message_distant, out));
 					t.run();
 				break;
+                                case("getInfoCar_query1"):
+                                        logger.info("Case retrieving info car");
+                                        t = new Thread(new CarController(con, message_distant, out));
+					t.run();
+                                break;
+
+                                case("getWorkflowCar_query2"):
+                                        logger.info("Case retrieving workflow complet car");
+                                        t = new Thread(new CarController(con, message_distant, out));
+					t.run();
+                                break;
+
+                                case("getCumulDay_query3"):
+                                        logger.info("Case retrieving day cumulation");
+                                        t = new Thread(new CarController(con, message_distant, out));
+					t.run();
+                                break;
+
+                                case("getManutentionnaires_query4"):
+                                        logger.info("Case retrieving warehousemen");
+                                        t = new Thread(new CarController(con, message_distant, out));
+					t.run();
+                                break;
 				case("LoadAllComboBox"):
 					logger.info("Case Select all type car");
 					t = new Thread(new CarController(con, message_distant, out));

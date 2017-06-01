@@ -36,27 +36,28 @@ public class CardStateDAO extends DAO<CardState>{
 	 * @param con
 	 * @return dataResult containing all serialized CardState
 	 */
-	public String getCardState(){
+	public ArrayList<CardState> getCardState(int id){
 
-		String Res="";
+		CardState res= new CardState(id,"");
 		try {
-            ResultSet result = this .connect
-                                    .createStatement(
-                                            	ResultSet.TYPE_SCROLL_INSENSITIVE, 
-                                                ResultSet.CONCUR_UPDATABLE
-                                             ).executeQuery(
-                                                "Select * FROM cardState where "
-                                             );
-
-            	
+                    ResultSet result = this .connect
+                                            .createStatement(
+                                                        ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                                        ResultSet.CONCUR_UPDATABLE
+                                                     ).executeQuery(
+                                                        "Select * FROM cardstate"
+                                                     );
+                    CardState.emptyCollection();
+                    if(result.first())
+                        res = new CardState(result.getInt("Id"),result.getString("Description"));
+                    listCardState.add(res);
         } catch (SQLException e) {
                 e.printStackTrace();
         }
-		return Res;
+		return listCardState;
 	}
 	
-
-	@Override
+        @Override
 	public CardState find() {
 		// TODO Auto-generated method stub
 		return null;

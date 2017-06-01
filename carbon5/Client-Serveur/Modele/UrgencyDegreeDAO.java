@@ -38,6 +38,7 @@ public class UrgencyDegreeDAO extends DAO<UrgencyDegree>{
                                              );
             if(result.first())
             		ud = new UrgencyDegree(
+                                        result.getInt("Id"),
                                         result.getString("Description") 
                         );            
         } catch (SQLException e) {
@@ -45,7 +46,29 @@ public class UrgencyDegreeDAO extends DAO<UrgencyDegree>{
         }
         return ud;
     }
-
+    
+    private static ArrayList<UrgencyDegree> ud = new ArrayList<UrgencyDegree>();
+    
+    public ArrayList<UrgencyDegree> getUD(int id){  
+            UrgencyDegree res= new UrgencyDegree(id,"");
+            try {
+                ResultSet result = this .connect
+                                        .createStatement(
+                                                    ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                                    ResultSet.CONCUR_UPDATABLE
+                                                 ).executeQuery(
+                                                    "Select * FROM urgencydegree"
+                                                 );
+                CardState.emptyCollection();
+                if(result.first())
+                    res = new UrgencyDegree(result.getInt("Id"),result.getString("Description"));
+                ud.add(res);
+    } catch (SQLException e) {
+            e.printStackTrace();
+    }
+            return ud;
+    }
+    
     /**
      * Creates an entry in the database relative to an object
      * @param obj

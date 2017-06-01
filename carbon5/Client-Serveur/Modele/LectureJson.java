@@ -75,6 +75,21 @@ public class LectureJson {
                 logger.info("retrieving all parking");
         break;
 //=======
+        case("getInfoCar_query1"):
+                logger.info("retrieving info car");
+        break;
+        
+        case("getWorkflowCar_query2"):
+                logger.info("retrieving workflow complet car");
+        break;
+        
+        case("getCumulDay_query3"):
+                logger.info("retrieving day cumulation");
+        break;
+        
+        case("getManutentionnaires_query4"):
+                logger.info("retrieving warehousemen");
+        break;
 //>>>>>>> origin/Develop
 	case("Search"):
 		logger.info("retrieving car info");
