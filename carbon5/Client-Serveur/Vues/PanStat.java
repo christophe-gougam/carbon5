@@ -90,7 +90,7 @@ public class PanStat extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Stat 1", jPanel1);
+        jTabbedPane1.addTab("Liste vehicule", jPanel1);
 
         jButton2.setText("Actualiser");
 
@@ -135,7 +135,7 @@ public class PanStat extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Stat 2", jPanel2);
+        jTabbedPane1.addTab("Workflow vehicule", jPanel2);
 
         jButton3.setText("Actualiser");
 
@@ -180,7 +180,7 @@ public class PanStat extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Stat 3", jPanel3);
+        jTabbedPane1.addTab("Cumul journée", jPanel3);
 
         jButton4.setText("Actualiser");
 
@@ -225,7 +225,7 @@ public class PanStat extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Stat 4", jPanel4);
+        jTabbedPane1.addTab("Manutentionnaire", jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
