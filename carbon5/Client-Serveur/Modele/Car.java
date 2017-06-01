@@ -7,7 +7,6 @@ package Modele;
 
 import java.sql.Date;
 import java.sql.ResultSet;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;

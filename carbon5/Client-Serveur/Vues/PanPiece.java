@@ -5,20 +5,19 @@
  */
 package Vues;
 
-import Client.Controlleurs.ServerConnect;
-import Modele.Defect;
-import Modele.Part;
 import static Vues.PanAjoutPiece.logger;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import java.sql.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
-import javax.swing.*;
+
+import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
+
+import Client.Controlleurs.ServerConnect;
+import Modele.Part;
 
 /**
  *

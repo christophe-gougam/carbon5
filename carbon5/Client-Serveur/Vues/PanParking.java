@@ -5,14 +5,12 @@
  */
 package Vues;
 
-import Modele.Parking;
-import Modele.Part;
-import javax.swing.*;
-import java.sql.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Vector;
+
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
+
+import Modele.Parking;
 
 /**
  *

@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -23,13 +24,10 @@ import javax.swing.event.ListSelectionListener;
 import org.apache.log4j.Logger;
 
 import Client.Controlleurs.ServerConnect;
-import Modele.Part;
-import Modele.User;
-import Modele.TypeCar;
-import Modele.Car;
 import Modele.Parking;
+import Modele.Part;
+import Modele.TypeCar;
 import Serveur.Controlleurs.Serveur;
-import java.sql.SQLException;
 
 /**
  *

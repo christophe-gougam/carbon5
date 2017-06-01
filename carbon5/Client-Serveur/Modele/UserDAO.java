@@ -1,6 +1,5 @@
 package Modele;
 
-import com.mysql.jdbc.PreparedStatement;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;

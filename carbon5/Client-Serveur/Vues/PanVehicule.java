@@ -5,22 +5,20 @@
  */
 package Vues;
 
-import Client.Controlleurs.ServerConnect;
-import javax.swing.*;
-
-import java.sql.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Vector;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
 import org.apache.log4j.Logger;
 
+import Client.Controlleurs.ServerConnect;
 import Modele.Car;
-import Modele.Part;
 import Serveur.Controlleurs.Serveur;
-import static Vues.PanAjoutPiece.logger;
-import java.util.ArrayList;
 /**
  *
  * @author Carbon5

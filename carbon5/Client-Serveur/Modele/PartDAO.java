@@ -6,18 +6,14 @@
 package Modele;
 
 import java.sql.Connection;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 import org.apache.log4j.Logger;
 
 import Serveur.Controlleurs.PartController;
-
-import org.apache.log4j.Logger;
 /**
  *
  * @author Carbon5

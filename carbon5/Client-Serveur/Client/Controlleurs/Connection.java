@@ -1,29 +1,32 @@
 package Client.Controlleurs;
 
 import java.io.BufferedReader;
-
-
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JFrame;
 
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import Vues.Authentication;
-import Vues.Fenetre;
-import Vues.IHM;
-import Modele.*;
+import Modele.Car;
+import Modele.Defect;
+import Modele.EcritureJson;
+import Modele.LectureJson;
+import Modele.Parking;
+import Modele.Part;
+import Modele.Place;
+import Modele.RepairCard;
+import Modele.TypeCar;
+import Modele.User;
 import Serveur.Controlleurs.Serveur;
-import java.sql.ResultSet;
+import Vues.Authentication;
+import Vues.IHM;
 
 /**
  * Class Connection creating the connection

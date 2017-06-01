@@ -11,20 +11,26 @@
 package Vues;
 
 import java.awt.event.ActionEvent;
-
-import java.time.LocalDate;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import org.apache.log4j.Logger;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import Vues.Authentication;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+
+import org.apache.log4j.Logger;
+
 import Client.Controlleurs.ServerConnect;
 import Modele.Car;
 import Modele.Defect;
@@ -32,13 +38,6 @@ import Modele.Place;
 import Modele.TypeCar;
 import Modele.User;
 import Serveur.Controlleurs.Serveur;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.GroupLayout;
-import javax.swing.UIManager;
 
 
 /**
@@ -108,7 +107,7 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
         }
         
         jComboBox1 = new JComboBox<String>(modelCar);
-               
+        jComboBox1.addActionListener(new ItemActionType(this));
         DefaultComboBoxModel<String> modelpanne = new DefaultComboBoxModel<String>();
         for (Defect typecar : Defect.getAllDefect()){
         	modelpanne.addElement(typecar.getDescription());
@@ -118,10 +117,7 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
         jComboBox2.addActionListener(new ItemAction(this));
         
         DefaultComboBoxModel<Integer> modelplace = new DefaultComboBoxModel<Integer>();
-        for (Place aPlace : Place.getAllplace()){
-        	
-        	modelplace.addElement(aPlace.getNumPlace());
-        }
+        
         jComboBox5 = new JComboBox<Integer>(modelplace);
         
         jButton1.setText("Ajouter");
@@ -246,6 +242,53 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
     private JTextArea Commentaires;
     // End of variables declaration//GEN-END:variables
     
+    //Action on JcomboBox1
+    class ItemActionType implements ActionListener{
+    	JPanel frame=null;
+
+    	/**
+     	* Class constructor
+     	* @param f 
+     	*/
+    	public ItemActionType(JPanel f){
+    		this.frame=f;
+    	}
+	
+    	/**
+    	 * Method generate component action
+    	 * @param arg0 
+    	 */
+    	public void actionPerformed(ActionEvent e) {
+    		String c="";
+    		
+	    	  if(jComboBox1.getSelectedItem().equals("Velo")){
+
+	    		  DefaultComboBoxModel<Integer> modelplace = new DefaultComboBoxModel<Integer>();
+	    	        for (Place aPlace : Place.getAllplace()){
+	    	        	c=""+aPlace.getNumPlace()+"";
+	    	        	if(c.charAt(0)=='2'){
+	    	        		modelplace.addElement(aPlace.getNumPlace());
+	    	        	}
+	    	        }
+	    	        jComboBox5.setModel(modelplace);
+	    		  
+	    	  }
+	    	  else{
+
+	    		  DefaultComboBoxModel<Integer> modelplace = new DefaultComboBoxModel<Integer>();
+	    	        for (Place aPlace : Place.getAllplace()){
+	    	        	
+	    	        	c=""+aPlace.getNumPlace()+"";
+	    	        	if(c.charAt(0)=='1'){
+	    	        		modelplace.addElement(aPlace.getNumPlace());
+	    	        	}
+	    	        }
+	    	        jComboBox5.setModel(modelplace);
+	    	  }
+	    		  
+	    		  
+      }
+    }
     
     class ItemAction implements ActionListener{
     	JPanel frame=null;
@@ -293,7 +336,7 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
     	 * @param arg0 
     	 */
     	
-    	public void actionPerformed(ActionEvent arg0){
+		public void actionPerformed(ActionEvent arg0){
     		
     		
     		if(jTextField1.getText().length()!=0){
@@ -312,6 +355,7 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
 	    				jTextField1.setText(car.get(i).getNumePuce());
 	        			jTextField2.setText(car.get(i).getMatricule());
 	        			jComboBox1.setSelectedItem(car.get(i).getTypeVehicule());
+	        			jComboBox1.setEnabled(false);
 	    			}
 	    			
 	            }
@@ -391,11 +435,13 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
     	 * @param arg0 
     	 */
     	
-    	public void actionPerformed(ActionEvent arg0){
+		public void actionPerformed(ActionEvent arg0){
     		
+    		DefaultComboBoxModel<Integer> modelVide = new DefaultComboBoxModel<Integer>();
     		jLabelviewpanne.setText("");
     		Commentaires.setText("");
-    		jComboBox1.setSelectedItem("");;
+    		jComboBox1.setEnabled(true);
+    		jComboBox5.setModel(modelVide);
     		jTextField1.setText("");
     		jTextField2.setText("");
     		

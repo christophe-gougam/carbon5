@@ -11,11 +11,12 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
+
 import org.apache.log4j.Logger;
+
 import Client.Controlleurs.ServerConnect;
 import Modele.Part;
 import Modele.User;
-import Vues.PanEntreeStock.BoutonListener;
 import Serveur.Controlleurs.Serveur;
 
 /**

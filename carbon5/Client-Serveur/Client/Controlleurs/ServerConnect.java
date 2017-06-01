@@ -1,9 +1,6 @@
 package Client.Controlleurs;
 import java.io.IOException;
-
 import java.io.InputStream;
-import java.net.*;
-
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Properties;

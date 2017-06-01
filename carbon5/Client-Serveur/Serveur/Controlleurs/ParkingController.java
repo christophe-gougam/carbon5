@@ -5,17 +5,16 @@
  */
 package Serveur.Controlleurs;
 
-import Modele.EcritureJson;
-import Modele.LectureJson;
-import Modele.ParkingDAO;
-import Modele.Part;
-import Modele.PartDAO;
-import static Serveur.Controlleurs.PartController.logger;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
 import org.apache.log4j.Logger;
+
+import Modele.EcritureJson;
+import Modele.LectureJson;
+import Modele.ParkingDAO;
 
 /**
  *
