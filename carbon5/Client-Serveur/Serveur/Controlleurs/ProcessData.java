@@ -13,6 +13,7 @@ import org.apache.log4j.Logger;
 import org.json.JSONException;
 
 import Modele.LectureJson;
+import Modele.RepairCard;
 
 /**
  * Class ProcessData
@@ -55,6 +56,9 @@ public class ProcessData implements Runnable{
 				ConnectionPool pool = new ConnectionPool();
 				con = pool.getConnectionFromPool();
 				logger.info("Retrieving client socket");
+				
+				//RepairCard.determineWaitList();
+				
 				socket = serverSocket.accept();
 				in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				out = new PrintWriter(socket.getOutputStream());
@@ -141,6 +145,11 @@ public class ProcessData implements Runnable{
 				case("addOutStock"):
 					logger.info("Case out stock");
 					t = new Thread(new StockController(con, message_distant, out));
+					t.run();
+				break;
+				case("addPreferences"):
+					logger.info("Case add preferences");
+					t = new Thread(new PreferencesController(con, message_distant, out));
 					t.run();
 				break;
 				default:

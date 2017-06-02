@@ -54,7 +54,7 @@ public class DefectDAO extends DAO<Defect>{
             	Defect.addPartToCo(new Defect(
 						result.getInt("Id"),
 						result.getString("description"),
-						result.getInt("RepairTime")));          		
+						result.getDouble("RepairTime")));          		
             }
             
         } catch (SQLException e) {
@@ -86,7 +86,7 @@ public class DefectDAO extends DAO<Defect>{
             	pan.add(new Defect(
 						result.getInt("Id"),
 						result.getString("Description"),
-						result.getInt("RepairTime")));
+						result.getDouble("RepairTime")));
             }
             
         } catch (SQLException e) {
@@ -117,7 +117,7 @@ public class DefectDAO extends DAO<Defect>{
 				ud=new Defect(
 					result.getInt("Id"),
 					result.getString("description"),
-					result.getInt("duration"));
+					result.getDouble("duration"));
 					
 			}          
         } catch (SQLException e) {
@@ -197,4 +197,37 @@ public class DefectDAO extends DAO<Defect>{
         }
         return true;
     }   
+    
+    public Defect getDefect(int id){
+    	Defect def = new Defect();
+    	try {
+            ResultSet result = this .connect
+                                    .createStatement(
+                                            	ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                                ResultSet.CONCUR_UPDATABLE
+                                             ).executeQuery(
+                                                "SELECT Id, Description, RepairTime,criticity,partForRepair FROM defect"
+                                             );
+            
+            while(result.next()){
+            	int idDef = result.getInt("Id");
+            	String description = result.getString("Description");
+            	double repairTime = result.getDouble("RepairTime");
+            	int criticity = result.getInt("criticity");
+            	int idPart = result.getInt("partForRepair");
+            	
+            	PartDAO partDAO = new PartDAO(this.connect);
+            	Part part = partDAO.find(idPart);
+            	
+            	def.setid(idDef);
+            	def.setDescription(description);
+            	def.setduration(repairTime);
+            	def.setCriticity(criticity);
+            	def.setPartForRepairs(part);
+            }
+        } catch (SQLException e) {
+                e.printStackTrace();
+        }
+    	return def;
+    }
 }

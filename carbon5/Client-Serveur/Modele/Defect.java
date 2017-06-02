@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Defect {
     private String description;
     private int id;
-    private int duration;
+    private double duration;
     private Part partForRepair;
     private int criticity;
 
@@ -29,11 +29,21 @@ public class Defect {
         this.criticity = criticity;
     }
     
-    public Defect(int id, String description, int time){
+    public Defect(int id, String description, double repairTime, int criticity, Part part){
+    	this.id = id;
+        this.description = description;
+        this.partForRepair = part;
+        this.criticity = criticity;
+        this.duration = repairTime;
+    }
+    
+    public Defect(int id, String description, double time){
     	this.id = id;
     	this.description = description;
     	this.duration=time;
     }
+    
+    public Defect(){}
     
     /**
      * Method get id
@@ -55,7 +65,7 @@ public class Defect {
      * Method get id
      * @return id
      */
-    public int getduration(){
+    public double getduration(){
         return duration;
     }
     
@@ -63,7 +73,7 @@ public class Defect {
      * Method set duration
      * @param newtime
      */
-    public void setduration(int newtime){
+    public void setduration(double newtime){
         this.duration = newtime;
     }
     /*
@@ -137,7 +147,7 @@ public class Defect {
 			values.add(retval);
 		}
                 int id = Integer.parseInt(values.get(0).toString());
-                int Time = Integer.parseInt(values.get(2).toString());
+                double Time = Double.parseDouble(values.get(2).toString());
 		Defect defect = new Defect(id, values.get(1).toString(), Time);
 		return defect;
     }

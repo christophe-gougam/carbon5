@@ -13,31 +13,6 @@ import Modele.CarDAO;
 import Modele.Defect;
 import Modele.DefectDAO;
 import Modele.EcritureJson;
-import static Serveur.Controlleurs.PartController.logger;
-import static Serveur.Controlleurs.ProcessData.logger;
-
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
-import java.net.ServerSocket;
-import java.net.UnknownHostException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-
-import javax.swing.JOptionPane;
-
-import org.apache.log4j.Logger;
-import org.json.JSONObject;
-import org.json.JSONException;
-
 import Modele.LectureJson;
 import Modele.PlaceDAO;
 import Modele.RepairCard;
@@ -161,7 +136,7 @@ public class CarController implements Runnable{
 								else
 									listPane+=result.get(t);
 						}
-						int repairTime=0;
+						double repairTime=0.0;
 						ArrayList<Defect> defaut= new ArrayList<Defect>();
 						defaut=test2.searchDefect();
 						for (int t =0; t<listePanneEntrance.size();t++){
@@ -174,36 +149,39 @@ public class CarController implements Runnable{
 								}
 							}
 			    		}
-						//date = LocalDate.now();
-//						Date dat = new Date();
-//						Calendar cc = Calendar.getInstance(); 
-//						cc.setTime(dat); 
-//						cc.add(Calendar.DATE, repairTime);
-//						dat = cc.getTime();
 						
-						LocalDate dat;
-						dat=entranceDate.plusDays(repairTime);
-						///verifier le type date et adapter	pour hour
-						
+						boolean yesdemi=false;
+						LocalDate dat=null;
+						if(repairTime%1==0.0){
+							dat=entranceDate.plusDays((int) repairTime);
+						}
+						else{
+							dat=entranceDate.plusDays(((int) repairTime)+1);
+							yesdemi=true;
+						}
 						RepairCard carinfo=new RepairCard(1, String.valueOf(numP), place, java.sql.Date.valueOf(dat), listPane, user);
 						Carinfo=test.getCar(numP);
 						isIn=test5.existRepairCard(numP);
-						if(Carinfo.get(0).getNumePuce().equalsIgnoreCase(numP) && true)
+						if(Carinfo.get(0).getNumePuce().equalsIgnoreCase(numP) && isIn==false)
 						{
 							ret=test5.create(carinfo, java.sql.Date.valueOf(entranceDate));
 							
 							if (ret){
 						
-							data.add("OKCarInput");
-							test3.updatePlace(place);
-							data.add(RepairCard.serialize(carinfo));
-							data.add(String.valueOf(java.sql.Date.valueOf(dat)));
+								data.add("OKCarInput");
+								test3.updatePlace(place);
+								data.add(RepairCard.serialize(carinfo));
+								data.add(String.valueOf(java.sql.Date.valueOf(dat)));
+								if(yesdemi)
+									data.add("DemiJournee");
+								else
+									data.add("Journee");
 							}else{
 								data.add("KOCarInput");
 							}
 						}
 						//a brancher
-						else if(isIn=false){
+						else if(isIn==true){
 							data.add("AlreadyAdded");
 						}
 						else

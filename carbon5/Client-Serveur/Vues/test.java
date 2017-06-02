@@ -11,40 +11,39 @@
 package Vues;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.time.LocalDate;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import org.apache.log4j.Logger;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
-import org.apache.log4j.Logger;
 
 import Client.Controlleurs.ServerConnect;
-import Modele.Car;
 import Modele.Defect;
 import Modele.Place;
 import Modele.TypeCar;
-import Modele.User;
 import Serveur.Controlleurs.Serveur;
-
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.GroupLayout;
+import javax.swing.UIManager;
+import javax.swing.SwingConstants;
 
 /**
  *
  * @author Carbon5
  */
-public class PanAjoutVehicule extends javax.swing.JPanel {
+public class test extends javax.swing.JPanel {
 	ArrayList<String> datapanne = new ArrayList<String>();
 	String panne=null;
 	String listPanne="";
@@ -53,7 +52,7 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
     /**
      * Creates new form PanAjoutVehicule
      */
-    public PanAjoutVehicule() {
+    public test() {
         initComponents();
     }
 
@@ -84,10 +83,13 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
         jTextField2 = new JTextField();
         jButton1 = new JButton();
         jButton2 = new JButton();
-        jButton3 = new JButton();
+        jButton2.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        	}
+        });
         Commentaires=new JTextArea();
 
-        jLabel1.setText("AJOUTER UN VEHICULE");
+        jLabel1.setText("AJOUTER DU VEHICULE");
         jLabel.setText("Liste motif :");
         jLabel2.setText("Num puce");
 
@@ -107,7 +109,7 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
         }
         
         jComboBox1 = new JComboBox<String>(modelCar);
-        jComboBox1.addActionListener(new ItemActionType(this));
+               
         DefaultComboBoxModel<String> modelpanne = new DefaultComboBoxModel<String>();
         for (Defect typecar : Defect.getAllDefect()){
         	modelpanne.addElement(typecar.getDescription());
@@ -117,18 +119,17 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
         jComboBox2.addActionListener(new ItemAction(this));
         
         DefaultComboBoxModel<Integer> modelplace = new DefaultComboBoxModel<Integer>();
-        
+        for (Place aPlace : Place.getAllplace()){
+        	
+        	modelplace.addElement(aPlace.getNumPlace());
+        }
         jComboBox5 = new JComboBox<Integer>(modelplace);
         
         jButton1.setText("Ajouter");
-        
         jButton1.addActionListener(new BoutonListener(this));
         
-        jButton3.setText("Search");
-        jButton3.addActionListener(new BoutonListener1(this));
-        
         jButton2.setText("Annuler");
-        jButton2.addActionListener(new BoutonListener2(this));
+        
         Commentaires.setColumns(20);
         Commentaires.setRows(6);
         jScrollPane.setViewportView(Commentaires);
@@ -140,7 +141,6 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
         			.addGap(10)
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
         				.addComponent(jLabel1)
-        				.addComponent(jButton3, Alignment.TRAILING)
         				.addComponent(jLabel5)
         				.addComponent(jLabel)
         				.addComponent(jLabelviewpanne)
@@ -174,7 +174,6 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
         		.addGroup(layout.createSequentialGroup()
         			.addContainerGap()
         			.addComponent(jLabel1)
-        			.addComponent(jButton3)
         			.addGap(18)
         			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
         				.addComponent(jLabel2)
@@ -220,9 +219,9 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JButton jButton1;
     private JButton jButton2;
-    private JButton jButton3;
     private JComboBox<String> jComboBox1;
     private JComboBox<String> jComboBox2;
+    private JComboBox<String> jComboBox2_1;
     private JComboBox<Integer> jComboBox5;
     private JList<String> jmotif;
     private JLabel jLabel1;
@@ -242,53 +241,6 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
     private JTextArea Commentaires;
     // End of variables declaration//GEN-END:variables
     
-    //Action on JcomboBox1
-    class ItemActionType implements ActionListener{
-    	JPanel frame=null;
-
-    	/**
-     	* Class constructor
-     	* @param f 
-     	*/
-    	public ItemActionType(JPanel f){
-    		this.frame=f;
-    	}
-	
-    	/**
-    	 * Method generate component action
-    	 * @param arg0 
-    	 */
-    	public void actionPerformed(ActionEvent e) {
-    		String c="";
-    		
-	    	  if(jComboBox1.getSelectedItem().equals("Velo")){
-
-	    		  DefaultComboBoxModel<Integer> modelplace = new DefaultComboBoxModel<Integer>();
-	    	        for (Place aPlace : Place.getAllplace()){
-	    	        	c=""+aPlace.getNumPlace()+"";
-	    	        	if(c.charAt(0)=='2'){
-	    	        		modelplace.addElement(aPlace.getNumPlace());
-	    	        	}
-	    	        }
-	    	        jComboBox5.setModel(modelplace);
-	    		  
-	    	  }
-	    	  else{
-
-	    		  DefaultComboBoxModel<Integer> modelplace = new DefaultComboBoxModel<Integer>();
-	    	        for (Place aPlace : Place.getAllplace()){
-	    	        	
-	    	        	c=""+aPlace.getNumPlace()+"";
-	    	        	if(c.charAt(0)=='1'){
-	    	        		modelplace.addElement(aPlace.getNumPlace());
-	    	        	}
-	    	        }
-	    	        jComboBox5.setModel(modelplace);
-	    	  }
-	    		  
-	    		  
-      }
-    }
     
     class ItemAction implements ActionListener{
     	JPanel frame=null;
@@ -306,63 +258,24 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
     	 * @param arg0 
     	 */
     	int i=0;
+    	int count=0;
     	public void actionPerformed(ActionEvent e) {
     		  
-	    	  panne= ""+(String) jComboBox2.getSelectedItem()+"";
-    	      datapanne.add(panne);
-    	      PanneLabel.add(panne);
-    	      String temp=PanneLabel.get(i)+"    ";
-    	      listPanne+=temp;
-    	      jLabelviewpanne.setText(listPanne);
-    	      i++;               
-      }
-    }
-    /**
- 	* Class BoutonListener1 listens button Search
- 	*/
-    class BoutonListener1 implements ActionListener{
-    	JPanel frame=null;
-
-    	/**
-     	* Class constructor
-     	* @param f 
-     	*/
-    	public BoutonListener1  (JPanel f){
-    		this.frame=f;
-    	}
-	
-    	/**
-    	 * Method generate component action
-    	 * @param arg0 
-    	 */
-    	
-		public void actionPerformed(ActionEvent arg0){
-    		
-    		
-    		if(jTextField1.getText().length()!=0){
-    			String numPuce = ""+jTextField1.getText()+"";
-	    		ArrayList<String> data = new ArrayList<String>();
-	    		data.add(numPuce);
-	    		Car.emptyCollection();
-	    		String identifier = "Search";
-	    		new ServerConnect(data, identifier, frame);
-	    		
-	    		ArrayList<Car> car = new ArrayList<Car>();
-	    		int taille=Car.getAlCar().size();
-	    		car=Car.getAlCar();
-	    		for(int i=0; i<taille; i++){
-	    			if(!car.isEmpty()){
-	    				jTextField1.setText(car.get(i).getNumePuce());
-	        			jTextField2.setText(car.get(i).getMatricule());
-	        			jComboBox1.setSelectedItem(car.get(i).getTypeVehicule());
-	        			jComboBox1.setEnabled(false);
-	    			}
-	    			
-	            }
+    		if (count<3){
+    	    	  panne= ""+(String) jComboBox2.getSelectedItem()+"";
+	    	      datapanne.add(panne);
+	    	      PanneLabel.add(panne);
+	    	      String temp=PanneLabel.get(i)+"    ";
+	    	      listPanne+=temp;
+	    	      jLabelviewpanne.setText(listPanne);
+	    	      i++;
+	    	      count++;
     		}
-    	}
-	}
-    
+    		else
+    			JOptionPane.showMessageDialog(frame, "Attention pas plus de 3 pannes ");
+    		
+    	    }                 
+      }
     
     /**
  	* Class BoutonListener listens button AJOUTER
@@ -385,70 +298,26 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
     	
     	public void actionPerformed(ActionEvent arg0){
     		
-    		if(jTextField1.getText().length()!=0 && jTextField2.getText().length()!=0 && datapanne.size()!=0){
-	    		String typeCar = ""+(String) jComboBox1.getSelectedItem()+"";
-	    		String numPuce = jTextField1.getText();
-	    		String matricule = jTextField2.getText();
-	    		String place = ""+jComboBox5.getSelectedItem()+"";
-	    		String comment = ""+Commentaires.getText()+"";
-	    		ArrayList<String> data = new ArrayList<String>();
-	    		data.add(numPuce);
-	    		data.add(typeCar);
-	    		data.add(matricule);
-	    		data.add(place);
-	    		
-	    		for(String D: datapanne){
-	        		data.add(D);
-	    		}
-	    		data.add(comment);
-	    		   		
-	    		for (User us : User.getAllUsers()){
-	            
-	    			data.add(User.serialize(us));
-	            }
-	    		
-	    		String identifier = "AjoutVehicule";
-	    		logger.info("Entrée de"+numPuce);
-	    		new ServerConnect(data, identifier, frame);
+    		String typeCar = ""+(String) jComboBox1.getSelectedItem()+"";
+    		String numPuce = jTextField1.getText();
+    		String matricule = jTextField2.getText();
+    		String place = ""+jComboBox5.getSelectedItem()+"";
+    		ArrayList<String> data = new ArrayList<String>();
+    		data.add(numPuce);
+    		data.add(typeCar);
+    		data.add(matricule);
+    		data.add(place);
+    		
+    		for(String D: datapanne){
+        		data.add(D);
     		}
-	    	else if(datapanne.size()==0){
-	    		JOptionPane.showMessageDialog(frame, "Veuillez renseigner le(s) panne(s)");
-	    	}
-	    	else
-	    		JOptionPane.showMessageDialog(frame, "Veuillez remplir les champs");
     		
-    	}
-	}
-    /**
- 	* Class BoutonListener2 listens button Annuler
- 	*/
-    class BoutonListener2 implements ActionListener{
-    	JPanel frame=null;
-
-    	/**
-     	* Class constructor
-     	* @param f 
-     	*/
-    	public BoutonListener2  (JPanel f){
-    		this.frame=f;
-    	}
-	
-    	/**
-    	 * Method generate component action
-    	 * @param arg0 
-    	 */
-    	
-		public void actionPerformed(ActionEvent arg0){
+    		////////A faire : place et motif entrée////////////////
     		
-    		DefaultComboBoxModel<Integer> modelVide = new DefaultComboBoxModel<Integer>();
-    		jLabelviewpanne.setText("");
-    		listPanne="";
-    		datapanne.clear();
-    		Commentaires.setText("");
-    		jComboBox1.setEnabled(true);
-    		jComboBox5.setModel(modelVide);
-    		jTextField1.setText("");
-    		jTextField2.setText("");
+    		//data.add(""+User.getAllUsers().get(0).getId());
+    		String identifier = "AjoutVehicule";
+    		logger.info("Entrée de"+numPuce);
+    		new ServerConnect(data, identifier, frame);
     		
     	}
 	}

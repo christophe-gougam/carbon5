@@ -182,6 +182,37 @@ public class UserDAO extends DAO<User>{
         }
         return true;
     }   
+    
+    public User getUser(int id){
+    	User ud = null;
+        try {
+            ResultSet result = this .connect
+                                    .createStatement(
+                                            	ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                                ResultSet.CONCUR_UPDATABLE
+                                             ).executeQuery(
+                                            		 "SELECT * FROM users JOIN typeuser where users.TypeUser = typeuser.id WHERE id='"+id+"'"
+                                             );
+            if(result.first())
+            		ud = new User(
+                                        //result.getString("id"),
+            							result.getInt("Id"),
+                                        result.getString("FirstName"),
+                                        result.getString("LastName"),
+                                        result.getString("Address"),
+                                        result.getString("Town"),
+                                        result.getInt("PostalCode"),
+                                        result.getString("login"),
+                                        result.getString("Email"),
+                                        result.getDate("HiringDate"),
+                                        result.getFloat("IncomingPerHour"),
+                                        (new TypeUser(result.getInt("typeuser.id"),result.getString("Profil")))
+                        );            
+        } catch (SQLException e) {
+                e.printStackTrace();
+        }
+        return ud;
+    }
 }
 
 

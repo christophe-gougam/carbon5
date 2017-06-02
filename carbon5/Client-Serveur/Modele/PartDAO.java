@@ -83,6 +83,29 @@ public class PartDAO extends DAO<Part> {
         return part;
     }
     
+    public Part find(int id) {
+        Part part = new Part();
+        try {
+            ResultSet result = this .connect
+                                    .createStatement(
+                                            	ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                                ResultSet.CONCUR_UPDATABLE
+                                             ).executeQuery(
+                                                "SELECT * FROM part where NamePart='"+id +"'"
+                                             );
+            if(result.first())
+            		part = new Part(
+            							result.getString("Id"),
+                                        result.getInt("stock"),
+                                        result.getString("namePart"), 
+                                        result.getFloat("purchasePrice")
+                        );            
+        } catch (SQLException e) {
+                e.printStackTrace();
+        }
+        return part;
+    }
+    
     /**
      * Creates an entry in the database relative to an object
      * @param obj
