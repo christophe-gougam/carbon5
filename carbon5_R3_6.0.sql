@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 02 Juin 2017 à 02:27
+-- Généré le :  Ven 02 Juin 2017 à 14:18
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -37,7 +37,6 @@ CREATE TABLE `car` (
 --
 
 INSERT INTO `car` (`NumPuce`, `TypeVehicule`, `matricule`) VALUES
-('', 'Voiture', ''),
 ('l78p', 'Velo', '1234'),
 ('VEL123', 'Velo', '123123'),
 ('VEL124', 'Velo', '123124'),
@@ -95,7 +94,7 @@ INSERT INTO `cardstate` (`Id`, `Description`) VALUES
 CREATE TABLE `defect` (
   `Id` int(11) NOT NULL,
   `Description` text,
-  `RepairTime` int(100) NOT NULL,
+  `RepairTime` double NOT NULL,
   `criticity` int(11) DEFAULT NULL,
   `partForRepair` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -105,8 +104,8 @@ CREATE TABLE `defect` (
 --
 
 INSERT INTO `defect` (`Id`, `Description`, `RepairTime`, `criticity`, `partForRepair`) VALUES
-(1, 'Frein', 2, NULL, NULL),
-(2, 'Levier', 1, NULL, NULL),
+(1, 'Frein', 1.5, NULL, NULL),
+(2, 'Levier', 0.5, NULL, NULL),
 (3, 'Pneu', 0, NULL, NULL),
 (4, 'Batterie', 4, NULL, NULL),
 (5, 'Electronique', 10, NULL, NULL),
@@ -282,18 +281,18 @@ INSERT INTO `place` (`NumPlace`, `IsOccupied`, `NumPark`) VALUES
 (1025, 0, 1),
 (1026, 0, 1),
 (2001, 0, 2),
-(2005, 0, 2),
+(2005, 1, 2),
 (2007, 0, 2),
-(2010, 0, 2),
-(2011, 0, 2),
-(2012, 0, 2),
-(2013, 0, 2),
-(2014, 0, 2),
-(2015, 0, 2),
-(2016, 0, 2),
-(2017, 0, 2),
-(2018, 0, 2),
-(2019, 0, 2),
+(2010, 1, 2),
+(2011, 1, 2),
+(2012, 1, 2),
+(2013, 1, 2),
+(2014, 1, 2),
+(2015, 1, 2),
+(2016, 1, 2),
+(2017, 1, 2),
+(2018, 1, 2),
+(2019, 1, 2),
 (2020, 0, 2),
 (2021, 0, 2),
 (2022, 0, 2),
@@ -333,15 +332,6 @@ CREATE TABLE `repaircard` (
   `OverAllDetails` text,
   `IdUser` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Contenu de la table `repaircard`
---
-
-INSERT INTO `repaircard` (`Id`, `IdDegree`, `IdCard`, `IdCar`, `IdParkPlace`, `EntryDate`, `OutDate`, `OverAllDetails`, `IdUser`) VALUES
-(1, 1, 3, 'VEL123', 1013, '2017-06-01', '2017-06-04', 'bla bla bla', 1),
-(2, 5, 1, 'VOI458', 2016, '2017-06-15', '2017-06-17', 'laisse tomber', 1),
-(3, 2, 5, 'VOI456', 1025, '2017-06-01', '2017-06-01', 'bien fait', 1);
 
 -- --------------------------------------------------------
 
@@ -595,7 +585,7 @@ ALTER TABLE `part`
 -- AUTO_INCREMENT pour la table `repaircard`
 --
 ALTER TABLE `repaircard`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT pour la table `repairs`
 --

@@ -54,7 +54,7 @@ public class DefectDAO extends DAO<Defect>{
             	Defect.addPartToCo(new Defect(
 						result.getInt("Id"),
 						result.getString("description"),
-						result.getInt("RepairTime")));          		
+						result.getDouble("RepairTime")));          		
             }
             
         } catch (SQLException e) {
@@ -86,7 +86,7 @@ public class DefectDAO extends DAO<Defect>{
             	pan.add(new Defect(
 						result.getInt("Id"),
 						result.getString("Description"),
-						result.getInt("RepairTime")));
+						result.getDouble("RepairTime")));
             }
             
         } catch (SQLException e) {
@@ -117,7 +117,7 @@ public class DefectDAO extends DAO<Defect>{
 				ud=new Defect(
 					result.getInt("Id"),
 					result.getString("description"),
-					result.getInt("duration"));
+					result.getDouble("duration"));
 					
 			}          
         } catch (SQLException e) {
@@ -212,7 +212,7 @@ public class DefectDAO extends DAO<Defect>{
             while(result.next()){
             	int idDef = result.getInt("Id");
             	String description = result.getString("Description");
-            	int repairTime = result.getInt("RepairTime");
+            	double repairTime = result.getDouble("RepairTime");
             	int criticity = result.getInt("criticity");
             	int idPart = result.getInt("partForRepair");
             	

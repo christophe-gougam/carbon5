@@ -385,7 +385,7 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
     	
     	public void actionPerformed(ActionEvent arg0){
     		
-    		if(jTextField1.getText().length()!=0 && jTextField2.getText().length()!=0){
+    		if(jTextField1.getText().length()!=0 && jTextField2.getText().length()!=0 && datapanne.size()!=0){
 	    		String typeCar = ""+(String) jComboBox1.getSelectedItem()+"";
 	    		String numPuce = jTextField1.getText();
 	    		String matricule = jTextField2.getText();
@@ -411,8 +411,11 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
 	    		logger.info("Entrée de"+numPuce);
 	    		new ServerConnect(data, identifier, frame);
     		}
+	    	else if(datapanne.size()==0){
+	    		JOptionPane.showMessageDialog(frame, "Veuillez renseigner le(s) panne(s)");
+	    	}
 	    	else
-	    			JOptionPane.showMessageDialog(frame, "Remplir les champs");
+	    		JOptionPane.showMessageDialog(frame, "Veuillez remplir les champs");
     		
     	}
 	}
@@ -439,6 +442,8 @@ public class PanAjoutVehicule extends javax.swing.JPanel {
     		
     		DefaultComboBoxModel<Integer> modelVide = new DefaultComboBoxModel<Integer>();
     		jLabelviewpanne.setText("");
+    		listPanne="";
+    		datapanne.clear();
     		Commentaires.setText("");
     		jComboBox1.setEnabled(true);
     		jComboBox5.setModel(modelVide);

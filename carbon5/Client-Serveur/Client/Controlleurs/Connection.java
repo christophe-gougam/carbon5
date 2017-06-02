@@ -21,7 +21,6 @@ import Modele.LectureJson;
 import Modele.Parking;
 import Modele.Part;
 import Modele.Place;
-
 import Modele.RepairCard;
 import Modele.TypeCar;
 import Modele.User;
@@ -124,10 +123,10 @@ public class Connection{
 	    			result.add((String) tableau.get(i));
 	    		}
 	    		car = Car.unSerialize(result.get(1));
-
-	    		JOptionPane.showMessageDialog(frame, "Voiture "+car.getTypeVehicule()+ 
-	    									" ajoutee"+"\n"+"Date previsionnelle : "+result.get(2)+"\n");
-	    		
+	    		if(result.get(result.size()-1).equalsIgnoreCase("Journee"))
+	    			JOptionPane.showMessageDialog(frame, "Voiture "+car.getTypeVehicule()+" ajoutee"+"\n"+"Date previsionnelle : "+result.get(2)+"\n");
+	    		else
+	    			JOptionPane.showMessageDialog(frame, "Voiture "+car.getTypeVehicule()+" ajoutee"+"\n"+"Date previsionnelle : "+result.get(2)+"\n A midi\n");	
 			break;
 			
 			case "KOCarInput" :
@@ -252,13 +251,13 @@ public class Connection{
 		    	
 		    break;
 			case "SearchKO":
-				JOptionPane.showMessageDialog(frame, "Cette r�f�rence ne correspond pas � un aucun vehicule");
+				JOptionPane.showMessageDialog(frame, "Cette reference ne correspond pas aun aucun vehicule");
 		    break;
 			case "CarNotExist":
 				JOptionPane.showMessageDialog(frame, "Ce vehicule existe pas, contacter votre administrateur");
 		    break;
 			case "AlreadyAdded":
-				JOptionPane.showMessageDialog(frame, "Ce vehiule est d�j� en reparation.\n Contacter votre administrateur");
+				JOptionPane.showMessageDialog(frame, "Ce vehiule est deja en reparation.\n Contacter votre administrateur");
 		    break;
 		    
 		    //rechercher vehicule avec sa puce
