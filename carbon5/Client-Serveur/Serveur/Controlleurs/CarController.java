@@ -167,7 +167,7 @@ public class CarController implements Runnable{
 							ret=test5.create(carinfo, java.sql.Date.valueOf(entranceDate));
 							
 							if (ret){
-						
+								RepairCard.addToWaitList(carinfo);
 								data.add("OKCarInput");
 								test3.updatePlace(place);
 								data.add(RepairCard.serialize(carinfo));
