@@ -25,6 +25,8 @@ import Modele.Preferences;
 import Modele.PreferencesDAO;
 import Modele.User;
 import Serveur.Controlleurs.ConnectionPool;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 
@@ -34,10 +36,13 @@ import Serveur.Controlleurs.ConnectionPool;
 public class RepairCard {
 	
 	private static ArrayList<RepairCard> waitList;
-
-	final static Logger logger = Logger.getLogger(Serveur.class);
         private static ArrayList<RepairCard> repairCard = new ArrayList<RepairCard>();
-
+        
+        private Set<Car> listCar = new HashSet<Car>();
+        private Set<CardState> listState = new HashSet<CardState>();
+        private Set<UrgencyDegree> listUD = new HashSet<UrgencyDegree>();
+        
+	final static Logger logger = Logger.getLogger(Serveur.class);
 	private UrgencyDegree degree;
         private UrgencyDegree description;
 	private CardState card;
@@ -54,8 +59,9 @@ public class RepairCard {
 	int idcard;
 	private String idcar;
 	int idparkplace;
+        
 	/**
-	 * Constructor of th class
+	 * Constructor of this class
 	 * @param urgence
 	 * @param card
 	 * @param car
@@ -93,13 +99,17 @@ public class RepairCard {
 		
 	}
 
-        public RepairCard(String IdCar, UrgencyDegree IdDegree, UrgencyDegree Description, CardState Statut) {
-            this.idcar = IdCar;
-            this.degree = IdDegree;
-            this.description = Description;
-            this.statut = Statut;
-        }
+//        public RepairCard(String IdCar, UrgencyDegree IdDegree, UrgencyDegree Description, CardState Statut) {
+//            this.idcar = IdCar;
+//            this.degree = IdDegree;
+//            this.description = Description;
+//            this.statut = Statut;
+//        }
 	
+        public RepairCard(int idCard){
+            this.idcard = idCard;
+        }
+        
 	public int getidcard(){
 		return this.idcard;
 	}
@@ -281,6 +291,60 @@ public class RepairCard {
 		this.user = user;
 	}
 	
+        public Set<CardState> getListState(){
+            return listState;
+        }
+        
+        public void setListState(Set<CardState> listState){
+            this.listState = listState;
+        }
+        
+        public void addState(CardState state){
+            if(!listState.contains(state))
+                listState.add(state);
+        }
+        
+        public void removeState(CardState state){
+            this.listState.remove(state);
+        }
+        
+        public Set<Car> getListCar(){
+            return listCar;
+        }
+        
+        public void setListCar(Set<Car> listCar){
+            this.listCar = listCar;
+        }
+        
+        public void addCar(Car car){
+            if(!listCar.contains(car))
+                listCar.add(car);
+        }
+        
+        public void removeCar(Car car){
+            this.listCar.remove(car);
+        }
+        
+        public Set<UrgencyDegree> getListUD(){
+            return listUD;
+        }
+        
+        public void setListUD(Set<UrgencyDegree> listUD){
+            this.listUD = listUD;
+        }
+        
+        public void addUD(UrgencyDegree ud){
+            if(!listUD.contains(ud))
+                listUD.add(ud);
+        }
+        
+        public void removeUD(UrgencyDegree ud){
+            this.listUD.remove(ud);
+        }
+        
+        public boolean equals(RepairCard rc){
+            return this.getidcard() == rc.getidcard();
+        }
 	/**
 	 * Method to add a vehicule to the waitList
 	 * @param vehicule

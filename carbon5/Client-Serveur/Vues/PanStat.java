@@ -24,8 +24,14 @@ public class PanStat extends javax.swing.JPanel {
     /**
      * Creates new form NewJPanel
      */
-    public PanStat() {
-        initComponents();
+    public PanStat(int k){
+        if(k == 2){
+            initComponents();
+            jTabbedPane1.remove(jPanel4);
+            this.revalidate();
+        } else {
+            initComponents();
+        } 
     }
 
     /**
@@ -63,17 +69,17 @@ public class PanStat extends javax.swing.JPanel {
 
         jLabel1.setText("LISTE COMPLET DES VEHICULES");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+//        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+//            new Object [][] {
+//                {null, null, null, null},
+//                {null, null, null, null},
+//                {null, null, null, null},
+//                {null, null, null, null}
+//            },
+//            new String [] {
+//                "Title 1", "Title 2", "Title 3", "Title 4"
+//            }
+//        ));
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -241,7 +247,6 @@ public class PanStat extends javax.swing.JPanel {
         );
 
         jTabbedPane1.addTab("Manutentionnaire", jPanel4);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -267,12 +272,12 @@ public class PanStat extends javax.swing.JPanel {
     private static javax.swing.JPanel jPanel1;
     private static javax.swing.JPanel jPanel2;
     private static javax.swing.JPanel jPanel3;
-    private static javax.swing.JPanel jPanel4;
+    public static javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    public static javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;

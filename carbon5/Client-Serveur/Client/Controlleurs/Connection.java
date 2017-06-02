@@ -27,6 +27,7 @@ import Modele.User;
 import Serveur.Controlleurs.Serveur;
 import Vues.Authentication;
 import Vues.IHM;
+import Vues.PanStat;
 
 /**
  * Class Connection creating the connection
@@ -50,6 +51,7 @@ public class Connection{
 	User user;
 	Car car;
 	JPanel frame=null; 
+        public static JPanel panStat;
 
 	
 	/**
@@ -110,7 +112,18 @@ public class Connection{
 	    		}
 		    	
 				JOptionPane.showMessageDialog(frame, "Bienvenue "+user.getFirstName());
-				IHM ihm = new IHM();
+                                int p = user.getTypeUser().getId();
+                                
+                                if(p == 2){
+                                    panStat = new PanStat(p);
+                                    logger.info("MASQUER TAB 4");
+                                } else {
+                                    panStat = new PanStat(p);
+                                    logger.info("DISPLAY TAB 4");  
+                                }
+                                IHM ihm = new IHM();
+                                
+                                
 				
 			break;
 			

@@ -26,10 +26,9 @@ public class Car {
     private Date date;
     private int place;
 
-	final static Logger logger = Logger.getLogger(Serveur.class);
+    final static Logger logger = Logger.getLogger(Serveur.class);
 	
     private static ArrayList<Car> listCar = new ArrayList<Car>();
-    private static ArrayList<ResultSet> AllCar = new ArrayList<ResultSet>();
     
     /**
      * Class constructor
@@ -46,38 +45,31 @@ public class Car {
         this.date=date;
         this.place=place;
     }
-//<<<<<<< HEAD
 
     public Car(String numPuce, String typeVehicule, String matricule) {
         this.NumePuce = numPuce;
         this.matricule = matricule;
         this.TypeVehicule = typeVehicule;
-//=======
-//    public Car (String numePuce, String typevehicule, String matricule){
-//        this.NumePuce = numePuce;
-//        this.matricule = matricule;
-//        this.TypeVehicule = typevehicule;
-//>>>>>>> origin/Develop
     }
     
     public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
-	public int getPlace() {
-		return place;
-	}
-	public void setPlace(int place) {
-		this.place = place;
-	}
-	public String getListoperation() {
-		return listoperation;
-	}
-	public void setListoperation(String listoperation) {
-		this.listoperation = listoperation;
-	}
+            return date;
+    }
+    public void setDate(Date date) {
+            this.date = date;
+    }
+    public int getPlace() {
+            return place;
+    }
+    public void setPlace(int place) {
+            this.place = place;
+    }
+    public String getListoperation() {
+            return listoperation;
+    }
+    public void setListoperation(String listoperation) {
+            this.listoperation = listoperation;
+    }
 	/**
      * Method get NumePuce
      * @return NumePuce;

@@ -46,6 +46,27 @@ public class UrgencyDegreeDAO extends DAO<UrgencyDegree>{
         return ud;
     }
     
+    public UrgencyDegree find(int id) {
+        UrgencyDegree ud = new UrgencyDegree();
+        try {
+            ResultSet result = this .connect
+                                    .createStatement(
+                                            	ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                                ResultSet.CONCUR_UPDATABLE
+                                             ).executeQuery(
+                                                "SELECT * FROM urgencydegree WHERE Id =" + id 
+                                             );
+            if(result.first())
+            		ud = new UrgencyDegree(
+                                        result.getInt("Id"),
+                                        result.getString("Description") 
+                        );            
+        } catch (SQLException e) {
+                e.printStackTrace();
+        }
+        return ud;
+    }
+    
     private static ArrayList<UrgencyDegree> ud = new ArrayList<UrgencyDegree>();
     
     public ArrayList<UrgencyDegree> getUD(int id){  

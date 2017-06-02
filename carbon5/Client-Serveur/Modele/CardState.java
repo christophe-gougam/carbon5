@@ -20,6 +20,10 @@ public class CardState {
 		this.id = id;
 		this.description = desc;
 	}
+        
+        public CardState(){
+            
+        }
 	/**
 	 * Method get the id
 	 * @return id
