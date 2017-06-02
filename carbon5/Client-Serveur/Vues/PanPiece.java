@@ -82,119 +82,58 @@ public class PanPiece extends javax.swing.JPanel {
             JPanel frame = f;
         }
         @Override
-        public void actionPerformed(ActionEvent e) {
-//            try{  	
+        public void actionPerformed(ActionEvent e) { 	
         	ArrayList<String> data = new ArrayList();
         	String identifier = "SelectAllParts";
         	logger.info("Afficher liste des pieces");
         	new ServerConnect(data, identifier, frame);
-//            String url = "jdbc:mysql://localhost:3306/carbon5";
-//            String user = "root";
-//            String pwd = "";
-//            Connection connect = DriverManager.getConnection(url, user, pwd);
-//            String queryString = "SELECT * FROM Part";
-//            Statement stm = connect.createStatement();
-//            ResultSet rs = stm.executeQuery(queryString);
             RsTableModel model = new RsTableModel(Part.getAllParts());
             JTable jTableA = new JTable();
             jTableA.setModel(model);
             jScrollPane1.setViewportView(jTableA);
-//            model.setData();
-//            } catch (Exception eve){
-//            eve.printStackTrace();
-//            }
         }
     }
     
     /**
      * Class create model for table 
-     */
-//    class RsTableModel extends AbstractTableModel {
-//        private Vector colHeaders;
-//        private Vector tbData;
-        
-        /**
-         * Class constructor
-         * @param rsData
-         * @throws SQLException 
-         */
-//        public RsTableModel(ResultSet rsData) throws SQLException {
-//            ResultSetMetaData rsMeta = rsData.getMetaData();
-//            int count = rsMeta.getColumnCount();
-//
-//            tbData = new Vector();
-//            colHeaders = new Vector(count);
-//
-//            for(int i = 1; i <= count; i++){
-//                colHeaders.addElement(rsMeta.getColumnName(i));
-//            }
-//
-//            while (rsData.next()){
-//                Vector dataRow = new Vector(count);
-//                for(int i = 1; i <= count; i++){
-//                    dataRow.addElement(rsData.getObject(i));
-//                }
-//                tbData.addElement(dataRow);
-//            }
-//        }
-//        @Override
-//        public String getColumnName(int column) {
-//            return  (String) (colHeaders.elementAt(column));
-//        }
-//        
-//        @Override
-//        public int getRowCount() { return tbData.size(); }
-//
-//        @Override
-//        public int getColumnCount() { return colHeaders.size(); }
-//
-//        @Override
-//        public Object getValueAt(int row, int column) {
-//            Vector rowData = (Vector)(tbData.elementAt(row));
-//            return rowData.elementAt(column);
-//        }
-//        
-//        public void setData(){
-//        super.fireTableDataChanged();
-//        }
-//    };
-        
-        public class RsTableModel extends AbstractTableModel {
-            private ArrayList<Part> parts ;
-            private String[] columns ; 
+     */     
+    public class RsTableModel extends AbstractTableModel {
+        private ArrayList<Part> parts ;
+        private String[] columns ; 
 
-            public RsTableModel(ArrayList<Part> listPart){
-              super();
-              parts = listPart ;
-              columns = new String[]{"ID part","Stock","Name part", "Purchase price"};
-            }
-
-            // Number of column of your table
-            public int getColumnCount() {
-              return columns.length ;
-            }
-
-            // Number of row of your table
-            public int getRowCount() {
-              return parts.size();
-            }
-
-            // The object to render in a cell
-            public Object getValueAt(int row, int col) {
-              Part part = parts.get(row);
-              switch(col) {
-                case 0: return part.getIdPart();
-                case 1: return part.getStock();
-                case 2: return part.getNamePart();
-                case 3: return part.getPurchasePrice();
-                default: return null;
-              }
-            }
-            // Optional, the name of your column
-            public String getColumnName(int col) {
-              return columns[col] ;
-            }
+        public RsTableModel(ArrayList<Part> listPart){
+          super();
+          parts = listPart ;
+          columns = new String[]{"ID part","Stock","Name part", "Purchase price"};
         }
+
+        // Number of column of your table
+        public int getColumnCount() {
+          return columns.length ;
+        }
+
+        // Number of row of your table
+        public int getRowCount() {
+          return parts.size();
+        }
+
+        // The object to render in a cell
+        public Object getValueAt(int row, int col) {
+          Part part = parts.get(row);
+          switch(col) {
+            case 0: return part.getIdPart();
+            case 1: return part.getStock();
+            case 2: return part.getNamePart();
+            case 3: return part.getPurchasePrice();
+            default: return null;
+          }
+        }
+        // Optional, the name of your column
+        public String getColumnName(int col) {
+          return columns[col] ;
+        }
+    }
+    
     /**
      * Method fill data to table
      * @throws SQLException 

@@ -11,11 +11,7 @@ import Serveur.Controlleurs.Serveur;
 
 /**
  * Class interacting with database for table CardState
- * @author Picture
- *
- */
-/**
- * @author Utilisateur
+ * @author Carbon5
  *
  */
 public class CardStateDAO extends DAO<CardState>{
@@ -61,6 +57,23 @@ public class CardStateDAO extends DAO<CardState>{
 		return null;
 	}
 	
+        public CardState find(int id) throws SQLException{
+            CardState state = new CardState();
+            try{
+                ResultSet result = this.connect
+                                       .createStatement(
+                                                ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                                ResultSet.CONCUR_READ_ONLY)
+                                       .executeQuery("SELECT * FROM cardstate WHERE Id = " + id);
+                if(result.first())
+                    state = new CardState(
+                    id,
+                    result.getString("Description"));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return state;
+        }
 	/**
 	 * request to insert a new CardState
 	 * @param con

@@ -175,8 +175,28 @@ public class CarDAO extends DAO<Car>{
 	@Override
 	public Car find() {
 		// TODO Auto-generated method stub
-		return null;
+            return null;
 	}
+        
+        public Car find(String id) throws SQLException{
+            Car car = new Car();
+            
+            try{
+                ResultSet result = this.connect
+                                       .createStatement(
+                                               ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                               ResultSet.CONCUR_READ_ONLY)
+                                       .executeQuery("SELECT * FROM car WHERE NumPuce = " + id);
+                if(result.first())
+                    car = new Car(
+                    id,
+                    result.getString("TypeVehicule"),
+                    result.getString("matricule"));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return car;
+        }
 
 	@Override
 	public ArrayList<String> create(Car obj) {
