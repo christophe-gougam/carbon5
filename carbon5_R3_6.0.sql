@@ -2,10 +2,10 @@
 -- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 01, 2017 lúc 09:27 CH
--- Phiên bản máy phục vụ: 5.7.14
--- Phiên bản PHP: 5.6.25
+-- Client :  127.0.0.1
+-- Généré le :  Ven 02 Juin 2017 à 02:27
+-- Version du serveur :  5.7.14
+-- Version de PHP :  5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `carbon5`
+-- Base de données :  `carbon5`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `car`
+-- Structure de la table `car`
 --
 
 CREATE TABLE `car` (
@@ -33,7 +33,7 @@ CREATE TABLE `car` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `car`
+-- Contenu de la table `car`
 --
 
 INSERT INTO `car` (`NumPuce`, `TypeVehicule`, `matricule`) VALUES
@@ -47,7 +47,7 @@ INSERT INTO `car` (`NumPuce`, `TypeVehicule`, `matricule`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `carddefect`
+-- Structure de la table `carddefect`
 --
 
 CREATE TABLE `carddefect` (
@@ -58,7 +58,7 @@ CREATE TABLE `carddefect` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `cardrepairs`
+-- Structure de la table `cardrepairs`
 --
 
 CREATE TABLE `cardrepairs` (
@@ -69,7 +69,7 @@ CREATE TABLE `cardrepairs` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `cardstate`
+-- Structure de la table `cardstate`
 --
 
 CREATE TABLE `cardstate` (
@@ -78,7 +78,7 @@ CREATE TABLE `cardstate` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `cardstate`
+-- Contenu de la table `cardstate`
 --
 
 INSERT INTO `cardstate` (`Id`, `Description`) VALUES
@@ -89,7 +89,7 @@ INSERT INTO `cardstate` (`Id`, `Description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `defect`
+-- Structure de la table `defect`
 --
 
 CREATE TABLE `defect` (
@@ -101,7 +101,7 @@ CREATE TABLE `defect` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `defect`
+-- Contenu de la table `defect`
 --
 
 INSERT INTO `defect` (`Id`, `Description`, `RepairTime`, `criticity`, `partForRepair`) VALUES
@@ -142,7 +142,7 @@ INSERT INTO `defect` (`Id`, `Description`, `RepairTime`, `criticity`, `partForRe
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `orderpart`
+-- Structure de la table `orderpart`
 --
 
 CREATE TABLE `orderpart` (
@@ -153,7 +153,7 @@ CREATE TABLE `orderpart` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `orderpart`
+-- Contenu de la table `orderpart`
 --
 
 INSERT INTO `orderpart` (`IdPart`, `IdUser`, `Qte`, `date`) VALUES
@@ -163,7 +163,7 @@ INSERT INTO `orderpart` (`IdPart`, `IdUser`, `Qte`, `date`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `parking`
+-- Structure de la table `parking`
 --
 
 CREATE TABLE `parking` (
@@ -173,7 +173,7 @@ CREATE TABLE `parking` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `parking`
+-- Contenu de la table `parking`
 --
 
 INSERT INTO `parking` (`NumParking`, `NomParking`, `Capacity`) VALUES
@@ -183,7 +183,7 @@ INSERT INTO `parking` (`NumParking`, `NomParking`, `Capacity`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `part`
+-- Structure de la table `part`
 --
 
 CREATE TABLE `part` (
@@ -194,7 +194,7 @@ CREATE TABLE `part` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `part`
+-- Contenu de la table `part`
 --
 
 INSERT INTO `part` (`Id`, `Stock`, `NamePart`, `PurchasePrice`) VALUES
@@ -225,7 +225,7 @@ INSERT INTO `part` (`Id`, `Stock`, `NamePart`, `PurchasePrice`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `partdefect`
+-- Structure de la table `partdefect`
 --
 
 CREATE TABLE `partdefect` (
@@ -236,7 +236,7 @@ CREATE TABLE `partdefect` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `partrepairs`
+-- Structure de la table `partrepairs`
 --
 
 CREATE TABLE `partrepairs` (
@@ -247,7 +247,7 @@ CREATE TABLE `partrepairs` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `place`
+-- Structure de la table `place`
 --
 
 CREATE TABLE `place` (
@@ -257,17 +257,17 @@ CREATE TABLE `place` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `place`
+-- Contenu de la table `place`
 --
 
 INSERT INTO `place` (`NumPlace`, `IsOccupied`, `NumPark`) VALUES
-(1001, 1, 1),
-(1005, 1, 2),
-(1007, 1, 1),
-(1010, 1, 1),
+(1001, 0, 1),
+(1005, 0, 1),
+(1007, 0, 1),
+(1010, 0, 1),
 (1011, 0, 1),
 (1012, 0, 1),
-(1013, 1, 1),
+(1013, 0, 1),
 (1014, 1, 1),
 (1015, 0, 1),
 (1016, 0, 1),
@@ -282,7 +282,7 @@ INSERT INTO `place` (`NumPlace`, `IsOccupied`, `NumPark`) VALUES
 (1025, 0, 1),
 (1026, 0, 1),
 (2001, 0, 2),
-(2005, 2, 2),
+(2005, 0, 2),
 (2007, 0, 2),
 (2010, 0, 2),
 (2011, 0, 2),
@@ -305,7 +305,7 @@ INSERT INTO `place` (`NumPlace`, `IsOccupied`, `NumPark`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `preferences`
+-- Structure de la table `preferences`
 --
 
 CREATE TABLE `preferences` (
@@ -319,7 +319,7 @@ CREATE TABLE `preferences` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `repaircard`
+-- Structure de la table `repaircard`
 --
 
 CREATE TABLE `repaircard` (
@@ -335,7 +335,7 @@ CREATE TABLE `repaircard` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `repaircard`
+-- Contenu de la table `repaircard`
 --
 
 INSERT INTO `repaircard` (`Id`, `IdDegree`, `IdCard`, `IdCar`, `IdParkPlace`, `EntryDate`, `OutDate`, `OverAllDetails`, `IdUser`) VALUES
@@ -346,7 +346,7 @@ INSERT INTO `repaircard` (`Id`, `IdDegree`, `IdCard`, `IdCar`, `IdParkPlace`, `E
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `repairs`
+-- Structure de la table `repairs`
 --
 
 CREATE TABLE `repairs` (
@@ -360,7 +360,7 @@ CREATE TABLE `repairs` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `typecar`
+-- Structure de la table `typecar`
 --
 
 CREATE TABLE `typecar` (
@@ -369,7 +369,7 @@ CREATE TABLE `typecar` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `typecar`
+-- Contenu de la table `typecar`
 --
 
 INSERT INTO `typecar` (`Id`, `Type`) VALUES
@@ -379,7 +379,7 @@ INSERT INTO `typecar` (`Id`, `Type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `typeuser`
+-- Structure de la table `typeuser`
 --
 
 CREATE TABLE `typeuser` (
@@ -388,7 +388,7 @@ CREATE TABLE `typeuser` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `typeuser`
+-- Contenu de la table `typeuser`
 --
 
 INSERT INTO `typeuser` (`Id`, `Profil`) VALUES
@@ -398,7 +398,7 @@ INSERT INTO `typeuser` (`Id`, `Profil`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `urgencydegree`
+-- Structure de la table `urgencydegree`
 --
 
 CREATE TABLE `urgencydegree` (
@@ -407,7 +407,7 @@ CREATE TABLE `urgencydegree` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `urgencydegree`
+-- Contenu de la table `urgencydegree`
 --
 
 INSERT INTO `urgencydegree` (`Id`, `Description`) VALUES
@@ -420,7 +420,7 @@ INSERT INTO `urgencydegree` (`Id`, `Description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `users`
+-- Structure de la table `users`
 --
 
 CREATE TABLE `users` (
@@ -440,7 +440,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `users`
+-- Contenu de la table `users`
 --
 
 INSERT INTO `users` (`Id`, `TypeUser`, `FirstName`, `LastName`, `DateOfBirth`, `Address`, `Town`, `PostalCode`, `Login`, `PasswordUser`, `Email`, `HiringDate`, `IncomingPerHour`) VALUES
@@ -448,85 +448,85 @@ INSERT INTO `users` (`Id`, `TypeUser`, `FirstName`, `LastName`, `DateOfBirth`, `
 (2, 1, 'john', 'doe', '2017-04-04', 'azerty', 'azerty', 94000, 'boss', 'boss', 'azrryt', '2017-06-12', 1);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Index pour les tables exportées
 --
 
 --
--- Chỉ mục cho bảng `car`
+-- Index pour la table `car`
 --
 ALTER TABLE `car`
   ADD PRIMARY KEY (`NumPuce`),
   ADD KEY `fk_typeV` (`TypeVehicule`) USING BTREE;
 
 --
--- Chỉ mục cho bảng `carddefect`
+-- Index pour la table `carddefect`
 --
 ALTER TABLE `carddefect`
   ADD PRIMARY KEY (`IdDefect`,`IdCard`),
   ADD KEY `fk_Card_CardDefect` (`IdCard`);
 
 --
--- Chỉ mục cho bảng `cardrepairs`
+-- Index pour la table `cardrepairs`
 --
 ALTER TABLE `cardrepairs`
   ADD PRIMARY KEY (`IdRepair`,`IdCard`),
   ADD KEY `fk_Card_CardRepair` (`IdCard`);
 
 --
--- Chỉ mục cho bảng `cardstate`
+-- Index pour la table `cardstate`
 --
 ALTER TABLE `cardstate`
   ADD PRIMARY KEY (`Id`);
 
 --
--- Chỉ mục cho bảng `defect`
+-- Index pour la table `defect`
 --
 ALTER TABLE `defect`
   ADD PRIMARY KEY (`Id`),
   ADD KEY `fk_part` (`partForRepair`);
 
 --
--- Chỉ mục cho bảng `orderpart`
+-- Index pour la table `orderpart`
 --
 ALTER TABLE `orderpart`
   ADD PRIMARY KEY (`IdPart`,`IdUser`,`Qte`,`date`),
   ADD KEY `fk_User_OrderPart` (`IdUser`);
 
 --
--- Chỉ mục cho bảng `parking`
+-- Index pour la table `parking`
 --
 ALTER TABLE `parking`
   ADD PRIMARY KEY (`NumParking`);
 
 --
--- Chỉ mục cho bảng `part`
+-- Index pour la table `part`
 --
 ALTER TABLE `part`
   ADD PRIMARY KEY (`Id`);
 
 --
--- Chỉ mục cho bảng `partdefect`
+-- Index pour la table `partdefect`
 --
 ALTER TABLE `partdefect`
   ADD PRIMARY KEY (`IdPart`,`IdDefect`),
   ADD KEY `fk_Defect_PartDefect` (`IdDefect`);
 
 --
--- Chỉ mục cho bảng `partrepairs`
+-- Index pour la table `partrepairs`
 --
 ALTER TABLE `partrepairs`
   ADD PRIMARY KEY (`IdPart`,`IdRepair`),
   ADD KEY `fk_Repair_PartRepairs` (`IdRepair`);
 
 --
--- Chỉ mục cho bảng `place`
+-- Index pour la table `place`
 --
 ALTER TABLE `place`
   ADD PRIMARY KEY (`NumPlace`),
   ADD KEY `fk_place` (`NumPark`);
 
 --
--- Chỉ mục cho bảng `repaircard`
+-- Index pour la table `repaircard`
 --
 ALTER TABLE `repaircard`
   ADD PRIMARY KEY (`Id`),
@@ -537,143 +537,143 @@ ALTER TABLE `repaircard`
   ADD KEY `fk_User_RepairCard` (`IdUser`);
 
 --
--- Chỉ mục cho bảng `repairs`
+-- Index pour la table `repairs`
 --
 ALTER TABLE `repairs`
   ADD PRIMARY KEY (`Id`);
 
 --
--- Chỉ mục cho bảng `typecar`
+-- Index pour la table `typecar`
 --
 ALTER TABLE `typecar`
   ADD PRIMARY KEY (`Id`);
 
 --
--- Chỉ mục cho bảng `typeuser`
+-- Index pour la table `typeuser`
 --
 ALTER TABLE `typeuser`
   ADD PRIMARY KEY (`Id`);
 
 --
--- Chỉ mục cho bảng `urgencydegree`
+-- Index pour la table `urgencydegree`
 --
 ALTER TABLE `urgencydegree`
   ADD PRIMARY KEY (`Id`);
 
 --
--- Chỉ mục cho bảng `users`
+-- Index pour la table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`Id`),
   ADD KEY `fk_Type` (`TypeUser`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT pour les tables exportées
 --
 
 --
--- AUTO_INCREMENT cho bảng `cardstate`
+-- AUTO_INCREMENT pour la table `cardstate`
 --
 ALTER TABLE `cardstate`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT cho bảng `defect`
+-- AUTO_INCREMENT pour la table `defect`
 --
 ALTER TABLE `defect`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
--- AUTO_INCREMENT cho bảng `parking`
+-- AUTO_INCREMENT pour la table `parking`
 --
 ALTER TABLE `parking`
   MODIFY `NumParking` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT cho bảng `part`
+-- AUTO_INCREMENT pour la table `part`
 --
 ALTER TABLE `part`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
--- AUTO_INCREMENT cho bảng `repaircard`
+-- AUTO_INCREMENT pour la table `repaircard`
 --
 ALTER TABLE `repaircard`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT cho bảng `repairs`
+-- AUTO_INCREMENT pour la table `repairs`
 --
 ALTER TABLE `repairs`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT cho bảng `typecar`
+-- AUTO_INCREMENT pour la table `typecar`
 --
 ALTER TABLE `typecar`
   MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT cho bảng `typeuser`
+-- AUTO_INCREMENT pour la table `typeuser`
 --
 ALTER TABLE `typeuser`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT cho bảng `urgencydegree`
+-- AUTO_INCREMENT pour la table `urgencydegree`
 --
 ALTER TABLE `urgencydegree`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT cho bảng `users`
+-- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Contraintes pour les tables exportées
 --
 
 --
--- Các ràng buộc cho bảng `carddefect`
+-- Contraintes pour la table `carddefect`
 --
 ALTER TABLE `carddefect`
   ADD CONSTRAINT `fk_Card_CardDefect` FOREIGN KEY (`IdCard`) REFERENCES `repaircard` (`Id`),
   ADD CONSTRAINT `fk_Defect_CardDefect` FOREIGN KEY (`IdDefect`) REFERENCES `defect` (`Id`);
 
 --
--- Các ràng buộc cho bảng `cardrepairs`
+-- Contraintes pour la table `cardrepairs`
 --
 ALTER TABLE `cardrepairs`
   ADD CONSTRAINT `fk_Card_CardRepair` FOREIGN KEY (`IdCard`) REFERENCES `repaircard` (`Id`),
   ADD CONSTRAINT `fk_Repairs_CardRepair` FOREIGN KEY (`IdRepair`) REFERENCES `repairs` (`Id`);
 
 --
--- Các ràng buộc cho bảng `defect`
+-- Contraintes pour la table `defect`
 --
 ALTER TABLE `defect`
   ADD CONSTRAINT `fk_part` FOREIGN KEY (`partForRepair`) REFERENCES `part` (`Id`);
 
 --
--- Các ràng buộc cho bảng `orderpart`
+-- Contraintes pour la table `orderpart`
 --
 ALTER TABLE `orderpart`
   ADD CONSTRAINT `fk_Part_OrderPart` FOREIGN KEY (`IdPart`) REFERENCES `part` (`Id`),
   ADD CONSTRAINT `fk_User_OrderPart` FOREIGN KEY (`IdUser`) REFERENCES `users` (`Id`);
 
 --
--- Các ràng buộc cho bảng `partdefect`
+-- Contraintes pour la table `partdefect`
 --
 ALTER TABLE `partdefect`
   ADD CONSTRAINT `fk_Defect_PartDefect` FOREIGN KEY (`IdDefect`) REFERENCES `defect` (`Id`),
   ADD CONSTRAINT `fk_Part_PartDefect` FOREIGN KEY (`IdPart`) REFERENCES `part` (`Id`);
 
 --
--- Các ràng buộc cho bảng `partrepairs`
+-- Contraintes pour la table `partrepairs`
 --
 ALTER TABLE `partrepairs`
   ADD CONSTRAINT `fk_Part_PartRepairs` FOREIGN KEY (`IdPart`) REFERENCES `part` (`Id`),
   ADD CONSTRAINT `fk_Repair_PartRepairs` FOREIGN KEY (`IdRepair`) REFERENCES `repairs` (`Id`);
 
 --
--- Các ràng buộc cho bảng `place`
+-- Contraintes pour la table `place`
 --
 ALTER TABLE `place`
   ADD CONSTRAINT `fk_place` FOREIGN KEY (`NumPark`) REFERENCES `parking` (`NumParking`);
 
 --
--- Các ràng buộc cho bảng `repaircard`
+-- Contraintes pour la table `repaircard`
 --
 ALTER TABLE `repaircard`
   ADD CONSTRAINT `fk_Car_RepairCard` FOREIGN KEY (`IdCar`) REFERENCES `car` (`NumPuce`),
@@ -683,7 +683,7 @@ ALTER TABLE `repaircard`
   ADD CONSTRAINT `fk_User_RepairCard` FOREIGN KEY (`IdUser`) REFERENCES `users` (`Id`);
 
 --
--- Các ràng buộc cho bảng `users`
+-- Contraintes pour la table `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `fk_Type` FOREIGN KEY (`TypeUser`) REFERENCES `typeuser` (`Id`);

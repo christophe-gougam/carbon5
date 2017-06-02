@@ -188,7 +188,7 @@ public class CarController implements Runnable{
 						RepairCard carinfo=new RepairCard(1, String.valueOf(numP), place, java.sql.Date.valueOf(dat), listPane, user);
 						Carinfo=test.getCar(numP);
 						isIn=test5.existRepairCard(numP);
-						if(Carinfo.get(0).getNumePuce().equalsIgnoreCase(numP) && true)
+						if(Carinfo.get(0).getNumePuce().equalsIgnoreCase(numP) && isIn==false)
 						{
 							ret=test5.create(carinfo, java.sql.Date.valueOf(entranceDate));
 							
@@ -203,7 +203,7 @@ public class CarController implements Runnable{
 							}
 						}
 						//a brancher
-						else if(isIn=false){
+						else if(isIn==true){
 							data.add("AlreadyAdded");
 						}
 						else
