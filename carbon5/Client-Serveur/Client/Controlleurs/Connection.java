@@ -326,6 +326,13 @@ public class Connection{
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
 			break;
+			case "addPreferencesOK" : case "addPreferencesKO":
+				objet = new JSONObject(reponse);
+				logger.info("Afficage du resultat de mise � jour : ");
+		    	logger.info(reponse);
+		    	tableau = objet.getJSONArray("data");
+				JOptionPane.showMessageDialog(frame, tableau.get(0));
+			break;
 			default : 
 				logger.info("default");
 			}

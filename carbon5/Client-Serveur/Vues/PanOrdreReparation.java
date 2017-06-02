@@ -5,13 +5,25 @@
  */
 package Vues;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
+
+import Client.Controlleurs.ServerConnect;
+import Modele.User;
+import Serveur.Controlleurs.Serveur;
+import Vues.PanEntreeStock.BoutonListener;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author Carbon5
  */
 public class PanOrdreReparation extends JPanel {
+	
+	final static Logger logger = Logger.getLogger(Serveur.class);
     /**
      * Creates new form PanOrderReparation
      */
@@ -59,12 +71,13 @@ public class PanOrdreReparation extends JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Enregistrer");
+        jButton1.addActionListener(new BoutonListener(this));
 
         jButton2.setText("Annuler");
 
         jTextField1.setText("jTextField1");
 
-        jLabel2.setText("jLabel2");
+        jLabel2.setText("Nombre de jours dans le dépôt");
 
         jTextField2.setText("jTextField1");
 
@@ -77,13 +90,13 @@ public class PanOrdreReparation extends JPanel {
 
         jTextField4.setText("jTextField1");
 
-        jLabel4.setText("IndiffÃ©rence");
+        jLabel4.setText("Indifférence");
 
-        jLabel5.setText("VÃ©to");
+        jLabel5.setText("Véto");
 
-        jLabel7.setText("jLabel7");
+        jLabel7.setText("Temps de réparation");
 
-        jLabel3.setText("jLabel3");
+        jLabel3.setText(" Test Test Test Test Test Test Test Test Test Test Test ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -177,4 +190,44 @@ public class PanOrdreReparation extends JPanel {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration  
+    
+    /**
+	* Class BoutonListener listens button ENREGISTRER
+	*/
+class BoutonListener implements ActionListener{
+	JPanel frame=null;
+
+	/**
+ 	* Class constructor
+ 	* @param f 
+ 	*/
+	public BoutonListener  (JPanel f){
+		this.frame=f;
+	}
+
+	/**
+	 * Method generate component action
+	 * @param arg0 
+	 */
+	public void actionPerformed(ActionEvent arg0){
+	
+		String indifDays = jTextField1.getText();
+		String vetoDays = jTextField2.getText();
+		String indifTime = jTextField3.getText();
+		String vetoTime = jTextField4.getText();
+		
+		ArrayList<String> data = new ArrayList<String>();
+		data.add(indifDays);
+		data.add(vetoDays);
+		data.add(indifTime);
+		data.add(vetoTime);
+		
+		String identifier = "addPreferences";
+		logger.info("Enregistrement des préférences de priorisation");
+		new ServerConnect(data, identifier, frame);
+
+	}
 }
+}
+
+

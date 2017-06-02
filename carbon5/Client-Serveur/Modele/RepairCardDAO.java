@@ -208,4 +208,64 @@ public class RepairCardDAO extends DAO<RepairCard>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public ArrayList<RepairCard> getAllRepairCards(){
+		ArrayList<RepairCard> repCards = new ArrayList<RepairCard>();
+		 try {
+             ResultSet result = this .connect
+                                     .createStatement(
+                                                 ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                                 ResultSet.CONCUR_UPDATABLE
+                                              ).executeQuery(
+                                                 "SELECT id,idDegree,idCard,idCar,idParkPlace,EntryDate,outDate,OverAllDetails,idUser FROM repaircard"
+                                              );
+             while(result.next()){
+            	 int id = result.getInt("id");
+            	 int idDegree = result.getInt("idDegree");
+            	 int idCard = result.getInt("idCard");
+            	 String idCar = result.getString("idCar");
+            	 int idParkPlace = result.getInt("idParkPlace");
+            	 Date entry = result.getDate("EntryDate");
+            	 Date outDate = result.getDate("outDate");
+            	 String overAllDets = result.getString("OverAllDetails");
+            	 int idUser = result.getInt("idUser");
+            	 
+            	 UrgencyDegreeDAO uDDAO = new UrgencyDegreeDAO(this.connect);
+            	 UrgencyDegree uD = uDDAO.getUD(idDegree).get(0);
+            	 
+            	 CardStateDAO cardDAO = new CardStateDAO(this.connect);
+            	 CardState card = cardDAO.getCardState(idCard).get(0);
+            	 
+            	 CarDAO carDAO = new CarDAO(this.connect);
+            	 Car car = carDAO.getCar(idCar).get(0);
+            	 
+            	 PlaceDAO placeDAO = new PlaceDAO(this.connect);
+            	 Place place = placeDAO.getPlace(idParkPlace);
+            	 
+            	 UserDAO userDAO = new UserDAO(this.connect);
+            	 User user = userDAO.getUser(idUser);
+            	 
+            	 ResultSet result2 = this .connect
+                         .createStatement(
+                                     ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                     ResultSet.CONCUR_UPDATABLE
+                                  ).executeQuery(
+                                     "SELECT idDefect FROM carddefect WHERE idCard='"+idCar+"'"
+                                  );
+            	 ArrayList<Defect> defects = new ArrayList<Defect>();
+            	 DefectDAO defectDAO = new DefectDAO(this.connect);
+            	 while(result.next()){
+            		 defects.add(defectDAO.getDefect(result2.getInt("idDefect")));
+            	 }
+            	 
+            	 ArrayList<Repairs> reps = new ArrayList<Repairs>();
+            	 RepairCard rep = new RepairCard(uD, card, car, reps, defects, place, entry, outDate,overAllDets, user);   
+            	 repCards.add(rep);
+             }            
+             
+         } catch (SQLException e) {
+                 e.printStackTrace();
+         }
+         return repCards;
+	}
 }

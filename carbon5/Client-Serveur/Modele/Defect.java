@@ -29,11 +29,21 @@ public class Defect {
         this.criticity = criticity;
     }
     
+    public Defect(int id, String description, int repairTime, int criticity, Part part){
+    	this.id = id;
+        this.description = description;
+        this.partForRepair = part;
+        this.criticity = criticity;
+        this.duration = repairTime;
+    }
+    
     public Defect(int id, String description, int time){
     	this.id = id;
     	this.description = description;
     	this.duration=time;
     }
+    
+    public Defect(){}
     
     /**
      * Method get id
