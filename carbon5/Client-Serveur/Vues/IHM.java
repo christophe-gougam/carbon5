@@ -5,6 +5,7 @@
  */
 package Vues;
 
+import Client.Controlleurs.Connection;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -144,7 +145,7 @@ public class IHM extends JFrame {
         pan2.add(new PanVehicule(), listContent[10]);
         pan2.add(new PanAjoutVehicule(), listContent[11]);
         pan2.add(new PanModifVehicule(), listContent[12]);
-        pan2.add(new PanStat(), listContent[13]);
+        pan2.add(Connection.panStat, listContent[13]);
     }
     
     /*
