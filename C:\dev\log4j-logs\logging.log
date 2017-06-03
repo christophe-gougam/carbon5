@@ -1,0 +1,288 @@
+2017-06-03 12:27:10 INFO  Serveur:30 - Server is listening on port 50000
+2017-06-03 12:27:10 INFO  ProcessData:55 - Retrieving connection from Pool
+2017-06-03 12:27:10 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:11 ERROR ConnectionPool:119 - SQLException: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2017-06-03 12:27:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:11 ERROR ConnectionPool:119 - SQLException: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2017-06-03 12:27:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:11 ERROR ConnectionPool:119 - SQLException: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2017-06-03 12:27:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:11 ERROR ConnectionPool:119 - SQLException: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2017-06-03 12:27:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:11 ERROR ConnectionPool:119 - SQLException: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2017-06-03 12:27:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:11 ERROR ConnectionPool:119 - SQLException: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2017-06-03 12:27:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:11 ERROR ConnectionPool:119 - SQLException: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2017-06-03 12:27:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:11 ERROR ConnectionPool:119 - SQLException: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2017-06-03 12:27:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:11 ERROR ConnectionPool:119 - SQLException: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2017-06-03 12:27:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:11 ERROR ConnectionPool:119 - SQLException: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2017-06-03 12:27:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:11 ERROR ConnectionPool:119 - SQLException: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2017-06-03 12:27:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:11 ERROR ConnectionPool:119 - SQLException: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2017-06-03 12:27:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:11 ERROR ConnectionPool:119 - SQLException: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2017-06-03 12:27:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:11 ERROR ConnectionPool:119 - SQLException: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2017-06-03 12:27:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:11 ERROR ConnectionPool:119 - SQLException: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2017-06-03 12:27:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:11 ERROR ConnectionPool:119 - SQLException: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2017-06-03 12:27:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:11 ERROR ConnectionPool:119 - SQLException: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2017-06-03 12:27:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:11 ERROR ConnectionPool:119 - SQLException: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2017-06-03 12:27:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:11 ERROR ConnectionPool:119 - SQLException: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2017-06-03 12:27:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:11 ERROR ConnectionPool:119 - SQLException: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+2017-06-03 12:27:11 WARN  ConnectionPool:55 - Connection Pool is full. 20 connections created
+2017-06-03 12:27:11 INFO  ProcessData:58 - Retrieving client socket
+2017-06-03 12:27:46 INFO  Serveur:30 - Server is listening on port 50000
+2017-06-03 12:27:46 INFO  ProcessData:55 - Retrieving connection from Pool
+2017-06-03 12:27:46 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:46 ERROR ConnectionPool:119 - SQLException: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+2017-06-03 12:27:46 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:46 ERROR ConnectionPool:119 - SQLException: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+2017-06-03 12:27:46 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:46 ERROR ConnectionPool:119 - SQLException: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+2017-06-03 12:27:46 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:46 ERROR ConnectionPool:119 - SQLException: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+2017-06-03 12:27:46 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:46 ERROR ConnectionPool:119 - SQLException: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+2017-06-03 12:27:46 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:46 ERROR ConnectionPool:119 - SQLException: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+2017-06-03 12:27:46 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:46 ERROR ConnectionPool:119 - SQLException: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+2017-06-03 12:27:46 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:46 ERROR ConnectionPool:119 - SQLException: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+2017-06-03 12:27:46 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:46 ERROR ConnectionPool:119 - SQLException: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+2017-06-03 12:27:46 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:46 ERROR ConnectionPool:119 - SQLException: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+2017-06-03 12:27:46 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:46 ERROR ConnectionPool:119 - SQLException: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+2017-06-03 12:27:46 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:46 ERROR ConnectionPool:119 - SQLException: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+2017-06-03 12:27:46 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:46 ERROR ConnectionPool:119 - SQLException: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+2017-06-03 12:27:46 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:46 ERROR ConnectionPool:119 - SQLException: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+2017-06-03 12:27:46 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:46 ERROR ConnectionPool:119 - SQLException: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+2017-06-03 12:27:46 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:46 ERROR ConnectionPool:119 - SQLException: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+2017-06-03 12:27:46 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:46 ERROR ConnectionPool:119 - SQLException: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+2017-06-03 12:27:46 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:46 ERROR ConnectionPool:119 - SQLException: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+2017-06-03 12:27:46 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:46 ERROR ConnectionPool:119 - SQLException: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+2017-06-03 12:27:46 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:27:46 ERROR ConnectionPool:119 - SQLException: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+2017-06-03 12:27:46 WARN  ConnectionPool:55 - Connection Pool is full. 20 connections created
+2017-06-03 12:27:46 INFO  ProcessData:58 - Retrieving client socket
+2017-06-03 12:28:06 INFO  Serveur:30 - Server is listening on port 50000
+2017-06-03 12:28:06 INFO  ProcessData:55 - Retrieving connection from Pool
+2017-06-03 12:28:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:28:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@38ed84e9
+2017-06-03 12:28:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:28:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3a7c93ff
+2017-06-03 12:28:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:28:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@76e1ac17
+2017-06-03 12:28:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:28:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7e28841f
+2017-06-03 12:28:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:28:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@74cf25e1
+2017-06-03 12:28:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:28:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@53a06cd9
+2017-06-03 12:28:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:28:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@67e5f7d4
+2017-06-03 12:28:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:28:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@2fe41466
+2017-06-03 12:28:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:28:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@345ec011
+2017-06-03 12:28:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:28:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3197d2ce
+2017-06-03 12:28:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:28:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@560aa498
+2017-06-03 12:28:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:28:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@1a4ac08f
+2017-06-03 12:28:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:28:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3c1931e5
+2017-06-03 12:28:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:28:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7cf0b0da
+2017-06-03 12:28:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:28:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@6cff5318
+2017-06-03 12:28:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:28:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@2242fae
+2017-06-03 12:28:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:28:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@55aedc40
+2017-06-03 12:28:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:28:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@4a7cffa5
+2017-06-03 12:28:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:28:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@64913ecc
+2017-06-03 12:28:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:28:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@d5fb9c
+2017-06-03 12:28:07 WARN  ConnectionPool:55 - Connection Pool is full. 20 connections created
+2017-06-03 12:28:07 INFO  ProcessData:58 - Retrieving client socket
+2017-06-03 12:28:20 INFO  Serveur:113 - Authentification demand�e par le client
+2017-06-03 12:28:20 INFO  Serveur:103 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2017-06-03 12:28:20 INFO  Serveur:104 - 127.0.0.1
+2017-06-03 12:28:20 INFO  Serveur:74 - Envoie du JSON au serveur
+2017-06-03 12:28:20 INFO  Serveur:75 - {"identifier":"Authentication","data":["test","test"]}
+2017-06-03 12:28:20 INFO  ProcessData:67 - Reading JSON Client
+2017-06-03 12:28:20 INFO  Serveur:79 - Reception du JSON envoy� du serveur
+2017-06-03 12:28:20 INFO  ProcessData:55 - Retrieving connection from Pool
+2017-06-03 12:28:20 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-03 12:28:20 INFO  Serveur:25 - Afficage du JSON : 
+2017-06-03 12:28:20 INFO  Serveur:26 - {"identifier":"Authentication","data":["test","test"]}
+2017-06-03 12:28:20 INFO  Serveur:29 - 
+parcours du fichier Json :
+2017-06-03 12:28:20 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7c006c59
+2017-06-03 12:28:20 WARN  ConnectionPool:55 - Connection Pool is full. 20 connections created
+2017-06-03 12:28:20 INFO  ProcessData:58 - Retrieving client socket
+2017-06-03 12:28:20 INFO  Authentication:83 - Sending JSON succ�s to Client
+2017-06-03 12:28:20 INFO  Authentication:94 - Returning connection to pool
+2017-06-03 12:28:20 INFO  Serveur:84 - GrantAuth
+2017-06-03 12:28:20 INFO  Serveur:98 - Afficage du JSON : 
+2017-06-03 12:28:20 INFO  Serveur:99 - {"identifier":"GrantAuth","data":["GrantAuth","1///test///test///azertyu///azertyu///92100///test///test///2017-04-03///2.0///2///ouvrier"]}
+2017-06-03 12:28:20 INFO  Serveur:107 - 1///test///test///azertyu///azertyu///92100///test///test///2017-04-03///2.0///2///ouvrier
+2017-06-03 12:28:20 INFO  Serveur:274 - Enter unserilization
+2017-06-03 12:28:20 INFO  Serveur:288 - Begin unserilization
+2017-06-03 12:28:20 INFO  Serveur:290 - Success unserilization
+2017-06-03 12:28:21 INFO  Serveur:119 - MASQUER TAB 4
+2017-06-03 12:28:23 INFO  Serveur:202 - Recuperation des pieces
+2017-06-03 12:28:23 INFO  Serveur:65 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2017-06-03 12:28:23 INFO  Serveur:66 - 127.0.0.1
+2017-06-03 12:28:23 INFO  Serveur:74 - Envoie du JSON au serveur
+2017-06-03 12:28:23 INFO  Serveur:75 - {"identifier":"SelectAllParts","data":[]}
+2017-06-03 12:28:23 INFO  Serveur:79 - Reception du JSON envoy� du serveur
+2017-06-03 12:28:23 INFO  ProcessData:67 - Reading JSON Client
+2017-06-03 12:28:23 INFO  ProcessData:108 - Case Select all parts
+2017-06-03 12:28:23 INFO  Serveur:25 - Afficage du JSON : 
+2017-06-03 12:28:23 INFO  Serveur:26 - {"identifier":"SelectAllParts","data":[]}
+2017-06-03 12:28:23 INFO  Serveur:29 - 
+parcours du fichier Json :
+2017-06-03 12:28:23 INFO  Serveur:63 - retrieving all parts
+2017-06-03 12:28:23 INFO  PartController:112 - Sending list of part to Client
+2017-06-03 12:28:23 INFO  PartController:123 - Returning connection to pool
+2017-06-03 12:28:23 INFO  ProcessData:55 - Retrieving connection from Pool
+2017-06-03 12:28:23 WARN  ConnectionPool:55 - Connection Pool is full. 21 connections created
+2017-06-03 12:28:23 INFO  ProcessData:58 - Retrieving client socket
+2017-06-03 12:28:23 INFO  Serveur:84 - SelectAllPartsOK
+2017-06-03 12:28:23 INFO  Serveur:177 - Afficage du resultat de mise � jour : 
+2017-06-03 12:28:23 INFO  Serveur:178 - {"identifier":"SelectAllPartsOK","data":["SelectAllPartsOK","23","1///23///moteur///25.0","2///0///test///2.0","3///1///pneu///24.0","4///19///lampe///10.0","5///51///retroviseur///10.0","6///24///pedale///20.0","7///1///chaine///6.0","8///14///roue///2.0","9///1///frein///50.0","10///1///porte///36.0","11///1///antenne///49.0","12///1///piston///102.0","13///1///vitrine///21.0","14///1///test///24.0","15///1///ghost///22.0","16///1///fast///56.0","17///1///aller///8.0","18///1///cac///5.0","19///1///volant///45.0","21///1///cle///2.0","23///1///porte baggage///9.0","24///1///baterie///200.0","26///1///fils electrique///15.0"]}
+2017-06-03 12:28:23 INFO  Serveur:125 - Enter unserilization
+2017-06-03 12:28:23 INFO  Serveur:131 - Begin unserilization
+2017-06-03 12:28:23 INFO  Serveur:133 - Success unserilization
+2017-06-03 12:28:23 INFO  Serveur:125 - Enter unserilization
+2017-06-03 12:28:23 INFO  Serveur:131 - Begin unserilization
+2017-06-03 12:28:23 INFO  Serveur:133 - Success unserilization
+2017-06-03 12:28:23 INFO  Serveur:125 - Enter unserilization
+2017-06-03 12:28:23 INFO  Serveur:131 - Begin unserilization
+2017-06-03 12:28:23 INFO  Serveur:133 - Success unserilization
+2017-06-03 12:28:23 INFO  Serveur:125 - Enter unserilization
+2017-06-03 12:28:23 INFO  Serveur:131 - Begin unserilization
+2017-06-03 12:28:23 INFO  Serveur:133 - Success unserilization
+2017-06-03 12:28:23 INFO  Serveur:125 - Enter unserilization
+2017-06-03 12:28:23 INFO  Serveur:131 - Begin unserilization
+2017-06-03 12:28:23 INFO  Serveur:133 - Success unserilization
+2017-06-03 12:28:23 INFO  Serveur:125 - Enter unserilization
+2017-06-03 12:28:23 INFO  Serveur:131 - Begin unserilization
+2017-06-03 12:28:23 INFO  Serveur:133 - Success unserilization
+2017-06-03 12:28:23 INFO  Serveur:125 - Enter unserilization
+2017-06-03 12:28:23 INFO  Serveur:131 - Begin unserilization
+2017-06-03 12:28:23 INFO  Serveur:133 - Success unserilization
+2017-06-03 12:28:23 INFO  Serveur:125 - Enter unserilization
+2017-06-03 12:28:23 INFO  Serveur:131 - Begin unserilization
+2017-06-03 12:28:23 INFO  Serveur:133 - Success unserilization
+2017-06-03 12:28:23 INFO  Serveur:125 - Enter unserilization
+2017-06-03 12:28:23 INFO  Serveur:131 - Begin unserilization
+2017-06-03 12:28:23 INFO  Serveur:133 - Success unserilization
+2017-06-03 12:28:23 INFO  Serveur:125 - Enter unserilization
+2017-06-03 12:28:23 INFO  Serveur:131 - Begin unserilization
+2017-06-03 12:28:23 INFO  Serveur:133 - Success unserilization
+2017-06-03 12:28:23 INFO  Serveur:125 - Enter unserilization
+2017-06-03 12:28:23 INFO  Serveur:131 - Begin unserilization
+2017-06-03 12:28:23 INFO  Serveur:133 - Success unserilization
+2017-06-03 12:28:23 INFO  Serveur:125 - Enter unserilization
+2017-06-03 12:28:23 INFO  Serveur:131 - Begin unserilization
+2017-06-03 12:28:23 INFO  Serveur:133 - Success unserilization
+2017-06-03 12:28:23 INFO  Serveur:125 - Enter unserilization
+2017-06-03 12:28:23 INFO  Serveur:131 - Begin unserilization
+2017-06-03 12:28:23 INFO  Serveur:133 - Success unserilization
+2017-06-03 12:28:23 INFO  Serveur:125 - Enter unserilization
+2017-06-03 12:28:23 INFO  Serveur:131 - Begin unserilization
+2017-06-03 12:28:23 INFO  Serveur:133 - Success unserilization
+2017-06-03 12:28:23 INFO  Serveur:125 - Enter unserilization
+2017-06-03 12:28:23 INFO  Serveur:131 - Begin unserilization
+2017-06-03 12:28:23 INFO  Serveur:133 - Success unserilization
+2017-06-03 12:28:23 INFO  Serveur:125 - Enter unserilization
+2017-06-03 12:28:23 INFO  Serveur:131 - Begin unserilization
+2017-06-03 12:28:23 INFO  Serveur:133 - Success unserilization
+2017-06-03 12:28:23 INFO  Serveur:125 - Enter unserilization
+2017-06-03 12:28:23 INFO  Serveur:131 - Begin unserilization
+2017-06-03 12:28:23 INFO  Serveur:133 - Success unserilization
+2017-06-03 12:28:23 INFO  Serveur:125 - Enter unserilization
+2017-06-03 12:28:23 INFO  Serveur:131 - Begin unserilization
+2017-06-03 12:28:23 INFO  Serveur:133 - Success unserilization
+2017-06-03 12:28:23 INFO  Serveur:125 - Enter unserilization
+2017-06-03 12:28:23 INFO  Serveur:131 - Begin unserilization
+2017-06-03 12:28:23 INFO  Serveur:133 - Success unserilization
+2017-06-03 12:28:23 INFO  Serveur:125 - Enter unserilization
+2017-06-03 12:28:23 INFO  Serveur:131 - Begin unserilization
+2017-06-03 12:28:23 INFO  Serveur:133 - Success unserilization
+2017-06-03 12:28:23 INFO  Serveur:125 - Enter unserilization
+2017-06-03 12:28:23 INFO  Serveur:131 - Begin unserilization
+2017-06-03 12:28:23 INFO  Serveur:133 - Success unserilization
+2017-06-03 12:28:23 INFO  Serveur:125 - Enter unserilization
+2017-06-03 12:28:23 INFO  Serveur:131 - Begin unserilization
+2017-06-03 12:28:23 INFO  Serveur:133 - Success unserilization
+2017-06-03 12:28:23 INFO  Serveur:125 - Enter unserilization
+2017-06-03 12:28:23 INFO  Serveur:131 - Begin unserilization
+2017-06-03 12:28:23 INFO  Serveur:133 - Success unserilization

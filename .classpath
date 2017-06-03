@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="carbon5/Client-Serveur"/>
+	<classpathentry excluding="contribs/Jamie Tsao/|src/main/javadoc/|contribs/CekiGulcu/|src/performance/java/|contribs/JimMoore/|tests/src/java/|contribs/ThomasFenner/|src/main/java/" kind="src" path="JAR/log4j-1.2.17/apache-log4j-1.2.17"/>
+	<classpathentry kind="src" path="JAR/log4j-1.2.17/apache-log4j-1.2.17/contribs/CekiGulcu"/>
+	<classpathentry kind="src" path="JAR/log4j-1.2.17/apache-log4j-1.2.17/contribs/Jamie Tsao"/>
+	<classpathentry kind="src" path="JAR/log4j-1.2.17/apache-log4j-1.2.17/contribs/JimMoore"/>
+	<classpathentry kind="src" path="JAR/log4j-1.2.17/apache-log4j-1.2.17/contribs/ThomasFenner"/>
+	<classpathentry kind="src" path="JAR/log4j-1.2.17/apache-log4j-1.2.17/src/main/java"/>
+	<classpathentry kind="src" path="JAR/log4j-1.2.17/apache-log4j-1.2.17/src/main/javadoc"/>
+	<classpathentry kind="src" path="JAR/log4j-1.2.17/apache-log4j-1.2.17/src/performance/java"/>
+	<classpathentry kind="src" path="JAR/log4j-1.2.17/apache-log4j-1.2.17/tests/src/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Users/christophegougam/Desktop/Ecoles/ESIPE/Ingé1 2e année/Projet de Synthèse/dev/JAR/jars/forms-1.3.0.jar"/>
+	<classpathentry kind="lib" path="/Users/christophegougam/Desktop/Ecoles/ESIPE/Ingé1 2e année/Projet de Synthèse/dev/JAR/jars/java-json.jar"/>
+	<classpathentry kind="lib" path="/Users/christophegougam/Desktop/Ecoles/ESIPE/Ingé1 2e année/Projet de Synthèse/dev/JAR/jars/json-simple-1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/christophegougam/Desktop/Ecoles/ESIPE/Ingé1 2e année/Projet de Synthèse/dev/JAR/jars/mysql-connector-java-5.1.16.jar"/>
+	<classpathentry kind="lib" path="/Users/christophegougam/Desktop/carbon5/carbon5/JAR/log4j-1.2.17/apache-log4j-1.2.17/log4j-1.2.17.jar"/>
+	<classpathentry kind="output" path="carbon5/bin"/>
+</classpath>

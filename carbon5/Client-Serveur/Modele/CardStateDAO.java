@@ -51,7 +51,41 @@ public class CardStateDAO extends DAO<CardState>{
 		return listCardState;
 	}
 	
-        @Override
+
+	public ArrayList<String> getAllStates(){
+    	
+	    ArrayList<String> states = new ArrayList<String>();
+	    	try {
+	            ResultSet result = this .connect
+	                                    .createStatement(
+	                                            	ResultSet.TYPE_SCROLL_INSENSITIVE, 
+	                                                ResultSet.CONCUR_UPDATABLE
+	                                             ).executeQuery(
+	                                                "SELECT Id,Descriptione FROM cardState"
+	                                             );
+	            CardState.emptyCollection();
+	            while(result.next()){
+	            	CardState.addStateToCo(new CardState(
+	            			result.getInt("Id"),
+							result.getString("Description")));
+	            
+	            		
+	            }            
+	        } catch (SQLException e) {
+	                e.printStackTrace();
+	        }
+	    	//Getting number of parts
+	    	states.add(String.valueOf(CardState.getAllStates().size()));
+	    	for(CardState aState : CardState.getAllStates()){
+	    		//adding parts
+	    		states.add(CardState.serialize(aState));
+	    	}
+	        return states;
+	    }
+	
+	
+	
+	@Override
 	public CardState find() {
 		// TODO Auto-generated method stub
 		return null;

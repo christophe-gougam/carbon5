@@ -52,10 +52,27 @@ public class CardState {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-        
-        public static ArrayList<CardState> getAllState(){
+	
+	public static ArrayList<CardState> getAllStates(){
 		return state;
 	}
+	
+	public static CardState getStateFromCollection(CardState theState){
+		CardState toSend = new CardState(1, "Attente");
+		
+		for (CardState aState: CardState.state){
+			if(aState.equals(theState)){
+				toSend = aState;
+			}
+		}
+		
+		return toSend;
+	}
+	
+	public static void addStateToCo(CardState newState){
+		state.add(newState);
+	}
+	
         
         public static void emptyCollection() {
             state.clear();

@@ -197,6 +197,12 @@ public class IHM extends JFrame {
             }
             if(e.getSource() == bouton4){
                 //code
+            	ArrayList<String> data = new ArrayList<String>();
+            	String identifier = "SelectAllParts";
+            	logger.info("Recuperation des pieces");
+            	new ServerConnect(data, identifier, pan2);
+            	pan2.add(new PanelDetailOperation(), listContent[3]);
+                pan2.add(new PanelDetailOperation(), listContent[4]);
                 cl.show(pan2, listContent[3]);
                 liste1.setVisible(false);
                 liste2.setVisible(false);
