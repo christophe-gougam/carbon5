@@ -24,6 +24,7 @@ import Serveur.Controlleurs.Serveur;
 import Modele.Preferences;
 import Modele.PreferencesDAO;
 import Modele.User;
+import static Modele.User.logger;
 import Serveur.Controlleurs.ConnectionPool;
 import java.util.HashSet;
 import java.util.Set;
@@ -44,9 +45,7 @@ public class RepairCard {
         
 	final static Logger logger = Logger.getLogger(Serveur.class);
 	private UrgencyDegree degree;
-        private UrgencyDegree description;
 	private CardState card;
-        private CardState statut;
 	private Car car;
 	private ArrayList<Repairs> repairs;
 	private ArrayList<Defect> defects;
@@ -99,15 +98,11 @@ public class RepairCard {
 		
 	}
 
-//        public RepairCard(String IdCar, UrgencyDegree IdDegree, UrgencyDegree Description, CardState Statut) {
-//            this.idcar = IdCar;
-//            this.degree = IdDegree;
-//            this.description = Description;
-//            this.statut = Statut;
-//        }
-	
-        public RepairCard(int idCard){
-            this.idcard = idCard;
+        public RepairCard(String IdCar, Car typeVehicule , UrgencyDegree IdDegree, CardState card) {
+            this.idcar = IdCar;
+            this.car = typeVehicule;
+            this.degree = IdDegree;
+            this.card = card;
         }
         
 	public int getidcard(){
@@ -619,26 +614,14 @@ public class RepairCard {
 		return serialized;
 	}
 	
-	/*
-	public static String serialize(RepairCard rep){
-		String serialRepairs = null;
-		int i = 0;
-		for (Repairs darep:rep.getRepairs()){
-			serialRepairs += Repairs.serialize(darep)+"///";
-			i++;
-		}
-		serialRepairs = i+"///"+serialRepairs;
-		String serialDefects = null;
-		int j = 0;
-		for (Defect dadefect:rep.getDefects()){
-			serialDefects += Defect.serialize(dadefect)+"///";
-			j++;
-		}
-		serialDefects = j+"///"+serialDefects;
-		String serialized = rep.getDegree().getDescription()+"///"+rep.getCard().getDescription()+"///"+Car.serialize(rep.getCar())+"///"+serialRepairs+serialDefects+Place.serialize(rep.getPark())+"///"+rep.entryDate+"///"+rep.outDate+"///"+User.serialize(rep.user);
+        public static String serialize_query1(RepairCard rep){
+
+		String serialized = rep.idcar+"///"
+                +rep.car.serialize(rep.getCar())+"///"+rep.degree.serialize(rep.getDegree())
+                +"///"+rep.card.serialize(rep.getCard());
 		return serialized;
 	}
-	*/
+	
 	/**
 	 * Method to unserialize the card and to create the object
 	 * @param serial
@@ -667,7 +650,26 @@ public class RepairCard {
         		RepairCard repairCard = new RepairCard(idcd, idc, pplace, dat, detail, user);
         		logger.info("Success RepairCard unserilization");
 		return repairCard;
-    }
+        }
+        
+        public static RepairCard unSerialize_query1(String serialized) throws ParseException{
+                ArrayList<String> values = new ArrayList<String>();
+                logger.info("Enter unserilization");
+		for (String retval: serialized.split("///")){
+			values.add(retval);
+		}
+                String idcar = (values.get(0));
+                Car car = new Car(values.get(1),values.get(2),values.get(3));
+                UrgencyDegree ud = new UrgencyDegree(Integer.parseInt(values.get(4)),values.get(5));
+                CardState cs = new CardState(Integer.parseInt(values.get(6)),values.get(7));
+                    
+                logger.info("Begin unserilization");
+                //creating the object repairCard with all other objects
+                RepairCard repairCard = new RepairCard(idcar, car, ud, cs);
+                logger.info("Success RepairCard unserilization");
+		
+                return repairCard;
+        }
 	/*
 	public static RepairCard unSerialize(String serial){
 		logger.info("Enter RepairCard unserilization");

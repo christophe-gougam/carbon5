@@ -52,6 +52,10 @@ public class Car {
         this.TypeVehicule = typeVehicule;
     }
     
+    public Car(String typeVehicule) {
+        this.TypeVehicule = typeVehicule;
+    }
+    
     public Date getDate() {
             return date;
     }

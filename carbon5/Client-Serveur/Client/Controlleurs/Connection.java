@@ -204,7 +204,7 @@ public class Connection{
 		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 		    	for (int i =0; i<tableau.getInt(1);i++){
-		    		RepairCard aRepairCard = RepairCard.unSerialize(tableau.getString(i+2));
+		    		RepairCard aRepairCard = RepairCard.unSerialize_query1(tableau.getString(i+2));
 		    		if(!RepairCard.isInCollection(aRepairCard.getidcard())){
 		    			RepairCard.addRepairCardToCo(aRepairCard);
 		    		}	

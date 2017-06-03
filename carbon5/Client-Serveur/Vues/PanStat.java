@@ -24,13 +24,15 @@ public class PanStat extends javax.swing.JPanel {
     /**
      * Creates new form NewJPanel
      */
-    public PanStat(int k){
+    public PanStat(int k) throws SQLException{
         if(k == 2){
             initComponents();
             jTabbedPane1.remove(jPanel4);
+            this.fillTable();
             this.revalidate();
         } else {
             initComponents();
+            this.fillTable();
         } 
     }
 
@@ -303,7 +305,8 @@ public class PanStat extends javax.swing.JPanel {
         }
 
         // Number of row of your table
-        public int getRowCount() {
+        public int getRowCount() { 
+          logger.info("size = " + repairCard.size() );
           return repairCard.size();
         }
 
@@ -311,7 +314,7 @@ public class PanStat extends javax.swing.JPanel {
         public Object getValueAt(int row, int col) {
           RepairCard aRC = repairCard.get(row);
           switch(col) {
-            case 0: return aRC.getCar().getNumePuce();
+            case 0: return aRC.getidcar();
             case 1: return aRC.getCar().getTypeVehicule();
             case 2: return aRC.getDegree().getId();
             case 3: return aRC.getDegree().getDescription();
@@ -329,6 +332,7 @@ public class PanStat extends javax.swing.JPanel {
         try{
             PanStat.RsTableModel1 model1 = new PanStat.RsTableModel1(RepairCard.getInfoCars());
             this.jTable1.setModel(model1);
+            jScrollPane1.setViewportView(jTable1);
         } catch (Exception e){
             e.printStackTrace();
         }   

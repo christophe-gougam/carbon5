@@ -21,6 +21,10 @@ public class CardState {
 		this.description = desc;
 	}
         
+        public CardState(String desc){
+		this.description = desc;
+	}
+        
         public CardState(){
             
         }

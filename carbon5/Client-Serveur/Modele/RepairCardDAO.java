@@ -21,62 +21,26 @@ public class RepairCardDAO extends DAO<RepairCard>{
                                                     ResultSet.TYPE_SCROLL_INSENSITIVE, 
                                                     ResultSet.CONCUR_UPDATABLE
                                                  ).executeQuery(
-                                                    "SELECT * FROM repaircard"
+                                                    "SELECT C.NumPuce, C.TypeVehicule, CS.Description, R.IdDegree AS Degree, U.Description AS Niveau_urgent FROM repaircard R " +
+                                                    "INNER JOIN car C ON R.IdCar = C.NumPuce " +
+                                                    "INNER JOIN cardstate CS ON R.IdCard = CS.Id " +
+                                                    "INNER JOIN urgencydegree U ON R.IdDegree = U.Id"
                                                  );
-                
-                if(result.first()){
-                    infoCar.add(String.valueOf(result.getInt("IdCar")));
-                    infoCar.add(String.valueOf(result.getInt("IdDegree")));
-                    
-                    CarDAO carDao = new CarDAO(this.connect);
-                    
-                    result = this.connect
-                                 .createStatement(
-                                                    ResultSet.TYPE_SCROLL_INSENSITIVE, 
-                                                    ResultSet.CONCUR_UPDATABLE
-                                                  )
-                                 .executeQuery("SELECT NumPuce, TypeVehicule\n" +
-                                                "FROM repaircard R, car C\n" +
-                                                "WHERE R.IdCar = C.NumPuce");
-                    
-                    while(result.next())
-                        infoCar.add(String.valueOf(carDao.getCar(result.getString("NumPuce"))));
-                        
-                    CardStateDAO cardStateDao = new CardStateDAO(this.connect);
-                    
-                    result = this.connect
-                                 .createStatement(
-                                                    ResultSet.TYPE_SCROLL_INSENSITIVE, 
-                                                    ResultSet.CONCUR_UPDATABLE
-                                                  )
-                                 .executeQuery("SELECT C.Id, Description\n" +
-                                                "FROM repaircard R, cardstate C\n" +
-                                                "WHERE R.IdCar = C.Id");
-                    
-                    while(result.next())
-                        infoCar.add(String.valueOf(cardStateDao.getCardState(result.getInt("Id"))));
-                    
-                    UrgencyDegreeDAO udDao = new UrgencyDegreeDAO(this.connect);
-                    
-                    result = this.connect
-                                 .createStatement(
-                                                    ResultSet.TYPE_SCROLL_INSENSITIVE, 
-                                                    ResultSet.CONCUR_UPDATABLE
-                                                  )
-                                 .executeQuery("SELECT U.Id, Description\n" +
-                                                "FROM repaircard R, urgencydegree U\n" +
-                                                "WHERE R.IdCar = U.Id");
-                    while(result.next())
-                        infoCar.add(String.valueOf(udDao.getUD(result.getInt("Id"))));
+                RepairCard.emptyCollection();
+                while(result.next()){
+                    RepairCard.addRepairCardToCo(new RepairCard(
+                        result.getString("NumPuce"),
+                        (new Car(result.getString("TypeVehicule"))),
+                        (new UrgencyDegree(result.getInt("Degree"),result.getString("Niveau_urgent"))),
+                        (new CardState(result.getString("CS.Description")))
+                    ));
                 }
             } catch (SQLException e) {
                     e.printStackTrace();
             }
-            //Getting number 
             infoCar.add(String.valueOf(RepairCard.getInfoCars().size()));
-            for(RepairCard aInfoCar : RepairCard.getInfoCars()){
-                    //adding parts
-                    infoCar.add(RepairCard.serialize(aInfoCar));
+            for (RepairCard aRC: RepairCard.getInfoCars()){
+                infoCar.add(RepairCard.serialize_query1(aRC));
             }
             return infoCar;
         }
@@ -332,8 +296,8 @@ public class RepairCardDAO extends DAO<RepairCard>{
             	 }
             	 
             	 ArrayList<Repairs> reps = new ArrayList<Repairs>();
-            	 RepairCard rep = new RepairCard(uD, card, car, reps, defects, place, entry, outDate,overAllDets, user);   
-            	 repCards.add(rep);
+            	 RepairCard rep = new RepairCard(uD, card, car, reps, defects, place, entry, outDate,overAllDets, user);
+                 repCards.add(rep);
              }            
              
          } catch (SQLException e) {
