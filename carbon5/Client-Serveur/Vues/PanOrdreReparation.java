@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import Client.Controlleurs.ServerConnect;
+import Modele.Preferences;
 import Modele.User;
 import Serveur.Controlleurs.Serveur;
 import Vues.PanEntreeStock.BoutonListener;
@@ -75,20 +76,20 @@ public class PanOrdreReparation extends JPanel {
 
         jButton2.setText("Annuler");
 
-        jTextField1.setText("jTextField1");
+        jTextField1.setText(String.valueOf(Preferences.getPrefs().getIndifDays()));
 
         jLabel2.setText("Nombre de jours dans le dépôt");
 
-        jTextField2.setText("jTextField1");
+        jTextField2.setText(String.valueOf(Preferences.getPrefs().getVetoDays()));
 
-        jTextField3.setText("jTextField1");
+        jTextField3.setText(String.valueOf(Preferences.getPrefs().getIndifTimeRep()));
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
             }
         });
 
-        jTextField4.setText("jTextField1");
+        jTextField4.setText(String.valueOf(Preferences.getPrefs().getVetoDays()));
 
         jLabel4.setText("Indifférence");
 
@@ -96,7 +97,7 @@ public class PanOrdreReparation extends JPanel {
 
         jLabel7.setText("Temps de réparation");
 
-        jLabel3.setText(" Test Test Test Test Test Test Test Test Test Test Test ");
+        jLabel3.setText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

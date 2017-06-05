@@ -73,7 +73,7 @@ public class PreferencesDAO extends DAO<Preferences>{
                                             "SELECT * FROM preferences" 
                                          );
         if(result.first())
-                    ud = new Preferences(result.getInt("id"), result.getFloat("indifDays"), result.getFloat("vetoDays"), result.getFloat("indifTimeRep"), result.getFloat("vetoTimeRep")); 
+                    ud = new Preferences(result.getInt("id"), result.getInt("indifDays"), result.getInt("vetoDays"), result.getInt("indifTimeRep"), result.getInt("vetoTimeRep")); 
     } catch (SQLException e) {
             e.printStackTrace();
     }
@@ -118,10 +118,10 @@ public class PreferencesDAO extends DAO<Preferences>{
                 while(result.next()){
 
                 	pref.setId(Integer.parseInt(result.getString("Id")));
-                	pref.setIndifDays(Float.parseFloat(result.getString("indifDays")));
-                	pref.setVetoDays(Float.parseFloat(result.getString("vetoDays")));
-                	pref.setIndifTimeRep(Float.parseFloat(result.getString("indifTimeRep")));
-                	pref.setVetoTimeRep(Float.parseFloat(result.getString("vetoTimeRep")));
+                	pref.setIndifDays(Integer.parseInt(result.getString("indifDays")));
+                	pref.setVetoDays(Integer.parseInt(result.getString("vetoDays")));
+                	pref.setIndifTimeRep(Integer.parseInt(result.getString("indifTimeRep")));
+                	pref.setVetoTimeRep(Integer.parseInt(result.getString("vetoTimeRep")));
                 	
                 	}            
             } catch (SQLException e) {

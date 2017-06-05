@@ -206,7 +206,7 @@ public class DefectDAO extends DAO<Defect>{
                                             	ResultSet.TYPE_SCROLL_INSENSITIVE, 
                                                 ResultSet.CONCUR_UPDATABLE
                                              ).executeQuery(
-                                                "SELECT Id, Description, RepairTime,criticity,partForRepair FROM defect"
+                                                "SELECT Id, Description, RepairTime,criticity,partForRepair FROM defect WHERE id='"+id+"'"
                                              );
             
             while(result.next()){

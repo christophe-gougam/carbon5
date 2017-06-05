@@ -22,10 +22,10 @@ public class PreferencesController implements Runnable{
 	ArrayList<String> data = new ArrayList<String>();
 	String JsonMessage;
 	
-	float indifDays = 0;
-	float vetoDays = 0;
-	float indifTime = 0;
-	float vetoTime = 0;
+	int indifDays = 0;
+	int vetoDays = 0;
+	int indifTime = 0;
+	int vetoTime = 0;
 	
 	boolean ret;
 	
@@ -44,13 +44,20 @@ public class PreferencesController implements Runnable{
 			switch(identifier){
 			
 			case("addPreferences"):
-	    		indifDays = Float.parseFloat(result.get(0));
-				vetoDays = Float.parseFloat(result.get(1));
-				indifTime = Float.parseFloat(result.get(2));
-				vetoTime = Float.parseFloat(result.get(3));
+	    		indifDays = Integer.parseInt(result.get(0));
+				vetoDays = Integer.parseInt(result.get(1));
+				indifTime = Integer.parseInt(result.get(2));
+				vetoTime = Integer.parseInt(result.get(3));
 				Preferences prefToAdd = new Preferences(1, indifDays, vetoDays, indifTime, vetoTime);
 				logger.info("Putting through DAO");
-				data = test.create(prefToAdd);
+				
+				boolean resp = test.update(prefToAdd);
+				if(resp){
+					data.add("addPreferencesOK");
+				}else{
+					data.add("addPreferencesKO");
+				}
+				
 			break;
 			case("SelectAllPreferences"):
 				data = test.getAllPreferences();
@@ -72,7 +79,7 @@ public class PreferencesController implements Runnable{
 		break;
 		case("SelectAllPreferencesOK"):
 			JsonMessage = EcritureJson.WriteJson("SelectAllPreferencesOK", data);
-			logger.info("Sending JSON succès createPart to Client");
+			logger.info("Sending JSON succès selectPrefs to Client");
 			out.println(JsonMessage);
 			out.flush();
 		break;

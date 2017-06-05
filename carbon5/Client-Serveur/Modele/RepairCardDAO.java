@@ -38,6 +38,7 @@ public class RepairCardDAO extends DAO<RepairCard>{
             } catch (SQLException e) {
                     e.printStackTrace();
             }
+            //Getting number of parts
             infoCar.add(String.valueOf(RepairCard.getInfoCars().size()));
             for (RepairCard aRC: RepairCard.getInfoCars()){
                 infoCar.add(RepairCard.serialize_query1(aRC));
@@ -63,7 +64,7 @@ public class RepairCardDAO extends DAO<RepairCard>{
         	prepare.setString(3, obj.getidcar());
         	prepare.setInt(4, obj.getidparkplace());
         	prepare.setDate(5, dat);
-        	prepare.setDate(6, obj.getOutDate());
+        	prepare.setDate(6, (Date) obj.getOutDate());
 			prepare.setString(7, obj.getOverAllDetails());
 			prepare.setInt(8, obj.getUser().getId());
 			
@@ -85,79 +86,6 @@ public class RepairCardDAO extends DAO<RepairCard>{
 		// TODO Auto-generated method stub
 		return null;
 	} 
-        
-//        public ArrayList<String> finded() throws SQLException{
-//            ArrayList<String> repairCard = new ArrayList<String>();
-//            RepairCard rc = new RepairCard();
-//            try{
-//                ResultSet result = this.connect
-//                                       .createStatement(
-//                                                ResultSet.TYPE_SCROLL_INSENSITIVE, 
-//                                                ResultSet.CONCUR_READ_ONLY)
-////                                       .executeQuery("SELECT * FROM repaircard WHERE Id = " + id);
-//                                       .executeQuery("SELECT * FROM repaircard ");
-//                if(result.first()){
-////                    rc = new RepairCard(id);
-//                    
-//                    CardStateDAO stateDao = new CardStateDAO(this.connect);
-//                    
-//                    result = this.connect.createStatement().executeQuery(
-////                         "SELECT Id, Description FROM cardstate" + 
-////                         "INNER JOIN repaircard ON cardstate.Id = repaircard.IdCard" +
-////                         "AND repaircard.Id = " + id
-//                            "SELECT cardstate.Id, Description FROM cardstate, repaircard " + 
-//                         "WHERE cardstate.Id = repaircard.IdCard"
-//                    );
-//                    
-//                    while(result.next())
-//                        rc.addState(stateDao.find(result.getInt("Id")));
-//                    
-//                    CarDAO carDao = new CarDAO(this.connect);
-//                    
-//                    result = this.connect.createStatement().executeQuery(
-////                         "SELECT * FROM car" + 
-////                         "INNER JOIN repaircard ON car.NumPuce = repaircard.IdCar" +
-////                         "AND repaircard.Id = " + id
-//                            "SELECT * FROM car, repaircard " + 
-//                         "WHERE car.NumPuce = repaircard.IdCar" 
-//                    );
-//                    
-//                    while(result.next())
-//                        rc.addCar(carDao.find(result.getString("NumPuce")));
-//                    
-//                    UrgencyDegreeDAO udDao = new UrgencyDegreeDAO(this.connect);
-//                    
-//                    result = this.connect.createStatement().executeQuery(
-////                         "SELECT * FROM urgencydegree" + 
-////                         "INNER JOIN repaircard ON urgencydegree.Id = repaircard.IdDegree" +
-////                         "AND repaircard.Id = " + id
-//                            "SELECT * FROM urgencydegree, repaircard " + 
-//                         "WHERE urgencydegree.Id = repaircard.IdDegree" 
-//                    );
-//                    
-//                    while(result.next())
-//                        rc.addUD(udDao.find(result.getInt("Id")));
-//                    
-//                    RepairCard.emptyCollection();
-//                    while(result.next())
-//                        RepairCard.addRepairCardToCo(rc);
-//                }
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//            repairCard.add(String.valueOf(RepairCard.getInfoCars().size()));
-//            for(RepairCard aRC : RepairCard.getInfoCars()){
-//                    //adding parts
-//                    repairCard.add(RepairCard.serialize(aRC));
-//            }
-//            return repairCard;
-//        }
-        
-        /**
-         * Method verify existance of repair card
-         * @param numP
-         * @return 
-         */
 	public boolean existRepairCard(String numP){
 		boolean ret=false;
 		try {
@@ -287,17 +215,29 @@ public class RepairCardDAO extends DAO<RepairCard>{
                                      ResultSet.TYPE_SCROLL_INSENSITIVE, 
                                      ResultSet.CONCUR_UPDATABLE
                                   ).executeQuery(
-                                     "SELECT idDefect FROM carddefect WHERE idCard='"+idCar+"'"
+                                     "SELECT idDefect FROM carddefect WHERE idCard='"+id+"' AND fixed = 0"
                                   );
             	 ArrayList<Defect> defects = new ArrayList<Defect>();
             	 DefectDAO defectDAO = new DefectDAO(this.connect);
-            	 while(result.next()){
+            	 while(result2.next()){
             		 defects.add(defectDAO.getDefect(result2.getInt("idDefect")));
             	 }
             	 
+            	 ResultSet result3 = this .connect
+                         .createStatement(
+                                     ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                     ResultSet.CONCUR_UPDATABLE
+                                  ).executeQuery(
+                                     "SELECT idRepair FROM cardrepairs WHERE idCard='"+idCar+"'"
+                                  );
             	 ArrayList<Repairs> reps = new ArrayList<Repairs>();
-            	 RepairCard rep = new RepairCard(uD, card, car, reps, defects, place, entry, outDate,overAllDets, user);
-                 repCards.add(rep);
+            	 RepairsDAO repairDAO = new RepairsDAO(this.connect);
+            	 while(result3.next()){
+            		 reps.add(repairDAO.getRepair(result3.getInt("idRepair")));
+            	 }
+            	 
+            	 RepairCard rep = new RepairCard(uD, card, car, reps, defects, place, entry, outDate,overAllDets, user);   
+            	 repCards.add(rep);
              }            
              
          } catch (SQLException e) {

@@ -53,11 +53,9 @@ public class ProcessData implements Runnable{
 		try {
 			while(true){
 				logger.info("Retrieving connection from Pool");
-				ConnectionPool pool = new ConnectionPool();
-				con = pool.getConnectionFromPool();
-				logger.info("Retrieving client socket");
 				
-				//RepairCard.determineWaitList();
+				con = ConnectionPool.getConnectionFromPool();
+				logger.info("Retrieving client socket");
 				
 				socket = serverSocket.accept();
 				in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -149,6 +147,11 @@ public class ProcessData implements Runnable{
 				break;
 				case("addPreferences"):
 					logger.info("Case add preferences");
+					t = new Thread(new PreferencesController(con, message_distant, out));
+					t.run();
+				break;
+				case("SelectAllPreferences"):
+					logger.info("Case select preferences");
 					t = new Thread(new PreferencesController(con, message_distant, out));
 					t.run();
 				break;
