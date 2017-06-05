@@ -1,20 +1,23 @@
 package Modele;
 
 import java.awt.List;
-
-
-
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.SortedMap;
 import java.util.TreeMap;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 
@@ -23,6 +26,7 @@ import Serveur.Controlleurs.Serveur;
 
 import Modele.Preferences;
 import Modele.PreferencesDAO;
+import Modele.JeudeTestRepairCard;
 import Modele.User;
 import static Modele.User.logger;
 import Serveur.Controlleurs.ConnectionPool;
@@ -36,7 +40,7 @@ import java.util.Set;
  */
 public class RepairCard {
 	
-	private static ArrayList<RepairCard> waitList;
+	private static ArrayList<RepairCard> waitList = new ArrayList<RepairCard>();
         private static ArrayList<RepairCard> repairCard = new ArrayList<RepairCard>();
         
         private Set<Car> listCar = new HashSet<Car>();
@@ -45,7 +49,9 @@ public class RepairCard {
         
 	final static Logger logger = Logger.getLogger(Serveur.class);
 	private UrgencyDegree degree;
+        private UrgencyDegree description;
 	private CardState card;
+        private CardState statut;
 	private Car car;
 	private ArrayList<Repairs> repairs;
 	private ArrayList<Defect> defects;
@@ -61,7 +67,7 @@ public class RepairCard {
 	int idcard;
 	private String idcar;
 	int idparkplace;
-        
+	
 	/**
 	 * Constructor of this class
 	 * @param urgence
@@ -127,7 +133,7 @@ public class RepairCard {
             this.defect = def;
             this.park = place;
         }
-        
+	
 	public int getidcard(){
 		return this.idcard;
 	}
@@ -390,8 +396,9 @@ public class RepairCard {
 	/**
 	 * Method to add a vehicule to the waitList
 	 * @param vehicule
+	 * @throws IOException 
 	 */
-	public static void addToWaitList(RepairCard vehicule){
+	public static void addToWaitList(RepairCard vehicule) throws IOException{
 		waitList.add(vehicule);
 		//every time a vehicule is added to the waitList, the order of repairs is re-calculated
 		RepairCard.determineWaitList();
@@ -419,24 +426,72 @@ public class RepairCard {
 	 * @param entryDate
 	 * @return timeWaited
 	 */
-	public int timeWaiting(Date entryDate){
-		int timeWaited;
+//	public int timeWaiting(Date entryDate){
+//		int timeWaited;
+//		
+//		Calendar calendarToday = Calendar.getInstance();
+//		
+//		Calendar calendarEntry = Calendar.getInstance();
+//		calendarEntry.setTime(entryDate);
+//		
+//		timeWaited = calendarToday.compareTo(calendarEntry);
+//	    
+//	    return timeWaited;
+//	}
+	
+//	public static int timeWaiting(Date d1) {
+//		int timeWaited = 0;
+//		Date d2 = new Date();
+//	    long diff = d2.getTime() - d1.getTime();
+//	    timeWaited = (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+//	    
+//	}
+	
+//	public static long timeWaiting(Date firstDate) throws IOException
+//	{
+//		Date date = new Date();
+//		date.setYear(firstDate.getYear());
+//		date.setMonth(firstDate.getMonth());
+//		date.setDate(firstDate.getDate());
+//		
+//		System.out.println(firstDate.getYear());
+//		System.out.println(firstDate.getMonth());
+//		System.out.println(firstDate.getDate());
+//		
+//		Date d = Calendar.getInstance().getTime();
+//		System.out.println(d.getYear());
+//		System.out.println(d.getMonth());
+//		System.out.println(d.getDate());
+//		
+//		long t = new Date().getTime();
+//		
+//		int ts = (int)(new Date().getTime() - firstDate.getTime()) / (1000*60*60*24);
+//		
+//		return ts;
+//	}
+	public static int timeWaiting(Date entry){
+		Instant instant = LocalDate.now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();
+		java.util.Date instante = java.util.Date.from(instant);
+		Long t1 = entry.getTime();
+		Long t2 = Date.from(instant).getTime();
 		
-		Calendar calendarToday = Calendar.getInstance();
-		calendarToday.setTime(calendarToday.getTime());
-		
-		Calendar calendarEntry = Calendar.getInstance();
-		calendarEntry.setTime(entryDate);
-		
-		timeWaited = calendarToday.compareTo(calendarEntry);
-	    
-	    return timeWaited;
+	    Long milliDiff = Date.from(instant).getTime() - entry.getTime();
+
+	    long  milliPerDay = 1000 * 60 * 60 * 24;
+
+	    milliDiff = milliDiff/milliPerDay;
+
+	   int diff = milliDiff.intValue();
+	   return diff;
 	}
+	
+	
 	
 	/**
 	 * Method to determine the order for repairs, executed each time a repairCard is added to the waitList
+	 * @throws IOException 
 	 */
-	public static void determineWaitList(){
+	public static void determineWaitList() throws IOException{
 		//algorithm determining order for waitList with ELECTRE method
 		//criterias: entryDate, parts available, time for repair, criticity
 		if(!waitList.isEmpty()){
@@ -445,13 +500,20 @@ public class RepairCard {
 		
 		Connection con = ConnectionPool.getConnectionFromPool();
 		RepairCardDAO repDAO = new RepairCardDAO(con);
-		ArrayList<RepairCard> allRepairCards = repDAO.getAllRepairCards();
-		
+		ArrayList<RepairCard> reps = repDAO.getAllRepairCards();
+//		ArrayList<RepairCard> reps = new ArrayList<RepairCard>();
+//		reps = JeudeTestRepairCard.getJeuDeTest();
 		//create list car with parts for repairs available (prioritized) and not available
 		ArrayList<RepairCard> partsNotAvailable = new ArrayList<RepairCard>();		
 		ArrayList<RepairCard> partsAvailable = new ArrayList<RepairCard>();
 		
-		for(RepairCard rep : allRepairCards){
+		
+		float time1 = RepairCard.getTimeRep(reps.get(0));
+		float time2 = RepairCard.getTimeRep(reps.get(1));
+		float time3 = RepairCard.getTimeRep(reps.get(2));
+		float time4 = RepairCard.getTimeRep(reps.get(3));
+		
+		for(RepairCard rep : reps){
 			boolean bol = true;
 			for(Defect def: rep.getDefects()){
 				if(def.getPartForRepair().getStock()<=0){
@@ -465,7 +527,7 @@ public class RepairCard {
 			}
 		}
 		
-		//get all preferences fort prioritizing
+		//get all preferences for prioritizing
 		PreferencesDAO test = new PreferencesDAO(ConnectionPool.getConnectionFromPool());
 		ArrayList<String> prefsStr = test.getAllPreferences();
 		Preferences prefs = Preferences.unSerialize(prefsStr.get(0));
@@ -480,11 +542,36 @@ public class RepairCard {
 		
 		RepairCard.getFinalDecision(globalConcordanceNotAvailable, globalDiscordanceNotAvailable, partsNotAvailable);
 		
+		ArrayList<RepairCard> testcggg = RepairCard.getWaitList();
+		
 		System.out.println("Finished prioritizing");
+		
+		for (RepairCard aRep: testcggg){
+			System.out.println("Nombre de jours dans le d�p�t : " + RepairCard.timeWaiting(aRep.getEntryDate()));
+			System.out.println("Temps de r�paration estim� : " + RepairCard.getTimeRep(aRep));
+			System.out.println("Criticit� des pannes : " +RepairCard.getCriticity(aRep));
+			System.out.println("*******************");
+		}
+	}
+	
+	public static float getTimeRep(RepairCard aRep){
+		float time = 0;
+		for (Defect aDef: aRep.getDefects()){
+			time += aDef.getduration(); 
+		}
+		return time;
+	}
+	
+	public static int getCriticity(RepairCard aRep){
+		int crit = 0;
+		for (Defect aDef:aRep.getDefects()){
+			crit+= aDef.getCriticity();
+		}
+		return crit;
 	}
 	
 	public static void getFinalDecision(double[][] globalConcordance, double[][] globalDiscordance, ArrayList<RepairCard> list){
-		ArrayList<RepairCard> finalOrder = new ArrayList<RepairCard>();
+		//ArrayList<RepairCard> finalOrder = new ArrayList<RepairCard>();
 		
 		double[][] finalMatrix = new double[list.size()][list.size()];
 		for (int i=0; i<list.size(); i++){
@@ -493,21 +580,25 @@ public class RepairCard {
 			}
 		}
 		
-		for (double lambda=0.9; lambda>0.1; lambda -= 0.1){
+		for (int k = 0; k<list.size(); k++){
+			finalMatrix[k][k] = 0;
+		}
+		
+		for (double lambda=0.1; lambda<1; lambda += 0.1){
 			boolean prioritary = true;
 			
-			for (int i=0; i<list.size(); i++){
-				for (int j=0; j<list.size(); j++){
-					if(finalMatrix[j][i] <= lambda){
+			for (int j=0; j<list.size(); j++){
+				for (int i=0; i<list.size(); i++){
+					if(finalMatrix[i][j] >= lambda){
 						prioritary = false;
 					}
 				}
 				if(prioritary){
-					if(!waitList.contains(list.get(i))){
-						waitList.add(list.get(i));
-						for (int j=0; j<list.size(); j++){
-								finalMatrix[i][j] = 2;
-								finalMatrix[j][i] = 2;
+					if(!waitList.contains(list.get(j))){
+						waitList.add(list.get(j));
+						for (int i=0; i<list.size(); i++){
+								finalMatrix[i][j] = 0;
+								finalMatrix[j][i] = 0;
 						}
 					}				
 				}
@@ -515,11 +606,11 @@ public class RepairCard {
 		}
 	}
 	
-	public static double[][] getGlobalDiscordanceMatrix(ArrayList<RepairCard> list, Preferences prefs){
+	public static double[][] getGlobalDiscordanceMatrix(ArrayList<RepairCard> list, Preferences prefs) throws IOException{
 		double[][] matrixDate = new double[list.size()][list.size()];
 		for (int i=0; i<list.size(); i++){
 			for (int j=0; j<list.size(); j++){
-				if(list.get(i).timeWaiting(list.get(i).getEntryDate()) >= list.get(j).timeWaiting(list.get(j).getEntryDate()) + prefs.getVetoDays()){
+				if(list.get(i).timeWaiting(list.get(i).getEntryDate()) <= list.get(j).timeWaiting(list.get(j).getEntryDate()) - prefs.getVetoDays()){
 					matrixDate[i][j] = 1;
 				}else{
 					matrixDate[i][j] = 0;
@@ -540,7 +631,7 @@ public class RepairCard {
 				for (Defect aDef: list.get(j).getDefects()){
 					timeRep2 += aDef.getduration(); 
 				}
-				if(timeRep >= timeRep2 + prefs.getVetoTimeRep()){
+				if(timeRep <= timeRep2 - prefs.getVetoTimeRep()){
 					matrixTimeRep[i][j] = 1;
 				}else{
 					matrixTimeRep[i][j] = 0;
@@ -551,16 +642,16 @@ public class RepairCard {
 		double[][] matrixCriticity = new double[list.size()][list.size()];
 		for (int i=0; i<list.size(); i++){
 			float criticity = 0;
-			float criticity2 = 0;
 			for (Defect aDef: list.get(i).getDefects()){
 				criticity += aDef.getCriticity();
 			}			
 			 
 			for (int j=0; j<list.size(); j++){
+				float criticity2 = 0;
 				for (Defect aDef: list.get(j).getDefects()){
 					criticity2 += aDef.getCriticity(); 
 				}
-				if(criticity >= criticity2){
+				if(criticity <= criticity2 - 2){
 					matrixCriticity[i][j] = 1;
 				}else{
 					matrixCriticity[i][j] = 0;
@@ -581,11 +672,11 @@ public class RepairCard {
 		return matrixGlobal;
 	}
 	
-	public static double[][] getGlobalConcordanceMatrix(ArrayList<RepairCard> list, Preferences prefs){
+	public static double[][] getGlobalConcordanceMatrix(ArrayList<RepairCard> list, Preferences prefs) throws IOException{
 		double[][] matrixDate = new double[list.size()][list.size()];
 		for (int i=0; i<list.size(); i++){
 			for (int j=0; j<list.size(); j++){
-				if(list.get(i).timeWaiting(list.get(i).getEntryDate()) >= list.get(j).timeWaiting(list.get(j).getEntryDate()) + prefs.getIndifDays()){
+				if(RepairCard.timeWaiting(list.get(i).getEntryDate()) >= RepairCard.timeWaiting(list.get(j).getEntryDate()) - prefs.getIndifDays()){
 					matrixDate[i][j] = 1;
 				}else{
 					matrixDate[i][j] = 0;
@@ -597,16 +688,16 @@ public class RepairCard {
 		double[][] matrixTimeRep = new double[list.size()][list.size()];
 		for (int i=0; i<list.size(); i++){
 			float timeRep = 0;
-			float timeRep2 = 0;
 			for (Defect aDef: list.get(i).getDefects()){
 				timeRep += aDef.getduration(); 
 			}			
 			 
 			for (int j=0; j<list.size(); j++){
+				float timeRep2 = 0;
 				for (Defect aDef: list.get(j).getDefects()){
 					timeRep2 += aDef.getduration(); 
 				}
-				if(timeRep >= timeRep2 + prefs.getIndifTimeRep()){
+				if(timeRep >= timeRep2 - prefs.getIndifTimeRep()){
 					matrixTimeRep[i][j] = 1;
 				}else{
 					matrixTimeRep[i][j] = 0;
@@ -677,7 +768,7 @@ public class RepairCard {
                 +"///"+rep.park.serialize(rep.getPark());
 		return serialized;
         }
-	
+
 	/**
 	 * Method to unserialize the card and to create the object
 	 * @param serial

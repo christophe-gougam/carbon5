@@ -5,6 +5,8 @@ import java.net.ServerSocket;
 
 import org.apache.log4j.Logger;
 
+import Modele.RepairCard;
+
 /**
  * Class Serveur 
  * @author Carbon5
@@ -28,7 +30,8 @@ public class Serveur {
 			
 			serversocket = new ServerSocket(portServer);
 			logger.info("Server is listening on port "+portServer);
-			
+			ConnectionPool pool = new ConnectionPool();
+			RepairCard.determineWaitList();
 			t = new Thread(new ProcessData(serversocket));
 			t.start();
 			

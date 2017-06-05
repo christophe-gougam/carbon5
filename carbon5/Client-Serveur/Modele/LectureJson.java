@@ -105,6 +105,12 @@ public class LectureJson {
 		}
 		System.out.print("tableau crï¿½ï¿½ \n");
 	break;
+	case("addPreferences"):
+		for(int i=0; i<tableau.length(); i++)
+		{
+			result.add(tableau.getString(i));
+		}
+		System.out.print("tableau créé \n");
 	default:
 		logger.info("Fonctionnalitï¿½ non prise en charge pour l'instant");
 	break;

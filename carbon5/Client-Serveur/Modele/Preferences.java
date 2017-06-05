@@ -6,13 +6,15 @@ public class Preferences {
 	
 	private int id;
 	
-	private float indifDays;
-	private float vetoDays;
+	private int indifDays;
+	private int vetoDays;
 	
-	private float indifTimeRep;
-	private float vetoTimeRep;
+	private int indifTimeRep;
+	private int vetoTimeRep;
 	
-	public Preferences(int id, float indDays, float vetoDays, float indifTimeRep, float vetoTimeRep){
+	private static Preferences prefs;
+	
+	public Preferences(int id, int indDays, int vetoDays, int indifTimeRep, int vetoTimeRep){
 		this.id = id;
 		this.indifDays = indDays;
 		this.vetoDays = vetoDays;
@@ -22,6 +24,14 @@ public class Preferences {
 	
 	public Preferences(){}
 	
+	public static void chargePrefs(Preferences pref){
+		prefs = pref;
+	}
+	
+	public static Preferences getPrefs(){
+		return prefs;
+	}
+	
 	public int getId(){
 		return this.id;
 	}
@@ -30,35 +40,35 @@ public class Preferences {
 		this.id = id;
 	}
 	
-	public float getIndifDays(){
+	public int getIndifDays(){
 		return this.indifDays;
 	}
 	
-	public void setIndifDays(float indDays){
+	public void setIndifDays(int indDays){
 		this.indifDays = indDays;
 	}
 	
-	public float getVetoDays(){
+	public int getVetoDays(){
 		return this.vetoDays;
 	}
 	
-	public void setVetoDays(float vetoDays){
+	public void setVetoDays(int vetoDays){
 		this.vetoDays = vetoDays;
 	}
 	
-	public float getIndifTimeRep(){
+	public int getIndifTimeRep(){
 		return this.indifTimeRep;
 	}
 	
-	public void setIndifTimeRep(float indTimeRep){
+	public void setIndifTimeRep(int indTimeRep){
 		this.indifTimeRep = indTimeRep;
 	}
 	
-	public float getVetoTimeRep(){
+	public int getVetoTimeRep(){
 		return this.vetoTimeRep;
 	}
 	
-	public void setVetoTimeRep(float vetoTRep){
+	public void setVetoTimeRep(int vetoTRep){
 		this.vetoTimeRep = vetoTRep;
 	}
 	
@@ -74,7 +84,7 @@ public class Preferences {
 			values.add(retval);
 		}
 		
-		Preferences thePref = new Preferences(Integer.parseInt(values.get(0).toString()), Float.parseFloat(values.get(1).toString()), Float.parseFloat(values.get(2).toString()), Float.parseFloat(values.get(3).toString()), Float.parseFloat(values.get(4).toString()));
+		Preferences thePref = new Preferences(Integer.parseInt(values.get(0).toString()), Integer.parseInt(values.get(1).toString()), Integer.parseInt(values.get(2).toString()), Integer.parseInt(values.get(3).toString()), Integer.parseInt(values.get(4).toString()));
 		return thePref;
 	}
 }

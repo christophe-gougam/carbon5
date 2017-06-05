@@ -91,7 +91,7 @@ public class PartDAO extends DAO<Part> {
                                             	ResultSet.TYPE_SCROLL_INSENSITIVE, 
                                                 ResultSet.CONCUR_UPDATABLE
                                              ).executeQuery(
-                                                "SELECT * FROM part where NamePart='"+id +"'"
+                                                "SELECT * FROM part where id='"+id +"'"
                                              );
             if(result.first())
             		part = new Part(
