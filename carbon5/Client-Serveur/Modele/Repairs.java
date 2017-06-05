@@ -36,6 +36,13 @@ public class Repairs {
         this.timeSpent = timeSpent;
         this.description=description;
     }
+    
+    public Repairs (String nature, float timeSpent, String description){
+        this.nature=nature;
+        this.timeSpent = timeSpent;
+        this.description=description;
+    }
+    
     public Repairs(){
     	
     }

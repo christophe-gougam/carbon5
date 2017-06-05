@@ -9,7 +9,7 @@ import Serveur.Controlleurs.Serveur;
 public class Part {
 	final static Logger logger = Logger.getLogger(Serveur.class);
 	private int id;
-    private String IdPart;
+        private String IdPart;
 	private int stock;
 	private String namePart;
 	private float purchasePrice;
@@ -37,6 +37,10 @@ public class Part {
 		this.namePart = namePart;
 		this.purchasePrice = purchasePrice;
 	}
+        
+        public Part(String namePart){
+                this.namePart = namePart;
+        }
 	
         public int getId(){
                 return this.id;

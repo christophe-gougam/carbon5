@@ -48,7 +48,7 @@ public class ParkingController implements Runnable {
                 String identifier = LectureJson.Identifier(in);
 //                ArrayList<String> result = LectureJson.LectureFichier(in);
                 switch(identifier){
-                case("SelectAllParking"):
+                case("SelectAllParkings"):
                         data = test.getAllParkings();
                         data.add(0, "SelectAllParkingsOK");
                 break;

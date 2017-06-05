@@ -71,17 +71,6 @@ public class PanStat extends javax.swing.JPanel {
 
         jLabel1.setText("LISTE COMPLET DES VEHICULES");
 
-//        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-//            new Object [][] {
-//                {null, null, null, null},
-//                {null, null, null, null},
-//                {null, null, null, null},
-//                {null, null, null, null}
-//            },
-//            new String [] {
-//                "Title 1", "Title 2", "Title 3", "Title 4"
-//            }
-//        ));
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -305,8 +294,7 @@ public class PanStat extends javax.swing.JPanel {
         }
 
         // Number of row of your table
-        public int getRowCount() { 
-          logger.info("size = " + repairCard.size() );
+        public int getRowCount() {
           return repairCard.size();
         }
 

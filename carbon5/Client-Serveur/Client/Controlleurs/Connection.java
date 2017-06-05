@@ -211,17 +211,17 @@ public class Connection{
 		    	}
                         break;
                         
-//                        case "query2_OK":
-//				objet = new JSONObject(reponse);
-//				logger.info("Affichage du resultat de mise à jour : ");
-//		    	logger.info(reponse);
-//		    	tableau = objet.getJSONArray("data");
-//		    	for (int i =0; i<tableau.getInt(1);i++){
-//		    		Parking aParking = Parking.unSerialize(tableau.getString(i+2));
-//		    		if(!Parking.isInCollection(aParking.getNumParking())){
-//		    			Parking.addParkingToCo(aParking);
-//		    		}	
-//		    	}
+                        case "query2_OK":
+				objet = new JSONObject(reponse);
+				logger.info("Affichage du resultat de mise à jour : ");
+		    	logger.info(reponse);
+		    	tableau = objet.getJSONArray("data");
+		    	for (int i =0; i<tableau.getInt(1);i++){
+		    		RepairCard aRepairCard = RepairCard.unSerialize_query1(tableau.getString(i+2));
+		    		if(!RepairCard.isInCollection(aRepairCard.getidcard())){
+		    			RepairCard.addRepairCardToCo(aRepairCard);
+		    		}	
+		    	}
 //                        break;
 //                        
 //                        case "query3_OK":

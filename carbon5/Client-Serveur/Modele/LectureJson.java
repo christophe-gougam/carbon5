@@ -62,11 +62,11 @@ public class LectureJson {
 	case("SelectAllParts"):
 		logger.info("retrieving all parts");
 	break;
-//<<<<<<< HEAD
+
         case("SelectAllParking"):
                 logger.info("retrieving all parking");
         break;
-//=======
+
         case("getInfoCar_query1"):
                 logger.info("retrieving info car");
         break;
@@ -82,7 +82,7 @@ public class LectureJson {
         case("getManutentionnaires_query4"):
                 logger.info("retrieving warehousemen");
         break;
-//>>>>>>> origin/Develop
+
 	case("Search"):
 		logger.info("retrieving car info");
 		result.add(tableau.getString(0));

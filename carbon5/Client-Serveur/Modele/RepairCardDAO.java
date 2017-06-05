@@ -12,7 +12,10 @@ public class RepairCardDAO extends DAO<RepairCard>{
 	public RepairCardDAO(Connection conn) {
         super(conn);
         }
-        
+        /**
+         * Method collect cars informations 
+         * @return 
+         */
         public ArrayList<String> getInfoCar(){
         ArrayList<String> infoCar = new ArrayList<String>();
             try {
@@ -21,7 +24,7 @@ public class RepairCardDAO extends DAO<RepairCard>{
                                                     ResultSet.TYPE_SCROLL_INSENSITIVE, 
                                                     ResultSet.CONCUR_UPDATABLE
                                                  ).executeQuery(
-                                                    "SELECT C.NumPuce, C.TypeVehicule, CS.Description, R.IdDegree AS Degree, U.Description AS Niveau_urgent FROM repaircard R " +
+                                                    "SELECT R.Id AS Clé, C.NumPuce, C.TypeVehicule, CS.Description, R.IdDegree AS Degree, U.Description AS Niveau_urgent FROM repaircard R " +
                                                     "INNER JOIN car C ON R.IdCar = C.NumPuce " +
                                                     "INNER JOIN cardstate CS ON R.IdCard = CS.Id " +
                                                     "INNER JOIN urgencydegree U ON R.IdDegree = U.Id"
@@ -29,6 +32,7 @@ public class RepairCardDAO extends DAO<RepairCard>{
                 RepairCard.emptyCollection();
                 while(result.next()){
                     RepairCard.addRepairCardToCo(new RepairCard(
+                        result.getInt("Clé"),
                         result.getString("NumPuce"),
                         (new Car(result.getString("TypeVehicule"))),
                         (new UrgencyDegree(result.getInt("Degree"),result.getString("Niveau_urgent"))),
@@ -45,11 +49,91 @@ public class RepairCardDAO extends DAO<RepairCard>{
             return infoCar;
         }
 	
+        /**
+         * Method collect workflow complete car
+         * @return 
+         */
+        public ArrayList<String> getWorkflowCar(){
+            ArrayList<String> wfCar = new ArrayList<String>();
+            try {
+                ResultSet result = this .connect
+                                        .createStatement(
+                                                    ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                                    ResultSet.CONCUR_UPDATABLE
+                                                 ).executeQuery(
+                                                    "SELECT \n" +
+                                                    "	RC.Id As Clé,\n" +
+                                                    "	NumPuce, \n" +
+                                                    "	TypeVehicule, \n" +
+                                                    "	IdDegree,\n" +
+                                                    "	CS.Description AS State,\n" +
+                                                    "	D.Description AS Defect, \n" +
+                                                    "	D.RepairTime,\n" +
+                                                    "	D.Criticity,\n" +
+                                                    "	NamePart,\n" +
+                                                    "	R.DateRepair,\n" +
+                                                    "	R.Nature,\n" +
+                                                    "	R.TimeSpent,\n" +
+                                                    "	R.Description,\n" +
+                                                    "	Pl.NumPlace,\n" +
+                                                    "	NumParking\n" +
+                                                    "FROM \n" +
+                                                    "	car C, \n" +
+                                                    "	repaircard RC, \n" +
+                                                    "	urgencydegree U, \n" +
+                                                    "	place Pl,\n" +
+                                                    "	cardstate CS,\n" +
+                                                    "	carddefect CD,\n" +
+                                                    "	defect D,\n" +
+                                                    "	partdefect PD,\n" +
+                                                    "	part Pa,\n" +
+                                                    "	partrepairs PR,\n" +
+                                                    "	repairs R,\n" +
+                                                    "	cardrepairs CR,\n" +
+                                                    "	parking Pk\n" +
+                                                    "WHERE\n" +
+                                                    "	C.NumPuce = RC.IdCar\n" +
+                                                    "AND U.Id = RC.IdDegree\n" +
+                                                    "AND CS.Id = RC.IdCard\n" +
+                                                    "AND Pl.NumPlace = RC.IdParkPlace\n" +
+                                                    "AND Pl.NumPark = Pk.NumParking\n" +
+                                                    "AND CS.Id = CD.IdCard \n" +
+                                                    "AND CD.IdDefect = D.Id\n" +
+                                                    "AND D.Id = PD.IdDefect\n" +
+                                                    "AND PD.IdPart = Pa.Id\n" +
+                                                    "AND Pa.Id = PR.IdPart\n" +
+                                                    "AND PR.IdRepair = R.Id\n" +
+                                                    "AND R.Id = CR.IdRepair\n" +
+                                                    "AND CR.IdCard = RC.Id"
+                                                 );
+                RepairCard.emptyCollection();
+                while(result.next()){
+                    RepairCard.addRepairCardToCo(new RepairCard(
+                        result.getInt("Clé"),
+                        (new Car(result.getString("TypeVehicule"))),
+                        (new UrgencyDegree(result.getInt("Degree"),result.getString("Niveau_urgent"))),
+                        (new CardState(result.getString("CS.Description"))),
+                        (new Part(result.getString("NamePart"))),
+                        (new Repairs(result.getString("Nature"),result.getFloat("Description"),result.getString("TimeSpent"))),
+                        (new Defect(result.getString("Description"),result.getDouble("RepairTime"),result.getInt("Criticity"))),
+                        (new Place(result.getInt("NumPlace"),result.getInt("NumParking"))))
+                    );
+                }
+            } catch (SQLException e) {
+                    e.printStackTrace();
+            }
+            wfCar.add(String.valueOf(RepairCard.getInfoCars().size()));
+            for (RepairCard aRC: RepairCard.getInfoCars()){
+                wfCar.add(RepairCard.serialize_query2(aRC));
+            }
+            return wfCar;
+        }
+        
 	/**
-     * Creates an entry in the database relative to an object
-     * @param obj
-     * @return true
-     */
+        * Creates an entry in the database relative to an object
+        * @param obj
+        * @return true
+        */
 	public boolean create(RepairCard obj, Date dat) {
         try{
         	java.sql.PreparedStatement prepare = this.connect
@@ -84,74 +168,7 @@ public class RepairCardDAO extends DAO<RepairCard>{
 	public RepairCard find() {
 		// TODO Auto-generated method stub
 		return null;
-	} 
-        
-//        public ArrayList<String> finded() throws SQLException{
-//            ArrayList<String> repairCard = new ArrayList<String>();
-//            RepairCard rc = new RepairCard();
-//            try{
-//                ResultSet result = this.connect
-//                                       .createStatement(
-//                                                ResultSet.TYPE_SCROLL_INSENSITIVE, 
-//                                                ResultSet.CONCUR_READ_ONLY)
-////                                       .executeQuery("SELECT * FROM repaircard WHERE Id = " + id);
-//                                       .executeQuery("SELECT * FROM repaircard ");
-//                if(result.first()){
-////                    rc = new RepairCard(id);
-//                    
-//                    CardStateDAO stateDao = new CardStateDAO(this.connect);
-//                    
-//                    result = this.connect.createStatement().executeQuery(
-////                         "SELECT Id, Description FROM cardstate" + 
-////                         "INNER JOIN repaircard ON cardstate.Id = repaircard.IdCard" +
-////                         "AND repaircard.Id = " + id
-//                            "SELECT cardstate.Id, Description FROM cardstate, repaircard " + 
-//                         "WHERE cardstate.Id = repaircard.IdCard"
-//                    );
-//                    
-//                    while(result.next())
-//                        rc.addState(stateDao.find(result.getInt("Id")));
-//                    
-//                    CarDAO carDao = new CarDAO(this.connect);
-//                    
-//                    result = this.connect.createStatement().executeQuery(
-////                         "SELECT * FROM car" + 
-////                         "INNER JOIN repaircard ON car.NumPuce = repaircard.IdCar" +
-////                         "AND repaircard.Id = " + id
-//                            "SELECT * FROM car, repaircard " + 
-//                         "WHERE car.NumPuce = repaircard.IdCar" 
-//                    );
-//                    
-//                    while(result.next())
-//                        rc.addCar(carDao.find(result.getString("NumPuce")));
-//                    
-//                    UrgencyDegreeDAO udDao = new UrgencyDegreeDAO(this.connect);
-//                    
-//                    result = this.connect.createStatement().executeQuery(
-////                         "SELECT * FROM urgencydegree" + 
-////                         "INNER JOIN repaircard ON urgencydegree.Id = repaircard.IdDegree" +
-////                         "AND repaircard.Id = " + id
-//                            "SELECT * FROM urgencydegree, repaircard " + 
-//                         "WHERE urgencydegree.Id = repaircard.IdDegree" 
-//                    );
-//                    
-//                    while(result.next())
-//                        rc.addUD(udDao.find(result.getInt("Id")));
-//                    
-//                    RepairCard.emptyCollection();
-//                    while(result.next())
-//                        RepairCard.addRepairCardToCo(rc);
-//                }
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//            repairCard.add(String.valueOf(RepairCard.getInfoCars().size()));
-//            for(RepairCard aRC : RepairCard.getInfoCars()){
-//                    //adding parts
-//                    repairCard.add(RepairCard.serialize(aRC));
-//            }
-//            return repairCard;
-//        }
+	}
         
         /**
          * Method verify existance of repair card
@@ -225,7 +242,6 @@ public class RepairCardDAO extends DAO<RepairCard>{
                 return false;
         }
     }
-
     
     /**
      * Allows to update the data of an entry in the database

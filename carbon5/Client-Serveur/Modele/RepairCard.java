@@ -54,6 +54,9 @@ public class RepairCard {
 	private Date outDate;
 	private String overAllDetails;
 	private User user;
+        private Part part;
+        private Repairs repair;
+        private Defect defect;
 	private int ponderation;
 	int idcard;
 	private String idcar;
@@ -97,12 +100,32 @@ public class RepairCard {
 	public RepairCard(){
 		
 	}
-
-        public RepairCard(String IdCar, Car typeVehicule , UrgencyDegree IdDegree, CardState card) {
+        
+        /**
+         * Constructor of query 1
+         * @param IdCard
+         * @param IdCar
+         * @param typeVehicule
+         * @param IdDegree
+         * @param card 
+         */
+        public RepairCard(int IdCard, String IdCar, Car typeVehicule , UrgencyDegree IdDegree, CardState card) {
+            this.idcard = IdCard;
             this.idcar = IdCar;
             this.car = typeVehicule;
             this.degree = IdDegree;
             this.card = card;
+        }
+        
+        public RepairCard(int IdCard, Car car, UrgencyDegree ud, CardState cs, Part part, Repairs rep, Defect def, Place place){
+            this.idcard = IdCard;
+            this.car = car;
+            this.degree = ud;
+            this.card = cs;
+            this.part = part;
+            this.repair = rep;
+            this.defect = def;
+            this.park = place;
         }
         
 	public int getidcard(){
@@ -159,6 +182,30 @@ public class RepairCard {
 	public void setDegree(UrgencyDegree deg){
 		this.degree = deg;
 	}
+        
+        public Part getPart(){
+            return this.part;
+        }
+        
+        public void setPart(Part part){
+            this.part = part;
+        }
+        
+        public Repairs getRepair(){
+            return this.repair;
+        }
+        
+        public void setRepair(Repairs repair){
+            this.repair = repair;
+        }
+        
+        public Defect getDefect(){
+            return this.defect;
+        }
+        
+        public void setDefect(Defect defect){
+            this.defect = defect;
+        }
 	/**
 	 * Method get the card State
 	 * @return card
@@ -618,9 +665,18 @@ public class RepairCard {
 
 		String serialized = rep.idcar+"///"
                 +rep.car.serialize(rep.getCar())+"///"+rep.degree.serialize(rep.getDegree())
-                +"///"+rep.card.serialize(rep.getCard());
+                +"///"+rep.card.serialize(rep.getCard())+"///"+rep.idcard;
 		return serialized;
 	}
+        
+        public static String serialize_query2(RepairCard rep){
+                String serialized = rep.idcard +"///"+ rep.idcar+"///"
+                +rep.car.serialize(rep.getCar())+"///"+rep.degree.serialize(rep.getDegree())
+                +"///"+rep.card.serialize(rep.getCard())+"///"+rep.part.serialize(rep.getPart())
+                +"///"+rep.repair.serialize(rep.getRepair())+"///"+rep.defect.serialize(rep.getDefect())
+                +"///"+rep.park.serialize(rep.getPark());
+		return serialized;
+        }
 	
 	/**
 	 * Method to unserialize the card and to create the object
@@ -662,10 +718,29 @@ public class RepairCard {
                 Car car = new Car(values.get(1),values.get(2),values.get(3));
                 UrgencyDegree ud = new UrgencyDegree(Integer.parseInt(values.get(4)),values.get(5));
                 CardState cs = new CardState(Integer.parseInt(values.get(6)),values.get(7));
-                    
+                int idcard = Integer.parseInt(values.get(8));
                 logger.info("Begin unserilization");
                 //creating the object repairCard with all other objects
-                RepairCard repairCard = new RepairCard(idcar, car, ud, cs);
+                RepairCard repairCard = new RepairCard(idcard, idcar, car, ud, cs);
+                logger.info("Success RepairCard unserilization");
+		
+                return repairCard;
+        }
+        
+        public static RepairCard unSerialize_query2(String serialized) throws ParseException{
+                ArrayList<String> values = new ArrayList<String>();
+                logger.info("Enter unserilization");
+		for (String retval: serialized.split("///")){
+			values.add(retval);
+		}
+                String idcar = (values.get(0));
+                Car car = new Car(values.get(1),values.get(2),values.get(3));
+                UrgencyDegree ud = new UrgencyDegree(Integer.parseInt(values.get(4)),values.get(5));
+                CardState cs = new CardState(Integer.parseInt(values.get(6)),values.get(7));
+                int idcard = Integer.parseInt(values.get(8));
+                logger.info("Begin unserilization");
+                //creating the object repairCard with all other objects
+                RepairCard repairCard = new RepairCard(idcard, idcar, car, ud, cs);
                 logger.info("Success RepairCard unserilization");
 		
                 return repairCard;

@@ -103,10 +103,10 @@ public class CarController implements Runnable{
                                             data.add(0, "query1_OK");
                                         break;
                                         
-//                                        case("getWorkflowCar_query2"):
-//                                            data = test5.getInfoCar();
-//                                            data.add(0, "query2_OK");
-//                                        break;
+                                        case("getWorkflowCar_query2"):
+                                            data = test5.getWorkflowCar();
+                                            data.add(0, "query2_OK");
+                                        break;
 //                                        
 //                                        case("getCumulDay_query3"):
 //                                            data = test5.getInfoCar();
@@ -227,12 +227,12 @@ public class CarController implements Runnable{
                                 out.flush();
                         break;
                         
-//                        case("query2_OK"):
-//                                JsonMessage = EcritureJson.WriteJson("query2_OK", data);
-//                                logger.info("Sending workflow car to Client");
-//                                out.println(JsonMessage);
-//                                out.flush();
-//                        break;
+                        case("query2_OK"):
+                                JsonMessage = EcritureJson.WriteJson("query2_OK", data);
+                                logger.info("Sending workflow car to Client");
+                                out.println(JsonMessage);
+                                out.flush();
+                        break;
 //                        
 //                        case("query3_OK"):
 //                                JsonMessage = EcritureJson.WriteJson("query3_OK", data);

@@ -27,6 +27,10 @@ public class Parking {
             
         }
         
+        public Parking(int numParking, String nameParking){
+		this.numParking = numParking;
+		this.nameParking = nameParking;
+	}
     /**
      * Method get parking number
      * @return parking number

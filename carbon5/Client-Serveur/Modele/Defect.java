@@ -37,6 +37,12 @@ public class Defect {
         this.duration = repairTime;
     }
     
+    public Defect(String description, double repairTime, int criticity){
+        this.description = description;
+        this.criticity = criticity;
+        this.duration = repairTime;
+    }
+    
     public Defect(int id, String description, double time){
     	this.id = id;
     	this.description = description;
