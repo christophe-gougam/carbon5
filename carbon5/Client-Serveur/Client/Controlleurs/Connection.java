@@ -218,12 +218,10 @@ public class Connection{
 		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 		    	for (int i =0; i<tableau.getInt(1);i++){
-		    		RepairCard aRepairCard = RepairCard.unSerialize_query1(tableau.getString(i+2));
-		    		if(!RepairCard.isInCollection(aRepairCard.getidcard())){
-		    			RepairCard.addRepairCardToCo(aRepairCard);
-		    		}	
+		    		RepairCard aRepairCard = RepairCard.unSerialize_query2(tableau.getString(i+2));
+                                RepairCard.addRepairCardToCo(aRepairCard);	
 		    	}
-//                        break;
+                        break;
 //                        
 //                        case "query3_OK":
 //				objet = new JSONObject(reponse);
@@ -341,14 +339,14 @@ public class Connection{
 			break;
 			case "addPreferencesOK" : case "addPreferencesKO":
 				objet = new JSONObject(reponse);
-				logger.info("Afficage du resultat de mise à jour : ");
+				logger.info("Afficage du resultat de mise ï¿½ jour : ");
 		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
 			break;
 			case "SelectAllPreferencesOK" : case "SelectAllPreferencesKO":
 				objet = new JSONObject(reponse);
-				logger.info("Afficage du resultat de requête de préférence : ");
+				logger.info("Afficage du resultat de requï¿½te de prï¿½fï¿½rence : ");
 		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 		    	Preferences.chargePrefs(Preferences.unSerialize(tableau.getString(0)));

@@ -62,62 +62,51 @@ public class RepairCardDAO extends DAO<RepairCard>{
                                                     ResultSet.TYPE_SCROLL_INSENSITIVE, 
                                                     ResultSet.CONCUR_UPDATABLE
                                                  ).executeQuery(
-                                                    "SELECT \n" +
-                                                    "	RC.Id As Clé,\n" +
-                                                    "	NumPuce, \n" +
-                                                    "	TypeVehicule, \n" +
-                                                    "	IdDegree,\n" +
-                                                    "	CS.Description AS State,\n" +
-                                                    "	D.Description AS Defect, \n" +
-                                                    "	D.RepairTime,\n" +
-                                                    "	D.Criticity,\n" +
-                                                    "	NamePart,\n" +
-                                                    "	R.DateRepair,\n" +
-                                                    "	R.Nature,\n" +
-                                                    "	R.TimeSpent,\n" +
-                                                    "	R.Description,\n" +
-                                                    "	Pl.NumPlace,\n" +
-                                                    "	NumParking\n" +
-                                                    "FROM \n" +
-                                                    "	car C, \n" +
-                                                    "	repaircard RC, \n" +
-                                                    "	urgencydegree U, \n" +
-                                                    "	place Pl,\n" +
-                                                    "	cardstate CS,\n" +
-                                                    "	carddefect CD,\n" +
-                                                    "	defect D,\n" +
-                                                    "	partdefect PD,\n" +
-                                                    "	part Pa,\n" +
-                                                    "	partrepairs PR,\n" +
-                                                    "	repairs R,\n" +
-                                                    "	cardrepairs CR,\n" +
-                                                    "	parking Pk\n" +
-                                                    "WHERE\n" +
-                                                    "	C.NumPuce = RC.IdCar\n" +
-                                                    "AND U.Id = RC.IdDegree\n" +
-                                                    "AND CS.Id = RC.IdCard\n" +
-                                                    "AND Pl.NumPlace = RC.IdParkPlace\n" +
-                                                    "AND Pl.NumPark = Pk.NumParking\n" +
-                                                    "AND CS.Id = CD.IdCard \n" +
-                                                    "AND CD.IdDefect = D.Id\n" +
-                                                    "AND D.Id = PD.IdDefect\n" +
-                                                    "AND PD.IdPart = Pa.Id\n" +
-                                                    "AND Pa.Id = PR.IdPart\n" +
-                                                    "AND PR.IdRepair = R.Id\n" +
-                                                    "AND R.Id = CR.IdRepair\n" +
-                                                    "AND CR.IdCard = RC.Id"
+                                                    "SELECT R.Id AS Clé, "
+                                                            + "IdCar AS ID_car,"
+                                                            + "C.TypeVehicule, "
+                                                            + "IdDegree AS Degre_urgent, "
+                                                            + "U.Description AS Niveau_urgent, "
+                                                            + "CS.Description As State, "
+                                                            + "R.IdParkPlace AS Place,"
+                                                            + "PK.NumParking, "
+                                                            + "R.OverAllDetails, "
+                                                            + "R.EntryDate, "
+                                                            + "R.OutDate, "
+                                                            + "REP.Nature AS Nature_repair,"
+                                                            + "REP.DateRepair, "
+                                                            + "REP.TimeSpent, "
+                                                            + "REP.Description AS Repair_ops, "
+                                                            + "D.Description AS Defect_description, "
+                                                            + "D.RepairTime, "
+                                                            + "D.criticity, "
+                                                            + "PART.NamePart\n" +
+                                                    "FROM repaircard R \n" +
+                                                    "INNER JOIN car C ON R.IdCar = C.NumPuce \n" +
+                                                    "INNER JOIN cardstate CS ON CS.Id = R.IdCard \n" +
+                                                    "INNER JOIN urgencydegree U ON R.IdDegree = U.Id\n" +
+                                                    "INNER JOIN cardrepairs CR ON R.Id = CR.IdCard\n" +
+                                                    "INNER JOIN repairs REP ON CR.IdRepair = REP.Id\n" +
+                                                    "INNER JOIN carddefect CD ON R.Id = CD.IdCard\n" +
+                                                    "INNER JOIN defect D ON CD.IdDefect = D.Id\n" +
+                                                    "INNER JOIN part PART ON D.partForRepair = PART.Id\n" +
+                                                    "INNER JOIN place PL ON R.IdParkPlace = PL.NumPlace\n" +
+"                                                    INNER JOIN parking PK ON PL.NumPark = PK.NumParking"
                                                  );
                 RepairCard.emptyCollection();
                 while(result.next()){
                     RepairCard.addRepairCardToCo(new RepairCard(
                         result.getInt("Clé"),
-                        (new Car(result.getString("TypeVehicule"))),
-                        (new UrgencyDegree(result.getInt("Degree"),result.getString("Niveau_urgent"))),
-                        (new CardState(result.getString("CS.Description"))),
-                        (new Part(result.getString("NamePart"))),
-                        (new Repairs(result.getString("Nature"),result.getFloat("Description"),result.getString("TimeSpent"))),
-                        (new Defect(result.getString("Description"),result.getDouble("RepairTime"),result.getInt("Criticity"))),
-                        (new Place(result.getInt("NumPlace"),result.getInt("NumParking"))))
+                        result.getDate("R.EntryDate"),
+                        result.getDate("R.OutDate"),
+                        result.getString("R.OverAllDetails"),
+                        (new Car(result.getString("ID_car"),result.getString("C.TypeVehicule"))),
+                        (new UrgencyDegree(result.getInt("Degre_urgent"),result.getString("Niveau_urgent"))),
+                        (new CardState(result.getString("State"))),
+                        (new Part(result.getString("PART.NamePart"))),
+                        (new Repairs(result.getString("Nature_repair"),result.getDate("REP.DateRepair"),result.getFloat("REP.TimeSpent"),result.getString("Repair_ops"))),
+                        (new Defect(result.getString("Defect_description"),result.getDouble("D.RepairTime"),result.getInt("D.criticity"))),
+                        (new Place(result.getInt("Place"),result.getInt("PK.NumParking"))))
                     );
                 }
             } catch (SQLException e) {

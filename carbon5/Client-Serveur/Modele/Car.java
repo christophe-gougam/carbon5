@@ -52,6 +52,11 @@ public class Car {
         this.TypeVehicule = typeVehicule;
     }
     
+    public Car(String numPuce ,String typeVehicule) {
+        this.NumePuce = numPuce;
+        this.TypeVehicule = typeVehicule;
+    }
+    
     public Car(String typeVehicule) {
         this.TypeVehicule = typeVehicule;
     }

@@ -123,8 +123,11 @@ public class RepairCard {
             this.card = card;
         }
         
-        public RepairCard(int IdCard, Car car, UrgencyDegree ud, CardState cs, Part part, Repairs rep, Defect def, Place place){
+        public RepairCard(int IdCard, Date enDate, Date outDate, String text, Car car, UrgencyDegree ud, CardState cs, Part part, Repairs rep, Defect def, Place place){
             this.idcard = IdCard;
+            this.entryDate = enDate;
+            this.outDate = outDate;
+            this.overAllDetails = text;
             this.car = car;
             this.degree = ud;
             this.card = cs;
@@ -761,7 +764,7 @@ public class RepairCard {
 	}
         
         public static String serialize_query2(RepairCard rep){
-                String serialized = rep.idcard +"///"+ rep.idcar+"///"
+                String serialized = rep.idcard +"///"+ rep.entryDate+"///"+ rep.outDate+"///"+rep.overAllDetails+"///"
                 +rep.car.serialize(rep.getCar())+"///"+rep.degree.serialize(rep.getDegree())
                 +"///"+rep.card.serialize(rep.getCard())+"///"+rep.part.serialize(rep.getPart())
                 +"///"+rep.repair.serialize(rep.getRepair())+"///"+rep.defect.serialize(rep.getDefect())
@@ -824,14 +827,32 @@ public class RepairCard {
 		for (String retval: serialized.split("///")){
 			values.add(retval);
 		}
-                String idcar = (values.get(0));
-                Car car = new Car(values.get(1),values.get(2),values.get(3));
-                UrgencyDegree ud = new UrgencyDegree(Integer.parseInt(values.get(4)),values.get(5));
-                CardState cs = new CardState(Integer.parseInt(values.get(6)),values.get(7));
-                int idcard = Integer.parseInt(values.get(8));
+                int idcard = Integer.parseInt(values.get(0));
+                DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                Date entryDate = format.parse(values.get(1));
+                Date outDate = format.parse(values.get(2));
+                String detailOps = values.get(3);
+                Car car = new Car(values.get(4),values.get(5),values.get(6));
+                UrgencyDegree ud = new UrgencyDegree(Integer.parseInt(values.get(7)),values.get(8));
+                CardState cs = new CardState(Integer.parseInt(values.get(9)),values.get(10));
+                Part part = new Part(values.get(11),Integer.parseInt(values.get(12)),values.get(13),Float.parseFloat(values.get(14)));                
+                
+                Date date=null;
+		String testDate = values.get(16);
+		DateFormat formatter = new SimpleDateFormat("YYYY-MM-DD");
+		try {
+			date = formatter.parse(testDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+                
+                Repairs rep = new Repairs(Integer.parseInt(values.get(15)),date,values.get(17),Float.parseFloat(values.get(18)),values.get(19));
+                Defect def = new Defect(Integer.parseInt(values.get(20)),values.get(21),Double.parseDouble(values.get(22)));
+                Place place = new Place(Integer.parseInt(values.get(23)),Boolean.parseBoolean(values.get(24)),Integer.parseInt(values.get(25)));
+                                
                 logger.info("Begin unserilization");
                 //creating the object repairCard with all other objects
-                RepairCard repairCard = new RepairCard(idcard, idcar, car, ud, cs);
+                RepairCard repairCard = new RepairCard(idcard, entryDate, outDate, detailOps, car,ud,cs,part,rep,def,place);
                 logger.info("Success RepairCard unserilization");
 		
                 return repairCard;

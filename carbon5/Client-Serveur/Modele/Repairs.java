@@ -37,8 +37,9 @@ public class Repairs {
         this.description=description;
     }
     
-    public Repairs (String nature, float timeSpent, String description){
+    public Repairs (String nature, Date dateRepair, float timeSpent, String description){
         this.nature=nature;
+        this.dateRepair = dateRepair;
         this.timeSpent = timeSpent;
         this.description=description;
     }

@@ -28,11 +28,13 @@ public class PanStat extends javax.swing.JPanel {
         if(k == 2){
             initComponents();
             jTabbedPane1.remove(jPanel4);
-            this.fillTable();
+            this.fillTable1();
+            this.fillTable2();
             this.revalidate();
         } else {
             initComponents();
-            this.fillTable();
+            this.fillTable1();
+            this.fillTable2();
         } 
     }
 
@@ -106,17 +108,6 @@ public class PanStat extends javax.swing.JPanel {
 
         jLabel2.setText("WORKFLOW COMPLET DE VEHICULE");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
         jScrollPane2.setViewportView(jTable2);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -276,7 +267,7 @@ public class PanStat extends javax.swing.JPanel {
     // End of variables declaration 
     
     /**
-     * Class model table
+     * Class model table 1
      */
     public class RsTableModel1 extends AbstractTableModel {
         private ArrayList<RepairCard> repairCard ;
@@ -316,14 +307,77 @@ public class PanStat extends javax.swing.JPanel {
         }
     }
     
-    protected void fillTable() throws SQLException{
+    /**
+     * Class model table 2
+     */
+    public class RsTableModel2 extends AbstractTableModel {
+        private ArrayList<RepairCard> repairCard ;
+        private String[] columns ; 
+
+        public RsTableModel2(ArrayList<RepairCard> listRepairCard){
+          super();
+          repairCard = listRepairCard ;
+          columns = new String[]{"ID car","Type","Urgency level","Description", "State",
+          "Place","Parking","Detail ops","Entry date","Out Date","Nature repair","Time spent",
+          "Repair ops","Defect description","Repair time","Criticity","Name part"};
+        }
+
+        // Number of column of your table
+        public int getColumnCount() {
+          return columns.length ;
+        }
+
+        // Number of row of your table
+        public int getRowCount() {
+          return repairCard.size();
+        }
+
+        // The object to render in a cell
+        public Object getValueAt(int row, int col) {
+          RepairCard aRC = repairCard.get(row);
+          switch(col) {
+            case 0: return aRC.getCar().getNumePuce();
+            case 1: return aRC.getCar().getTypeVehicule();
+            case 2: return aRC.getDegree().getId();
+            case 3: return aRC.getDegree().getDescription();
+            case 4: return aRC.getCard().getDescription();
+            case 5: return aRC.getPark().getNumPlace();
+            case 6: return aRC.getPark().getNumPark();
+            case 7: return aRC.getOverAllDetails();
+            case 8: return aRC.getEntryDate();
+            case 9: return aRC.getOutDate();
+            case 10: return aRC.getRepair().getNature();
+            case 11: return aRC.getRepair().getTimeSpent();
+            case 12: return aRC.getRepair().getDescription();
+            case 13: return aRC.getDefect().getDescription();
+            case 14: return aRC.getDefect().getduration();
+            case 15: return aRC.getDefect().getCriticity();
+            case 16: return aRC.getPart().getNamePart();
+            default: return null;
+          }
+        }
+        // Optional, the name of your column
+        public String getColumnName(int col) {
+          return columns[col] ;
+        }
+    }
+    
+    protected void fillTable1() throws SQLException{
         try{
             PanStat.RsTableModel1 model1 = new PanStat.RsTableModel1(RepairCard.getInfoCars());
             this.jTable1.setModel(model1);
-            jScrollPane1.setViewportView(jTable1);
         } catch (Exception e){
             e.printStackTrace();
-        }   
+        }  
+    }
+    
+    protected void fillTable2(){
+        try{
+            PanStat.RsTableModel2 model2 = new PanStat.RsTableModel2(RepairCard.getInfoCars());
+            this.jTable2.setModel(model2);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
     
     /**
