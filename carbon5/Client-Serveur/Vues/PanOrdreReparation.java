@@ -76,26 +76,26 @@ public class PanOrdreReparation extends JPanel {
 
         jButton2.setText("Annuler");
 
-        jTextField1.setText(String.valueOf(Preferences.getPrefs().getIndifDays()));
+        jTextField1.setText("champs1");
 
-        jLabel2.setText("Nombre de jours dans le dépôt");
+        jLabel2.setText("Nombre de jours dans le dï¿½pï¿½t");
 
-        jTextField2.setText(String.valueOf(Preferences.getPrefs().getVetoDays()));
+        jTextField2.setText("champs2");
 
-        jTextField3.setText(String.valueOf(Preferences.getPrefs().getIndifTimeRep()));
+        jTextField3.setText("champs3");
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
             }
         });
 
-        jTextField4.setText(String.valueOf(Preferences.getPrefs().getVetoDays()));
+        jTextField4.setText("champs4");
 
-        jLabel4.setText("Indifférence");
+        jLabel4.setText("Indiffï¿½rence");
 
-        jLabel5.setText("Véto");
+        jLabel5.setText("Vï¿½to");
 
-        jLabel7.setText("Temps de réparation");
+        jLabel7.setText("Temps de rï¿½paration");
 
         jLabel3.setText("");
 
@@ -224,7 +224,7 @@ class BoutonListener implements ActionListener{
 		data.add(vetoTime);
 		
 		String identifier = "addPreferences";
-		logger.info("Enregistrement des préférences de priorisation");
+		logger.info("Enregistrement des prï¿½fï¿½rences de priorisation");
 		new ServerConnect(data, identifier, frame);
 
 	}

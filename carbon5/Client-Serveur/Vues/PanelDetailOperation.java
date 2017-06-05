@@ -5,7 +5,22 @@
  */
 package Vues;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import org.apache.log4j.Logger;
+
+import Client.Controlleurs.ServerConnect;
+import Modele.Car;
+import Modele.CardState;
+import Modele.Part;
+import Modele.RepairCard;
+import Modele.RepairCardDAO;
+import Modele.User;
+import Serveur.Controlleurs.Serveur;
 
 /**
  *
@@ -29,24 +44,56 @@ public class PanelDetailOperation extends JPanel {
     private void initComponents() {
 
         jLabel5 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblDetailOp = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        
+        
+        tfidVehicule = new javax.swing.JTextField();
+        tfidTechnicien = new javax.swing.JTextField();
+        jtfState = new javax.swing.JTextField();
+        
+        tfidVehicule.setEditable(false);
+        tfidTechnicien.setEditable(false);
+        jtfState.setEditable(false);
+
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        ArrayList<String> state = new ArrayList<String>();
+        for (CardState aState : CardState.getAllState()){
+        	model.addElement(aState.getDescription());
+        }
+        
+        DefaultComboBoxModel model2 = new DefaultComboBoxModel();
+        ArrayList<String> parts = new ArrayList<String>();
+        for (Part aPart : Part.getAllParts()){
+        	model2.addElement(aPart.getNamePart());
+        }
+        
+        DefaultComboBoxModel model3 = new DefaultComboBoxModel();
+        ArrayList<String> parts2 = new ArrayList<String>();
+        for (Part aPart : Part.getAllParts()){
+        	model3.addElement(aPart.getNamePart());
+        }
+        
+        DefaultComboBoxModel model4 = new DefaultComboBoxModel();
+        ArrayList<String> parts3 = new ArrayList<String>();
+        for (Part aPart : Part.getAllParts()){
+        	model4.addElement(aPart.getNamePart());
+        }
+        
+        
+        cbPiece1 = new javax.swing.JComboBox<>(model2);
+        cbPiece2 = new javax.swing.JComboBox<>(model3);
+        cbPiece3 = new javax.swing.JComboBox<>(model4);
         jLabel4 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        lblQté1 = new javax.swing.JLabel();
+        lblQté2 = new javax.swing.JLabel();
+        lblQté3 = new javax.swing.JLabel();
+        jtfQte1 = new javax.swing.JTextField();
+        jtfQte2 = new javax.swing.JTextField();
+        jtfQte3 = new javax.swing.JTextField();
+        btnValide = new javax.swing.JButton();
+        btnSuspend = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -55,44 +102,38 @@ public class PanelDetailOperation extends JPanel {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        
+        
 
         jLabel5.setText("jLabel5");
 
-        jLabel1.setText("DETAIL DE L'OPERATION");
+        lblDetailOp.setText("DETAIL DE L'OPERATION");
 
         jLabel2.setText("INFORMATION________________________________________________");
 
         jLabel3.setText("OPERATION__________________________________________________");
 
-        jTextField1.setText("jTextField1");
+        tfidVehicule.setText("");
 
-        jTextField2.setText("jTextField2");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tfidTechnicien.setText("");
 
         jLabel4.setText("Pièce nécessaire");
 
-        jLabel7.setText("Quantité");
+        lblQté1.setText("Quantité");
 
-        jLabel8.setText("Quantité");
+        lblQté2.setText("Quantité");
 
-        jLabel9.setText("Quantité");
+        lblQté3.setText("Quantité");
 
-        jTextField3.setText("jTextField3");
+        jtfQte1.setText("    ");
 
-        jTextField4.setText("jTextField4");
+        jtfQte2.setText("    ");
 
-        jTextField5.setText("jTextField5");
+        jtfQte3.setText("    ");
 
-        jButton1.setText("Valider");
+        btnValide.setText("Valider");
 
-        jButton2.setText("Suspendre");
+        btnSuspend.setText("Suspendre");
 
         jLabel10.setText("Pièce nécessaire");
 
@@ -116,15 +157,15 @@ public class PanelDetailOperation extends JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btnSuspend)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnValide, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1))
+                        .addComponent(lblDetailOp))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,11 +174,11 @@ public class PanelDetailOperation extends JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel10)
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cbPiece3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel9)
+                                .addComponent(lblQté3)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jtfQte3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel16)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -145,16 +186,16 @@ public class PanelDetailOperation extends JPanel {
                                     .addComponent(jLabel11))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cbPiece1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbPiece2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addComponent(lblQté2)
+                                    .addComponent(lblQté1, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jtfQte1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtfQte2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel13)
@@ -162,9 +203,9 @@ public class PanelDetailOperation extends JPanel {
                                     .addComponent(jLabel15))
                                 .addGap(26, 26, 26)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(tfidTechnicien, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfidVehicule)
+                                    .addComponent(jtfState, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel2)))
@@ -178,20 +219,20 @@ public class PanelDetailOperation extends JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lblDetailOp)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfidVehicule, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfidTechnicien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
@@ -199,11 +240,11 @@ public class PanelDetailOperation extends JPanel {
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfQte1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbPiece1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4)
-                        .addComponent(jLabel7)))
+                        .addComponent(lblQté1)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel12)
                 .addGap(18, 18, 18)
@@ -211,35 +252,34 @@ public class PanelDetailOperation extends JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8)
+                            .addComponent(cbPiece2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblQté2)
                             .addComponent(jLabel11)))
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfQte2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addComponent(jLabel16)
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
+                    .addComponent(cbPiece3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblQté3)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfQte3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnValide)
+                    .addComponent(btnSuspend))
                 .addContainerGap())
         );
     }// </editor-fold>                        
 
 
     // Variables declaration - do not modify                     
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnValide;
+    private javax.swing.JButton btnSuspend;
+    private javax.swing.JComboBox<String> cbPiece1;
+    private javax.swing.JComboBox<String> cbPiece2;
+    private javax.swing.JComboBox<String> cbPiece3;
+    private javax.swing.JLabel lblDetailOp;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -252,13 +292,49 @@ public class PanelDetailOperation extends JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JLabel lblQté1;
+    private javax.swing.JLabel lblQté2;
+    private javax.swing.JLabel lblQté3;
+    private javax.swing.JTextField jtfState;
+    private javax.swing.JTextField tfidVehicule;
+    private javax.swing.JTextField tfidTechnicien;
+    private javax.swing.JTextField jtfQte1;
+    private javax.swing.JTextField jtfQte2;
+    private javax.swing.JTextField jtfQte3;
+    final static Logger logger = Logger.getLogger(Serveur.class);
+
     // End of variables declaration    
+    
+    class BoutonListener implements ActionListener{
+    	JPanel frame=null;
+
+    	/**
+     	* Class constructor
+     	* @param f 
+     	*/
+    	public BoutonListener  (JPanel f){
+    		this.frame=f;
+    	}
+	
+    	/**
+    	 * Method generate component action
+    	 * @param arg0 
+    	 */
+    	public void actionPerformed(ActionEvent arg0){
+    	
+    		String namePart = ""+(String) cbPiece1.getSelectedItem()+"";
+    		String quantite = jtfQte1.getText();
+    		
+    		ArrayList<String> data = new ArrayList<String>();
+    		data.add(namePart);
+    		data.add(quantite);
+    		data.add(""+User.getAllUsers().get(0).getId());
+    		String identifier = "SelectAllParts";
+    		logger.info("affichage combobox");
+    		new ServerConnect(data, identifier, frame);
+    		
+            
+
+    	}
+	}
 }

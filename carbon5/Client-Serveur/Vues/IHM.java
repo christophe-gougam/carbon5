@@ -187,7 +187,7 @@ public class IHM extends JFrame {
                 //code
 //            	ArrayList<String> data = new ArrayList<String>();
 //            	String identifier = "SelectAllPreferences";
-//            	logger.info("récupération des préférences enregistrées");
+//            	logger.info("rï¿½cupï¿½ration des prï¿½fï¿½rences enregistrï¿½es");
 //            	new ServerConnect(data, identifier, pan2);
             	//add method to load list
             	pan2.add(new PanOrdreReparation(), listContent[2]);
@@ -200,6 +200,11 @@ public class IHM extends JFrame {
             }
             if(e.getSource() == bouton4){
                 //code
+            	ArrayList<String> data = new ArrayList<String>();
+            	String identifier = "SelectAllParts";
+            	logger.info("Recuperation des pieces");
+            	new ServerConnect(data, identifier, pan2);
+            	pan2.add(new PanelDetailOperation(), listContent[3]);
                 cl.show(pan2, listContent[3]);
                 liste1.setVisible(false);
                 liste2.setVisible(false);
