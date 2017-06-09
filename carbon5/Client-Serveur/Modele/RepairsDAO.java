@@ -6,7 +6,6 @@
 package Modele;
 
 import java.sql.Connection;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -118,4 +117,23 @@ public class RepairsDAO extends DAO<Repairs> {
         }
         return ud;
 	}   
+	
+	public Repairs getRepair(int id){
+		Repairs ud = new Repairs();
+        try {
+            ResultSet result = this .connect
+                                    .createStatement(
+                                            	ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                                ResultSet.CONCUR_UPDATABLE
+                                             ).executeQuery(
+                                                "SELECT * FROM repairs WHERE id='"+id+"'" 
+                                             );
+            if(result.first())
+            		ud = new Repairs(result.getInt("Id"), result.getDate("DateRepair"),
+            						 result.getString("Nature"), result.getFloat("TimeSpent "), result.getString("Description"));            
+        } catch (SQLException e) {
+                e.printStackTrace();
+        }
+        return ud;
+	}
 }

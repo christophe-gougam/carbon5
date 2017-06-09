@@ -5,11 +5,12 @@
  */
 package Vues;
 
-import javax.swing.*;
-import java.sql.*;
-import java.util.Vector;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
+
+import Modele.Parking;
 
 /**
  *
@@ -65,55 +66,91 @@ public class PanParking extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    class RsTableModel extends AbstractTableModel {
-        private Vector colHeaders;
-        private Vector tbData;
-        
-        /**
-         * Class constructor
-         * @param rsData
-         * @throws SQLException 
-         */
-        public RsTableModel(ResultSet rsData) throws SQLException {
-            ResultSetMetaData rsMeta = rsData.getMetaData();
-            int count = rsMeta.getColumnCount();
+//    class RsTableModel extends AbstractTableModel {
+//        private Vector colHeaders;
+//        private Vector tbData;
+//        
+//        /**
+//         * Class constructor
+//         * @param rsData
+//         * @throws SQLException 
+//         */
+//        public RsTableModel(ResultSet rsData) throws SQLException {
+//            ResultSetMetaData rsMeta = rsData.getMetaData();
+//            int count = rsMeta.getColumnCount();
+//
+//            tbData = new Vector();
+//            colHeaders = new Vector(count);
+//
+//            for(int i = 1; i <= count; i++){
+//                colHeaders.addElement(rsMeta.getColumnName(i));
+//            }
+//
+//            while (rsData.next()){
+//                Vector dataRow = new Vector(count);
+//                for(int i = 1; i <= count; i++){
+//                    dataRow.addElement(rsData.getObject(i));
+//                }
+//                tbData.addElement(dataRow);
+//            }
+//        }
+//        @Override
+//        public String getColumnName(int column) {
+//            return  (String) (colHeaders.elementAt(column));
+//        }
+//        
+//        @Override
+//        public int getRowCount() { return tbData.size(); }
+//
+//        @Override
+//        public int getColumnCount() { return colHeaders.size(); }
+//
+//        @Override
+//        public Object getValueAt(int row, int column) {
+//            Vector rowData = (Vector)(tbData.elementAt(row));
+//            return rowData.elementAt(column);
+//        }
+//        
+//        public void setData(){
+//        super.fireTableDataChanged();
+//        }
+//    };
+    
+    public class RsTableModel extends AbstractTableModel {
+            private ArrayList<Parking> parkings ;
+            private String[] columns ; 
 
-            tbData = new Vector();
-            colHeaders = new Vector(count);
-
-            for(int i = 1; i <= count; i++){
-                colHeaders.addElement(rsMeta.getColumnName(i));
+            public RsTableModel(ArrayList<Parking> listParking){
+              super();
+              parkings = listParking ;
+              columns = new String[]{"Num parking","Nom parking","Capacity"};
             }
 
-            while (rsData.next()){
-                Vector dataRow = new Vector(count);
-                for(int i = 1; i <= count; i++){
-                    dataRow.addElement(rsData.getObject(i));
-                }
-                tbData.addElement(dataRow);
+            // Number of column of your table
+            public int getColumnCount() {
+              return columns.length ;
+            }
+
+            // Number of row of your table
+            public int getRowCount() {
+              return parkings.size();
+            }
+
+            // The object to render in a cell
+            public Object getValueAt(int row, int col) {
+              Parking parking = parkings.get(row);
+              switch(col) {
+                case 0: return parking.getNumParking();
+                case 1: return parking.getNameParking();
+                case 2: return parking.getCapacity();
+                default: return null;
+              }
+            }
+            // Optional, the name of your column
+            public String getColumnName(int col) {
+              return columns[col] ;
             }
         }
-        @Override
-        public String getColumnName(int column) {
-            return  (String) (colHeaders.elementAt(column));
-        }
-        
-        @Override
-        public int getRowCount() { return tbData.size(); }
-
-        @Override
-        public int getColumnCount() { return colHeaders.size(); }
-
-        @Override
-        public Object getValueAt(int row, int column) {
-            Vector rowData = (Vector)(tbData.elementAt(row));
-            return rowData.elementAt(column);
-        }
-        
-        public void setData(){
-        super.fireTableDataChanged();
-}
-    };
     
     /**
      * Method fill data to table
@@ -121,16 +158,16 @@ public class PanParking extends javax.swing.JPanel {
      */
     protected void fillTable() throws SQLException{
         try{
-            String url = "jdbc:mysql://localhost:3306/carbon5";
-            String user = "root";
-            String pwd = "";
-            Connection connect = DriverManager.getConnection(url, user, pwd);
-            String queryString = "SELECT * FROM Parking";
-            Statement stm = connect.createStatement();
-            ResultSet rs = stm.executeQuery(queryString);
-            RsTableModel model = new RsTableModel(rs);
+//            String url = "jdbc:mysql://localhost:3306/carbon5";
+//            String user = "root";
+//            String pwd = "";
+//            Connection connect = DriverManager.getConnection(url, user, pwd);
+//            String queryString = "SELECT * FROM Parking";
+//            Statement stm = connect.createStatement();
+//            ResultSet rs = stm.executeQuery(queryString);
+            RsTableModel model = new RsTableModel(Parking.getAllParkings());
             this.jTable1.setModel(model);
-            model.setData();
+//            model.setData();
         } catch (Exception e){
             e.printStackTrace();
         }   

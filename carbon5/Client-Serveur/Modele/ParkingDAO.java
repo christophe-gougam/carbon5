@@ -19,7 +19,36 @@ public class ParkingDAO extends DAO<Parking> {
     public ParkingDAO(Connection conn) {
         super(conn);
     }
-
+    
+    public ArrayList<String> getAllParkings(){
+    	
+    ArrayList<String> parking = new ArrayList<String>();
+    	try {
+            ResultSet result = this .connect
+                                    .createStatement(
+                                            	ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                                ResultSet.CONCUR_UPDATABLE
+                                             ).executeQuery(
+                                                "SELECT NumParking, NomParking, Capacity FROM parking"
+                                             );
+            Parking.emptyCollection();
+            while(result.next()){
+            	Parking.addParkingToCo(new Parking(result.getInt("NumParking"),
+						result.getString("NomParking"),                        
+						result.getInt("Capacity")));
+            }
+        } catch (SQLException e) {
+                e.printStackTrace();
+        }
+    	//Getting number of parkings
+    	parking.add(String.valueOf(Parking.getAllParkings().size()));
+    	for(Parking aParking : Parking.getAllParkings()){
+    		//adding parkings
+    		parking.add(Parking.serialize(aParking));
+    	}
+        return parking;
+    }
+    
     @Override
     public Parking find() {
         Parking park = new Parking();

@@ -16,6 +16,8 @@ import org.apache.log4j.Logger;
 import Client.Controlleurs.ServerConnect;
 import Serveur.Controlleurs.Serveur;;
 
+
+
 /**
  *
  * @author Carbon5
@@ -108,6 +110,7 @@ public class PanAjoutPiece extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField jTextField1;
@@ -146,7 +149,7 @@ public class PanAjoutPiece extends javax.swing.JPanel {
         	data.add(namePart);
         	data.add(purchasePrice);
         	String identifier = "CreatePart";
-        	logger.info("Crï¿½ation d'une piï¿½ce dï¿½tachï¿½e");
+        	logger.info("Création d'une pièce détachée");
         	new ServerConnect(data, identifier, frame);
         }
     }

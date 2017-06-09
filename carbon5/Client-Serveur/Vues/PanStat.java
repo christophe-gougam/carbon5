@@ -5,16 +5,37 @@
  */
 package Vues;
 
+import Client.Controlleurs.ServerConnect;
+import Modele.Parking;
+import Modele.Part;
+import Modele.RepairCard;
+import static Vues.IHM.logger;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.table.AbstractTableModel;
+
 /**
  *
- * @author CongThuan
+ * @author Carbon5
  */
 public class PanStat extends javax.swing.JPanel {
     /**
      * Creates new form NewJPanel
      */
-    public PanStat() {
-        initComponents();
+    public PanStat(int k) throws SQLException{
+        if(k == 2){
+            initComponents();
+            jTabbedPane1.remove(jPanel4);
+            this.fillTable1();
+            this.fillTable2();
+            this.revalidate();
+        } else {
+            initComponents();
+            this.fillTable1();
+            this.fillTable2();
+        } 
     }
 
     /**
@@ -48,20 +69,10 @@ public class PanStat extends javax.swing.JPanel {
         jTable4 = new javax.swing.JTable();
 
         jButton1.setText("Actualiser");
+        jButton1.addActionListener(new PanStat.BoutonListener());
 
         jLabel1.setText("LISTE COMPLET DES VEHICULES");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -90,23 +101,13 @@ public class PanStat extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Stat 1", jPanel1);
+        jTabbedPane1.addTab("Liste vehicule", jPanel1);
 
         jButton2.setText("Actualiser");
+        jButton2.addActionListener(new PanStat.BoutonListener());
 
         jLabel2.setText("WORKFLOW COMPLET DE VEHICULE");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
         jScrollPane2.setViewportView(jTable2);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -135,9 +136,10 @@ public class PanStat extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Stat 2", jPanel2);
+        jTabbedPane1.addTab("Workflow vehicule", jPanel2);
 
         jButton3.setText("Actualiser");
+        jButton3.addActionListener(new PanStat.BoutonListener());
 
         jLabel3.setText("CUMUL DE LA JOURNEE");
 
@@ -180,9 +182,10 @@ public class PanStat extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Stat 3", jPanel3);
+        jTabbedPane1.addTab("Cumul journée", jPanel3);
 
         jButton4.setText("Actualiser");
+        jButton4.addActionListener(new PanStat.BoutonListener());
 
         jLabel4.setText("STATISTIQUE MANUTENTIONNAIRES");
 
@@ -225,8 +228,7 @@ public class PanStat extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Stat 4", jPanel4);
-
+        jTabbedPane1.addTab("Manutentionnaire", jPanel4);
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -241,26 +243,188 @@ public class PanStat extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify                     
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private static javax.swing.JButton jButton1;
+    private static javax.swing.JButton jButton2;
+    private static javax.swing.JButton jButton3;
+    private static javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private static javax.swing.JPanel jPanel1;
+    private static javax.swing.JPanel jPanel2;
+    private static javax.swing.JPanel jPanel3;
+    public static javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    public static javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     // End of variables declaration 
+    
+    /**
+     * Class model table 1
+     */
+    public class RsTableModel1 extends AbstractTableModel {
+        private ArrayList<RepairCard> repairCard ;
+        private String[] columns ; 
+
+        public RsTableModel1(ArrayList<RepairCard> listRepairCard){
+          super();
+          repairCard = listRepairCard ;
+          columns = new String[]{"Num puce","Type véhicule","Degree urgence","Description", "Statut"};
+        }
+
+        // Number of column of your table
+        public int getColumnCount() {
+          return columns.length ;
+        }
+
+        // Number of row of your table
+        public int getRowCount() {
+          return repairCard.size();
+        }
+
+        // The object to render in a cell
+        public Object getValueAt(int row, int col) {
+          RepairCard aRC = repairCard.get(row);
+          switch(col) {
+            case 0: return aRC.getidcar();
+            case 1: return aRC.getCar().getTypeVehicule();
+            case 2: return aRC.getDegree().getId();
+            case 3: return aRC.getDegree().getDescription();
+            case 4: return aRC.getCard().getDescription();
+            default: return null;
+          }
+        }
+        // Optional, the name of your column
+        public String getColumnName(int col) {
+          return columns[col] ;
+        }
+    }
+    
+    /**
+     * Class model table 2
+     */
+    public class RsTableModel2 extends AbstractTableModel {
+        private ArrayList<RepairCard> repairCard ;
+        private String[] columns ; 
+
+        public RsTableModel2(ArrayList<RepairCard> listRepairCard){
+          super();
+          repairCard = listRepairCard ;
+          columns = new String[]{"ID car","Type","Urgency level","Description", "State",
+          "Place","Parking","Detail ops","Entry date","Out Date","Nature repair","Time spent",
+          "Repair ops","Defect description","Repair time","Criticity","Name part"};
+        }
+
+        // Number of column of your table
+        public int getColumnCount() {
+          return columns.length ;
+        }
+
+        // Number of row of your table
+        public int getRowCount() {
+          return repairCard.size();
+        }
+
+        // The object to render in a cell
+        public Object getValueAt(int row, int col) {
+          RepairCard aRC = repairCard.get(row);
+          switch(col) {
+            case 0: return aRC.getCar().getNumePuce();
+            case 1: return aRC.getCar().getTypeVehicule();
+            case 2: return aRC.getDegree().getId();
+            case 3: return aRC.getDegree().getDescription();
+            case 4: return aRC.getCard().getDescription();
+            case 5: return aRC.getPark().getNumPlace();
+            case 6: return aRC.getPark().getNumPark();
+            case 7: return aRC.getOverAllDetails();
+            case 8: return aRC.getEntryDate();
+            case 9: return aRC.getOutDate();
+            case 10: return aRC.getRepair().getNature();
+            case 11: return aRC.getRepair().getTimeSpent();
+            case 12: return aRC.getRepair().getDescription();
+            case 13: return aRC.getDefect().getDescription();
+            case 14: return aRC.getDefect().getduration();
+            case 15: return aRC.getDefect().getCriticity();
+            case 16: return aRC.getPart().getNamePart();
+            default: return null;
+          }
+        }
+        // Optional, the name of your column
+        public String getColumnName(int col) {
+          return columns[col] ;
+        }
+    }
+    
+    protected void fillTable1() throws SQLException{
+        try{
+            PanStat.RsTableModel1 model1 = new PanStat.RsTableModel1(RepairCard.getInfoCars());
+            this.jTable1.setModel(model1);
+        } catch (Exception e){
+            e.printStackTrace();
+        }  
+    }
+    
+    protected void fillTable2(){
+        try{
+            PanStat.RsTableModel2 model2 = new PanStat.RsTableModel2(RepairCard.getInfoCars());
+            this.jTable2.setModel(model2);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * Class listens buttons
+     */
+    private static class BoutonListener implements ActionListener {
+
+        public BoutonListener() {
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(e.getSource() == jButton1){
+                RepairCard.emptyCollection();
+                ArrayList<String> data = new ArrayList<String>();
+                String identifier = "getInfoCar_query1";
+                logger.info("Recuperation des informations des car");
+                new ServerConnect(data, identifier, jPanel1);
+                jPanel1.revalidate();
+            }
+            
+            if(e.getSource() == jButton2){
+                RepairCard.emptyCollection();
+                ArrayList<String> data = new ArrayList<String>();
+                String identifier = "getWorkflowCar_query2";
+                logger.info("Recuperation workflow complet des car");
+                new ServerConnect(data, identifier, jPanel2);
+                jPanel2.revalidate();
+            }
+            
+            if(e.getSource() == jButton3){
+                RepairCard.emptyCollection();
+                ArrayList<String> data = new ArrayList<String>();
+                String identifier = "getCumulDay_query3";
+                logger.info("Cumul de la journée");
+                new ServerConnect(data, identifier, jPanel3);
+                jPanel3.revalidate();
+            }
+            
+            if(e.getSource() == jButton4){
+                RepairCard.emptyCollection();
+                ArrayList<String> data = new ArrayList<String>();
+                String identifier = "getManutentionnaires_query4";
+                logger.info("Recuperation des statistiques manutentionnaires");
+                new ServerConnect(data, identifier, jPanel4);
+                jPanel4.revalidate();
+            }
+        }
+    }
 }

@@ -5,12 +5,14 @@
  */
 package Vues;
 
+import Client.Controlleurs.Connection;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -23,17 +25,24 @@ import javax.swing.event.ListSelectionListener;
 import org.apache.log4j.Logger;
 
 import Client.Controlleurs.ServerConnect;
+import Modele.Parking;
 import Modele.Part;
 import Modele.TypeCar;
 import Serveur.Controlleurs.Serveur;
-import java.sql.SQLException;
 
 /**
  *
  * @author Carbon5
  */
 public class IHM extends JFrame {
-    private JPanel pan = new JPanel();
+	int compteur1=0;
+	int compteur2=0;
+	int compteur3=0;
+	int compteur4=0;
+	int compteur5=0;
+	int compteur6=0;
+	int compteur7=0;
+	private JPanel pan = new JPanel();
     final static Logger logger = Logger.getLogger(Serveur.class);
     private JPanel pan1 = new JPanel();
     private JPanel pan2 = new JPanel();
@@ -47,13 +56,13 @@ public class IHM extends JFrame {
     private JButton bouton7 = new JButton("Vehicule");
     private JButton bouton8 = new JButton("Statistique");    
     
-    private JList liste1;
+    private JList<?> liste1;
     private String[] l1 = {"Entree","Sortie"};
     
-    private JList liste2;
+    private JList<?> liste2;
     private String[] l2 = {"Ajouter", "Modifier"};
     
-    private JList liste3;
+    private JList<?> liste3;
     private String[] l3 = {"Ajouter", "Modifier"};
     
     CardLayout cl = new CardLayout();
@@ -138,9 +147,12 @@ public class IHM extends JFrame {
         
         
         pan2.add(new PanPiece(), listContent[7]);
-        pan2.add(new PanVehicule(), listContent[10]);
         
-        pan2.add(new PanStat(), listContent[13]);
+
+        pan2.add(new PanVehicule(), listContent[10]);
+        pan2.add(new PanAjoutVehicule(), listContent[11]);
+        pan2.add(new PanModifVehicule(), listContent[12]);
+        pan2.add(Connection.panStat, listContent[13]);
     }
     
     /*
@@ -157,7 +169,14 @@ public class IHM extends JFrame {
                 pan.revalidate();
             }
             if(e.getSource() == bouton2){
-                //code
+            	if(compteur2<1){
+                	Parking.emptyCollection();
+                    ArrayList<String> data = new ArrayList<String>();
+                    String identifier = "SelectAllParkings";
+                    logger.info("Recuperation des parking");
+                    new ServerConnect(data, identifier, pan2);
+                    compteur2++;
+                }
                 cl.show(pan2, listContent[1]);
                 liste1.setVisible(false);
                 liste2.setVisible(false);
@@ -166,7 +185,10 @@ public class IHM extends JFrame {
             }
             if(e.getSource() == bouton3){
                 //code
-            	
+//            	ArrayList<String> data = new ArrayList<String>();
+//            	String identifier = "SelectAllPreferences";
+//            	logger.info("récupération des préférences enregistrées");
+//            	new ServerConnect(data, identifier, pan2);
             	//add method to load list
             	pan2.add(new PanOrdreReparation(), listContent[2]);
             	
@@ -187,12 +209,14 @@ public class IHM extends JFrame {
             if(e.getSource() == bouton5){
                 //implement select of all nameParts to fill list
             	
-            	//if (Part.getAllParts().isEmpty()){
-                	Part.emptyCollection();
+            	if(compteur5<1){
+            		Part.emptyCollection();
                 	ArrayList<String> data = new ArrayList<String>();
                 	String identifier = "SelectAllParts";
                 	logger.info("Rï¿½cupï¿½ration des piï¿½ces");
                 	new ServerConnect(data, identifier, pan2);
+                    compteur5++;
+                }
             	//}
             	pan2.add(new PanEntreeStock(), listContent[5]);
             	pan2.add(new PanSortieStock(), listContent[6]);
@@ -204,13 +228,14 @@ public class IHM extends JFrame {
             }
             if(e.getSource() == bouton6){
             	//implement select of all nameParts to fill list
-            	//if (Part.getAllParts().isEmpty()){
-                	Part.emptyCollection();
+            	if(compteur6<1){
+            		Part.emptyCollection();
                 	ArrayList<String> data = new ArrayList<String>();
                 	String identifier = "SelectAllParts";
                 	logger.info("Rï¿½cupï¿½ration des piï¿½ces");
                 	new ServerConnect(data, identifier, pan2);
-            	//}
+                    compteur6++;
+                }
                 pan2.add(new PanAjoutPiece(), listContent[8]);
                 pan2.add(new PanModifPiece(), listContent[9]);
                 cl.show(pan2, listContent[7]);
@@ -220,12 +245,14 @@ public class IHM extends JFrame {
                 pan.revalidate();
             }
             if(e.getSource() == bouton7){
-            	TypeCar.emptyCollection();
-            	ArrayList<String> data = new ArrayList<String>();
-            	String identifier = "LoadAllComboBox";
-            	logger.info("Chargement des listes deroulantes");
-            	new ServerConnect(data, identifier, pan2);
-            	
+            	if(compteur7<1){
+            		TypeCar.emptyCollection();
+	            	ArrayList<String> data = new ArrayList<String>();
+	            	String identifier = "LoadAllComboBox";
+            		logger.info("Chargement des listes deroulantes");
+            		new ServerConnect(data, identifier, pan2);
+            		compteur7++;
+            	}
             	pan2.add(new PanAjoutVehicule(), listContent[11]);
                 pan2.add(new PanModifVehicule(), listContent[12]);
             	cl.show(pan2, listContent[10]);

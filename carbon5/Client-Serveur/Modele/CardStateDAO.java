@@ -3,66 +3,89 @@ package Modele;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
+
+import org.apache.log4j.Logger;
+
+import Serveur.Controlleurs.Serveur;
 
 /**
  * Class interacting with database for table CardState
- * @author Picture
+ * @author Carbon5
  *
  */
-public class CardStateDAO {
+public class CardStateDAO extends DAO<CardState>{
+	
+	public CardStateDAO(Connection con) {
+		super(con);
+		// TODO Auto-generated constructor stub
+	}
+
 	private static ArrayList<CardState> listCardState = new ArrayList();
+	
+	final static Logger logger = Logger.getLogger(Serveur.class);
 	
 	/**
 	 * returns all CardState
 	 * @param con
 	 * @return dataResult containing all serialized CardState
 	 */
-	public static ArrayList<String> getAllCardState(Connection con){
-		Connection cn = con;
-		Statement st = null;
-		ResultSet rs = null;
-		ArrayList<String> dataResult = new ArrayList();
-		
-		try{
-			st = cn.createStatement();
-			String request = "Select * FROM CardState";
-			rs = st.executeQuery(request);
-			
-			while(rs.next()){
-				int idNew = Integer.parseInt(rs.getString("id"));
-				listCardState.add(new CardState(idNew, rs.getString("description")));
-				dataResult.add(rs.getString("description")+"///");
-			}
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-		
-		return dataResult;
+	public ArrayList<CardState> getCardState(int id){
+
+		CardState res= new CardState(id,"");
+		try {
+                    ResultSet result = this .connect
+                                            .createStatement(
+                                                        ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                                        ResultSet.CONCUR_UPDATABLE
+                                                     ).executeQuery(
+                                                        "Select * FROM cardstate"
+                                                     );
+                    CardState.emptyCollection();
+                    if(result.first())
+                        res = new CardState(result.getInt("Id"),result.getString("Description"));
+                    listCardState.add(res);
+        } catch (SQLException e) {
+                e.printStackTrace();
+        }
+		return listCardState;
 	}
 	
+        @Override
+	public CardState find() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+        public CardState find(int id) throws SQLException{
+            CardState state = new CardState();
+            try{
+                ResultSet result = this.connect
+                                       .createStatement(
+                                                ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                                ResultSet.CONCUR_READ_ONLY)
+                                       .executeQuery("SELECT * FROM cardstate WHERE Id = " + id);
+                if(result.first())
+                    state = new CardState(
+                    id,
+                    result.getString("Description"));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return state;
+        }
 	/**
 	 * request to insert a new CardState
 	 * @param con
 	 * @param desc
 	 * @return dataResult confirming adding a CardState
 	 */
-	public static ArrayList<String> addCardState(Connection con, String desc, int id){
-		Connection cn = con;
-		Statement st = null;
-		String request = "INSERT INTO CardState(id,descrition) VALUES ('"+id+"','"+desc+"')";
-		ArrayList<String> dataResult = new ArrayList();
-		
-		try{
-			st = cn.createStatement();
-			st.executeUpdate(request);
-			dataResult.add("Success Insert");
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-		return dataResult;
+	@Override
+	public ArrayList<String> create(CardState obj) {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 	
 	/**
 	 * request to update a CardState
@@ -71,41 +94,21 @@ public class CardStateDAO {
 	 * @param desc
 	 * @return dataResult confirming the update
 	 */
-	public static ArrayList<String> updateCardState(Connection con, int id, String desc){
-		Connection cn = con;
-		Statement st = null;
-		String request = "UPDATE CardState SET description = '"+desc+"' WHERE id='"+id+"'";
-		ArrayList<String> dataResult = new ArrayList();
-		
-		try{
-			st = cn.createStatement();
-			st.executeUpdate(request);
-			dataResult.add("Success Update");
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-		return dataResult;
+	@Override
+	public boolean update(CardState obj) {
+		// TODO Auto-generated method stub
+		return false;
 	}
-	
+
 	/** 
 	 * request to remove a CardState
 	 * @param con
 	 * @param id
 	 * @return dataResult confirming deletion of CardState
 	 */
-	public static ArrayList<String> removeCardState(Connection con, int id){
-		Connection cn = con;
-		Statement st = null;
-		String request = "DELETE FROM CardState WHERE id='"+id+"'";
-		ArrayList<String> dataResult = new ArrayList();
-		
-		try{
-			st = cn.createStatement();
-			st.executeUpdate(request);
-			dataResult.add("Success Removal");
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-		return dataResult;
+	@Override
+	public boolean delete(CardState obj) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

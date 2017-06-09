@@ -6,8 +6,6 @@
 package Modele;
 
 import java.text.DateFormat;
-
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,6 +36,14 @@ public class Repairs {
         this.timeSpent = timeSpent;
         this.description=description;
     }
+    
+    public Repairs (String nature, Date dateRepair, float timeSpent, String description){
+        this.nature=nature;
+        this.dateRepair = dateRepair;
+        this.timeSpent = timeSpent;
+        this.description=description;
+    }
+    
     public Repairs(){
     	
     }

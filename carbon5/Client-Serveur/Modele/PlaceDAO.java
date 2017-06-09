@@ -5,7 +5,6 @@
  */
 package Modele;
 
-import com.mysql.jdbc.PreparedStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -145,6 +144,25 @@ public ArrayList<String> create(Place obj) {
             e.printStackTrace();
     }
     return ud;
+    }
+    
+    public Place getPlace(int id){
+    	Place place = new Place();
+    	
+    	try{
+    		ResultSet result = this .connect
+                    .createStatement(
+                                ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                ResultSet.CONCUR_UPDATABLE
+                             ).executeQuery(
+                                "SELECT NumPlace,isOccupied,NumPark FROM place where NumpLace='"+id+"'"
+                             );
+    		if(result.first())
+    			place = new Place(result.getInt("NumPlace"), result.getBoolean("IsOccupied"), result.getInt("NumPark")); 
+    	} catch (SQLException e) {
+    		e.printStackTrace();
+    	}
+    	return place;
     }
 
 

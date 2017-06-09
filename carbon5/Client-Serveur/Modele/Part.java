@@ -1,10 +1,6 @@
 package Modele;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import org.apache.log4j.Logger;
 
@@ -13,7 +9,7 @@ import Serveur.Controlleurs.Serveur;
 public class Part {
 	final static Logger logger = Logger.getLogger(Serveur.class);
 	private int id;
-    private String IdPart;
+        private String IdPart;
 	private int stock;
 	private String namePart;
 	private float purchasePrice;
@@ -41,6 +37,10 @@ public class Part {
 		this.namePart = namePart;
 		this.purchasePrice = purchasePrice;
 	}
+        
+        public Part(String namePart){
+                this.namePart = namePart;
+        }
 	
         public int getId(){
                 return this.id;

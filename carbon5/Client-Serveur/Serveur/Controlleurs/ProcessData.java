@@ -1,23 +1,19 @@
 package Serveur.Controlleurs;
 
-import Modele.LectureJson;
-import Modele.EcritureJson;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.Socket;
 import java.net.ServerSocket;
-import java.net.UnknownHostException;
+import java.net.Socket;
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
-import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.io.PrintWriter;
+import Modele.LectureJson;
+import Modele.RepairCard;
 
 /**
  * Class ProcessData
@@ -57,9 +53,10 @@ public class ProcessData implements Runnable{
 		try {
 			while(true){
 				logger.info("Retrieving connection from Pool");
-				ConnectionPool pool = new ConnectionPool();
-				con = pool.getConnectionFromPool();
+				
+				con = ConnectionPool.getConnectionFromPool();
 				logger.info("Retrieving client socket");
+				
 				socket = serverSocket.accept();
 				in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				out = new PrintWriter(socket.getOutputStream());
@@ -75,6 +72,10 @@ public class ProcessData implements Runnable{
 				switch(identifier){
 				case("Authentication"):
 					t = new Thread(new Authentication(con, socket, message_distant, out));
+					t.start();
+				break;
+				case("Search"):
+					t = new Thread(new CarController(con, message_distant, out));
 					t.start();
 				break;
 				case("AjoutVehicule"):
@@ -101,6 +102,34 @@ public class ProcessData implements Runnable{
 					t = new Thread(new PartController(con, message_distant, out));
 					t.run();
 				break;
+                                case("SelectAllParkings"):
+					logger.info("Case Select all parkings");
+					t = new Thread(new ParkingController(con, message_distant, out));
+					t.run();
+				break;
+                                case("getInfoCar_query1"):
+                                        logger.info("Case retrieving info car");
+                                        t = new Thread(new CarController(con, message_distant, out));
+					t.run();
+                                break;
+
+                                case("getWorkflowCar_query2"):
+                                        logger.info("Case retrieving workflow complet car");
+                                        t = new Thread(new CarController(con, message_distant, out));
+					t.run();
+                                break;
+
+                                case("getCumulDay_query3"):
+                                        logger.info("Case retrieving day cumulation");
+                                        t = new Thread(new CarController(con, message_distant, out));
+					t.run();
+                                break;
+
+                                case("getManutentionnaires_query4"):
+                                        logger.info("Case retrieving warehousemen");
+                                        t = new Thread(new CarController(con, message_distant, out));
+					t.run();
+                                break;
 				case("LoadAllComboBox"):
 					logger.info("Case Select all type car");
 					t = new Thread(new CarController(con, message_distant, out));
@@ -116,8 +145,18 @@ public class ProcessData implements Runnable{
 					t = new Thread(new StockController(con, message_distant, out));
 					t.run();
 				break;
+				case("addPreferences"):
+					logger.info("Case add preferences");
+					t = new Thread(new PreferencesController(con, message_distant, out));
+					t.run();
+				break;
+				case("SelectAllPreferences"):
+					logger.info("Case select preferences");
+					t = new Thread(new PreferencesController(con, message_distant, out));
+					t.run();
+				break;
 				default:
-					logger.info("Fonctionnalité non prise en charge pour le moment");
+					logger.info("Fonctionnalitï¿½ non prise en charge pour le moment");
 				}
 
 				}

@@ -1,6 +1,5 @@
 package Modele;
 
-import com.mysql.jdbc.PreparedStatement;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -19,6 +18,7 @@ public class UserDAO extends DAO<User>{
 	
 	public User auth(String login, String mdp){
 		User ud = null;
+		
 		try{
 			ResultSet result = this .connect
                     .createStatement(
@@ -41,12 +41,17 @@ public class UserDAO extends DAO<User>{
                         result.getDate("HiringDate"),
                         result.getFloat("IncomingPerHour"),
                         (new TypeUser(result.getInt("typeuser.id"),result.getString("Profil")))
-						);            
+						); 
+				
+				User.emptyCollection();
+
+	            	User.addAUserToCo(ud);          		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-			return ud;
-		}
+		
+		return ud;
+	}
 
 	
 	/**
@@ -177,6 +182,37 @@ public class UserDAO extends DAO<User>{
         }
         return true;
     }   
+    
+    public User getUser(int id){
+    	User ud = null;
+        try {
+            ResultSet result = this .connect
+                                    .createStatement(
+                                            	ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                                ResultSet.CONCUR_UPDATABLE
+                                             ).executeQuery(
+                                            		 "SELECT * FROM users JOIN typeuser where users.TypeUser = typeuser.id AND users.id='"+id+"'"
+                                             );
+            if(result.first())
+            		ud = new User(
+                                        //result.getString("id"),
+            							result.getInt("Id"),
+                                        result.getString("FirstName"),
+                                        result.getString("LastName"),
+                                        result.getString("Address"),
+                                        result.getString("Town"),
+                                        result.getInt("PostalCode"),
+                                        result.getString("login"),
+                                        result.getString("Email"),
+                                        result.getDate("HiringDate"),
+                                        result.getFloat("IncomingPerHour"),
+                                        (new TypeUser(result.getInt("typeuser.id"),result.getString("Profil")))
+                        );            
+        } catch (SQLException e) {
+                e.printStackTrace();
+        }
+        return ud;
+    }
 }
 
 

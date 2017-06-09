@@ -7,7 +7,8 @@ import java.util.ArrayList;
  *
  */
 public class CardState {
-	
+	private static ArrayList<CardState> state = new ArrayList<CardState>();
+
 	private int id;
 	private String description;
 	/**
@@ -19,6 +20,14 @@ public class CardState {
 		this.id = id;
 		this.description = desc;
 	}
+        
+        public CardState(String desc){
+		this.description = desc;
+	}
+        
+        public CardState(){
+            
+        }
 	/**
 	 * Method get the id
 	 * @return id
@@ -47,6 +56,15 @@ public class CardState {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+        
+        public static ArrayList<CardState> getAllState(){
+		return state;
+	}
+        
+        public static void emptyCollection() {
+            state.clear();
+        }
+        
 	/**
 	 * Method to serialize the card state
 	 * @param card

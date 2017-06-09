@@ -10,8 +10,6 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
-import Modele.Car;
-import Modele.Parking;
 import Serveur.Controlleurs.Serveur;
 
 /**
@@ -23,7 +21,6 @@ public class CarDAO extends DAO<Car>{
 	String listop = null;
 	Date Entrydate;
 	int place=0;
-	
 	public CarDAO(Connection conn) {
 		super(conn);
 		// TODO Auto-generated constructor stub
@@ -37,38 +34,26 @@ public class CarDAO extends DAO<Car>{
 	 * @param numP
 	 * @return dataResult containing serialized car
 	 */
-	public ArrayList<String> getCar(Connection con, String numP){
-		Connection cn = con;
-		Statement st = null;
-		ResultSet rs = null;
-		String numPuce = null;
-		String matricule = null;
-		String typeVehicule = null;
-		ArrayList<String> dataResult = new ArrayList();
-		
-		try{
-			st = cn.createStatement();
-			logger.info("Statement created");
-			//request to give to database to see if user exists and retrieve its information
-			String request = "SELECT NumPuce, Matricule, typeVehicule FROM Car WHERE NumPuce='"+numP+"'";
-			rs = st.executeQuery(request);
-			logger.info("Query execution");
-			//
-			while(rs.next()){
-				numPuce = rs.getString("NumPuce");
-				matricule = rs.getString("matricule");
-				typeVehicule = rs.getString("typeVehicule");
-				Entrydate=rs.getDate("Date entree");
-				listop=rs.getString("ListeOperations");
-				place=rs.getInt("Emplacement");
-				
-			}
-			Car.addToCollection(new Car(numPuce,typeVehicule, matricule, Entrydate, listop, place));
-			dataResult.add(Car.serialize(new Car(numPuce,typeVehicule, matricule, Entrydate, listop, place)));
-			logger.info("Retrieved data from bdd");
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
+	public ArrayList<Car> getCar(String numP){
+		ArrayList<Car> dataResult = new ArrayList<Car>();
+		Car c=new Car("", "", "");
+		try {
+            ResultSet result = this .connect
+                                    .createStatement(
+                                            	ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                                ResultSet.CONCUR_UPDATABLE
+                                             ).executeQuery(
+                                                "SELECT NumPuce, TypeVehicule, matricule FROM car WHERE NumPuce='"+numP+"'"
+                                             );
+            Car.emptyCollection();
+            if(result.first())
+            	c=new Car(result.getString("NumPuce"), result.getString("TypeVehicule"), result.getString("matricule"));
+            Car.addCar(c);
+            dataResult.add(c);            	
+        } catch (SQLException e) {
+                e.printStackTrace();
+        }
+	  	
 		return dataResult;
 	}
 	
@@ -108,41 +93,34 @@ public class CarDAO extends DAO<Car>{
 	 * @param con
 	 * @return dataResult containing all serialized car
 	 */
-	public ArrayList<String> getAllCars(Connection con){
-		
-		Connection cn = con;
-		Statement st = null;
-		ResultSet rs = null;
-		String numPuce = null;
-		String matricule = null;
-		String typeVehicule = null;
-		String listop = null;
-		ArrayList<String> dataResult = new ArrayList();
-		
-		try{
-			st = cn.createStatement();
-			logger.info("Statement created");
-			//request to give to database to see if user exists and retrieve its information
-			String request = "SELECT NumPuce, Matricule, typeVehicule FROM Car";
-			rs = st.executeQuery(request);
-			logger.info("Query execution");
-			//
-			while(rs.next()){
-				numPuce = rs.getString("NumPuce");
-				matricule = rs.getString("matricule");
-				typeVehicule = rs.getString("typeVehicule");
-				Entrydate=rs.getDate("Date entree");
-				listop=rs.getString("ListeOperations");
-				place=rs.getInt("Emplacement");
-				Car.addToCollection(new Car(numPuce,typeVehicule, matricule, Entrydate, listop, place));
-				dataResult.add(Car.serialize(new Car(numPuce,typeVehicule, matricule, Entrydate, listop, place)));
-			}
-			logger.info("Retrieved data from bdd");
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-		return dataResult;
-	}
+	public ArrayList<String> getAllCars(){
+            ArrayList<String> cars = new ArrayList<String>();
+		try {
+                ResultSet result = this .connect
+                                    .createStatement(
+                                            	ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                                ResultSet.CONCUR_UPDATABLE
+                                             ).executeQuery(
+                                                "SELECT * FROM car"
+                                             );
+            Car.emptyCollection();
+            while(result.next()){
+            	Car.addCarToCo(new Car(
+						String.valueOf(result.getString("NumPuce")),
+						result.getString("TypeVehicule"),
+						result.getString("matricule")));		
+            }            
+            } catch (SQLException e) {
+                    e.printStackTrace();
+            }
+            //Getting number of parts
+            cars.add(String.valueOf(Car.getAllCar().size()));
+            for(Car aCar: Car.getAllCar()){
+                    //adding parts
+                    cars.add(Car.serialize(aCar));
+            }
+            return cars;
+        }
 	
 	/**
 	 * request to delete a car from database
@@ -154,7 +132,7 @@ public class CarDAO extends DAO<Car>{
 		Connection cn = con;
 		Statement st = null;
 		
-		ArrayList<String> dataResult = new ArrayList();
+		ArrayList<String> dataResult = new ArrayList<String>();
 		
 		try{
 			st = cn.createStatement();
@@ -178,7 +156,7 @@ public class CarDAO extends DAO<Car>{
 	public static ArrayList<String> updateCar(Connection con, Car car,String numP,String matricule, String type){
 		Connection cn = con;
 		Statement st = null;
-		ArrayList<String> dataResult = new ArrayList();
+		ArrayList<String> dataResult = new ArrayList<String>();
 		
 		String request = "UPDATE Car SET Numpuce ='"+numP+"',Matricule = '"+matricule+"' TypeVehicule ='"+type+"' WHERE NumPuce = '"+car.getNumePuce()+"'";
 		try{
@@ -197,8 +175,28 @@ public class CarDAO extends DAO<Car>{
 	@Override
 	public Car find() {
 		// TODO Auto-generated method stub
-		return null;
+            return null;
 	}
+        
+        public Car find(String id) throws SQLException{
+            Car car = new Car();
+            
+            try{
+                ResultSet result = this.connect
+                                       .createStatement(
+                                               ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                               ResultSet.CONCUR_READ_ONLY)
+                                       .executeQuery("SELECT * FROM car WHERE NumPuce = " + id);
+                if(result.first())
+                    car = new Car(
+                    id,
+                    result.getString("TypeVehicule"),
+                    result.getString("matricule"));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return car;
+        }
 
 	@Override
 	public ArrayList<String> create(Car obj) {

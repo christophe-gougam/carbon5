@@ -27,7 +27,10 @@ public class Place {
     public Place(){
         
     }
-    
+    public Place(int numPlace, int numPark){
+        this.numPlace=numPlace;
+        this.numPark = numPark;
+    }
     /**
      * Method gets number of place
      * @return 

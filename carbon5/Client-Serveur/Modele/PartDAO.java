@@ -6,18 +6,14 @@
 package Modele;
 
 import java.sql.Connection;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 import org.apache.log4j.Logger;
 
 import Serveur.Controlleurs.PartController;
-
-import org.apache.log4j.Logger;
 /**
  *
  * @author Carbon5
@@ -73,6 +69,29 @@ public class PartDAO extends DAO<Part> {
                                                 ResultSet.CONCUR_UPDATABLE
                                              ).executeQuery(
                                                 "SELECT * FROM part where NamePart='"+name +"'"
+                                             );
+            if(result.first())
+            		part = new Part(
+            							result.getString("Id"),
+                                        result.getInt("stock"),
+                                        result.getString("namePart"), 
+                                        result.getFloat("purchasePrice")
+                        );            
+        } catch (SQLException e) {
+                e.printStackTrace();
+        }
+        return part;
+    }
+    
+    public Part find(int id) {
+        Part part = new Part();
+        try {
+            ResultSet result = this .connect
+                                    .createStatement(
+                                            	ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                                ResultSet.CONCUR_UPDATABLE
+                                             ).executeQuery(
+                                                "SELECT * FROM part where id='"+id +"'"
                                              );
             if(result.first())
             		part = new Part(

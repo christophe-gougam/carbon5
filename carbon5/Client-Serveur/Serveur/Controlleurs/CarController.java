@@ -1,44 +1,24 @@
 package Serveur.Controlleurs;
 
-import java.io.BufferedReader;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 
+import org.apache.log4j.Logger;
 
-import Modele.LectureJson;
-import Modele.Part;
-import Modele.PartDAO;
-import Modele.PlaceDAO;
-import Modele.TypeCar;
-import Modele.TypeCarDAO;
-import Modele.User;
-import Modele.UserDAO;
 import Modele.Car;
 import Modele.CarDAO;
 import Modele.Defect;
 import Modele.DefectDAO;
 import Modele.EcritureJson;
-
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
-import java.net.ServerSocket;
-import java.net.UnknownHostException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-
-import javax.swing.JOptionPane;
-
-import org.apache.log4j.Logger;
-import org.json.JSONObject;
-import org.json.JSONException;
-
-import java.io.PrintWriter;
+import Modele.LectureJson;
+import Modele.PlaceDAO;
+import Modele.RepairCard;
+import Modele.RepairCardDAO;
+import Modele.TypeCarDAO;
+import Modele.User;
 
 /**
  * Class CarController runs operation for car 
@@ -59,6 +39,9 @@ public class CarController implements Runnable{
 	ArrayList<String> data = new ArrayList<String>();
 	ArrayList<String> dataPanne = new ArrayList<String>();
 	ArrayList<String> allPlace = new ArrayList<String>();
+        ArrayList<String> allCar = new ArrayList<String>();
+	ArrayList<Car> Carinfo = new ArrayList<Car>();
+	boolean isIn=false;
 	String JsonMessage;
 	
 	/**
@@ -80,6 +63,7 @@ public class CarController implements Runnable{
 	public void run() {
 		
 				CarDAO test = new CarDAO(con);
+				RepairCardDAO test5 = new RepairCardDAO(con);
 				TypeCarDAO test1=new TypeCarDAO(con);
 				DefectDAO test2=new DefectDAO(con);
 				PlaceDAO test3=new PlaceDAO(con);
@@ -89,17 +73,50 @@ public class CarController implements Runnable{
 					ArrayList<String> result = LectureJson.LectureFichier(in);
 					switch(identifier){
 					
+					case("Search"):
+						Carinfo=test.getCar(result.get(0));
+						if(Carinfo.get(0).getNumePuce().equalsIgnoreCase(result.get(0)))
+						{
+							data.add("SearchOK");
+							data.add(Car.serialize(Carinfo.get(0)));
+						}
+						else
+							data.add(0, "SearchKO");
+						
+					break;
 					
 					case("LoadAllComboBox"):
 						//TODO:
 						//create object and add to waitList
 						data=test1.getTypeCar();
+                                                allCar = test.getAllCars();
 						data.add(0, "LoadAllComboBoxOK");
 						dataPanne=test2.getAllDefect();
 						allPlace=null;
 						allPlace=test3.getPlace();
 						
+						
 					break;
+                                        
+                                        case("getInfoCar_query1"):
+                                            data = test5.getInfoCar();
+                                            data.add(0, "query1_OK");
+                                        break;
+                                        
+                                        case("getWorkflowCar_query2"):
+                                            data = test5.getWorkflowCar();
+                                            data.add(0, "query2_OK");
+                                        break;
+//                                        
+//                                        case("getCumulDay_query3"):
+//                                            data = test5.getInfoCar();
+//                                            data.add(0, "query3_OK");
+//                                        break;
+//                                        
+//                                        case("getManutentionnaires_query4"):
+//                                            data = test5.getInfoCar();
+//                                            data.add(0, "query4_OK");
+//                                        break;
 					
 					case("AjoutVehicule"):
 						numP=result.get(0);
@@ -108,14 +125,18 @@ public class CarController implements Runnable{
 						entranceDate=LocalDate.now();
 						place=Integer.parseInt(result.get(3));
 						String listPane= "";
-						
+
+						User user=User.unSerialize(result.get(result.size()-1));
+
 						ArrayList<String> listePanneEntrance= new ArrayList<String>();
-						for(int t=4; t<result.size(); t++){
+						for(int t=4; t<result.size()-1; t++){
 							listePanneEntrance.add(result.get(t));
-								listPane+=result.get(t)+"|";
+								if(t<(result.size()-2))
+									listPane+=result.get(t)+"|";
+								else
+									listPane+=result.get(t);
 						}
-						
-						int repairTime=0;
+						double repairTime=0.0;
 						ArrayList<Defect> defaut= new ArrayList<Defect>();
 						defaut=test2.searchDefect();
 						for (int t =0; t<listePanneEntrance.size();t++){
@@ -128,23 +149,44 @@ public class CarController implements Runnable{
 								}
 							}
 			    		}
-						//date = LocalDate.now();
-						Date dat = new Date();
-						Calendar cc = Calendar.getInstance(); 
-						cc.setTime(dat); 
-						cc.add(Calendar.DATE, repairTime);
-						dat = cc.getTime();
-						Car car=new Car(numP, type, matriculation, java.sql.Date.valueOf(entranceDate), listPane, place);
-						ret=test.addCar(car, entranceDate);
-						if (ret){
-							data.add("OKCarInput");
-							test3.updatePlace(place);
-							logger.info("\n"+"Date previsionnelle  : "+dat+"\n");
-							data.add(Car.serialize(car));
-							data.add(String.valueOf(dat));
-						}else{
-							data.add("KOCarInput");
+						
+						boolean yesdemi=false;
+						LocalDate dat=null;
+						if(repairTime%1==0.0){
+							dat=entranceDate.plusDays((int) repairTime);
 						}
+						else{
+							dat=entranceDate.plusDays(((int) repairTime)+1);
+							yesdemi=true;
+						}
+						RepairCard carinfo=new RepairCard(1, String.valueOf(numP), place, java.sql.Date.valueOf(dat), listPane, user);
+						Carinfo=test.getCar(numP);
+						isIn=test5.existRepairCard(numP);
+						if(Carinfo.get(0).getNumePuce().equalsIgnoreCase(numP) && isIn==false)
+						{
+							ret=test5.create(carinfo, java.sql.Date.valueOf(entranceDate));
+							
+							if (ret){
+						
+								data.add("OKCarInput");
+								test3.updatePlace(place);
+								data.add(RepairCard.serialize(carinfo));
+								data.add(String.valueOf(java.sql.Date.valueOf(dat)));
+								if(yesdemi)
+									data.add("DemiJournee");
+								else
+									data.add("Journee");
+							}else{
+								data.add("KOCarInput");
+							}
+						}
+						//a brancher
+						else if(isIn==true){
+							data.add("AlreadyAdded");
+						}
+						else
+							data.add("CarNotExist");
+
 					break;
 					}
 					
@@ -161,7 +203,7 @@ public class CarController implements Runnable{
 				JsonMessage = EcritureJson.WriteJson(data.get(0), data);
 				logger.info("Succes ajout");
 				out.println(JsonMessage);
-				logger.info("Sending JSON succès to Client");
+				logger.info("Sending JSON succï¿½s to Client");
 				out.flush();
 			break;
 			case("KOCarInput"):
@@ -171,8 +213,65 @@ public class CarController implements Runnable{
 				out.flush();
 			break;
 			case("LoadAllComboBoxOK"):
-				JsonMessage = EcritureJson.writeJson(data.get(0), data, dataPanne, allPlace);
+				JsonMessage = EcritureJson.writeJson(data.get(0), data, dataPanne, allPlace, allCar);
 				logger.info("Sending list of type car to Client");
+				logger.info(JsonMessage);
+				out.println(JsonMessage);
+				out.flush();
+			break;
+			
+                        case("query1_OK"):
+                                JsonMessage = EcritureJson.WriteJson("query1_OK", data);
+                                logger.info("Sending info car to Client");
+                                out.println(JsonMessage);
+                                out.flush();
+                        break;
+                        
+                        case("query2_OK"):
+                                JsonMessage = EcritureJson.WriteJson("query2_OK", data);
+                                logger.info("Sending workflow car to Client");
+                                out.println(JsonMessage);
+                                out.flush();
+                        break;
+//                        
+//                        case("query3_OK"):
+//                                JsonMessage = EcritureJson.WriteJson("query3_OK", data);
+//                                logger.info("Sending cumulation day to Client");
+//                                out.println(JsonMessage);
+//                                out.flush();
+//                        break;
+//                        
+//                        case("query4_OK"):
+//                                JsonMessage = EcritureJson.WriteJson("query4_OK", data);
+//                                logger.info("Sending warehousemen to Client");
+//                                out.println(JsonMessage);
+//                                out.flush();
+//                        break;
+                        
+			case("SearchOK"):
+				JsonMessage = EcritureJson.WriteJson("SearchOK", data);
+				logger.info("Sending  car info to Client");
+				logger.info(JsonMessage);
+				out.println(JsonMessage);
+				out.flush();
+			break;
+			case("SearchKO"):
+				JsonMessage = EcritureJson.WriteJson("SearchKO", data);
+				logger.info("Sending error to Client");
+				logger.info(JsonMessage);
+				out.println(JsonMessage);
+				out.flush();
+			break;
+			case("CarNotExist"):
+				JsonMessage = EcritureJson.WriteJson("CarNotExist", data);
+				logger.info("Sending error to Client");
+				logger.info(JsonMessage);
+				out.println(JsonMessage);
+				out.flush();
+			break;
+			case("AlreadyAdded"):
+				JsonMessage = EcritureJson.WriteJson("AlreadyAdded", data);
+				logger.info("Sending error to Client");
 				logger.info(JsonMessage);
 				out.println(JsonMessage);
 				out.flush();

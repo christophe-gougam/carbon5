@@ -1,7 +1,6 @@
 package Client.Controlleurs;
 
 import java.io.BufferedReader;
-
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -9,18 +8,27 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JFrame;
 
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import Vues.Authentication;
-import Vues.Fenetre;
-import Vues.IHM;
-import Modele.*;
+import Modele.Car;
+import Modele.Defect;
+import Modele.EcritureJson;
+import Modele.LectureJson;
+import Modele.Parking;
+import Modele.Part;
+import Modele.Place;
+import Modele.Preferences;
+import Modele.RepairCard;
+import Modele.TypeCar;
+import Modele.User;
 import Serveur.Controlleurs.Serveur;
+import Vues.Authentication;
+import Vues.IHM;
+import Vues.PanStat;
 
 /**
  * Class Connection creating the connection
@@ -44,6 +52,7 @@ public class Connection{
 	User user;
 	Car car;
 	JPanel frame=null; 
+        public static JPanel panStat;
 
 	
 	/**
@@ -98,9 +107,24 @@ public class Connection{
 	    		}
 	    		logger.info(result.get(1));
 		    	user = User.unSerialize(result.get(1));
-		    	User.addAUserToCo(user);
+		    	
+		    	if(!User.isInCollection(user.getLogin())){
+	    			User.addAUserToCo(user);
+	    		}
+		    	
 				JOptionPane.showMessageDialog(frame, "Bienvenue "+user.getFirstName());
-				IHM ihm = new IHM();
+                                int p = user.getTypeUser().getId();
+                                
+                                if(p == 2){
+                                    panStat = new PanStat(p);
+                                    logger.info("MASQUER TAB 4");
+                                } else {
+                                    panStat = new PanStat(p);
+                                    logger.info("DISPLAY TAB 4");  
+                                }
+                                IHM ihm = new IHM();
+                                
+                                
 				
 			break;
 			
@@ -113,9 +137,10 @@ public class Connection{
 	    			result.add((String) tableau.get(i));
 	    		}
 	    		car = Car.unSerialize(result.get(1));
-	    		JOptionPane.showMessageDialog(frame, "Voiture "+car.getTypeVehicule()+ 
-	    									" ajoutee"+"\n"+"Date previsionnelle="+result.get(2)+"\n");
-	    		
+	    		if(result.get(result.size()-1).equalsIgnoreCase("Journee"))
+	    			JOptionPane.showMessageDialog(frame, "Voiture "+car.getTypeVehicule()+" ajoutee"+"\n"+"Date previsionnelle : "+result.get(2)+"\n");
+	    		else
+	    			JOptionPane.showMessageDialog(frame, "Voiture "+car.getTypeVehicule()+" ajoutee"+"\n"+"Date previsionnelle : "+result.get(2)+"\n A midi\n");	
 			break;
 			
 			case "KOCarInput" :
@@ -159,15 +184,127 @@ public class Connection{
 		    			Part.addPartToCo(aPart);
 		    		}	
 		    	}
+                        break;
+                        
+                        case "SelectAllParkingsOK":
+				objet = new JSONObject(reponse);
+				logger.info("Affichage du resultat de mise à jour : ");
+		    	logger.info(reponse);
+		    	tableau = objet.getJSONArray("data");
+		    	for (int i =0; i<tableau.getInt(1);i++){
+		    		Parking aParking = Parking.unSerialize(tableau.getString(i+2));
+		    		if(!Parking.isInCollection(aParking.getNumParking())){
+		    			Parking.addParkingToCo(aParking);
+		    		}	
+		    	}
+                        break;
+                        
+                        case "query1_OK":
+				objet = new JSONObject(reponse);
+				logger.info("Affichage du resultat de mise à jour : ");
+		    	logger.info(reponse);
+		    	tableau = objet.getJSONArray("data");
+		    	for (int i =0; i<tableau.getInt(1);i++){
+		    		RepairCard aRepairCard = RepairCard.unSerialize_query1(tableau.getString(i+2));
+		    		if(!RepairCard.isInCollection(aRepairCard.getidcard())){
+		    			RepairCard.addRepairCardToCo(aRepairCard);
+		    		}	
+		    	}
+                        break;
+                        
+                        case "query2_OK":
+				objet = new JSONObject(reponse);
+				logger.info("Affichage du resultat de mise à jour : ");
+		    	logger.info(reponse);
+		    	tableau = objet.getJSONArray("data");
+		    	for (int i =0; i<tableau.getInt(1);i++){
+		    		RepairCard aRepairCard = RepairCard.unSerialize_query2(tableau.getString(i+2));
+                                RepairCard.addRepairCardToCo(aRepairCard);	
+		    	}
+                        break;
+//                        
+//                        case "query3_OK":
+//				objet = new JSONObject(reponse);
+//				logger.info("Affichage du resultat de mise à jour : ");
+//		    	logger.info(reponse);
+//		    	tableau = objet.getJSONArray("data");
+//		    	for (int i =0; i<tableau.getInt(1);i++){
+//		    		Parking aParking = Parking.unSerialize(tableau.getString(i+2));
+//		    		if(!Parking.isInCollection(aParking.getNumParking())){
+//		    			Parking.addParkingToCo(aParking);
+//		    		}	
+//		    	}
+//                        break;
+//                        
+//                        case "query4_OK":
+//				objet = new JSONObject(reponse);
+//				logger.info("Affichage du resultat de mise à jour : ");
+//		    	logger.info(reponse);
+//		    	tableau = objet.getJSONArray("data");
+//		    	for (int i =0; i<tableau.getInt(1);i++){
+//		    		Parking aParking = Parking.unSerialize(tableau.getString(i+2));
+//		    		if(!Parking.isInCollection(aParking.getNumParking())){
+//		    			Parking.addParkingToCo(aParking);
+//		    		}	
+//		    	}
+//                        break;
+                        
+		    //rechercher vehicule avec sa puce
+			case "SearchOK":
+				objet = new JSONObject(reponse);
+				logger.info("Afficage du resultat de la recherche : ");
+		    	logger.info(reponse);
+		    	tableau = objet.getJSONArray("data");
+		    	
+	    		Car ca=Car.unSerialize(tableau.getString(1));
+	    		if(!Car.isInCollection(ca.getNumePuce())){
+	    			Car.addCar(ca);
+	    		}	
+		    	
 		    break;
+			case "SearchKO":
+				JOptionPane.showMessageDialog(frame, "Cette reference ne correspond pas aun aucun vehicule");
+		    break;
+			case "CarNotExist":
+				JOptionPane.showMessageDialog(frame, "Ce vehicule existe pas, contacter votre administrateur");
+		    break;
+			case "AlreadyAdded":
+				JOptionPane.showMessageDialog(frame, "Ce vehiule est deja en reparation.\n Contacter votre administrateur");
+		    break;
+		    
+		    //rechercher vehicule avec sa puce
+//			case "SearchOK":
+//				objet = new JSONObject(reponse);
+//				logger.info("Afficage du resultat de la recherche : ");
+//		    	logger.info(reponse);
+//		    	tableau = objet.getJSONArray("data");
+//		    	
+//		    		Car ca=Car.unSerialize(tableau.getString(1));
+//		    		///TODO
+//		    	
+//		    break;
+//			case "SearchKO":
+//				JOptionPane.showMessageDialog(frame, "Cette r�f�rence ne correspond pas � un aucun vehicule");
+//		    break;
+//		    
+//			case "CarNotExist":
+//				JOptionPane.showMessageDialog(frame, "Ce vehivule existe pas, contacter votre administrateur");
+//		    break;
 			case "LoadAllComboBoxOK" :
 				objet = new JSONObject(reponse);
 				logger.info("Afficage du resultat");
 		    	logger.info(reponse);
+                tableau = objet.getJSONArray("allCar");
 		    	tableautypecar = objet.getJSONArray("data");
 		    	tableaudefect = objet.getJSONArray("dataDefect");
 		    	tableaudPlace = objet.getJSONArray("placement");
-		    	for (int i =0; i<tableautypecar.getInt(1);i++){
+		    	for (int k =0; k<tableau.getInt(0);k++){
+		    		Car aCar = Car.unSerialize(tableau.getString(k+1));
+		    		if(!Car.isInCollection(aCar.getNumePuce())){
+		    			Car.addCarToCo(aCar);
+		    		}
+                        }
+                        for (int i =0; i<tableautypecar.getInt(1);i++){
 		    		TypeCar atype = TypeCar.unSerialize(tableautypecar.getString(i+2));
 		    		if(!TypeCar.isInCollection(atype.getType())){
 		    			TypeCar.addPartToCo(atype);
@@ -198,6 +335,21 @@ public class Connection{
 				logger.info("Afficage du resultat de mise � jour : ");
 		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
+				JOptionPane.showMessageDialog(frame, tableau.get(0));
+			break;
+			case "addPreferencesOK" : case "addPreferencesKO":
+				objet = new JSONObject(reponse);
+				logger.info("Afficage du resultat de mise � jour : ");
+		    	logger.info(reponse);
+		    	tableau = objet.getJSONArray("data");
+				JOptionPane.showMessageDialog(frame, tableau.get(0));
+			break;
+			case "SelectAllPreferencesOK" : case "SelectAllPreferencesKO":
+				objet = new JSONObject(reponse);
+				logger.info("Afficage du resultat de requ�te de pr�f�rence : ");
+		    	logger.info(reponse);
+		    	tableau = objet.getJSONArray("data");
+		    	Preferences.chargePrefs(Preferences.unSerialize(tableau.getString(0)));
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
 			break;
 			default : 

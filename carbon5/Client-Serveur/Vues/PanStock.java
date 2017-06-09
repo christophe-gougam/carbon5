@@ -5,12 +5,19 @@
  */
 package Vues;
 
+import static Vues.PanAjoutPiece.logger;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
-import java.sql.*;
-import java.util.Vector;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
+
+import Client.Controlleurs.ServerConnect;
+import Modele.Part;
 /**
  *
  * @author Carbon5
@@ -53,7 +60,7 @@ public class PanStock extends javax.swing.JPanel {
 //        DefaultTableModel model = new DefaultTableModel(cont, col);
 //        jTable1.setModel(model);
         jScrollPane1.setViewportView(jTable1);
-        jButton.addActionListener(new BoutonListener());
+        jButton.addActionListener(new BoutonListener(this));
         jLabel1.setText("LE STOCK DES PIECES DETACHEES");
 
 //        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -108,21 +115,31 @@ public class PanStock extends javax.swing.JPanel {
      * Method listens button "Actualiser"
      */
     class BoutonListener implements ActionListener{
+        JPanel frame = null;
+        
+        public BoutonListener(JPanel f){
+            JPanel frame = f;
+        }
+        
         @Override
         public void actionPerformed(ActionEvent e) {
             try{
-            String url = "jdbc:mysql://localhost:3306/carbon5";
-            String user = "root";
-            String pwd = "";
-            Connection connect = DriverManager.getConnection(url, user, pwd);
-            String queryString = "SELECT Stock, NamePart FROM Part";
-            Statement stm = connect.createStatement();
-            ResultSet rs = stm.executeQuery(queryString);
-            RsTableModel model = new RsTableModel(rs);
+                ArrayList<String> data = new ArrayList();
+        	String identifier = "SelectAllParts";
+        	logger.info("Afficher liste des pieces");
+        	new ServerConnect(data, identifier, frame);
+//            String url = "jdbc:mysql://localhost:3306/carbon5";
+//            String user = "root";
+//            String pwd = "";
+//            Connection connect = DriverManager.getConnection(url, user, pwd);
+//            String queryString = "SELECT Stock, NamePart FROM Part";
+//            Statement stm = connect.createStatement();
+//            ResultSet rs = stm.executeQuery(queryString);
+            RsTableModel model = new RsTableModel(Part.getAllParts());
             JTable jTableA = new JTable();
             jTableA.setModel(model);
             jScrollPane1.setViewportView(jTableA);
-            model.setData();
+//            model.setData();
             } catch (Exception eve){
             eve.printStackTrace();
             }
@@ -132,72 +149,105 @@ public class PanStock extends javax.swing.JPanel {
     /**
      * Class create model for table 
      */
-    class RsTableModel extends AbstractTableModel {
-        private Vector colHeaders;
-        private Vector tbData;
+//    class RsTableModel extends AbstractTableModel {
+//        private Vector colHeaders;
+//        private Vector tbData;
         
         /**
          * Class constructor
          * @param rsData
          * @throws SQLException 
          */
-        public RsTableModel(ResultSet rsData) throws SQLException {
-            ResultSetMetaData rsMeta = rsData.getMetaData();
-            int count = rsMeta.getColumnCount();
+//        public RsTableModel(ResultSet rsData) throws SQLException {
+//            ResultSetMetaData rsMeta = rsData.getMetaData();
+//            int count = rsMeta.getColumnCount();
+//
+//            tbData = new Vector();
+//            colHeaders = new Vector(count);
+//
+//            for(int i = 1; i <= count; i++){
+//                colHeaders.addElement(rsMeta.getColumnName(i));
+//            }
+//
+//            while (rsData.next()){
+//                Vector dataRow = new Vector(count);
+//                for(int i = 1; i <= count; i++){
+//                    dataRow.addElement(rsData.getObject(i));
+//                }
+//                tbData.addElement(dataRow);
+//            }
+//        }
+//        @Override
+//        public String getColumnName(int column) {
+//            return  (String) (colHeaders.elementAt(column));
+//        }
+//        
+//        @Override
+//        public int getRowCount() { return tbData.size(); }
+//
+//        @Override
+//        public int getColumnCount() { return colHeaders.size(); }
+//
+//        @Override
+//        public Object getValueAt(int row, int column) {
+//            Vector rowData = (Vector)(tbData.elementAt(row));
+//            return rowData.elementAt(column);
+//        }
+//        
+//        public void setData(){
+//        super.fireTableDataChanged();
+//        }
+//    };
+    public class RsTableModel extends AbstractTableModel {
+        private ArrayList<Part> parts ;
+        private String[] columns ; 
 
-            tbData = new Vector();
-            colHeaders = new Vector(count);
-
-            for(int i = 1; i <= count; i++){
-                colHeaders.addElement(rsMeta.getColumnName(i));
-            }
-
-            while (rsData.next()){
-                Vector dataRow = new Vector(count);
-                for(int i = 1; i <= count; i++){
-                    dataRow.addElement(rsData.getObject(i));
-                }
-                tbData.addElement(dataRow);
-            }
+        public RsTableModel(ArrayList<Part> listPart){
+          super();
+          parts = listPart ;
+          columns = new String[]{"Stock","Name part"};
         }
-        @Override
-        public String getColumnName(int column) {
-            return  (String) (colHeaders.elementAt(column));
-        }
-        
-        @Override
-        public int getRowCount() { return tbData.size(); }
 
-        @Override
-        public int getColumnCount() { return colHeaders.size(); }
+        // Number of column of your table
+        public int getColumnCount() {
+          return columns.length ;
+        }
 
-        @Override
-        public Object getValueAt(int row, int column) {
-            Vector rowData = (Vector)(tbData.elementAt(row));
-            return rowData.elementAt(column);
+        // Number of row of your table
+        public int getRowCount() {
+          return parts.size();
         }
-        
-        public void setData(){
-        super.fireTableDataChanged();
+
+        // The object to render in a cell
+        public Object getValueAt(int row, int col) {
+          Part part = parts.get(row);
+          switch(col) {
+            case 0: return part.getStock();
+            case 1: return part.getNamePart();
+            default: return null;
+          }
         }
-    };
-    
+        // Optional, the name of your column
+        public String getColumnName(int col) {
+          return columns[col] ;
+        }
+    }
     /**
      * Method fill data to table
      * @throws SQLException 
      */
     protected void fillTable() throws SQLException{
         try{
-            String url = "jdbc:mysql://localhost:3306/carbon5";
-            String user = "root";
-            String pwd = "";
-            Connection connect = DriverManager.getConnection(url, user, pwd);
-            String queryString = "SELECT Stock, NamePart FROM Part";
-            Statement stm = connect.createStatement();
-            ResultSet rs = stm.executeQuery(queryString);
-            RsTableModel model = new RsTableModel(rs);
+//            String url = "jdbc:mysql://localhost:3306/carbon5";
+//            String user = "root";
+//            String pwd = "";
+//            Connection connect = DriverManager.getConnection(url, user, pwd);
+//            String queryString = "SELECT Stock, NamePart FROM Part";
+//            Statement stm = connect.createStatement();
+//            ResultSet rs = stm.executeQuery(queryString);
+            RsTableModel model = new RsTableModel(Part.getAllParts());
             this.jTable1.setModel(model);
-            model.setData();
+//            model.setData();
         } catch (Exception e){
             e.printStackTrace();
         }   

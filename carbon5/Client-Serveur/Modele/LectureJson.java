@@ -1,20 +1,12 @@
 package Modele;
-import org.json.JSONObject;
-import org.json.JSONString;
-
-import Serveur.Controlleurs.Serveur;
+import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.lang.reflect.Array;
+import Serveur.Controlleurs.Serveur;
  
 public class LectureJson {
 	final static Logger logger = Logger.getLogger(Serveur.class);
@@ -28,12 +20,12 @@ public class LectureJson {
     public static ArrayList<String> LectureFichier(String fs) throws JSONException {
  
     	
-	// Création d'un objet JSON
+	// Crï¿½ation d'un objet JSON
 	JSONObject objet = new JSONObject(fs);
 	logger.info("Afficage du JSON : ");
 	logger.info(fs);
  
-	// Traitement du fichier reçu
+	// Traitement du fichier reï¿½u
 	logger.info("\nparcours du fichier Json :");
 	JSONArray tableau = objet.getJSONArray("data");
 	ArrayList<String> result = new ArrayList<String>();
@@ -70,6 +62,32 @@ public class LectureJson {
 	case("SelectAllParts"):
 		logger.info("retrieving all parts");
 	break;
+
+        case("SelectAllParking"):
+                logger.info("retrieving all parking");
+        break;
+
+        case("getInfoCar_query1"):
+                logger.info("retrieving info car");
+        break;
+        
+        case("getWorkflowCar_query2"):
+                logger.info("retrieving workflow complet car");
+        break;
+        
+        case("getCumulDay_query3"):
+                logger.info("retrieving day cumulation");
+        break;
+        
+        case("getManutentionnaires_query4"):
+                logger.info("retrieving warehousemen");
+        break;
+
+	case("Search"):
+		logger.info("retrieving car info");
+		result.add(tableau.getString(0));
+		System.out.print(", PUce=" + tableau.getString(0)+"\n");
+	break;
 	case("LoadAllComboBox"):
 		logger.info("retrieving all typeCar");
 	break;
@@ -85,10 +103,16 @@ public class LectureJson {
 		{
 			result.add(tableau.getString(i));
 		}
-		System.out.print("tableau créé \n");
+		System.out.print("tableau crï¿½ï¿½ \n");
 	break;
+	case("addPreferences"):
+		for(int i=0; i<tableau.length(); i++)
+		{
+			result.add(tableau.getString(i));
+		}
+		System.out.print("tableau créé \n");
 	default:
-		logger.info("Fonctionnalité non prise en charge pour l'instant");
+		logger.info("Fonctionnalitï¿½ non prise en charge pour l'instant");
 	break;
 	}	
 	return result;

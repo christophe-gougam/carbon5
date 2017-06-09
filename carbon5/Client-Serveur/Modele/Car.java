@@ -6,8 +6,12 @@
 package Modele;
 
 import java.sql.Date;
-import java.time.LocalDate;
+import java.sql.ResultSet;
 import java.util.ArrayList;
+
+import org.apache.log4j.Logger;
+
+import Serveur.Controlleurs.Serveur;
 
 /**
  * Class creates a vehicle
@@ -18,10 +22,13 @@ public class Car {
     private String matricule;
     private String TypeVehicule;
     private String listoperation;
+    private String Car;
     private Date date;
     private int place;
-    
-    private static ArrayList<Car> listCar = new ArrayList();
+
+    final static Logger logger = Logger.getLogger(Serveur.class);
+	
+    private static ArrayList<Car> listCar = new ArrayList<Car>();
     
     /**
      * Class constructor
@@ -29,6 +36,7 @@ public class Car {
      * @param TypeVehicule 
      */
     public Car (){}
+        
     public Car (String numePuce, String typevehicule, String matricule, Date date, String listOp, int place){
         this.NumePuce = numePuce;
         this.matricule = matricule;
@@ -37,26 +45,40 @@ public class Car {
         this.date=date;
         this.place=place;
     }
+
+    public Car(String numPuce, String typeVehicule, String matricule) {
+        this.NumePuce = numPuce;
+        this.matricule = matricule;
+        this.TypeVehicule = typeVehicule;
+    }
     
+    public Car(String numPuce ,String typeVehicule) {
+        this.NumePuce = numPuce;
+        this.TypeVehicule = typeVehicule;
+    }
+    
+    public Car(String typeVehicule) {
+        this.TypeVehicule = typeVehicule;
+    }
     
     public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
-	public int getPlace() {
-		return place;
-	}
-	public void setPlace(int place) {
-		this.place = place;
-	}
-	public String getListoperation() {
-		return listoperation;
-	}
-	public void setListoperation(String listoperation) {
-		this.listoperation = listoperation;
-	}
+            return date;
+    }
+    public void setDate(Date date) {
+            this.date = date;
+    }
+    public int getPlace() {
+            return place;
+    }
+    public void setPlace(int place) {
+            this.place = place;
+    }
+    public String getListoperation() {
+            return listoperation;
+    }
+    public void setListoperation(String listoperation) {
+            this.listoperation = listoperation;
+    }
 	/**
      * Method get NumePuce
      * @return NumePuce;
@@ -82,7 +104,7 @@ public class Car {
     }
     
     /**
-     * Method set matricule
+     * Method set Matricule
      * @param newMatricule
      */
     public void setMatricule(String newMatricule){
@@ -105,21 +127,59 @@ public class Car {
         this.TypeVehicule = type;
     }
     
+    public static void emptyCollection(){
+        listCar.clear();
+    }
+    
     public static void addToCollection(Car aCar){
     	listCar.add(aCar);
     }
+    
+    public static void addCarToCo(Car newCar){
+		listCar.clear();
+		listCar.add(newCar);
+	}
+//<<<<<<< HEAD
+    
+    public static void addCar(Car newCar){
+    	listCar.clear();
+    	listCar.add(newCar);
+	}
+		
+    public static ArrayList<Car> getAllCar(){
+		return listCar;
+		
+	}
+    
+    public static ArrayList<Car> getAlCar(){
+		return listCar;
+	}
     
     public static void removeFromCollection(Car aCar){
     	listCar.remove(aCar);
     }
     
+
+	public static void setAlCar(ArrayList<Car> newc){
+		listCar= newc;
+	}
+    public static boolean isInCollection(String numPuce){
+		Boolean check = false;
+		for(Car aCar: listCar){
+			if (aCar.NumePuce.equalsIgnoreCase(numPuce)){
+				check = true;
+			}
+		}
+		return check;
+	}
+
     /**
      * Method transform object Car to String
      * @param car
      * @return String carSerial
      */
     public static String serialize(Car car){
-    	String carSerial = car.NumePuce+"///"+car.TypeVehicule+"///"+car.matricule+"///"+car.date+"///"+car.listoperation+"///"+car.place;
+    	String carSerial = car.NumePuce+"///"+car.TypeVehicule+"///"+car.matricule;
     	return carSerial;
     }
     
@@ -129,11 +189,12 @@ public class Car {
      * @return object car
      */
     public static Car unSerialize(String serializedCar){
-    	ArrayList values = new ArrayList();
+    	ArrayList<String> values = new ArrayList<String>();
 		for (String retval: serializedCar.split("///")){
 			values.add(retval);
 		}
-		Car car = new Car(String.valueOf(values.get(0)), String.valueOf(values.get(1)), String.valueOf(values.get(2)), Date.valueOf(String.valueOf(values.get(3))), String.valueOf(values.get(4)), Integer.parseInt(values.get(5).toString()));
+		Car car = new Car(values.get(0), values.get(1), values.get(2));
+		logger.info(values.get(0)+values.get(1)+values.get(2));
 		return car;
     }
     /**
