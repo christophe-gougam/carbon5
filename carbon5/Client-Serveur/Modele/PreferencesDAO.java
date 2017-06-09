@@ -45,9 +45,9 @@ public class PreferencesDAO extends DAO<Preferences>{
                 ResultSet.TYPE_SCROLL_INSENSITIVE, 
                 ResultSet.CONCUR_UPDATABLE
              ).executeUpdate(
-                "UPDATE Preferences SET indifDays = '" + obj.getIndifDays() + "' "+
-                "vetoDays ='" + obj.getVetoDays() + "' " +
-                "indifTimeRep ='" + obj.getIndifTimeRep() + "' " +
+                "UPDATE Preferences SET indifDays = '" + obj.getIndifDays() + "', "+
+                "vetoDays ='" + obj.getVetoDays() + "', " +
+                "indifTimeRep ='" + obj.getIndifTimeRep() + "', " +
                 "vetoTimeRep ='" + obj.getVetoTimeRep() + "' "+ 
                 " WHERE id = " + obj.getId()
              );

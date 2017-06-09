@@ -335,18 +335,18 @@ public class Connection{
 			break;
 			case "addPreferencesOK" : case "addPreferencesKO":
 				objet = new JSONObject(reponse);
-				logger.info("Afficage du resultat de mise ï¿½ jour : ");
+				logger.info("Afficage du resultat de mise à jour : ");
 		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
 			break;
 			case "SelectAllPreferencesOK" : case "SelectAllPreferencesKO":
 				objet = new JSONObject(reponse);
-				logger.info("Afficage du resultat de requï¿½te de prï¿½fï¿½rence : ");
+				logger.info("Afficage du resultat de requête de préférence : ");
 		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 		    	Preferences.chargePrefs(Preferences.unSerialize(tableau.getString(0)));
-				JOptionPane.showMessageDialog(frame, tableau.get(0));
+				//JOptionPane.showMessageDialog(frame, tableau.get(0));
 			break;
 			default : 
 				logger.info("default");

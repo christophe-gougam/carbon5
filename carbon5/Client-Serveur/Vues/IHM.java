@@ -187,7 +187,7 @@ public class IHM extends JFrame {
                 //code
 //            	ArrayList<String> data = new ArrayList<String>();
 //            	String identifier = "SelectAllPreferences";
-//            	logger.info("rï¿½cupï¿½ration des prï¿½fï¿½rences enregistrï¿½es");
+//            	logger.info("récupération des préférences enregistrées");
 //            	new ServerConnect(data, identifier, pan2);
             	//add method to load list
             	pan2.add(new PanOrdreReparation(), listContent[2]);

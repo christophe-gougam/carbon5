@@ -49,7 +49,9 @@ public class RepairCard {
         
 	final static Logger logger = Logger.getLogger(Serveur.class);
 	private UrgencyDegree degree;
+        private UrgencyDegree description;
 	private CardState card;
+        private CardState statut2;
 	private Car car;
 	private ArrayList<Repairs> repairs;
 	private ArrayList<Defect> defects;
@@ -66,6 +68,7 @@ public class RepairCard {
         private int numRep;
         private String name;
         private String lname;
+	private int ponderation;
 	int idcard;
 	private String idcar;
 	int idparkplace;
@@ -462,49 +465,6 @@ public class RepairCard {
 	 * @param entryDate
 	 * @return timeWaited
 	 */
-//	public int timeWaiting(Date entryDate){
-//		int timeWaited;
-//		
-//		Calendar calendarToday = Calendar.getInstance();
-//		
-//		Calendar calendarEntry = Calendar.getInstance();
-//		calendarEntry.setTime(entryDate);
-//		
-//		timeWaited = calendarToday.compareTo(calendarEntry);
-//	    
-//	    return timeWaited;
-//	}
-	
-//	public static int timeWaiting(Date d1) {
-//		int timeWaited = 0;
-//		Date d2 = new Date();
-//	    long diff = d2.getTime() - d1.getTime();
-//	    timeWaited = (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-//	    
-//	}
-	
-//	public static long timeWaiting(Date firstDate) throws IOException
-//	{
-//		Date date = new Date();
-//		date.setYear(firstDate.getYear());
-//		date.setMonth(firstDate.getMonth());
-//		date.setDate(firstDate.getDate());
-//		
-//		System.out.println(firstDate.getYear());
-//		System.out.println(firstDate.getMonth());
-//		System.out.println(firstDate.getDate());
-//		
-//		Date d = Calendar.getInstance().getTime();
-//		System.out.println(d.getYear());
-//		System.out.println(d.getMonth());
-//		System.out.println(d.getDate());
-//		
-//		long t = new Date().getTime();
-//		
-//		int ts = (int)(new Date().getTime() - firstDate.getTime()) / (1000*60*60*24);
-//		
-//		return ts;
-//	}
 	public static int timeWaiting(Date entry){
 		Instant instant = LocalDate.now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();
 		java.util.Date instante = java.util.Date.from(instant);
@@ -583,13 +543,14 @@ public class RepairCard {
 		System.out.println("Finished prioritizing");
 		
 		for (RepairCard aRep: testcggg){
-			System.out.println("Nombre de jours dans le dï¿½pï¿½t : " + RepairCard.timeWaiting(aRep.getEntryDate()));
-			System.out.println("Temps de rï¿½paration estimï¿½ : " + RepairCard.getTimeRep(aRep));
-			System.out.println("Criticitï¿½ des pannes : " +RepairCard.getCriticity(aRep));
+			System.out.println("Nombre de jours dans le dépôt : " + RepairCard.timeWaiting(aRep.getEntryDate()));
+			System.out.println("Temps de réparation estimé : " + RepairCard.getTimeRep(aRep));
+			System.out.println("Criticité des pannes : " +RepairCard.getCriticity(aRep));
 			System.out.println("*******************");
 		}
 	}
 	
+	//Method to calculate the time necessary for all reparations
 	public static float getTimeRep(RepairCard aRep){
 		float time = 0;
 		for (Defect aDef: aRep.getDefects()){
@@ -606,8 +567,10 @@ public class RepairCard {
 		return crit;
 	}
 	
+	//method fusioning the global concordance and global discordance matrix
+	//to create a matrix with the priority percentage of one vehicule over another for all vehicules
+	//determines the waiting list by searching for a vehicule that isn't prioritized by any other (in a loop)
 	public static void getFinalDecision(double[][] globalConcordance, double[][] globalDiscordance, ArrayList<RepairCard> list){
-		//ArrayList<RepairCard> finalOrder = new ArrayList<RepairCard>();
 		
 		double[][] finalMatrix = new double[list.size()][list.size()];
 		for (int i=0; i<list.size(); i++){
@@ -642,6 +605,8 @@ public class RepairCard {
 		}
 	}
 	
+	//method that puts a priority veto of one car over the other depending on the preferences saved
+	//returns a discordance matrix with all the vetos
 	public static double[][] getGlobalDiscordanceMatrix(ArrayList<RepairCard> list, Preferences prefs) throws IOException{
 		double[][] matrixDate = new double[list.size()][list.size()];
 		for (int i=0; i<list.size(); i++){
@@ -695,7 +660,7 @@ public class RepairCard {
 			}
 		}
 		
-		//fill Global Concordance matrix with info from all criterias
+		//fills Global Discordance matrix with info from all criterias
 		double[][] matrixGlobal = new double[list.size()][list.size()];
 		for(int i = 0; i<list.size(); i++){
 			for (int j=0; j<list.size(); j++){
@@ -708,6 +673,7 @@ public class RepairCard {
 		return matrixGlobal;
 	}
 	
+	//method that creates a matrix with priority percentage of one car over another depending on preferences saved
 	public static double[][] getGlobalConcordanceMatrix(ArrayList<RepairCard> list, Preferences prefs) throws IOException{
 		double[][] matrixDate = new double[list.size()][list.size()];
 		for (int i=0; i<list.size(); i++){
@@ -743,7 +709,7 @@ public class RepairCard {
 		
 
 		
-		//fill Global Concordance matrix with info from all criterias
+		//fills Global Concordance matrix with info from all criterias
 		double[][] matrixGlobal = new double[list.size()][list.size()];
 		for(int i = 0; i<list.size(); i++){
 			for (int j=0; j<list.size(); j++){
