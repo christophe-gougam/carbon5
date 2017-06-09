@@ -5,7 +5,28 @@
  */
 package Vues;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import org.apache.log4j.Logger;
+
+import Client.Controlleurs.ServerConnect;
+import Modele.Car;
+import Modele.CardState;
+import Modele.Part;
+import Modele.RepairCard;
+import Modele.RepairCardDAO;
+import Modele.User;
+import Serveur.Controlleurs.Serveur;
+import Vues.PanEntreeStock.BoutonListener;
 
 /**
  *
@@ -29,86 +50,108 @@ public class PanelDetailOperation extends JPanel {
     private void initComponents() {
 
         jLabel5 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblDetailOp = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        
+        tfidVehicule = new javax.swing.JTextField(RepairCard.getPrioritaryCard().getidcar());
+        tfidTechnicien = new javax.swing.JTextField();
+        jtfState = new javax.swing.JTextField("En Cours");
+        
+        DefaultComboBoxModel model1 = new DefaultComboBoxModel();
+        ArrayList<String> parts = new ArrayList<String>();
+        for (Part aPart : Part.getAllParts()){
+        	model1.addElement(aPart.getNamePart());
+        }
+        
+        DefaultComboBoxModel model2 = new DefaultComboBoxModel();
+        ArrayList<String> parts2 = new ArrayList<String>();
+        for (Part aPart : Part.getAllParts()){
+        	model2.addElement(aPart.getNamePart());
+        }
+        
+        DefaultComboBoxModel model3 = new DefaultComboBoxModel();
+        ArrayList<String> parts3 = new ArrayList<String>();
+        for (Part aPart : Part.getAllParts()){
+        	model3.addElement(aPart.getNamePart());
+        }
+        
+        cbPiece1 = new javax.swing.JComboBox(model1);
+        cbPiece2 = new javax.swing.JComboBox(model2);
+        cbPiece3 = new javax.swing.JComboBox(model3);
         jLabel4 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        lblQté1 = new javax.swing.JLabel();
+        lblQté2 = new javax.swing.JLabel();
+        lblQté3 = new javax.swing.JLabel();
+        jtfQte1 = new javax.swing.JTextField();
+        jtfQte2 = new javax.swing.JTextField();
+        jtfQte3 = new javax.swing.JTextField();
+        btnValide = new javax.swing.JButton();
+        btnSuspend = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        lblOpe1 = new javax.swing.JLabel();
+        lblOpe2 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        lblOpe3 = new javax.swing.JLabel();
+        
+        tfidVehicule.setEditable(false);
+        tfidTechnicien.setEditable(false);
+        jtfState.setEditable(false);
+        cbPiece1.setEditable(false);
+        cbPiece2.setEditable(false);
+        cbPiece3.setEditable(false);
+        
+        
 
         jLabel5.setText("jLabel5");
 
-        jLabel1.setText("DETAIL DE L'OPERATION");
+        lblDetailOp.setText("DETAIL DE L'OPERATION");
 
         jLabel2.setText("INFORMATION________________________________________________");
 
         jLabel3.setText("OPERATION__________________________________________________");
 
-        jTextField1.setText("jTextField1");
+        tfidVehicule.setText("VOI456");
 
-        jTextField2.setText("jTextField2");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tfidTechnicien.setText("1");
 
         jLabel4.setText("Pièce nécessaire");
 
-        jLabel7.setText("Quantité");
+        lblQté1.setText("Quantité");
 
-        jLabel8.setText("Quantité");
+        lblQté2.setText("Quantité");
 
-        jLabel9.setText("Quantité");
+        lblQté3.setText("Quantité");
 
-        jTextField3.setText("jTextField3");
+        jtfQte1.setText("    ");
 
-        jTextField4.setText("jTextField4");
+        jtfQte2.setText("    ");
 
-        jTextField5.setText("jTextField5");
+        jtfQte3.setText("    ");
 
-        jButton1.setText("Valider");
+        btnValide.setText("Valider");
+        btnValide.addActionListener(new BoutonListener(this));
 
-        jButton2.setText("Suspendre");
+        btnSuspend.setText("Suspendre");
 
         jLabel10.setText("Pièce nécessaire");
 
         jLabel11.setText("Pièce nécessaire");
 
-        jLabel6.setText("jLabel6");
+        lblOpe1.setText("Vitre");
 
-        jLabel12.setText("jLabel12");
+        lblOpe2.setText("Pneu");
 
-        jLabel13.setText("ID véhicule:");
+        jLabel13.setText("Numéro de puce:");
 
         jLabel14.setText("ID technicien");
 
         jLabel15.setText("Statut");
 
-        jLabel16.setText("jLabel16");
+        lblOpe3.setText("Renovation phare");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -116,45 +159,45 @@ public class PanelDetailOperation extends JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btnSuspend)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnValide, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1))
+                        .addComponent(lblDetailOp))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel12)
+                            .addComponent(lblOpe1)
+                            .addComponent(lblOpe2)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel10)
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cbPiece3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel9)
+                                .addComponent(lblQté3)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel16)
+                                .addComponent(jtfQte3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblOpe3)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel11))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cbPiece1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbPiece2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addComponent(lblQté2)
+                                    .addComponent(lblQté1, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jtfQte1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtfQte2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel13)
@@ -162,9 +205,9 @@ public class PanelDetailOperation extends JPanel {
                                     .addComponent(jLabel15))
                                 .addGap(26, 26, 26)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(tfidTechnicien, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfidVehicule)
+                                    .addComponent(jtfState, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel2)))
@@ -178,87 +221,152 @@ public class PanelDetailOperation extends JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lblDetailOp)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfidVehicule, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfidTechnicien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel6)
+                .addComponent(lblOpe1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfQte1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbPiece1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4)
-                        .addComponent(jLabel7)))
+                        .addComponent(lblQté1)))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel12)
+                .addComponent(lblOpe2)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8)
+                            .addComponent(cbPiece2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblQté2)
                             .addComponent(jLabel11)))
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfQte2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
-                .addComponent(jLabel16)
+                .addComponent(lblOpe3)
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
+                    .addComponent(cbPiece3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblQté3)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfQte3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnValide)
+                    .addComponent(btnSuspend))
                 .addContainerGap())
         );
     }// </editor-fold>                        
 
 
     // Variables declaration - do not modify                     
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnValide;
+    private javax.swing.JButton btnSuspend;
+    private JComboBox cbPiece1;
+    private JComboBox cbPiece2;
+    private JComboBox cbPiece3;
+    private javax.swing.JLabel lblDetailOp;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel lblOpe2;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel lblOpe3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JLabel lblOpe1;
+    private javax.swing.JLabel lblQté1;
+    private javax.swing.JLabel lblQté2;
+    private javax.swing.JLabel lblQté3;
+    private javax.swing.JTextField jtfState;
+    private javax.swing.JTextField tfidVehicule;
+    private javax.swing.JTextField tfidTechnicien;
+    private javax.swing.JTextField jtfQte1;
+    private javax.swing.JTextField jtfQte2;
+    private javax.swing.JTextField jtfQte3;
+    final static Logger logger = Logger.getLogger(Serveur.class);
+
     // End of variables declaration    
+    
+    class BoutonListener implements ActionListener{
+    	JPanel frame=null;
+
+    	/**
+     	* Class constructor
+     	* @param f 
+     	*/
+    	public BoutonListener  (JPanel f){
+    		this.frame=f;
+    	}
+	
+    	/**
+    	 * Method generate component action
+    	 * @param arg0 
+    	 */
+    	public void actionPerformed(ActionEvent arg0){
+    		//We substract jtfPiece1 to the original Stock of the referenced part.
+    		//Part.getAllParts().get(0).setStock(Part.getAllParts().get(0).getStock() - 1);
+    	
+    		if(Part.getAllParts().get(0).getStock() < 10){
+    			int result = JOptionPane.showConfirmDialog(null, 
+    					   "Le stock de pièces choisi est désormais inférieur à 10, voulez-vous commander des pièces ?","Attention", JOptionPane.YES_NO_OPTION);
+    			if(result == JOptionPane.NO_OPTION) {
+    				JOptionPane jop1 = new JOptionPane();
+    				jop1.showMessageDialog(null, "Opération validée", "Information", JOptionPane.INFORMATION_MESSAGE);
+    			//Set varialble State of the current Part to "Réparé"
+    			    System.exit(0);
+    			}
+    			else{
+    				PanEntreeStock jp = new PanEntreeStock();
+    			}
+    		}
+    		
+        	}
+    		
+    	}
+    	
+	}
+    
+    /**
+     * Class Bouton2Listener listens button Valider
+     */
+    class Bouton2Listener implements ActionListener{
+    	JPanel frame=null;
+
+    	public Bouton2Listener  (JPanel f){
+    	this.frame=f;
+    	}
+    	
+        /**
+         * Method generate button action
+         * @param e 
+         * @see dispose()
+         */
+    	public void actionPerformed(ActionEvent e){
+            //Initialize varialble State of the current Part to "En attente"
+    		
+    		
+    	}
+
+		
+	
 }

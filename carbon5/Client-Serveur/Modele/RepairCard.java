@@ -39,14 +39,16 @@ import java.util.Set;
  * class creating the card referring to a vehicule 
  */
 public class RepairCard {
-	
+
 	private static ArrayList<RepairCard> waitList = new ArrayList<RepairCard>();
-        private static ArrayList<RepairCard> repairCard = new ArrayList<RepairCard>();
-        
-        private Set<Car> listCar = new HashSet<Car>();
-        private Set<CardState> listState = new HashSet<CardState>();
-        private Set<UrgencyDegree> listUD = new HashSet<UrgencyDegree>();
-        
+	private static ArrayList<RepairCard> repairCard = new ArrayList<RepairCard>();
+	
+
+	private Set<Car> listCar = new HashSet<Car>();
+	private Set<CardState> listState = new HashSet<CardState>();
+	private Set<UrgencyDegree> listUD = new HashSet<UrgencyDegree>();
+	public static RepairCard prioritaryCard;
+	
 	final static Logger logger = Logger.getLogger(Serveur.class);
 	private UrgencyDegree degree;
         private UrgencyDegree description;
@@ -101,6 +103,10 @@ public class RepairCard {
 		this.outDate = out;
 		this.overAllDetails = details;
 		this.user = userid;
+	}
+	public RepairCard(int IdCard, String IdCar){
+		this.idcard=IdCard;
+		this.idcar = IdCar;
 	}
 	
 	public RepairCard(){
@@ -190,6 +196,9 @@ public class RepairCard {
 	 */
 	public void setDegree(UrgencyDegree deg){
 		this.degree = deg;
+	}
+        public static RepairCard getPrioritaryCard() {
+		return prioritaryCard;
 	}
         
         public Part getPart(){
@@ -772,6 +781,12 @@ public class RepairCard {
 		return serialized;
         }
 
+public static String serialize_query3(RepairCard rep){
+
+		String serialized = rep.getidcard()+"///"+rep.getidcar();
+		return serialized;
+	}
+
 	/**
 	 * Method to unserialize the card and to create the object
 	 * @param serial
@@ -921,4 +936,10 @@ public class RepairCard {
     public String toString(Object values) {
         return String.valueOf(values);
     }
+    
+    public static ArrayList<RepairCard> getAllRepairCard() {
+		// TODO Auto-generated method stub
+		return repairCard;
+	}
+    
 }
