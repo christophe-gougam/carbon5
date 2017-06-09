@@ -49,9 +49,7 @@ public class RepairCard {
         
 	final static Logger logger = Logger.getLogger(Serveur.class);
 	private UrgencyDegree degree;
-        private UrgencyDegree description;
 	private CardState card;
-        private CardState statut;
 	private Car car;
 	private ArrayList<Repairs> repairs;
 	private ArrayList<Defect> defects;
@@ -63,7 +61,11 @@ public class RepairCard {
         private Part part;
         private Repairs repair;
         private Defect defect;
-	private int ponderation;
+	private int cumulCar;
+        private String statut;
+        private int numRep;
+        private String name;
+        private String lname;
 	int idcard;
 	private String idcar;
 	int idparkplace;
@@ -137,6 +139,37 @@ public class RepairCard {
             this.park = place;
         }
 	
+        public RepairCard(int count, String state){
+            this.cumulCar = count;
+            this.statut = state;
+        }
+        
+        public RepairCard(int num, String nom, String prenom){
+            this.numRep = num;
+            this.name = nom;
+            this.lname = prenom;
+        }
+        
+        public int getNbCar(){
+            return this.cumulCar;
+        }
+        
+        public String getStatutCar(){
+            return this.statut;
+        }
+        
+        public int getNumRep(){
+            return this.numRep;
+        }
+        
+        public String getName(){
+            return this.name;
+        }
+        
+        public String getLastName(){
+            return this.lname;
+        }
+        
 	public int getidcard(){
 		return this.idcard;
 	}
@@ -772,6 +805,16 @@ public class RepairCard {
 		return serialized;
         }
 
+        public static String serialize_query3(RepairCard rep){
+                String serialized = rep.cumulCar + "//////" + rep.statut;
+		return serialized;
+        }
+        
+        public static String serialize_query4(RepairCard rep){
+                String serialized = rep.name + "///" + rep.lname + "///" + rep.numRep;
+		return serialized;
+        }
+        
 	/**
 	 * Method to unserialize the card and to create the object
 	 * @param serial
@@ -853,6 +896,40 @@ public class RepairCard {
                 logger.info("Begin unserilization");
                 //creating the object repairCard with all other objects
                 RepairCard repairCard = new RepairCard(idcard, entryDate, outDate, detailOps, car,ud,cs,part,rep,def,place);
+                logger.info("Success RepairCard unserilization");
+		
+                return repairCard;
+        }
+        
+        public static RepairCard unSerialize_query3(String serialized) throws ParseException{
+                ArrayList<String> values = new ArrayList<String>();
+                logger.info("Enter unserilization");
+		for (String retval: serialized.split("//////")){
+			values.add(retval);
+		}
+                int idcard = Integer.parseInt(values.get(0));
+                String cs = values.get(1);
+                
+                logger.info("Begin unserilization");
+                //creating the object repairCard with all other objects
+                RepairCard repairCard = new RepairCard(idcard, cs);
+                logger.info("Success RepairCard unserilization");
+		
+                return repairCard;
+        }
+        
+        public static RepairCard unSerialize_query4(String serialized) throws ParseException{
+                ArrayList<String> values = new ArrayList<String>();
+                logger.info("Enter unserilization");
+		for (String retval: serialized.split("///")){
+			values.add(retval);
+		}
+                String nom = values.get(0);
+                String prenom = values.get(1);
+                int num = Integer.parseInt(values.get(2));
+                logger.info("Begin unserilization");
+                //creating the object repairCard with all other objects
+                RepairCard repairCard = new RepairCard(num, nom, prenom);
                 logger.info("Success RepairCard unserilization");
 		
                 return repairCard;

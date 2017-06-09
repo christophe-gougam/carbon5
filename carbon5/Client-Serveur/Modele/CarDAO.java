@@ -116,7 +116,6 @@ public class CarDAO extends DAO<Car>{
             //Getting number of parts
             cars.add(String.valueOf(Car.getAllCar().size()));
             for(Car aCar: Car.getAllCar()){
-                    //adding parts
                     cars.add(Car.serialize(aCar));
             }
             return cars;

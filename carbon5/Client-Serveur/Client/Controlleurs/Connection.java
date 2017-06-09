@@ -222,32 +222,28 @@ public class Connection{
                                 RepairCard.addRepairCardToCo(aRepairCard);	
 		    	}
                         break;
-//                        
-//                        case "query3_OK":
-//				objet = new JSONObject(reponse);
-//				logger.info("Affichage du resultat de mise à jour : ");
-//		    	logger.info(reponse);
-//		    	tableau = objet.getJSONArray("data");
-//		    	for (int i =0; i<tableau.getInt(1);i++){
-//		    		Parking aParking = Parking.unSerialize(tableau.getString(i+2));
-//		    		if(!Parking.isInCollection(aParking.getNumParking())){
-//		    			Parking.addParkingToCo(aParking);
-//		    		}	
-//		    	}
-//                        break;
-//                        
-//                        case "query4_OK":
-//				objet = new JSONObject(reponse);
-//				logger.info("Affichage du resultat de mise à jour : ");
-//		    	logger.info(reponse);
-//		    	tableau = objet.getJSONArray("data");
-//		    	for (int i =0; i<tableau.getInt(1);i++){
-//		    		Parking aParking = Parking.unSerialize(tableau.getString(i+2));
-//		    		if(!Parking.isInCollection(aParking.getNumParking())){
-//		    			Parking.addParkingToCo(aParking);
-//		    		}	
-//		    	}
-//                        break;
+                        
+                        case "query3_OK":
+				objet = new JSONObject(reponse);
+				logger.info("Affichage du resultat de mise à jour : ");
+		    	logger.info(reponse);
+		    	tableau = objet.getJSONArray("data");
+		    	for (int i =0; i<tableau.getInt(1);i++){
+		    		RepairCard aRepairCard = RepairCard.unSerialize_query3(tableau.getString(i+2));
+                                RepairCard.addRepairCardToCo(aRepairCard);	
+		    	}
+                        break;
+                        
+                        case "query4_OK":
+				objet = new JSONObject(reponse);
+				logger.info("Affichage du resultat de mise à jour : ");
+		    	logger.info(reponse);
+		    	tableau = objet.getJSONArray("data");
+		    	for (int i =0; i<tableau.getInt(1);i++){
+		    		RepairCard aRepairCard = RepairCard.unSerialize_query4(tableau.getString(i+2));
+                                RepairCard.addRepairCardToCo(aRepairCard);	
+		    	}
+                        break;
                         
 		    //rechercher vehicule avec sa puce
 			case "SearchOK":
@@ -294,7 +290,7 @@ public class Connection{
 				objet = new JSONObject(reponse);
 				logger.info("Afficage du resultat");
 		    	logger.info(reponse);
-                tableau = objet.getJSONArray("allCar");
+                        tableau = objet.getJSONArray("allCar");
 		    	tableautypecar = objet.getJSONArray("data");
 		    	tableaudefect = objet.getJSONArray("dataDefect");
 		    	tableaudPlace = objet.getJSONArray("placement");

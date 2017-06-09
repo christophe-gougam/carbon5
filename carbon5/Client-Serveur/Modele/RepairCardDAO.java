@@ -119,6 +119,70 @@ public class RepairCardDAO extends DAO<RepairCard>{
             return wfCar;
         }
         
+        public ArrayList<String> getCumulDay(){
+            ArrayList<String> cumulDay = new ArrayList<String>();
+            try {
+                ResultSet result = this .connect
+                                        .createStatement(
+                                                    ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                                    ResultSet.CONCUR_UPDATABLE
+                                                 ).executeQuery(
+                                                    "SELECT COUNT(repaircard.id) AS Nombre, description AS Statut "
+                                                  + "FROM repaircard, cardstate "
+                                                  + "WHERE repaircard.IdCard = cardstate.Id "
+                                                  + "GROUP BY description"
+                                                 );
+                RepairCard.emptyCollection();
+                while(result.next()){
+                    RepairCard.addRepairCardToCo(new RepairCard(
+                        result.getInt("Nombre"),
+                        result.getString("Statut")
+                    ));
+                }
+            } catch (SQLException e) {
+                    e.printStackTrace();
+            }
+            //Getting number of parts
+            cumulDay.add(String.valueOf(RepairCard.getInfoCars().size()));
+            for (RepairCard aRC: RepairCard.getInfoCars()){
+                cumulDay.add(RepairCard.serialize_query3(aRC));
+            }
+            return cumulDay;
+        }
+        
+        public ArrayList<String> getManu(){
+            ArrayList<String> manu = new ArrayList<String>();
+            try {
+                ResultSet result = this .connect
+                                        .createStatement(
+                                                    ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                                                    ResultSet.CONCUR_UPDATABLE
+                                                 ).executeQuery(
+                                                    "SELECT COUNT(IdRepair) AS Nombre, users.LastName AS Prenom, users.FirstName AS Nom "
+                                                    + "FROM repaircard, cardrepairs, users "
+                                                    + "WHERE repaircard.Id = cardrepairs.IdCard "
+                                                    + "AND repaircard.IdUser = users.Id "
+                                                    + "GROUP BY IdUser"
+                                                 );
+                RepairCard.emptyCollection();
+                while(result.next()){
+                    RepairCard.addRepairCardToCo(new RepairCard(
+                        result.getInt("Nombre"),
+                        result.getString("Nom"),
+                        result.getString("Prenom")
+                    ));
+                }
+            } catch (SQLException e) {
+                    e.printStackTrace();
+            }
+            //Getting number of parts
+            manu.add(String.valueOf(RepairCard.getInfoCars().size()));
+            for (RepairCard aRC: RepairCard.getInfoCars()){
+                manu.add(RepairCard.serialize_query4(aRC));
+            }
+            return manu;
+        }
+        
 	/**
         * Creates an entry in the database relative to an object
         * @param obj

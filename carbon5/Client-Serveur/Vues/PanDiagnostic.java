@@ -19,76 +19,46 @@ import javax.swing.JTextField;
  *
  * @author Carbon5
  */
-public class PanDiagnostic extends JPanel implements ActionListener{
-    private JLabel titre = new JLabel("Diagnostic de vehicule");
-    private JLabel label1 = new JLabel("ID vehicule");
-    private JLabel label2 = new JLabel("Parking");
-    private JLabel label3 = new JLabel("Diagnostic de la panne");
-    private JLabel label4 = new JLabel("Degre d'uregence");
-    private JLabel label5 = new JLabel("Piece utilise");
-    private JLabel label6 = new JLabel("Temps prevu");
-    
-    private JTextField jt1 = new JTextField();
-    private JTextField jt2 = new JTextField();
-    private JTextField jt3 = new JTextField();
-    
-    private JComboBox combo1 = new JComboBox();
-    private JComboBox combo2 = new JComboBox();
-    private JComboBox combo3 = new JComboBox();
-    
-    private JButton button1 = new JButton("Valider");
-    private JButton button2 = new JButton("Annuler");
-    
-    /* 
-    Class constructor
-    */
-    public PanDiagnostic(){
-        this.add(titre);
-        this.add(label1);
-        this.add(jt1);
-        this.add(label2);
-        this.add(combo1);
-        this.add(label3);
-        this.add(combo2);
-        this.add(label4);
-        this.add(combo3);
-        this.add(label5);
-        this.add(jt2);
-        this.add(label6);
-        this.add(jt3);
-        this.add(button1);
-        this.add(button2);
-        
-        //Set dimension 
-        combo1.setPreferredSize(new Dimension(100,20));
-        combo2.setPreferredSize(new Dimension(100,20));
-        combo3.setPreferredSize(new Dimension(100,20));
-        jt1.setPreferredSize(new Dimension(100,20));
-        jt2.setPreferredSize(new Dimension(100,20));
-        jt3.setPreferredSize(new Dimension(100,20));
-        
-        //Add item to combo box "PARKING"
-        combo1.addItem("1");
-        combo1.addItem("2");
-        combo1.addItem("3");
-        
-        //Add item to combo box "DIAGNOSTIC PANNE"
-        combo2.addItem("Panne moteur");
-        combo2.addItem("Panne lampe phare");
-        combo2.addItem("Retroviseur casse");
-        
-        //Add item to combo box "DEGRE URGENCE"
-        combo3.addItem("1");
-        combo3.addItem("2");
-        combo3.addItem("3");
+public class PanDiagnostic extends JPanel {
+    public PanDiagnostic() {
+        initComponents();
     }
-    
-    /*
-    Method generate components actions
-    */
-    public void actionPerformed(ActionEvent e) {
-    	//need to create the rapairCard to put into database
-		//need to add the repairCard to the waitList to determine oder of repairs
-    }
-    
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    private void initComponents() {
+
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+
+        jLabel1.setText("BIENVENUE CAR SHARING CLUB CSC ");
+
+        jLabel2.setText("Carbon5");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(jLabel1)
+                .addContainerGap(109, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(89, 89, 89)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 472, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addContainerGap())
+        );
+    }// </editor-fold>                        
+
+    // Variables declaration - do not modify                     
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    // End of variables declaration
 }

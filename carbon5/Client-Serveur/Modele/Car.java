@@ -136,10 +136,9 @@ public class Car {
     }
     
     public static void addCarToCo(Car newCar){
-		listCar.clear();
 		listCar.add(newCar);
 	}
-//<<<<<<< HEAD
+
     
     public static void addCar(Car newCar){
     	listCar.clear();

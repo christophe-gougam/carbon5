@@ -47,7 +47,7 @@ public class IHM extends JFrame {
     private JPanel pan1 = new JPanel();
     private JPanel pan2 = new JPanel();
     
-    private JButton bouton1 = new JButton("Diagnostic") ;
+//    private JButton bouton1 = new JButton("Diagnostic") ;
     private JButton bouton2 = new JButton("Parking");
     private JButton bouton3 = new JButton("Ordre de reparation");
     private JButton bouton4 = new JButton("Detail operation");
@@ -78,10 +78,10 @@ public class IHM extends JFrame {
         this.setContentPane(pan);
         
         pan1.setBackground(Color.GRAY);
-        pan1.setLayout(new GridLayout(11,1));
+        pan1.setLayout(new GridLayout(10,1));
         
         //Add component to panel
-        pan1.add(bouton1);
+//        pan1.add(bouton1);
         pan1.add(bouton2);
         pan1.add(bouton3);
         pan1.add(bouton4);
@@ -109,7 +109,7 @@ public class IHM extends JFrame {
         pan1.add(bouton8);
         
         //setBackground buttons
-        bouton1.setBackground(Color.red);
+//        bouton1.setBackground(Color.red);
         bouton2.setBackground(Color.red);
         bouton3.setBackground(Color.red);
         bouton4.setBackground(Color.red);
@@ -119,7 +119,7 @@ public class IHM extends JFrame {
         bouton8.setBackground(Color.red);
         
         //Add listener to buttons        
-        bouton1.addActionListener(new Ecouteur());
+//        bouton1.addActionListener(new Ecouteur());
         bouton2.addActionListener(new Ecouteur());
         bouton3.addActionListener(new Ecouteur());
         bouton4.addActionListener(new Ecouteur());
@@ -139,7 +139,7 @@ public class IHM extends JFrame {
         pan.add(pan1, BorderLayout.WEST);
         pan.add(pan2);
         
-        pan2.add(new PanelDiagnostic(), listContent[0]);
+        pan2.add(new PanDiagnostic(), listContent[0]);
         pan2.add(new PanParking(), listContent[1]);
         
         pan2.add(new PanelDetailOperation(), listContent[3]);
@@ -160,14 +160,14 @@ public class IHM extends JFrame {
     */
     class Ecouteur implements ActionListener{
         public void actionPerformed(ActionEvent e) {
-            if(e.getSource() == bouton1){
-                //code
-                cl.show(pan2, listContent[0]);
-                liste1.setVisible(false);
-                liste2.setVisible(false);
-                liste3.setVisible(false);
-                pan.revalidate();
-            }
+//            if(e.getSource() == bouton1){
+//                //code
+//                cl.show(pan2, listContent[0]);
+//                liste1.setVisible(false);
+//                liste2.setVisible(false);
+//                liste3.setVisible(false);
+//                pan.revalidate();
+//            }
             if(e.getSource() == bouton2){
             	if(compteur2<1){
                 	Parking.emptyCollection();
@@ -187,7 +187,7 @@ public class IHM extends JFrame {
                 //code
 //            	ArrayList<String> data = new ArrayList<String>();
 //            	String identifier = "SelectAllPreferences";
-//            	logger.info("récupération des préférences enregistrées");
+//            	logger.info("rï¿½cupï¿½ration des prï¿½fï¿½rences enregistrï¿½es");
 //            	new ServerConnect(data, identifier, pan2);
             	//add method to load list
             	pan2.add(new PanOrdreReparation(), listContent[2]);
