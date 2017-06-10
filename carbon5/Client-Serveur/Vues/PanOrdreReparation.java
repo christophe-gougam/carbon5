@@ -9,14 +9,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import org.apache.log4j.Logger;
+
 import Client.Controlleurs.ServerConnect;
-import Modele.Preferences;
 import Modele.User;
 import Serveur.Controlleurs.Serveur;
-import Vues.PanEntreeStock.BoutonListener;
-import org.apache.log4j.Logger;
 
 /**
  *
@@ -76,20 +76,20 @@ public class PanOrdreReparation extends JPanel {
 
         jButton2.setText("Annuler");
 
-        jTextField1.setText(String.valueOf(Preferences.getPrefs().getIndifDays()));
+        jTextField1.setText("champs1");
 
         jLabel2.setText("Nombre de jours dans le dépôt");
 
-        jTextField2.setText(String.valueOf(Preferences.getPrefs().getVetoDays()));
+        jTextField2.setText("champs2");
 
-        jTextField3.setText(String.valueOf(Preferences.getPrefs().getIndifTimeRep()));
+        jTextField3.setText("champs3");
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
             }
         });
 
-        jTextField4.setText(String.valueOf(Preferences.getPrefs().getVetoDays()));
+        jTextField4.setText("champs4");
 
         jLabel4.setText("Indifférence");
 
@@ -211,21 +211,26 @@ class BoutonListener implements ActionListener{
 	 * @param arg0 
 	 */
 	public void actionPerformed(ActionEvent arg0){
-	
-		String indifDays = jTextField1.getText();
-		String vetoDays = jTextField2.getText();
-		String indifTime = jTextField3.getText();
-		String vetoTime = jTextField4.getText();
 		
-		ArrayList<String> data = new ArrayList<String>();
-		data.add(indifDays);
-		data.add(vetoDays);
-		data.add(indifTime);
-		data.add(vetoTime);
+		if(User.getAllUsers().get(0).getTypeUser().getId() == 1){
+			String indifDays = jTextField1.getText();
+			String vetoDays = jTextField4.getText();
+			String indifTime = jTextField2.getText();
+			String vetoTime = jTextField3.getText();
+			
+			ArrayList<String> data = new ArrayList<String>();
+			data.add(indifDays);
+			data.add(vetoDays);
+			data.add(indifTime);
+			data.add(vetoTime);
+			
+			String identifier = "addPreferences";
+			logger.info("Enregistrement des préférences de priorisation");
+			new ServerConnect(data, identifier, frame);
+		}else{
+			JOptionPane.showMessageDialog(frame, "Seul le manager peut changer les préférences");
+		}
 		
-		String identifier = "addPreferences";
-		logger.info("Enregistrement des préférences de priorisation");
-		new ServerConnect(data, identifier, frame);
 
 	}
 }

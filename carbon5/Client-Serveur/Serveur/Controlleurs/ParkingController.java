@@ -46,7 +46,6 @@ public class ParkingController implements Runnable {
         ParkingDAO test = new ParkingDAO(con);
             try{
                 String identifier = LectureJson.Identifier(in);
-//                ArrayList<String> result = LectureJson.LectureFichier(in);
                 switch(identifier){
                 case("SelectAllParkings"):
                         data = test.getAllParkings();

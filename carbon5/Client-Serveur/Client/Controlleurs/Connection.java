@@ -222,32 +222,28 @@ public class Connection{
                                 RepairCard.addRepairCardToCo(aRepairCard);	
 		    	}
                         break;
-//                        
-//                        case "query3_OK":
-//				objet = new JSONObject(reponse);
-//				logger.info("Affichage du resultat de mise Ã  jour : ");
-//		    	logger.info(reponse);
-//		    	tableau = objet.getJSONArray("data");
-//		    	for (int i =0; i<tableau.getInt(1);i++){
-//		    		Parking aParking = Parking.unSerialize(tableau.getString(i+2));
-//		    		if(!Parking.isInCollection(aParking.getNumParking())){
-//		    			Parking.addParkingToCo(aParking);
-//		    		}	
-//		    	}
-//                        break;
-//                        
-//                        case "query4_OK":
-//				objet = new JSONObject(reponse);
-//				logger.info("Affichage du resultat de mise Ã  jour : ");
-//		    	logger.info(reponse);
-//		    	tableau = objet.getJSONArray("data");
-//		    	for (int i =0; i<tableau.getInt(1);i++){
-//		    		Parking aParking = Parking.unSerialize(tableau.getString(i+2));
-//		    		if(!Parking.isInCollection(aParking.getNumParking())){
-//		    			Parking.addParkingToCo(aParking);
-//		    		}	
-//		    	}
-//                        break;
+                        
+                        case "query3_OK":
+				objet = new JSONObject(reponse);
+				logger.info("Affichage du resultat de mise Ã  jour : ");
+		    	logger.info(reponse);
+		    	tableau = objet.getJSONArray("data");
+		    	for (int i =0; i<tableau.getInt(1);i++){
+		    		RepairCard aRepairCard = RepairCard.unSerialize_query3(tableau.getString(i+2));
+                                RepairCard.addRepairCardToCo(aRepairCard);	
+		    	}
+                        break;
+                        
+                        case "query4_OK":
+				objet = new JSONObject(reponse);
+				logger.info("Affichage du resultat de mise Ã  jour : ");
+		    	logger.info(reponse);
+		    	tableau = objet.getJSONArray("data");
+		    	for (int i =0; i<tableau.getInt(1);i++){
+		    		RepairCard aRepairCard = RepairCard.unSerialize_query4(tableau.getString(i+2));
+                                RepairCard.addRepairCardToCo(aRepairCard);	
+		    	}
+                        break;
                         
 		    //rechercher vehicule avec sa puce
 			case "SearchOK":
@@ -272,29 +268,11 @@ public class Connection{
 				JOptionPane.showMessageDialog(frame, "Ce vehiule est deja en reparation.\n Contacter votre administrateur");
 		    break;
 		    
-		    //rechercher vehicule avec sa puce
-//			case "SearchOK":
-//				objet = new JSONObject(reponse);
-//				logger.info("Afficage du resultat de la recherche : ");
-//		    	logger.info(reponse);
-//		    	tableau = objet.getJSONArray("data");
-//		    	
-//		    		Car ca=Car.unSerialize(tableau.getString(1));
-//		    		///TODO
-//		    	
-//		    break;
-//			case "SearchKO":
-//				JOptionPane.showMessageDialog(frame, "Cette rï¿½fï¿½rence ne correspond pas ï¿½ un aucun vehicule");
-//		    break;
-//		    
-//			case "CarNotExist":
-//				JOptionPane.showMessageDialog(frame, "Ce vehivule existe pas, contacter votre administrateur");
-//		    break;
 			case "LoadAllComboBoxOK" :
 				objet = new JSONObject(reponse);
 				logger.info("Afficage du resultat");
 		    	logger.info(reponse);
-                tableau = objet.getJSONArray("allCar");
+                        tableau = objet.getJSONArray("allCar");
 		    	tableautypecar = objet.getJSONArray("data");
 		    	tableaudefect = objet.getJSONArray("dataDefect");
 		    	tableaudPlace = objet.getJSONArray("placement");
@@ -339,18 +317,18 @@ public class Connection{
 			break;
 			case "addPreferencesOK" : case "addPreferencesKO":
 				objet = new JSONObject(reponse);
-				logger.info("Afficage du resultat de mise ï¿½ jour : ");
+				logger.info("Afficage du resultat de mise à jour : ");
 		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
 			break;
 			case "SelectAllPreferencesOK" : case "SelectAllPreferencesKO":
 				objet = new JSONObject(reponse);
-				logger.info("Afficage du resultat de requï¿½te de prï¿½fï¿½rence : ");
+				logger.info("Afficage du resultat de requête de préférence : ");
 		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 		    	Preferences.chargePrefs(Preferences.unSerialize(tableau.getString(0)));
-				JOptionPane.showMessageDialog(frame, tableau.get(0));
+				//JOptionPane.showMessageDialog(frame, tableau.get(0));
 			break;
 			default : 
 				logger.info("default");

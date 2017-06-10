@@ -1,5 +1,6 @@
 package Serveur.Controlleurs;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import Modele.EcritureJson;
 import Modele.LectureJson;
 import Modele.Preferences;
 import Modele.PreferencesDAO;
+import Modele.RepairCard;
 
 public class PreferencesController implements Runnable{
 	
@@ -72,6 +74,12 @@ public class PreferencesController implements Runnable{
 		
 		switch(data.get(0)){
 		case("addPreferencesOK"):
+			try {
+				RepairCard.determineWaitList();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			JsonMessage = EcritureJson.WriteJson("addPreferencesOK", data);
 			logger.info("Sending JSON succès createPart to Client");
 			out.println(JsonMessage);

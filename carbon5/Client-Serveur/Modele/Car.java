@@ -6,7 +6,6 @@
 package Modele;
 
 import java.sql.Date;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
@@ -136,10 +135,9 @@ public class Car {
     }
     
     public static void addCarToCo(Car newCar){
-		listCar.clear();
 		listCar.add(newCar);
 	}
-//<<<<<<< HEAD
+
     
     public static void addCar(Car newCar){
     	listCar.clear();

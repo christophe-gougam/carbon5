@@ -140,16 +140,9 @@ public class PanPiece extends javax.swing.JPanel {
      */
     protected void fillTable() throws SQLException{
         try{
-//            String url = "jdbc:mysql://localhost:3306/carbon5";
-//            String user = "root";
-//            String pwd = "";
-//            Connection connect = DriverManager.getConnection(url, user, pwd);
-//            String queryString = "SELECT * FROM Part";
-//            Statement stm = connect.createStatement();
-//            ResultSet rs = stm.executeQuery(queryString);
+
             RsTableModel model = new RsTableModel(Part.getAllParts());
             this.jTable1.setModel(model);
-//            model.setData();
         } catch (Exception e){
             e.printStackTrace();
         }   

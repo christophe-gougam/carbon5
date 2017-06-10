@@ -97,58 +97,6 @@ public class PanVehicule extends javax.swing.JPanel {
         }
     }
     
-    /**
-     * Class create model for table 
-     */
-//    class RsTableModel extends AbstractTableModel {
-//        private Vector colHeaders;
-//        private Vector tbData;
-//        
-//        /**
-//         * Class constructor
-//         * @param rsData
-//         * @throws SQLException 
-//         */
-//        public RsTableModel(ResultSet rsData) throws SQLException {
-//            ResultSetMetaData rsMeta = rsData.getMetaData();
-//            int count = rsMeta.getColumnCount();
-//
-//            tbData = new Vector();
-//            colHeaders = new Vector(count);
-//
-//            for(int i = 1; i <= count; i++){
-//                colHeaders.addElement(rsMeta.getColumnName(i));
-//            }
-//
-//            while (rsData.next()){
-//                Vector dataRow = new Vector(count);
-//                for(int i = 1; i <= count; i++){
-//                    dataRow.addElement(rsData.getObject(i));
-//                }
-//                tbData.addElement(dataRow);
-//            }
-//        }
-//        @Override
-//        public String getColumnName(int column) {
-//            return  (String) (colHeaders.elementAt(column));
-//        }
-//        
-//        @Override
-//        public int getRowCount() { return tbData.size(); }
-//
-//        @Override
-//        public int getColumnCount() { return colHeaders.size(); }
-//
-//        @Override
-//        public Object getValueAt(int row, int column) {
-//            Vector rowData = (Vector)(tbData.elementAt(row));
-//            return rowData.elementAt(column);
-//        }
-//        
-//        public void setData(){
-//        super.fireTableDataChanged();
-//        }
-//    }
     public class RsTableModel extends AbstractTableModel {
         private ArrayList<Car> cars ;
         private String[] columns ; 
@@ -190,18 +138,8 @@ public class PanVehicule extends javax.swing.JPanel {
      */
     protected void fillTable() throws SQLException{
         try{
-//<<<<<<< HEAD
-//            RsTableModel model = new RsTableModel(Car.getAllCar());
-//=======
-//        	
-//            for(ResultSet i: Car.getAllCar()){
-//            	car=i;
-//            	
-//            }
             RsTableModel model = new RsTableModel(Car.getAllCar());
-//>>>>>>> origin/Develop
             this.jTable1.setModel(model);
-//            model.setData();
         } catch (Exception e){
             e.printStackTrace();
         }   

@@ -1,37 +1,22 @@
 package Modele;
 
-import java.awt.List;
 import java.io.IOException;
-import java.lang.reflect.Array;
+import java.sql.Connection;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.SortedMap;
-import java.util.TreeMap;
-import java.util.concurrent.TimeUnit;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import Serveur.Controlleurs.Serveur;
-
-import Modele.Preferences;
-import Modele.PreferencesDAO;
-import Modele.JeudeTestRepairCard;
-import Modele.User;
-import static Modele.User.logger;
 import Serveur.Controlleurs.ConnectionPool;
-import java.util.HashSet;
-import java.util.Set;
+import Serveur.Controlleurs.Serveur;
 
 /**
  * 
@@ -51,7 +36,7 @@ public class RepairCard {
 	private UrgencyDegree degree;
         private UrgencyDegree description;
 	private CardState card;
-        private CardState statut;
+        private CardState statut2;
 	private Car car;
 	private ArrayList<Repairs> repairs;
 	private ArrayList<Defect> defects;
@@ -63,6 +48,11 @@ public class RepairCard {
         private Part part;
         private Repairs repair;
         private Defect defect;
+	private int cumulCar;
+        private String statut;
+        private int numRep;
+        private String name;
+        private String lname;
 	private int ponderation;
 	int idcard;
 	private String idcar;
@@ -137,6 +127,37 @@ public class RepairCard {
             this.park = place;
         }
 	
+        public RepairCard(int count, String state){
+            this.cumulCar = count;
+            this.statut = state;
+        }
+        
+        public RepairCard(int num, String nom, String prenom){
+            this.numRep = num;
+            this.name = nom;
+            this.lname = prenom;
+        }
+        
+        public int getNbCar(){
+            return this.cumulCar;
+        }
+        
+        public String getStatutCar(){
+            return this.statut;
+        }
+        
+        public int getNumRep(){
+            return this.numRep;
+        }
+        
+        public String getName(){
+            return this.name;
+        }
+        
+        public String getLastName(){
+            return this.lname;
+        }
+        
 	public int getidcard(){
 		return this.idcard;
 	}
@@ -429,49 +450,6 @@ public class RepairCard {
 	 * @param entryDate
 	 * @return timeWaited
 	 */
-//	public int timeWaiting(Date entryDate){
-//		int timeWaited;
-//		
-//		Calendar calendarToday = Calendar.getInstance();
-//		
-//		Calendar calendarEntry = Calendar.getInstance();
-//		calendarEntry.setTime(entryDate);
-//		
-//		timeWaited = calendarToday.compareTo(calendarEntry);
-//	    
-//	    return timeWaited;
-//	}
-	
-//	public static int timeWaiting(Date d1) {
-//		int timeWaited = 0;
-//		Date d2 = new Date();
-//	    long diff = d2.getTime() - d1.getTime();
-//	    timeWaited = (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-//	    
-//	}
-	
-//	public static long timeWaiting(Date firstDate) throws IOException
-//	{
-//		Date date = new Date();
-//		date.setYear(firstDate.getYear());
-//		date.setMonth(firstDate.getMonth());
-//		date.setDate(firstDate.getDate());
-//		
-//		System.out.println(firstDate.getYear());
-//		System.out.println(firstDate.getMonth());
-//		System.out.println(firstDate.getDate());
-//		
-//		Date d = Calendar.getInstance().getTime();
-//		System.out.println(d.getYear());
-//		System.out.println(d.getMonth());
-//		System.out.println(d.getDate());
-//		
-//		long t = new Date().getTime();
-//		
-//		int ts = (int)(new Date().getTime() - firstDate.getTime()) / (1000*60*60*24);
-//		
-//		return ts;
-//	}
 	public static int timeWaiting(Date entry){
 		Instant instant = LocalDate.now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();
 		java.util.Date instante = java.util.Date.from(instant);
@@ -550,13 +528,14 @@ public class RepairCard {
 		System.out.println("Finished prioritizing");
 		
 		for (RepairCard aRep: testcggg){
-			System.out.println("Nombre de jours dans le dï¿½pï¿½t : " + RepairCard.timeWaiting(aRep.getEntryDate()));
-			System.out.println("Temps de rï¿½paration estimï¿½ : " + RepairCard.getTimeRep(aRep));
-			System.out.println("Criticitï¿½ des pannes : " +RepairCard.getCriticity(aRep));
+			System.out.println("Nombre de jours dans le dépôt : " + RepairCard.timeWaiting(aRep.getEntryDate()));
+			System.out.println("Temps de réparation estimé : " + RepairCard.getTimeRep(aRep));
+			System.out.println("Criticité des pannes : " +RepairCard.getCriticity(aRep));
 			System.out.println("*******************");
 		}
 	}
 	
+	//Method to calculate the time necessary for all reparations
 	public static float getTimeRep(RepairCard aRep){
 		float time = 0;
 		for (Defect aDef: aRep.getDefects()){
@@ -573,8 +552,10 @@ public class RepairCard {
 		return crit;
 	}
 	
+	//method fusioning the global concordance and global discordance matrix
+	//to create a matrix with the priority percentage of one vehicule over another for all vehicules
+	//determines the waiting list by searching for a vehicule that isn't prioritized by any other (in a loop)
 	public static void getFinalDecision(double[][] globalConcordance, double[][] globalDiscordance, ArrayList<RepairCard> list){
-		//ArrayList<RepairCard> finalOrder = new ArrayList<RepairCard>();
 		
 		double[][] finalMatrix = new double[list.size()][list.size()];
 		for (int i=0; i<list.size(); i++){
@@ -609,6 +590,8 @@ public class RepairCard {
 		}
 	}
 	
+	//method that puts a priority veto of one car over the other depending on the preferences saved
+	//returns a discordance matrix with all the vetos
 	public static double[][] getGlobalDiscordanceMatrix(ArrayList<RepairCard> list, Preferences prefs) throws IOException{
 		double[][] matrixDate = new double[list.size()][list.size()];
 		for (int i=0; i<list.size(); i++){
@@ -662,7 +645,7 @@ public class RepairCard {
 			}
 		}
 		
-		//fill Global Concordance matrix with info from all criterias
+		//fills Global Discordance matrix with info from all criterias
 		double[][] matrixGlobal = new double[list.size()][list.size()];
 		for(int i = 0; i<list.size(); i++){
 			for (int j=0; j<list.size(); j++){
@@ -675,6 +658,7 @@ public class RepairCard {
 		return matrixGlobal;
 	}
 	
+	//method that creates a matrix with priority percentage of one car over another depending on preferences saved
 	public static double[][] getGlobalConcordanceMatrix(ArrayList<RepairCard> list, Preferences prefs) throws IOException{
 		double[][] matrixDate = new double[list.size()][list.size()];
 		for (int i=0; i<list.size(); i++){
@@ -710,7 +694,7 @@ public class RepairCard {
 		
 
 		
-		//fill Global Concordance matrix with info from all criterias
+		//fills Global Concordance matrix with info from all criterias
 		double[][] matrixGlobal = new double[list.size()][list.size()];
 		for(int i = 0; i<list.size(); i++){
 			for (int j=0; j<list.size(); j++){
@@ -772,6 +756,16 @@ public class RepairCard {
 		return serialized;
         }
 
+        public static String serialize_query3(RepairCard rep){
+                String serialized = rep.cumulCar + "//////" + rep.statut;
+		return serialized;
+        }
+        
+        public static String serialize_query4(RepairCard rep){
+                String serialized = rep.name + "///" + rep.lname + "///" + rep.numRep;
+		return serialized;
+        }
+        
 	/**
 	 * Method to unserialize the card and to create the object
 	 * @param serial
@@ -857,63 +851,40 @@ public class RepairCard {
 		
                 return repairCard;
         }
-	/*
-	public static RepairCard unSerialize(String serial){
-		logger.info("Enter RepairCard unserilization");
-		ArrayList values = new ArrayList();
-		//get all the information from the string
-		for (String retval: serial.split("///")){
+        
+        public static RepairCard unSerialize_query3(String serialized) throws ParseException{
+                ArrayList<String> values = new ArrayList<String>();
+                logger.info("Enter unserilization");
+		for (String retval: serialized.split("//////")){
 			values.add(retval);
 		}
-		//setting the format for the various dates
-		DateFormat format = new SimpleDateFormat("YYYY-MM-DD");
-		Date date = new Date();
-
-		logger.info("Begin RepairCard unserilization");
-		//retrieving info in the right order to create all the objects
-		//creating object urgencyDegree
-		UrgencyDegree degree = new UrgencyDegree(values.get(0).toString());
-		//creating object cardState
-		CardState card = new CardState(Integer.parseInt(values.get(1).toString()), values.get(2).toString());
-		//Creating objet car
-		String numpuce = values.get(3).toString();
-		String matricule = values.get(4).toString();
-		String typevehic = values.get(5).toString();
-		Date Entrydate=null;
-		String Loperation = "";
-		int place=0;
-		Car car=new Car();
-		//Car car = new Car(numpuce, matricule,typevehic, Entrydate, Loperation, place);
-		//creating repairs, retrieving the number of repairs to create as many objects as necessary
-		int numObjRep = Integer.parseInt(values.get(5).toString());
-		int numIndice = numObjRep;
-		ArrayList<Repairs> rep = new ArrayList();
-		for (int i = 0;i<numObjRep;i++){
-				rep.add(new Repairs((Integer) values.get(numIndice),(Date) values.get(numIndice+1), String.valueOf(values.get(numIndice+2)), (float) values.get(numIndice+3), String.valueOf(values.get(numIndice+4))));
-				numIndice += 5;
+                int idcard = Integer.parseInt(values.get(0));
+                String cs = values.get(1);
+                
+                logger.info("Begin unserilization");
+                //creating the object repairCard with all other objects
+                RepairCard repairCard = new RepairCard(idcard, cs);
+                logger.info("Success RepairCard unserilization");
+		
+                return repairCard;
+        }
+        
+        public static RepairCard unSerialize_query4(String serialized) throws ParseException{
+                ArrayList<String> values = new ArrayList<String>();
+                logger.info("Enter unserilization");
+		for (String retval: serialized.split("///")){
+			values.add(retval);
 		}
-		//creating defects, retrieving the number of defects to create as many objects as necessary
-		int numObjDefect = Integer.parseInt(values.get(numIndice).toString());
-		ArrayList<Defect> def = new ArrayList();
-		for (int i = 0;i<numObjDefect;i++){
-			def.add(new Defect(Integer.parseInt(values.get(numIndice).toString()),(String) values.get(numIndice+1)));
-			numIndice +=2;
-		}
-		//creating object Place (referring to the parking)
-		Place park = new Place((int) values.get(numIndice), (int) values.get(numIndice+1), (boolean) values.get(numIndice+2));
-		numIndice +=3;
-		//creating objects for the various dates
-		Date num1 = (Date) values.get(numIndice); numIndice +=1;
-		Date num2 = (Date) values.get(numIndice); numIndice +=1;
-		String dets = (String) values.get(numIndice); numIndice +=1;
-		//creating the user
-		User user = new User((int) values.get(numIndice),(String) values.get(numIndice), (String) values.get(numIndice+1), (String) values.get(numIndice+2), (String) values.get(numIndice+3), (int) values.get(numIndice+4), (String) values.get(numIndice+5), (String) values.get(numIndice+6), (Date) values.get(numIndice+7), (Float) values.get(numIndice+8), new TypeUser(Integer.parseInt(values.get(numIndice+9).toString()),(String) values.get(numIndice+10)));
-		//creating the object repairCard with all other objects
-		RepairCard repairCard = new RepairCard(degree, card, car, rep, def, park,num1,num2,dets,user);
-		logger.info("Success RepairCard unserilization");
-		return repairCard;
-	}
-	*/
+                String nom = values.get(0);
+                String prenom = values.get(1);
+                int num = Integer.parseInt(values.get(2));
+                logger.info("Begin unserilization");
+                //creating the object repairCard with all other objects
+                RepairCard repairCard = new RepairCard(num, nom, prenom);
+                logger.info("Success RepairCard unserilization");
+		
+                return repairCard;
+        }
 	/**
      * Method toString
      * 

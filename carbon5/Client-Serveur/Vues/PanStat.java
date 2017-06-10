@@ -5,16 +5,17 @@
  */
 package Vues;
 
-import Client.Controlleurs.ServerConnect;
-import Modele.Parking;
-import Modele.Part;
-import Modele.RepairCard;
 import static Vues.IHM.logger;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import javax.swing.table.AbstractTableModel;
+
+import Client.Controlleurs.ServerConnect;
+import Modele.RepairCard;
 
 /**
  *
@@ -30,11 +31,15 @@ public class PanStat extends javax.swing.JPanel {
             jTabbedPane1.remove(jPanel4);
             this.fillTable1();
             this.fillTable2();
+            this.fillTable3();
+            this.fillTable4();
             this.revalidate();
         } else {
             initComponents();
             this.fillTable1();
             this.fillTable2();
+            this.fillTable3();
+            this.fillTable4();
         } 
     }
 
@@ -362,6 +367,83 @@ public class PanStat extends javax.swing.JPanel {
         }
     }
     
+    /**
+     * Class model table 3
+     */
+    public class RsTableModel3 extends AbstractTableModel {
+        private ArrayList<RepairCard> repairCard ;
+        private String[] columns ; 
+
+        public RsTableModel3(ArrayList<RepairCard> listRepairCard){
+          super();
+          repairCard = listRepairCard ;
+          columns = new String[]{"Statut", "Nombre de véhicule"};
+        }
+
+        // Number of column of your table
+        public int getColumnCount() {
+          return columns.length ;
+        }
+
+        // Number of row of your table
+        public int getRowCount() {
+          return repairCard.size();
+        }
+
+        // The object to render in a cell
+        public Object getValueAt(int row, int col) {
+          RepairCard aRC = repairCard.get(row);
+          switch(col) {
+            case 0: return aRC.getStatutCar();
+            case 1: return aRC.getNbCar();
+            default: return null;
+          }
+        }
+        // Optional, the name of your column
+        public String getColumnName(int col) {
+          return columns[col] ;
+        }
+    }
+    
+    /**
+     * Class model table 4
+     */
+    public class RsTableModel4 extends AbstractTableModel {
+        private ArrayList<RepairCard> repairCard ;
+        private String[] columns ; 
+
+        public RsTableModel4(ArrayList<RepairCard> listRepairCard){
+          super();
+          repairCard = listRepairCard ;
+          columns = new String[]{"Nom", "Prenom", "Nombre d'opération réalisé"};
+        }
+
+        // Number of column of your table
+        public int getColumnCount() {
+          return columns.length ;
+        }
+
+        // Number of row of your table
+        public int getRowCount() {
+          return repairCard.size();
+        }
+
+        // The object to render in a cell
+        public Object getValueAt(int row, int col) {
+          RepairCard aRC = repairCard.get(row);
+          switch(col) {
+            case 0: return aRC.getName();
+            case 1: return aRC.getLastName();
+            case 2: return aRC.getNumRep();
+            default: return null;
+          }
+        }
+        // Optional, the name of your column
+        public String getColumnName(int col) {
+          return columns[col] ;
+        }
+    }
+    
     protected void fillTable1() throws SQLException{
         try{
             PanStat.RsTableModel1 model1 = new PanStat.RsTableModel1(RepairCard.getInfoCars());
@@ -380,6 +462,23 @@ public class PanStat extends javax.swing.JPanel {
         }
     }
     
+    protected void fillTable3(){
+        try{
+            PanStat.RsTableModel3 model3 = new PanStat.RsTableModel3(RepairCard.getInfoCars());
+            this.jTable3.setModel(model3);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    protected void fillTable4(){
+        try{
+            PanStat.RsTableModel4 model4 = new PanStat.RsTableModel4(RepairCard.getInfoCars());
+            this.jTable4.setModel(model4);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
     /**
      * Class listens buttons
      */
