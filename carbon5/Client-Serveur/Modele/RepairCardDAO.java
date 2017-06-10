@@ -183,7 +183,7 @@ public class RepairCardDAO extends DAO<RepairCard>{
             return manu;
         }
         
-        public void ad(RepairCard a){
+        public void ad(RepairCard a, ArrayList<String> b){
     		ArrayList<String> pa = new ArrayList<String>();
     		for (String retval: a.getOverAllDetails().split("|")){
     			pa.add(retval);
