@@ -13,7 +13,6 @@ import org.apache.log4j.Logger;
 import org.json.JSONException;
 
 import Modele.LectureJson;
-import Modele.RepairCard;
 
 /**
  * Class ProcessData

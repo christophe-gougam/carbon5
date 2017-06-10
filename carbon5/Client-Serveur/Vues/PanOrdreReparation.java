@@ -12,12 +12,11 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import org.apache.log4j.Logger;
+
 import Client.Controlleurs.ServerConnect;
-import Modele.Preferences;
 import Modele.User;
 import Serveur.Controlleurs.Serveur;
-import Vues.PanEntreeStock.BoutonListener;
-import org.apache.log4j.Logger;
 
 /**
  *

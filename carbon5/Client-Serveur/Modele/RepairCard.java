@@ -1,37 +1,22 @@
 package Modele;
 
-import java.awt.List;
 import java.io.IOException;
-import java.lang.reflect.Array;
+import java.sql.Connection;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.SortedMap;
-import java.util.TreeMap;
-import java.util.concurrent.TimeUnit;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import Serveur.Controlleurs.Serveur;
-
-import Modele.Preferences;
-import Modele.PreferencesDAO;
-import Modele.JeudeTestRepairCard;
-import Modele.User;
-import static Modele.User.logger;
 import Serveur.Controlleurs.ConnectionPool;
-import java.util.HashSet;
-import java.util.Set;
+import Serveur.Controlleurs.Serveur;
 
 /**
  * 
@@ -900,63 +885,6 @@ public class RepairCard {
 		
                 return repairCard;
         }
-	/*
-	public static RepairCard unSerialize(String serial){
-		logger.info("Enter RepairCard unserilization");
-		ArrayList values = new ArrayList();
-		//get all the information from the string
-		for (String retval: serial.split("///")){
-			values.add(retval);
-		}
-		//setting the format for the various dates
-		DateFormat format = new SimpleDateFormat("YYYY-MM-DD");
-		Date date = new Date();
-
-		logger.info("Begin RepairCard unserilization");
-		//retrieving info in the right order to create all the objects
-		//creating object urgencyDegree
-		UrgencyDegree degree = new UrgencyDegree(values.get(0).toString());
-		//creating object cardState
-		CardState card = new CardState(Integer.parseInt(values.get(1).toString()), values.get(2).toString());
-		//Creating objet car
-		String numpuce = values.get(3).toString();
-		String matricule = values.get(4).toString();
-		String typevehic = values.get(5).toString();
-		Date Entrydate=null;
-		String Loperation = "";
-		int place=0;
-		Car car=new Car();
-		//Car car = new Car(numpuce, matricule,typevehic, Entrydate, Loperation, place);
-		//creating repairs, retrieving the number of repairs to create as many objects as necessary
-		int numObjRep = Integer.parseInt(values.get(5).toString());
-		int numIndice = numObjRep;
-		ArrayList<Repairs> rep = new ArrayList();
-		for (int i = 0;i<numObjRep;i++){
-				rep.add(new Repairs((Integer) values.get(numIndice),(Date) values.get(numIndice+1), String.valueOf(values.get(numIndice+2)), (float) values.get(numIndice+3), String.valueOf(values.get(numIndice+4))));
-				numIndice += 5;
-		}
-		//creating defects, retrieving the number of defects to create as many objects as necessary
-		int numObjDefect = Integer.parseInt(values.get(numIndice).toString());
-		ArrayList<Defect> def = new ArrayList();
-		for (int i = 0;i<numObjDefect;i++){
-			def.add(new Defect(Integer.parseInt(values.get(numIndice).toString()),(String) values.get(numIndice+1)));
-			numIndice +=2;
-		}
-		//creating object Place (referring to the parking)
-		Place park = new Place((int) values.get(numIndice), (int) values.get(numIndice+1), (boolean) values.get(numIndice+2));
-		numIndice +=3;
-		//creating objects for the various dates
-		Date num1 = (Date) values.get(numIndice); numIndice +=1;
-		Date num2 = (Date) values.get(numIndice); numIndice +=1;
-		String dets = (String) values.get(numIndice); numIndice +=1;
-		//creating the user
-		User user = new User((int) values.get(numIndice),(String) values.get(numIndice), (String) values.get(numIndice+1), (String) values.get(numIndice+2), (String) values.get(numIndice+3), (int) values.get(numIndice+4), (String) values.get(numIndice+5), (String) values.get(numIndice+6), (Date) values.get(numIndice+7), (Float) values.get(numIndice+8), new TypeUser(Integer.parseInt(values.get(numIndice+9).toString()),(String) values.get(numIndice+10)));
-		//creating the object repairCard with all other objects
-		RepairCard repairCard = new RepairCard(degree, card, car, rep, def, park,num1,num2,dets,user);
-		logger.info("Success RepairCard unserilization");
-		return repairCard;
-	}
-	*/
 	/**
      * Method toString
      * 

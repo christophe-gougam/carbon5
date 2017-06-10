@@ -1,11 +1,9 @@
 package Modele;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
-import Modele.*;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class JeudeTestRepairCard {
 	//creating a testList with all RepairCards while waiting for others to finish their UseCase

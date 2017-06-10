@@ -183,11 +183,56 @@ public class RepairCardDAO extends DAO<RepairCard>{
             return manu;
         }
         
-	/**
+        public void ad(RepairCard a){
+    		ArrayList<String> pa = new ArrayList<String>();
+    		for (String retval: a.getOverAllDetails().split("|")){
+    			pa.add(retval);
+    		}
+    		
+    		Defect d=new Defect();
+    		for(int i=0; i<pa.size()-1; i++){
+		    				try{
+				    			
+				    		
+		    					ResultSet result = this .connect
+	                                    .createStatement(
+	                                            	ResultSet.TYPE_SCROLL_INSENSITIVE, 
+	                                                ResultSet.CONCUR_UPDATABLE
+	                                             ).executeQuery(
+	                                                "SELECT * FROM defect WHERE Description='"+pa.get(i)+"'"
+	                                             );
+		    					
+		    					while(result.next()){
+		    		            	
+		    		            	d=new Defect(
+		    								result.getInt("Id"),
+		    								result.getString("description"),
+		    								result.getDouble("RepairTime"));          		
+		    		            }
+		    					
+		    					java.sql.PreparedStatement prepare = this.connect
+				                        .prepareStatement(
+				                        		"INSERT INTO carddefect(IdDefect, IdCard, fixed) "
+				                        		+ "VALUES(?, ?, ?)"
+				                         );
+				
+				            	prepare.setInt(1, d.getid());
+				            	prepare.setInt(2, a.getidcard());
+				            	prepare.setInt(3, 0);
+				    			
+				    			prepare.executeUpdate();
+				    			
+				    		}catch(SQLException e){
+				    			e.printStackTrace();
+				    		}
+    		}
+    	}
+        /**
         * Creates an entry in the database relative to an object
         * @param obj
         * @return true
         */
+	
 	public boolean create(RepairCard obj, Date dat) {
         try{
         	java.sql.PreparedStatement prepare = this.connect

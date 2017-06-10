@@ -74,8 +74,6 @@ public class Authentication implements Runnable{
 			}else{
 				data.add("Erreur de mot de passe");
 			}
-			//data = CRUD.authentication(con, login, mdp);
-			
 			//check identifier to see if database found the user or not and sends data to client
 			switch(data.get(0)){
 			case("GrantAuth"):

@@ -5,7 +5,6 @@
  */
 package Vues;
 
-import Client.Controlleurs.Connection;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -24,6 +23,7 @@ import javax.swing.event.ListSelectionListener;
 
 import org.apache.log4j.Logger;
 
+import Client.Controlleurs.Connection;
 import Client.Controlleurs.ServerConnect;
 import Modele.Parking;
 import Modele.Part;
@@ -160,14 +160,7 @@ public class IHM extends JFrame {
     */
     class Ecouteur implements ActionListener{
         public void actionPerformed(ActionEvent e) {
-//            if(e.getSource() == bouton1){
-//                //code
-//                cl.show(pan2, listContent[0]);
-//                liste1.setVisible(false);
-//                liste2.setVisible(false);
-//                liste3.setVisible(false);
-//                pan.revalidate();
-//            }
+
             if(e.getSource() == bouton2){
             	if(compteur2<1){
                 	Parking.emptyCollection();
@@ -184,12 +177,7 @@ public class IHM extends JFrame {
                 pan.revalidate();
             }
             if(e.getSource() == bouton3){
-                //code
-//            	ArrayList<String> data = new ArrayList<String>();
-//            	String identifier = "SelectAllPreferences";
-//            	logger.info("récupération des préférences enregistrées");
-//            	new ServerConnect(data, identifier, pan2);
-            	//add method to load list
+  
             	pan2.add(new PanOrdreReparation(), listContent[2]);
             	
                 cl.show(pan2, listContent[2]);

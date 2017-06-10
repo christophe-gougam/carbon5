@@ -157,7 +157,13 @@ public class CarController implements Runnable{
 							dat=entranceDate.plusDays(((int) repairTime)+1);
 							yesdemi=true;
 						}
-						RepairCard carinfo=new RepairCard(1, String.valueOf(numP), place, java.sql.Date.valueOf(dat), listPane, user);
+						
+						ArrayList<String> pa = new ArrayList<String>();
+			    		for (String retval: listPane.split("|")){
+			    			pa.add(retval);
+			    		}
+			    		
+						RepairCard carinfo=new RepairCard(1, String.valueOf(numP), place, java.sql.Date.valueOf(dat), pa.get(pa.size()-1), user);
 						Carinfo=test.getCar(numP);
 						isIn=test5.existRepairCard(numP);
 						if(Carinfo.get(0).getNumePuce().equalsIgnoreCase(numP) && isIn==false)
@@ -165,7 +171,7 @@ public class CarController implements Runnable{
 							ret=test5.create(carinfo, java.sql.Date.valueOf(entranceDate));
 							
 							if (ret){
-						
+								test5.ad(carinfo);
 								data.add("OKCarInput");
 								test3.updatePlace(place);
 								data.add(RepairCard.serialize(carinfo));

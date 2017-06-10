@@ -268,24 +268,6 @@ public class Connection{
 				JOptionPane.showMessageDialog(frame, "Ce vehiule est deja en reparation.\n Contacter votre administrateur");
 		    break;
 		    
-		    //rechercher vehicule avec sa puce
-//			case "SearchOK":
-//				objet = new JSONObject(reponse);
-//				logger.info("Afficage du resultat de la recherche : ");
-//		    	logger.info(reponse);
-//		    	tableau = objet.getJSONArray("data");
-//		    	
-//		    		Car ca=Car.unSerialize(tableau.getString(1));
-//		    		///TODO
-//		    	
-//		    break;
-//			case "SearchKO":
-//				JOptionPane.showMessageDialog(frame, "Cette r�f�rence ne correspond pas � un aucun vehicule");
-//		    break;
-//		    
-//			case "CarNotExist":
-//				JOptionPane.showMessageDialog(frame, "Ce vehivule existe pas, contacter votre administrateur");
-//		    break;
 			case "LoadAllComboBoxOK" :
 				objet = new JSONObject(reponse);
 				logger.info("Afficage du resultat");
