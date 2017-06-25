@@ -61,7 +61,35 @@ public class CardState {
 		return state;
 	}
         
-        public static void emptyCollection() {
+        
+    	
+    	public static CardState getStateFromCollection(CardState theState){
+    		CardState toSend = new CardState(1, "Attente");
+    		
+    		for (CardState aState: CardState.state){
+    			if(aState.equals(theState)){
+    				toSend = aState;
+    			}
+    		}
+    		
+    		return toSend;
+    	}
+    	
+    	public static void addStateToCo(CardState newState){
+    		state.add(newState);
+    	}
+    	
+    	public static boolean isInCollection(int id) {
+            Boolean check = false;
+            for(CardState aState: state){
+                    if (aState.id == id){
+    			check = true;
+                    }
+            }
+            return check;
+        }
+    	
+    	public static void emptyCollection() {
             state.clear();
         }
         

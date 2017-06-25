@@ -24,19 +24,20 @@ import Serveur.Controlleurs.Serveur;
  * class creating the card referring to a vehicule 
  */
 public class RepairCard {
-	
+
 	private static ArrayList<RepairCard> waitList = new ArrayList<RepairCard>();
-        private static ArrayList<RepairCard> repairCard = new ArrayList<RepairCard>();
-        
-        private Set<Car> listCar = new HashSet<Car>();
-        private Set<CardState> listState = new HashSet<CardState>();
-        private Set<UrgencyDegree> listUD = new HashSet<UrgencyDegree>();
-        
+	private static ArrayList<RepairCard> repairCard = new ArrayList<RepairCard>();
+
+	private Set<Car> listCar = new HashSet<Car>();
+	private Set<CardState> listState = new HashSet<CardState>();
+	private Set<UrgencyDegree> listUD = new HashSet<UrgencyDegree>();
+	public static RepairCard prioritaryCard;
+
 	final static Logger logger = Logger.getLogger(Serveur.class);
 	private UrgencyDegree degree;
-        private UrgencyDegree description;
+	private UrgencyDegree description;
 	private CardState card;
-        private CardState statut2;
+	private CardState statut2;
 	private Car car;
 	private ArrayList<Repairs> repairs;
 	private ArrayList<Defect> defects;
@@ -45,19 +46,19 @@ public class RepairCard {
 	private Date outDate;
 	private String overAllDetails;
 	private User user;
-        private Part part;
-        private Repairs repair;
-        private Defect defect;
+	private Part part;
+	private Repairs repair;
+	private Defect defect;
 	private int cumulCar;
-        private String statut;
-        private int numRep;
-        private String name;
-        private String lname;
+	private String statut;
+	private int numRep;
+	private String name;
+	private String lname;
 	private int ponderation;
 	int idcard;
 	private String idcar;
 	int idparkplace;
-	
+
 	/**
 	 * Constructor of this class
 	 * @param urgence
@@ -83,7 +84,7 @@ public class RepairCard {
 		this.overAllDetails = details;
 		this.user = user;
 	}
-	
+
 	public RepairCard(int IdCard,String IdCar, int IdParkPlac, Date out, String details, User userid){
 		this.idcard=IdCard;
 		this.idcar = IdCar;
@@ -92,72 +93,77 @@ public class RepairCard {
 		this.overAllDetails = details;
 		this.user = userid;
 	}
-	
+
 	public RepairCard(){
-		
+
 	}
-        
-        /**
-         * Constructor of query 1
-         * @param IdCard
-         * @param IdCar
-         * @param typeVehicule
-         * @param IdDegree
-         * @param card 
-         */
-        public RepairCard(int IdCard, String IdCar, Car typeVehicule , UrgencyDegree IdDegree, CardState card) {
-            this.idcard = IdCard;
-            this.idcar = IdCar;
-            this.car = typeVehicule;
-            this.degree = IdDegree;
-            this.card = card;
-        }
-        
-        public RepairCard(int IdCard, Date enDate, Date outDate, String text, Car car, UrgencyDegree ud, CardState cs, Part part, Repairs rep, Defect def, Place place){
-            this.idcard = IdCard;
-            this.entryDate = enDate;
-            this.outDate = outDate;
-            this.overAllDetails = text;
-            this.car = car;
-            this.degree = ud;
-            this.card = cs;
-            this.part = part;
-            this.repair = rep;
-            this.defect = def;
-            this.park = place;
-        }
+
+	/**
+	 * Constructor of query 1
+	 * @param IdCard
+	 * @param IdCar
+	 * @param typeVehicule
+	 * @param IdDegree
+	 * @param card 
+	 */
+	public RepairCard(int IdCard, String IdCar, Car typeVehicule , UrgencyDegree IdDegree, CardState card) {
+		this.idcard = IdCard;
+		this.idcar = IdCar;
+		this.car = typeVehicule;
+		this.degree = IdDegree;
+		this.card = card;
+	}
+
+	public RepairCard(int IdCard, Date enDate, Date outDate, String text, Car car, UrgencyDegree ud, CardState cs, Part part, Repairs rep, Defect def, Place place){
+		this.idcard = IdCard;
+		this.entryDate = enDate;
+		this.outDate = outDate;
+		this.overAllDetails = text;
+		this.car = car;
+		this.degree = ud;
+		this.card = cs;
+		this.part = part;
+		this.repair = rep;
+		this.defect = def;
+		this.park = place;
+	}
+
+//	public RepairCard(int count, String state){
+//		this.cumulCar = count;
+//		this.statut = state;
+//	}
+
+	public RepairCard(int num, String nom, String prenom){
+		this.numRep = num;
+		this.name = nom;
+		this.lname = prenom;
+	}
 	
-        public RepairCard(int count, String state){
-            this.cumulCar = count;
-            this.statut = state;
-        }
-        
-        public RepairCard(int num, String nom, String prenom){
-            this.numRep = num;
-            this.name = nom;
-            this.lname = prenom;
-        }
-        
-        public int getNbCar(){
-            return this.cumulCar;
-        }
-        
-        public String getStatutCar(){
-            return this.statut;
-        }
-        
-        public int getNumRep(){
-            return this.numRep;
-        }
-        
-        public String getName(){
-            return this.name;
-        }
-        
-        public String getLastName(){
-            return this.lname;
-        }
-        
+	public RepairCard(int IdCard, String IdCar){
+				this.idcard=IdCard;
+				this.idcar = IdCar;
+			}
+
+	public int getNbCar(){
+		return this.cumulCar;
+	}
+
+	public String getStatutCar(){
+		return this.statut;
+	}
+
+	public int getNumRep(){
+		return this.numRep;
+	}
+
+	public String getName(){
+		return this.name;
+	}
+
+	public String getLastName(){
+		return this.lname;
+	}
+
 	public int getidcard(){
 		return this.idcard;
 	}
@@ -178,7 +184,7 @@ public class RepairCard {
 	public void setidcar(String newidCar){
 		this.idcar = newidCar;
 	}
-	
+
 	public int getidparkplace(){
 		return this.idparkplace;
 	}
@@ -189,12 +195,15 @@ public class RepairCard {
 	public void setidparkplace(int idparkplac){
 		this.idparkplace = idparkplac;
 	}
-	
-	
+
+	 public static RepairCard getPrioritaryCard() {
+		 		return prioritaryCard;
+		 	}
+
 	public static ArrayList<RepairCard> getWaitList(){
 		return waitList;
 	}
-	
+
 	public static void setWaitList(ArrayList<RepairCard> list){
 		waitList = list;
 	}
@@ -212,30 +221,30 @@ public class RepairCard {
 	public void setDegree(UrgencyDegree deg){
 		this.degree = deg;
 	}
-        
-        public Part getPart(){
-            return this.part;
-        }
-        
-        public void setPart(Part part){
-            this.part = part;
-        }
-        
-        public Repairs getRepair(){
-            return this.repair;
-        }
-        
-        public void setRepair(Repairs repair){
-            this.repair = repair;
-        }
-        
-        public Defect getDefect(){
-            return this.defect;
-        }
-        
-        public void setDefect(Defect defect){
-            this.defect = defect;
-        }
+
+	public Part getPart(){
+		return this.part;
+	}
+
+	public void setPart(Part part){
+		this.part = part;
+	}
+
+	public Repairs getRepair(){
+		return this.repair;
+	}
+
+	public void setRepair(Repairs repair){
+		this.repair = repair;
+	}
+
+	public Defect getDefect(){
+		return this.defect;
+	}
+
+	public void setDefect(Defect defect){
+		this.defect = defect;
+	}
 	/**
 	 * Method get the card State
 	 * @return card
@@ -362,61 +371,61 @@ public class RepairCard {
 	public void setUser(User user){
 		this.user = user;
 	}
-	
-        public Set<CardState> getListState(){
-            return listState;
-        }
-        
-        public void setListState(Set<CardState> listState){
-            this.listState = listState;
-        }
-        
-        public void addState(CardState state){
-            if(!listState.contains(state))
-                listState.add(state);
-        }
-        
-        public void removeState(CardState state){
-            this.listState.remove(state);
-        }
-        
-        public Set<Car> getListCar(){
-            return listCar;
-        }
-        
-        public void setListCar(Set<Car> listCar){
-            this.listCar = listCar;
-        }
-        
-        public void addCar(Car car){
-            if(!listCar.contains(car))
-                listCar.add(car);
-        }
-        
-        public void removeCar(Car car){
-            this.listCar.remove(car);
-        }
-        
-        public Set<UrgencyDegree> getListUD(){
-            return listUD;
-        }
-        
-        public void setListUD(Set<UrgencyDegree> listUD){
-            this.listUD = listUD;
-        }
-        
-        public void addUD(UrgencyDegree ud){
-            if(!listUD.contains(ud))
-                listUD.add(ud);
-        }
-        
-        public void removeUD(UrgencyDegree ud){
-            this.listUD.remove(ud);
-        }
-        
-        public boolean equals(RepairCard rc){
-            return this.getidcard() == rc.getidcard();
-        }
+
+	public Set<CardState> getListState(){
+		return listState;
+	}
+
+	public void setListState(Set<CardState> listState){
+		this.listState = listState;
+	}
+
+	public void addState(CardState state){
+		if(!listState.contains(state))
+			listState.add(state);
+	}
+
+	public void removeState(CardState state){
+		this.listState.remove(state);
+	}
+
+	public Set<Car> getListCar(){
+		return listCar;
+	}
+
+	public void setListCar(Set<Car> listCar){
+		this.listCar = listCar;
+	}
+
+	public void addCar(Car car){
+		if(!listCar.contains(car))
+			listCar.add(car);
+	}
+
+	public void removeCar(Car car){
+		this.listCar.remove(car);
+	}
+
+	public Set<UrgencyDegree> getListUD(){
+		return listUD;
+	}
+
+	public void setListUD(Set<UrgencyDegree> listUD){
+		this.listUD = listUD;
+	}
+
+	public void addUD(UrgencyDegree ud){
+		if(!listUD.contains(ud))
+			listUD.add(ud);
+	}
+
+	public void removeUD(UrgencyDegree ud){
+		this.listUD.remove(ud);
+	}
+
+	public boolean equals(RepairCard rc){
+		return this.getidcard() == rc.getidcard();
+	}
 	/**
 	 * Method to add a vehicule to the waitList
 	 * @param vehicule
@@ -427,7 +436,7 @@ public class RepairCard {
 		//every time a vehicule is added to the waitList, the order of repairs is re-calculated
 		RepairCard.determineWaitList();
 	}
-	
+
 	/**
 	 * Method to check if the parts are available for the repairs
 	 * @param aCard
@@ -435,16 +444,16 @@ public class RepairCard {
 	 */
 	public Boolean availableParts(){
 		Boolean arePartsAvailable = true;
-		
+
 		for (Defect aDefect: this.getDefects()){
 			if(Part.getPartFromCollection(aDefect.getPartForRepair()).getStock()<=0){
 				arePartsAvailable = false;
 			}
 		}
-		
+
 		return arePartsAvailable;
 	}
-	
+
 	/**
 	 * Method to determine how long a vehicule has been waiting for repairs
 	 * @param entryDate
@@ -455,19 +464,19 @@ public class RepairCard {
 		java.util.Date instante = java.util.Date.from(instant);
 		Long t1 = entry.getTime();
 		Long t2 = Date.from(instant).getTime();
-		
-	    Long milliDiff = Date.from(instant).getTime() - entry.getTime();
 
-	    long  milliPerDay = 1000 * 60 * 60 * 24;
+		Long milliDiff = Date.from(instant).getTime() - entry.getTime();
 
-	    milliDiff = milliDiff/milliPerDay;
+		long  milliPerDay = 1000 * 60 * 60 * 24;
 
-	   int diff = milliDiff.intValue();
-	   return diff;
+		milliDiff = milliDiff/milliPerDay;
+
+		int diff = milliDiff.intValue();
+		return diff;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Method to determine the order for repairs, executed each time a repairCard is added to the waitList
 	 * @throws IOException 
@@ -478,22 +487,22 @@ public class RepairCard {
 		if(!waitList.isEmpty()){
 			waitList.removeAll(getWaitList());
 		}
-		
+
 		Connection con = ConnectionPool.getConnectionFromPool();
 		RepairCardDAO repDAO = new RepairCardDAO(con);
 		ArrayList<RepairCard> reps = repDAO.getAllRepairCards();
-//		ArrayList<RepairCard> reps = new ArrayList<RepairCard>();
-//		reps = JeudeTestRepairCard.getJeuDeTest();
+		//		ArrayList<RepairCard> reps = new ArrayList<RepairCard>();
+		//		reps = JeudeTestRepairCard.getJeuDeTest();
 		//create list car with parts for repairs available (prioritized) and not available
 		ArrayList<RepairCard> partsNotAvailable = new ArrayList<RepairCard>();		
 		ArrayList<RepairCard> partsAvailable = new ArrayList<RepairCard>();
-		
-		
+
+
 		float time1 = RepairCard.getTimeRep(reps.get(0));
 		float time2 = RepairCard.getTimeRep(reps.get(1));
 		float time3 = RepairCard.getTimeRep(reps.get(2));
 		float time4 = RepairCard.getTimeRep(reps.get(3));
-		
+
 		for(RepairCard rep : reps){
 			boolean bol = true;
 			for(Defect def: rep.getDefects()){
@@ -507,34 +516,34 @@ public class RepairCard {
 				partsNotAvailable.add(rep);
 			}
 		}
-		
+
 		//get all preferences for prioritizing
 		PreferencesDAO test = new PreferencesDAO(ConnectionPool.getConnectionFromPool());
 		ArrayList<String> prefsStr = test.getAllPreferences();
 		Preferences prefs = Preferences.unSerialize(prefsStr.get(0));
-		
+
 		double[][] globalConcordance = RepairCard.getGlobalConcordanceMatrix(partsAvailable, prefs);
 		double[][] globalDiscordance = RepairCard.getGlobalDiscordanceMatrix(partsAvailable, prefs);
-		
+
 		RepairCard.getFinalDecision(globalConcordance, globalDiscordance, partsAvailable);
-		
+
 		double[][] globalConcordanceNotAvailable = RepairCard.getGlobalConcordanceMatrix(partsNotAvailable, prefs);
 		double[][] globalDiscordanceNotAvailable = RepairCard.getGlobalConcordanceMatrix(partsNotAvailable, prefs);
-		
+
 		RepairCard.getFinalDecision(globalConcordanceNotAvailable, globalDiscordanceNotAvailable, partsNotAvailable);
-		
+
 		ArrayList<RepairCard> testcggg = RepairCard.getWaitList();
-		
+
 		System.out.println("Finished prioritizing");
-		
+
 		for (RepairCard aRep: testcggg){
-			System.out.println("Nombre de jours dans le dépôt : " + RepairCard.timeWaiting(aRep.getEntryDate()));
-			System.out.println("Temps de réparation estimé : " + RepairCard.getTimeRep(aRep));
-			System.out.println("Criticité des pannes : " +RepairCard.getCriticity(aRep));
+			System.out.println("Nombre de jours dans le dï¿½pï¿½t : " + RepairCard.timeWaiting(aRep.getEntryDate()));
+			System.out.println("Temps de rï¿½paration estimï¿½ : " + RepairCard.getTimeRep(aRep));
+			System.out.println("Criticitï¿½ des pannes : " +RepairCard.getCriticity(aRep));
 			System.out.println("*******************");
 		}
 	}
-	
+
 	//Method to calculate the time necessary for all reparations
 	public static float getTimeRep(RepairCard aRep){
 		float time = 0;
@@ -543,7 +552,7 @@ public class RepairCard {
 		}
 		return time;
 	}
-	
+
 	public static int getCriticity(RepairCard aRep){
 		int crit = 0;
 		for (Defect aDef:aRep.getDefects()){
@@ -551,26 +560,26 @@ public class RepairCard {
 		}
 		return crit;
 	}
-	
+
 	//method fusioning the global concordance and global discordance matrix
 	//to create a matrix with the priority percentage of one vehicule over another for all vehicules
 	//determines the waiting list by searching for a vehicule that isn't prioritized by any other (in a loop)
 	public static void getFinalDecision(double[][] globalConcordance, double[][] globalDiscordance, ArrayList<RepairCard> list){
-		
+
 		double[][] finalMatrix = new double[list.size()][list.size()];
 		for (int i=0; i<list.size(); i++){
 			for (int j=0; j<list.size(); j++){
 				finalMatrix[i][j] = globalConcordance[i][j]*(1-globalDiscordance[i][j]);
 			}
 		}
-		
+
 		for (int k = 0; k<list.size(); k++){
 			finalMatrix[k][k] = 0;
 		}
-		
+
 		for (double lambda=0.1; lambda<1; lambda += 0.1){
 			boolean prioritary = true;
-			
+
 			for (int j=0; j<list.size(); j++){
 				for (int i=0; i<list.size(); i++){
 					if(finalMatrix[i][j] >= lambda){
@@ -581,15 +590,15 @@ public class RepairCard {
 					if(!waitList.contains(list.get(j))){
 						waitList.add(list.get(j));
 						for (int i=0; i<list.size(); i++){
-								finalMatrix[i][j] = 0;
-								finalMatrix[j][i] = 0;
+							finalMatrix[i][j] = 0;
+							finalMatrix[j][i] = 0;
 						}
 					}				
 				}
 			}
 		}
 	}
-	
+
 	//method that puts a priority veto of one car over the other depending on the preferences saved
 	//returns a discordance matrix with all the vetos
 	public static double[][] getGlobalDiscordanceMatrix(ArrayList<RepairCard> list, Preferences prefs) throws IOException{
@@ -601,10 +610,10 @@ public class RepairCard {
 				}else{
 					matrixDate[i][j] = 0;
 				}
-				
+
 			}
 		}
-		
+
 		double[][] matrixTimeRep = new double[list.size()][list.size()];
 		for (int i=0; i<list.size(); i++){
 			float timeRep = 0;
@@ -612,7 +621,7 @@ public class RepairCard {
 			for (Defect aDef: list.get(i).getDefects()){
 				timeRep += aDef.getduration(); 
 			}			
-			 
+
 			for (int j=0; j<list.size(); j++){
 				for (Defect aDef: list.get(j).getDefects()){
 					timeRep2 += aDef.getduration(); 
@@ -624,14 +633,14 @@ public class RepairCard {
 				}
 			}
 		}
-		
+
 		double[][] matrixCriticity = new double[list.size()][list.size()];
 		for (int i=0; i<list.size(); i++){
 			float criticity = 0;
 			for (Defect aDef: list.get(i).getDefects()){
 				criticity += aDef.getCriticity();
 			}			
-			 
+
 			for (int j=0; j<list.size(); j++){
 				float criticity2 = 0;
 				for (Defect aDef: list.get(j).getDefects()){
@@ -644,7 +653,7 @@ public class RepairCard {
 				}
 			}
 		}
-		
+
 		//fills Global Discordance matrix with info from all criterias
 		double[][] matrixGlobal = new double[list.size()][list.size()];
 		for(int i = 0; i<list.size(); i++){
@@ -654,10 +663,10 @@ public class RepairCard {
 				}
 			}
 		}
-		
+
 		return matrixGlobal;
 	}
-	
+
 	//method that creates a matrix with priority percentage of one car over another depending on preferences saved
 	public static double[][] getGlobalConcordanceMatrix(ArrayList<RepairCard> list, Preferences prefs) throws IOException{
 		double[][] matrixDate = new double[list.size()][list.size()];
@@ -668,17 +677,17 @@ public class RepairCard {
 				}else{
 					matrixDate[i][j] = 0;
 				}
-				
+
 			}
 		}
-		
+
 		double[][] matrixTimeRep = new double[list.size()][list.size()];
 		for (int i=0; i<list.size(); i++){
 			float timeRep = 0;
 			for (Defect aDef: list.get(i).getDefects()){
 				timeRep += aDef.getduration(); 
 			}			
-			 
+
 			for (int j=0; j<list.size(); j++){
 				float timeRep2 = 0;
 				for (Defect aDef: list.get(j).getDefects()){
@@ -691,9 +700,9 @@ public class RepairCard {
 				}
 			}
 		}
-		
 
-		
+
+
 		//fills Global Concordance matrix with info from all criterias
 		double[][] matrixGlobal = new double[list.size()][list.size()];
 		for(int i = 0; i<list.size(); i++){
@@ -701,22 +710,22 @@ public class RepairCard {
 				matrixGlobal[i][j] = (matrixDate[i][j]*0.7) + (matrixTimeRep[i][j]*0.3);
 			}
 		}
-		
+
 		return matrixGlobal;
 	}
-        
-        public static void emptyCollection() {
-            repairCard.clear();
-        }
-	
-        public static ArrayList<RepairCard> getInfoCars() {
-            return repairCard;
-        }
-        
-        public static void addRepairCardToCo(RepairCard newRC){
+
+	public static void emptyCollection() {
+		repairCard.clear();
+	}
+
+	public static ArrayList<RepairCard> getInfoCars() {
+		return repairCard;
+	}
+
+	public static void addRepairCardToCo(RepairCard newRC){
 		repairCard.add(newRC);
 	}
-	
+
 	public static boolean isInCollection(int id){
 		Boolean check = false;
 		for(RepairCard aRC: repairCard){
@@ -726,7 +735,7 @@ public class RepairCard {
 		}
 		return check;
 	}
-        
+
 	/**
 	 * Method to serialize the repairCard
 	 * @param rep
@@ -735,103 +744,109 @@ public class RepairCard {
 	public static String serialize(RepairCard rep){
 
 		String serialized = rep.getidcard()+"///"+rep.getidcar()+"///"+rep.getidparkplace()+"///"+
-		rep.getOutDate()+"///"+rep.getOverAllDetails()+"///"+User.serialize(rep.getUser());
+				rep.getOutDate()+"///"+rep.getOverAllDetails()+"///"+User.serialize(rep.getUser());
+		return serialized;
+	}
+
+	public static String serialize_query1(RepairCard rep){
+
+		String serialized = rep.idcar+"///"
+				+rep.car.serialize(rep.getCar())+"///"+rep.degree.serialize(rep.getDegree())
+				+"///"+rep.card.serialize(rep.getCard())+"///"+rep.idcard;
+		return serialized;
+	}
+
+	public static String serialize_query2(RepairCard rep){
+		String serialized = rep.idcard +"///"+ rep.entryDate+"///"+ rep.outDate+"///"+rep.overAllDetails+"///"
+				+rep.car.serialize(rep.getCar())+"///"+rep.degree.serialize(rep.getDegree())
+				+"///"+rep.card.serialize(rep.getCard())+"///"+rep.part.serialize(rep.getPart())
+				+"///"+rep.repair.serialize(rep.getRepair())+"///"+rep.defect.serialize(rep.getDefect())
+				+"///"+rep.park.serialize(rep.getPark());
+		return serialized;
+	}
+
+	public static String serialize_query3(RepairCard rep){
+		String serialized = rep.cumulCar + "//////" + rep.statut;
+		return serialized;
+	}
+
+	public static String serialize_query4(RepairCard rep){
+		String serialized = rep.name + "///" + rep.lname + "///" + rep.numRep;
 		return serialized;
 	}
 	
-        public static String serialize_query1(RepairCard rep){
+	public static String serialize_query5(RepairCard rep){
+		
+				String serialized = rep.getidcard()+"///"+rep.getidcar();
+				return serialized;
+			}
 
-		String serialized = rep.idcar+"///"
-                +rep.car.serialize(rep.getCar())+"///"+rep.degree.serialize(rep.getDegree())
-                +"///"+rep.card.serialize(rep.getCard())+"///"+rep.idcard;
-		return serialized;
-	}
-        
-        public static String serialize_query2(RepairCard rep){
-                String serialized = rep.idcard +"///"+ rep.entryDate+"///"+ rep.outDate+"///"+rep.overAllDetails+"///"
-                +rep.car.serialize(rep.getCar())+"///"+rep.degree.serialize(rep.getDegree())
-                +"///"+rep.card.serialize(rep.getCard())+"///"+rep.part.serialize(rep.getPart())
-                +"///"+rep.repair.serialize(rep.getRepair())+"///"+rep.defect.serialize(rep.getDefect())
-                +"///"+rep.park.serialize(rep.getPark());
-		return serialized;
-        }
-
-        public static String serialize_query3(RepairCard rep){
-                String serialized = rep.cumulCar + "//////" + rep.statut;
-		return serialized;
-        }
-        
-        public static String serialize_query4(RepairCard rep){
-                String serialized = rep.name + "///" + rep.lname + "///" + rep.numRep;
-		return serialized;
-        }
-        
 	/**
 	 * Method to unserialize the card and to create the object
 	 * @param serial
 	 * @return repairCard
 	 * @throws ParseException 
 	 */
-	
+
 	public static RepairCard unSerialize(String serialized) throws ParseException{
-    	ArrayList<String> values = new ArrayList<String>();
+		ArrayList<String> values = new ArrayList<String>();
 		for (String retval: serialized.split("///")){
 			values.add(retval);
 		}
-                int idcd = Integer.parseInt(values.get(0).toString());
-                String idc = (values.get(1).toString());
-                int pplace = Integer.parseInt(values.get(2).toString());
-                //dd MMM yyyy
-                java.util.Date utilDate = new SimpleDateFormat("YYYY-MM-DD").parse(values.get(3).toString());
-                Date dat = new Date(utilDate.getTime());
-                String detail =values.get(4);
-                User user=User.unSerialize(values.get(5));
-               
-        		user = new User(user.getId(), user.getFirstName(), user.getLastName(), user.getAddress(), user.getTown(), user.getPostCode(), 
-        				user.getLogin(), user.getEmail(), user.getHireDate(), user.getIncome(), user.getTypeUser());
-        		
-                //creating the object repairCard with all other objects
-        		RepairCard repairCard = new RepairCard(idcd, idc, pplace, dat, detail, user);
-        		logger.info("Success RepairCard unserilization");
+		int idcd = Integer.parseInt(values.get(0).toString());
+		String idc = (values.get(1).toString());
+		int pplace = Integer.parseInt(values.get(2).toString());
+		//dd MMM yyyy
+		java.util.Date utilDate = new SimpleDateFormat("YYYY-MM-DD").parse(values.get(3).toString());
+		Date dat = new Date(utilDate.getTime());
+		String detail =values.get(4);
+		User user=User.unSerialize(values.get(5));
+
+		user = new User(user.getId(), user.getFirstName(), user.getLastName(), user.getAddress(), user.getTown(), user.getPostCode(), 
+				user.getLogin(), user.getEmail(), user.getHireDate(), user.getIncome(), user.getTypeUser());
+
+		//creating the object repairCard with all other objects
+		RepairCard repairCard = new RepairCard(idcd, idc, pplace, dat, detail, user);
+		logger.info("Success RepairCard unserilization");
 		return repairCard;
-        }
-        
-        public static RepairCard unSerialize_query1(String serialized) throws ParseException{
-                ArrayList<String> values = new ArrayList<String>();
-                logger.info("Enter unserilization");
+	}
+
+	public static RepairCard unSerialize_query1(String serialized) throws ParseException{
+		ArrayList<String> values = new ArrayList<String>();
+		logger.info("Enter unserilization");
 		for (String retval: serialized.split("///")){
 			values.add(retval);
 		}
-                String idcar = (values.get(0));
-                Car car = new Car(values.get(1),values.get(2),values.get(3));
-                UrgencyDegree ud = new UrgencyDegree(Integer.parseInt(values.get(4)),values.get(5));
-                CardState cs = new CardState(Integer.parseInt(values.get(6)),values.get(7));
-                int idcard = Integer.parseInt(values.get(8));
-                logger.info("Begin unserilization");
-                //creating the object repairCard with all other objects
-                RepairCard repairCard = new RepairCard(idcard, idcar, car, ud, cs);
-                logger.info("Success RepairCard unserilization");
-		
-                return repairCard;
-        }
-        
-        public static RepairCard unSerialize_query2(String serialized) throws ParseException{
-                ArrayList<String> values = new ArrayList<String>();
-                logger.info("Enter unserilization");
+		String idcar = (values.get(0));
+		Car car = new Car(values.get(1),values.get(2),values.get(3));
+		UrgencyDegree ud = new UrgencyDegree(Integer.parseInt(values.get(4)),values.get(5));
+		CardState cs = new CardState(Integer.parseInt(values.get(6)),values.get(7));
+		int idcard = Integer.parseInt(values.get(8));
+		logger.info("Begin unserilization");
+		//creating the object repairCard with all other objects
+		RepairCard repairCard = new RepairCard(idcard, idcar, car, ud, cs);
+		logger.info("Success RepairCard unserilization");
+
+		return repairCard;
+	}
+
+	public static RepairCard unSerialize_query2(String serialized) throws ParseException{
+		ArrayList<String> values = new ArrayList<String>();
+		logger.info("Enter unserilization");
 		for (String retval: serialized.split("///")){
 			values.add(retval);
 		}
-                int idcard = Integer.parseInt(values.get(0));
-                DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                Date entryDate = format.parse(values.get(1));
-                Date outDate = format.parse(values.get(2));
-                String detailOps = values.get(3);
-                Car car = new Car(values.get(4),values.get(5),values.get(6));
-                UrgencyDegree ud = new UrgencyDegree(Integer.parseInt(values.get(7)),values.get(8));
-                CardState cs = new CardState(Integer.parseInt(values.get(9)),values.get(10));
-                Part part = new Part(values.get(11),Integer.parseInt(values.get(12)),values.get(13),Float.parseFloat(values.get(14)));                
-                
-                Date date=null;
+		int idcard = Integer.parseInt(values.get(0));
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date entryDate = format.parse(values.get(1));
+		Date outDate = format.parse(values.get(2));
+		String detailOps = values.get(3);
+		Car car = new Car(values.get(4),values.get(5),values.get(6));
+		UrgencyDegree ud = new UrgencyDegree(Integer.parseInt(values.get(7)),values.get(8));
+		CardState cs = new CardState(Integer.parseInt(values.get(9)),values.get(10));
+		Part part = new Part(values.get(11),Integer.parseInt(values.get(12)),values.get(13),Float.parseFloat(values.get(14)));                
+
+		Date date=null;
 		String testDate = values.get(16);
 		DateFormat formatter = new SimpleDateFormat("YYYY-MM-DD");
 		try {
@@ -839,57 +854,79 @@ public class RepairCard {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-                
-                Repairs rep = new Repairs(Integer.parseInt(values.get(15)),date,values.get(17),Float.parseFloat(values.get(18)),values.get(19));
-                Defect def = new Defect(Integer.parseInt(values.get(20)),values.get(21),Double.parseDouble(values.get(22)));
-                Place place = new Place(Integer.parseInt(values.get(23)),Boolean.parseBoolean(values.get(24)),Integer.parseInt(values.get(25)));
-                                
-                logger.info("Begin unserilization");
-                //creating the object repairCard with all other objects
-                RepairCard repairCard = new RepairCard(idcard, entryDate, outDate, detailOps, car,ud,cs,part,rep,def,place);
-                logger.info("Success RepairCard unserilization");
-		
-                return repairCard;
-        }
-        
-        public static RepairCard unSerialize_query3(String serialized) throws ParseException{
-                ArrayList<String> values = new ArrayList<String>();
-                logger.info("Enter unserilization");
+
+		Repairs rep = new Repairs(Integer.parseInt(values.get(15)),date,values.get(17),Float.parseFloat(values.get(18)),values.get(19));
+		Defect def = new Defect(Integer.parseInt(values.get(20)),values.get(21),Double.parseDouble(values.get(22)));
+		Place place = new Place(Integer.parseInt(values.get(23)),Boolean.parseBoolean(values.get(24)),Integer.parseInt(values.get(25)));
+
+		logger.info("Begin unserilization");
+		//creating the object repairCard with all other objects
+		RepairCard repairCard = new RepairCard(idcard, entryDate, outDate, detailOps, car,ud,cs,part,rep,def,place);
+		logger.info("Success RepairCard unserilization");
+
+		return repairCard;
+	}
+
+	public static RepairCard unSerialize_query3(String serialized) throws ParseException{
+		ArrayList<String> values = new ArrayList<String>();
+		logger.info("Enter unserilization");
 		for (String retval: serialized.split("//////")){
 			values.add(retval);
 		}
-                int idcard = Integer.parseInt(values.get(0));
-                String cs = values.get(1);
-                
-                logger.info("Begin unserilization");
-                //creating the object repairCard with all other objects
-                RepairCard repairCard = new RepairCard(idcard, cs);
-                logger.info("Success RepairCard unserilization");
-		
-                return repairCard;
-        }
-        
-        public static RepairCard unSerialize_query4(String serialized) throws ParseException{
-                ArrayList<String> values = new ArrayList<String>();
-                logger.info("Enter unserilization");
+		int idcard = Integer.parseInt(values.get(0));
+		String cs = values.get(1);
+
+		logger.info("Begin unserilization");
+		//creating the object repairCard with all other objects
+		RepairCard repairCard = new RepairCard(idcard, cs);
+		logger.info("Success RepairCard unserilization");
+
+		return repairCard;
+	}
+
+	public static RepairCard unSerialize_query4(String serialized) throws ParseException{
+		ArrayList<String> values = new ArrayList<String>();
+		logger.info("Enter unserilization");
 		for (String retval: serialized.split("///")){
 			values.add(retval);
 		}
-                String nom = values.get(0);
-                String prenom = values.get(1);
-                int num = Integer.parseInt(values.get(2));
-                logger.info("Begin unserilization");
-                //creating the object repairCard with all other objects
-                RepairCard repairCard = new RepairCard(num, nom, prenom);
-                logger.info("Success RepairCard unserilization");
-		
-                return repairCard;
-        }
+		String nom = values.get(0);
+		String prenom = values.get(1);
+		int num = Integer.parseInt(values.get(2));
+		logger.info("Begin unserilization");
+		//creating the object repairCard with all other objects
+		RepairCard repairCard = new RepairCard(num, nom, prenom);
+		logger.info("Success RepairCard unserilization");
+
+		return repairCard;
+	}
+	
+	public static RepairCard unSerialize_query5(String serialized) throws ParseException{
+		ArrayList<String> values = new ArrayList<String>();
+		logger.info("Enter unserilization");
+		for (String retval: serialized.split("///")){
+			values.add(retval);
+		}
+		int idcard = Integer.parseInt(values.get(0));
+		String idcar = values.get(1);
+		logger.info("Begin unserilization");
+		//creating the object repairCard with all other objects
+		RepairCard repairCard = new RepairCard(idcard, idcar);
+		logger.info("Success RepairCard unserilization");
+
+		return repairCard;
+	}
+	
 	/**
-     * Method toString
-     * 
-     */
-    public String toString(Object values) {
-        return String.valueOf(values);
-    }
+	 * Method toString
+	 * 
+	 */
+	public String toString(Object values) {
+		return String.valueOf(values);
+	}
+	
+	public static ArrayList<RepairCard> getAllRepairCard() {
+				// TODO Auto-generated method stub
+				return repairCard;
+			}
 }

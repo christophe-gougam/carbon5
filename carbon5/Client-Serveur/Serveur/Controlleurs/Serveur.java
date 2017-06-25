@@ -32,6 +32,7 @@ public class Serveur {
 			logger.info("Server is listening on port "+portServer);
 			ConnectionPool pool = new ConnectionPool();
 			RepairCard.determineWaitList();
+			RepairCard.prioritaryCard.getPrioritaryCard();
 			t = new Thread(new ProcessData(serversocket));
 			t.start();
 			
