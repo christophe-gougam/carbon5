@@ -3491,3 +3491,581 @@ parcours du fichier Json :
 2017-06-25 17:01:39 INFO  Serveur:129 - Enter unserilization
 2017-06-25 17:01:39 INFO  Serveur:135 - Begin unserilization
 2017-06-25 17:01:39 INFO  Serveur:137 - Success unserilization
+2017-06-26 20:26:24 INFO  Serveur:32 - Server is listening on port 50000
+2017-06-26 20:26:24 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:26:25 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@53f65459
+2017-06-26 20:26:25 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:26:25 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@17579e0f
+2017-06-26 20:26:25 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:26:25 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@11438d26
+2017-06-26 20:26:25 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:26:25 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@34c4973
+2017-06-26 20:26:25 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:26:25 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@bd8db5a
+2017-06-26 20:26:25 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:26:25 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@2a742aa2
+2017-06-26 20:26:25 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:26:25 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@307f6b8c
+2017-06-26 20:26:25 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:26:25 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@32d2fa64
+2017-06-26 20:26:25 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:26:25 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@6b57696f
+2017-06-26 20:26:25 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:26:25 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@26a7b76d
+2017-06-26 20:26:25 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:26:25 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7113b13f
+2017-06-26 20:26:25 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:26:25 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@25af5db5
+2017-06-26 20:26:25 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:26:25 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@44c8afef
+2017-06-26 20:26:25 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:26:25 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@5ed828d
+2017-06-26 20:26:25 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:26:25 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@77f99a05
+2017-06-26 20:26:25 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:26:25 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@1b26f7b2
+2017-06-26 20:26:25 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:26:25 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@4a87761d
+2017-06-26 20:26:25 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:26:25 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@b7dd107
+2017-06-26 20:26:25 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:26:25 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@43bd930a
+2017-06-26 20:26:25 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:26:25 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@8e24743
+2017-06-26 20:26:25 WARN  ConnectionPool:55 - Connection Pool is full. 20 connections created
+2017-06-26 20:26:25 INFO  ProcessData:54 - Retrieving connection from Pool
+2017-06-26 20:26:25 INFO  ProcessData:57 - Retrieving client socket
+2017-06-26 20:26:36 INFO  Serveur:113 - Authentification demand�e par le client
+2017-06-26 20:26:36 INFO  Serveur:103 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2017-06-26 20:26:36 INFO  Serveur:104 - 127.0.0.1
+2017-06-26 20:26:36 INFO  Serveur:75 - Envoie du JSON au serveur
+2017-06-26 20:26:36 INFO  Serveur:76 - {"identifier":"Authentication","data":["test","test"]}
+2017-06-26 20:26:36 INFO  ProcessData:64 - Reading JSON Client
+2017-06-26 20:26:36 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2017-06-26 20:26:36 INFO  ProcessData:54 - Retrieving connection from Pool
+2017-06-26 20:26:36 INFO  Serveur:25 - Afficage du JSON : 
+2017-06-26 20:26:36 INFO  Serveur:26 - {"identifier":"Authentication","data":["test","test"]}
+2017-06-26 20:26:36 INFO  Serveur:29 - 
+parcours du fichier Json :
+2017-06-26 20:26:36 INFO  ProcessData:57 - Retrieving client socket
+2017-06-26 20:26:36 INFO  Authentication:81 - Sending JSON succ�s to Client
+2017-06-26 20:26:36 INFO  Authentication:92 - Returning connection to pool
+2017-06-26 20:26:36 INFO  Serveur:85 - GrantAuth
+2017-06-26 20:26:37 INFO  Serveur:99 - Afficage du JSON : 
+2017-06-26 20:26:37 INFO  Serveur:100 - {"identifier":"GrantAuth","data":["GrantAuth","1///test///test///azertyu///azertyu///92100///test///test///2017-04-03///2.0///2///ouvrier"]}
+2017-06-26 20:26:37 INFO  Serveur:108 - 1///test///test///azertyu///azertyu///92100///test///test///2017-04-03///2.0///2///ouvrier
+2017-06-26 20:26:37 INFO  Serveur:274 - Enter unserilization
+2017-06-26 20:26:37 INFO  Serveur:288 - Begin unserilization
+2017-06-26 20:26:37 INFO  Serveur:290 - Success unserilization
+2017-06-26 20:26:38 INFO  Serveur:120 - MASQUER TAB 4
+2017-06-26 20:32:54 INFO  Serveur:32 - Server is listening on port 50000
+2017-06-26 20:32:54 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:32:55 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@53f65459
+2017-06-26 20:32:55 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:32:55 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@17579e0f
+2017-06-26 20:32:55 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:32:55 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@11438d26
+2017-06-26 20:32:55 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:32:55 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@34c4973
+2017-06-26 20:32:55 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:32:55 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@bd8db5a
+2017-06-26 20:32:55 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:32:55 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@2a742aa2
+2017-06-26 20:32:55 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:32:55 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@307f6b8c
+2017-06-26 20:32:55 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:32:55 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@32d2fa64
+2017-06-26 20:32:55 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:32:55 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@6b57696f
+2017-06-26 20:32:55 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:32:55 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@26a7b76d
+2017-06-26 20:32:55 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:32:55 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7113b13f
+2017-06-26 20:32:55 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:32:55 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@25af5db5
+2017-06-26 20:32:55 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:32:55 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@44c8afef
+2017-06-26 20:32:55 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:32:55 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@5ed828d
+2017-06-26 20:32:55 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:32:55 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@77f99a05
+2017-06-26 20:32:55 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:32:55 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@1b26f7b2
+2017-06-26 20:32:55 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:32:55 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@4a87761d
+2017-06-26 20:32:55 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:32:55 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@b7dd107
+2017-06-26 20:32:55 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:32:55 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@43bd930a
+2017-06-26 20:32:55 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:32:55 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@8e24743
+2017-06-26 20:32:55 WARN  ConnectionPool:55 - Connection Pool is full. 20 connections created
+2017-06-26 20:32:55 INFO  ProcessData:54 - Retrieving connection from Pool
+2017-06-26 20:32:55 INFO  ProcessData:57 - Retrieving client socket
+2017-06-26 20:33:17 INFO  Serveur:113 - Authentification demand�e par le client
+2017-06-26 20:33:17 INFO  Serveur:103 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2017-06-26 20:33:17 INFO  Serveur:104 - 127.0.0.1
+2017-06-26 20:33:17 INFO  Serveur:75 - Envoie du JSON au serveur
+2017-06-26 20:33:17 INFO  Serveur:76 - {"identifier":"Authentication","data":["boss","boss"]}
+2017-06-26 20:33:17 INFO  ProcessData:64 - Reading JSON Client
+2017-06-26 20:33:17 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2017-06-26 20:33:17 INFO  ProcessData:54 - Retrieving connection from Pool
+2017-06-26 20:33:17 INFO  Serveur:25 - Afficage du JSON : 
+2017-06-26 20:33:17 INFO  Serveur:26 - {"identifier":"Authentication","data":["boss","boss"]}
+2017-06-26 20:33:17 INFO  Serveur:29 - 
+parcours du fichier Json :
+2017-06-26 20:33:17 INFO  ProcessData:57 - Retrieving client socket
+2017-06-26 20:33:17 INFO  Authentication:81 - Sending JSON succ�s to Client
+2017-06-26 20:33:17 INFO  Authentication:92 - Returning connection to pool
+2017-06-26 20:33:17 INFO  Serveur:85 - GrantAuth
+2017-06-26 20:33:17 INFO  Serveur:99 - Afficage du JSON : 
+2017-06-26 20:33:17 INFO  Serveur:100 - {"identifier":"GrantAuth","data":["GrantAuth","2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager"]}
+2017-06-26 20:33:17 INFO  Serveur:108 - 2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager
+2017-06-26 20:33:17 INFO  Serveur:274 - Enter unserilization
+2017-06-26 20:33:17 INFO  Serveur:288 - Begin unserilization
+2017-06-26 20:33:17 INFO  Serveur:290 - Success unserilization
+2017-06-26 20:33:19 INFO  Serveur:123 - DISPLAY TAB 4
+2017-06-26 20:33:49 INFO  Serveur:194 - Recuperation des pieces
+2017-06-26 20:33:49 INFO  Serveur:65 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2017-06-26 20:33:49 INFO  Serveur:66 - 127.0.0.1
+2017-06-26 20:33:49 INFO  Serveur:75 - Envoie du JSON au serveur
+2017-06-26 20:33:49 INFO  Serveur:76 - {"identifier":"SelectFirstFromWaitList","data":[]}
+2017-06-26 20:33:49 INFO  ProcessData:64 - Reading JSON Client
+2017-06-26 20:33:49 INFO  ProcessData:90 - Case Select first from wait list
+2017-06-26 20:33:49 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2017-06-26 20:33:49 INFO  Serveur:25 - Afficage du JSON : 
+2017-06-26 20:33:49 INFO  Serveur:26 - {"identifier":"SelectFirstFromWaitList","data":[]}
+2017-06-26 20:33:49 INFO  Serveur:29 - 
+parcours du fichier Json :
+2017-06-26 20:33:49 INFO  Serveur:115 - Fonctionnalit� non prise en charge pour l'instant
+2017-06-26 20:33:49 INFO  RepairCardController:64 - Sending JSON succ�s selectRepairCard to Client
+2017-06-26 20:33:49 INFO  RepairCardController:69 - Returning connection to pool
+2017-06-26 20:33:49 INFO  Serveur:85 - SelectFirstFromWaitListOK
+2017-06-26 20:33:49 INFO  ProcessData:54 - Retrieving connection from Pool
+2017-06-26 20:33:49 INFO  ProcessData:57 - Retrieving client socket
+2017-06-26 20:33:49 INFO  Serveur:190 - Afficage du resultat de mise � jour : 
+2017-06-26 20:33:49 INFO  Serveur:191 - {"identifier":"SelectFirstFromWaitListOK","data":["SelectFirstFromWaitListOK","0///null"]}
+2017-06-26 20:37:26 INFO  Serveur:32 - Server is listening on port 50000
+2017-06-26 20:37:26 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:37:26 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@53f65459
+2017-06-26 20:37:26 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:37:26 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@17579e0f
+2017-06-26 20:37:26 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:37:26 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@11438d26
+2017-06-26 20:37:26 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:37:26 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@34c4973
+2017-06-26 20:37:26 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:37:26 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@bd8db5a
+2017-06-26 20:37:26 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:37:26 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@2a742aa2
+2017-06-26 20:37:26 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:37:26 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@307f6b8c
+2017-06-26 20:37:26 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:37:26 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@32d2fa64
+2017-06-26 20:37:26 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:37:26 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@6b57696f
+2017-06-26 20:37:26 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:37:26 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@26a7b76d
+2017-06-26 20:37:26 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:37:26 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7113b13f
+2017-06-26 20:37:26 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:37:26 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@25af5db5
+2017-06-26 20:37:26 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:37:26 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@44c8afef
+2017-06-26 20:37:26 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:37:26 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@5ed828d
+2017-06-26 20:37:26 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:37:26 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@77f99a05
+2017-06-26 20:37:26 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:37:26 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@1b26f7b2
+2017-06-26 20:37:26 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:37:26 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@4a87761d
+2017-06-26 20:37:26 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:37:26 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@b7dd107
+2017-06-26 20:37:26 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:37:26 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@43bd930a
+2017-06-26 20:37:26 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:37:26 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@8e24743
+2017-06-26 20:37:26 WARN  ConnectionPool:55 - Connection Pool is full. 20 connections created
+2017-06-26 20:37:27 INFO  ProcessData:54 - Retrieving connection from Pool
+2017-06-26 20:37:27 INFO  ProcessData:57 - Retrieving client socket
+2017-06-26 20:37:42 INFO  Serveur:113 - Authentification demand�e par le client
+2017-06-26 20:37:43 INFO  Serveur:103 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2017-06-26 20:37:43 INFO  Serveur:104 - 127.0.0.1
+2017-06-26 20:37:43 INFO  Serveur:75 - Envoie du JSON au serveur
+2017-06-26 20:37:43 INFO  Serveur:76 - {"identifier":"Authentication","data":["boss","boss"]}
+2017-06-26 20:37:43 INFO  ProcessData:64 - Reading JSON Client
+2017-06-26 20:37:43 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2017-06-26 20:37:43 INFO  ProcessData:54 - Retrieving connection from Pool
+2017-06-26 20:37:43 INFO  ProcessData:57 - Retrieving client socket
+2017-06-26 20:37:43 INFO  Serveur:25 - Afficage du JSON : 
+2017-06-26 20:37:43 INFO  Serveur:26 - {"identifier":"Authentication","data":["boss","boss"]}
+2017-06-26 20:37:43 INFO  Serveur:29 - 
+parcours du fichier Json :
+2017-06-26 20:37:43 INFO  Authentication:81 - Sending JSON succ�s to Client
+2017-06-26 20:37:43 INFO  Authentication:92 - Returning connection to pool
+2017-06-26 20:37:43 INFO  Serveur:85 - GrantAuth
+2017-06-26 20:37:43 INFO  Serveur:99 - Afficage du JSON : 
+2017-06-26 20:37:43 INFO  Serveur:100 - {"identifier":"GrantAuth","data":["GrantAuth","2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager"]}
+2017-06-26 20:37:43 INFO  Serveur:108 - 2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager
+2017-06-26 20:37:43 INFO  Serveur:274 - Enter unserilization
+2017-06-26 20:37:43 INFO  Serveur:288 - Begin unserilization
+2017-06-26 20:37:43 INFO  Serveur:290 - Success unserilization
+2017-06-26 20:37:45 INFO  Serveur:123 - DISPLAY TAB 4
+2017-06-26 20:38:15 INFO  Serveur:247 - Chargement des listes deroulantes
+2017-06-26 20:38:15 INFO  Serveur:65 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2017-06-26 20:38:15 INFO  Serveur:66 - 127.0.0.1
+2017-06-26 20:38:15 INFO  Serveur:75 - Envoie du JSON au serveur
+2017-06-26 20:38:15 INFO  Serveur:76 - {"identifier":"LoadAllComboBox","data":[]}
+2017-06-26 20:38:15 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2017-06-26 20:38:15 INFO  ProcessData:64 - Reading JSON Client
+2017-06-26 20:38:15 INFO  ProcessData:143 - Case Select all type car
+2017-06-26 20:38:15 INFO  Serveur:25 - Afficage du JSON : 
+2017-06-26 20:38:15 INFO  Serveur:26 - {"identifier":"LoadAllComboBox","data":[]}
+2017-06-26 20:38:15 INFO  Serveur:29 - 
+parcours du fichier Json :
+2017-06-26 20:38:15 INFO  Serveur:92 - retrieving all typeCar
+2017-06-26 20:38:15 INFO  CarController:216 - Sending list of type car to Client
+2017-06-26 20:38:15 INFO  CarController:217 - {"dataDefect":["31","1///Frein///1.5","2///Levier///0.5","3///Pneu///0.0","5///Electronique///10.0","6///Batterie///1.0","7///Boite de vitesse///6.0","8///Plaque Imatriculation///9.0","10///CLimatisation///2.0","11///Geometrie///1.0","12///Revision///0.0","13///Vidange///4.0","14///Filtration///10.0","16///Eclairage///6.0","17///Atelage///9.0","18///Distribution///7.0","19///Prestation///10.0","20///Echappement///1.0","21///SystÃƒÂ¨me de freinage///6.0","22///Controle///9.0","23///Diagnostics///7.0","24///EntretienEchappement///2.0","25///MontageAmortisseur///1.0","26///MontageBatterie///0.0","27///ChangerHydrolique///4.0","28///NettoyerFiltreAir///10.0","29///ChangementRoues///1.0","30///ReglageEclairage///6.0","31///RenovationPhare///9.0","32///ServiceCarteGrise///7.0","33///VidangeBoiteEtPont///10.0","34///Moteur///5.0"],"identifier":"LoadAllComboBoxOK","data":["LoadAllComboBoxOK","2","1///Voiture","2///Velo"],"allCar":["5","l78p///Velo///1234","VEL123///Velo///123123","VEL124///Velo///123124","VOI456///Voiture///456456","VOI458///Voiture///456458"],"placement":["24","1011///false///1","1012///false///1","1013///false///1","1015///false///1","1016///false///1","1017///false///1","1018///false///1","1019///false///1","1020///false///1","1021///false///1","1022///false///1","1023///false///1","1024///false///1","1025///false///1","1026///false///1","2001///false///2","2007///false///2","2020///false///2","2021///false///2","2022///false///2","2023///false///2","2024///false///2","2025///false///2","2026///false///2"]}
+2017-06-26 20:38:15 INFO  CarController:280 - Returning connection to pool
+2017-06-26 20:38:15 INFO  ProcessData:54 - Retrieving connection from Pool
+2017-06-26 20:38:15 INFO  ProcessData:57 - Retrieving client socket
+2017-06-26 20:38:15 INFO  Serveur:85 - LoadAllComboBoxOK
+2017-06-26 20:38:15 INFO  Serveur:293 - Afficage du resultat
+2017-06-26 20:38:15 INFO  Serveur:294 - {"dataDefect":["31","1///Frein///1.5","2///Levier///0.5","3///Pneu///0.0","5///Electronique///10.0","6///Batterie///1.0","7///Boite de vitesse///6.0","8///Plaque Imatriculation///9.0","10///CLimatisation///2.0","11///Geometrie///1.0","12///Revision///0.0","13///Vidange///4.0","14///Filtration///10.0","16///Eclairage///6.0","17///Atelage///9.0","18///Distribution///7.0","19///Prestation///10.0","20///Echappement///1.0","21///SystÃƒÂ¨me de freinage///6.0","22///Controle///9.0","23///Diagnostics///7.0","24///EntretienEchappement///2.0","25///MontageAmortisseur///1.0","26///MontageBatterie///0.0","27///ChangerHydrolique///4.0","28///NettoyerFiltreAir///10.0","29///ChangementRoues///1.0","30///ReglageEclairage///6.0","31///RenovationPhare///9.0","32///ServiceCarteGrise///7.0","33///VidangeBoiteEtPont///10.0","34///Moteur///5.0"],"identifier":"LoadAllComboBoxOK","data":["LoadAllComboBoxOK","2","1///Voiture","2///Velo"],"allCar":["5","l78p///Velo///1234","VEL123///Velo///123123","VEL124///Velo///123124","VOI456///Voiture///456456","VOI458///Voiture///456458"],"placement":["24","1011///false///1","1012///false///1","1013///false///1","1015///false///1","1016///false///1","1017///false///1","1018///false///1","1019///false///1","1020///false///1","1021///false///1","1022///false///1","1023///false///1","1024///false///1","1025///false///1","1026///false///1","2001///false///2","2007///false///2","2020///false///2","2021///false///2","2022///false///2","2023///false///2","2024///false///2","2025///false///2","2026///false///2"]}
+2017-06-26 20:38:15 INFO  Serveur:195 - l78pVelo1234
+2017-06-26 20:38:15 INFO  Serveur:195 - VEL123Velo123123
+2017-06-26 20:38:15 INFO  Serveur:195 - VEL124Velo123124
+2017-06-26 20:38:15 INFO  Serveur:195 - VOI456Voiture456456
+2017-06-26 20:38:15 INFO  Serveur:195 - VOI458Voiture456458
+2017-06-26 20:38:15 INFO  Serveur:75 - Enter unserilization
+2017-06-26 20:38:15 INFO  Serveur:81 - Begin unserilization
+2017-06-26 20:38:15 INFO  Serveur:83 - Success unserilization
+2017-06-26 20:38:15 INFO  Serveur:75 - Enter unserilization
+2017-06-26 20:38:15 INFO  Serveur:81 - Begin unserilization
+2017-06-26 20:38:15 INFO  Serveur:83 - Success unserilization
+2017-06-26 20:38:19 INFO  Serveur:194 - Recuperation des pieces
+2017-06-26 20:38:19 INFO  Serveur:65 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2017-06-26 20:38:19 INFO  Serveur:66 - 127.0.0.1
+2017-06-26 20:38:19 INFO  Serveur:75 - Envoie du JSON au serveur
+2017-06-26 20:38:19 INFO  Serveur:76 - {"identifier":"SelectFirstFromWaitList","data":[]}
+2017-06-26 20:38:19 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2017-06-26 20:38:19 INFO  ProcessData:64 - Reading JSON Client
+2017-06-26 20:38:19 INFO  ProcessData:90 - Case Select first from wait list
+2017-06-26 20:38:19 INFO  Serveur:25 - Afficage du JSON : 
+2017-06-26 20:38:19 INFO  Serveur:26 - {"identifier":"SelectFirstFromWaitList","data":[]}
+2017-06-26 20:38:19 INFO  Serveur:29 - 
+parcours du fichier Json :
+2017-06-26 20:38:19 INFO  Serveur:115 - Fonctionnalit� non prise en charge pour l'instant
+2017-06-26 20:39:39 INFO  RepairCardController:64 - Sending JSON succ�s selectRepairCard to Client
+2017-06-26 20:39:39 INFO  RepairCardController:69 - Returning connection to pool
+2017-06-26 20:39:39 INFO  ProcessData:54 - Retrieving connection from Pool
+2017-06-26 20:39:39 INFO  Serveur:85 - SelectFirstFromWaitListOK
+2017-06-26 20:39:39 INFO  ProcessData:57 - Retrieving client socket
+2017-06-26 20:39:51 INFO  Serveur:190 - Afficage du resultat de mise � jour : 
+2017-06-26 20:39:51 INFO  Serveur:191 - {"identifier":"SelectFirstFromWaitListOK","data":["SelectFirstFromWaitListOK","0///null"]}
+2017-06-26 20:46:51 INFO  Serveur:32 - Server is listening on port 50000
+2017-06-26 20:46:51 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:46:51 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@53f65459
+2017-06-26 20:46:51 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:46:51 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@17579e0f
+2017-06-26 20:46:51 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:46:51 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@11438d26
+2017-06-26 20:46:51 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:46:51 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@34c4973
+2017-06-26 20:46:51 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:46:51 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@bd8db5a
+2017-06-26 20:46:51 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:46:51 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@2a742aa2
+2017-06-26 20:46:51 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:46:51 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@307f6b8c
+2017-06-26 20:46:51 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:46:51 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@32d2fa64
+2017-06-26 20:46:51 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:46:51 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@6b57696f
+2017-06-26 20:46:51 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:46:51 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@26a7b76d
+2017-06-26 20:46:51 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:46:51 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7113b13f
+2017-06-26 20:46:51 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:46:51 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@25af5db5
+2017-06-26 20:46:51 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:46:51 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@44c8afef
+2017-06-26 20:46:51 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:46:51 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@5ed828d
+2017-06-26 20:46:51 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:46:51 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@77f99a05
+2017-06-26 20:46:51 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:46:51 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@1b26f7b2
+2017-06-26 20:46:51 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:46:51 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@4a87761d
+2017-06-26 20:46:51 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:46:51 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@b7dd107
+2017-06-26 20:46:51 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:46:51 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@43bd930a
+2017-06-26 20:46:51 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:46:51 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@8e24743
+2017-06-26 20:46:51 WARN  ConnectionPool:55 - Connection Pool is full. 20 connections created
+2017-06-26 20:46:51 INFO  ProcessData:54 - Retrieving connection from Pool
+2017-06-26 20:46:51 INFO  ProcessData:57 - Retrieving client socket
+2017-06-26 20:47:07 INFO  Serveur:113 - Authentification demand�e par le client
+2017-06-26 20:47:07 INFO  Serveur:103 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2017-06-26 20:47:07 INFO  Serveur:104 - 127.0.0.1
+2017-06-26 20:47:07 INFO  Serveur:75 - Envoie du JSON au serveur
+2017-06-26 20:47:07 INFO  Serveur:76 - {"identifier":"Authentication","data":["boss","boss"]}
+2017-06-26 20:47:07 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2017-06-26 20:47:07 INFO  ProcessData:64 - Reading JSON Client
+2017-06-26 20:47:07 INFO  ProcessData:54 - Retrieving connection from Pool
+2017-06-26 20:47:07 INFO  Serveur:25 - Afficage du JSON : 
+2017-06-26 20:47:07 INFO  Serveur:26 - {"identifier":"Authentication","data":["boss","boss"]}
+2017-06-26 20:47:07 INFO  ProcessData:57 - Retrieving client socket
+2017-06-26 20:47:07 INFO  Serveur:29 - 
+parcours du fichier Json :
+2017-06-26 20:47:07 INFO  Authentication:81 - Sending JSON succ�s to Client
+2017-06-26 20:47:07 INFO  Authentication:92 - Returning connection to pool
+2017-06-26 20:47:07 INFO  Serveur:85 - GrantAuth
+2017-06-26 20:47:07 INFO  Serveur:99 - Afficage du JSON : 
+2017-06-26 20:47:07 INFO  Serveur:100 - {"identifier":"GrantAuth","data":["GrantAuth","2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager"]}
+2017-06-26 20:47:07 INFO  Serveur:108 - 2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager
+2017-06-26 20:47:08 INFO  Serveur:274 - Enter unserilization
+2017-06-26 20:47:08 INFO  Serveur:288 - Begin unserilization
+2017-06-26 20:47:08 INFO  Serveur:290 - Success unserilization
+2017-06-26 20:47:09 INFO  Serveur:123 - DISPLAY TAB 4
+2017-06-26 20:47:28 INFO  Serveur:194 - Recuperation des pieces
+2017-06-26 20:47:28 INFO  Serveur:65 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2017-06-26 20:47:28 INFO  Serveur:66 - 127.0.0.1
+2017-06-26 20:47:28 INFO  Serveur:75 - Envoie du JSON au serveur
+2017-06-26 20:47:28 INFO  Serveur:76 - {"identifier":"SelectFirstFromWaitList","data":[]}
+2017-06-26 20:47:28 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2017-06-26 20:47:28 INFO  ProcessData:64 - Reading JSON Client
+2017-06-26 20:47:28 INFO  ProcessData:90 - Case Select first from wait list
+2017-06-26 20:47:28 INFO  Serveur:25 - Afficage du JSON : 
+2017-06-26 20:47:28 INFO  Serveur:26 - {"identifier":"SelectFirstFromWaitList","data":[]}
+2017-06-26 20:47:28 INFO  Serveur:29 - 
+parcours du fichier Json :
+2017-06-26 20:47:28 INFO  Serveur:115 - Fonctionnalit� non prise en charge pour l'instant
+2017-06-26 20:47:37 INFO  RepairCardController:64 - Sending JSON succ�s selectRepairCard to Client
+2017-06-26 20:47:37 INFO  RepairCardController:69 - Returning connection to pool
+2017-06-26 20:47:37 INFO  ProcessData:54 - Retrieving connection from Pool
+2017-06-26 20:47:37 INFO  ProcessData:57 - Retrieving client socket
+2017-06-26 20:47:37 INFO  Serveur:85 - SelectFirstFromWaitListOK
+2017-06-26 20:47:40 INFO  Serveur:190 - Afficage du resultat de mise � jour : 
+2017-06-26 20:47:40 INFO  Serveur:191 - {"identifier":"SelectFirstFromWaitListOK","data":["SelectFirstFromWaitListOK","0///VOI456"]}
+2017-06-26 20:48:30 INFO  Serveur:906 - Enter unserilization
+2017-06-26 20:48:30 INFO  Serveur:912 - Begin unserilization
+2017-06-26 20:48:30 INFO  Serveur:915 - Success RepairCard unserilization
+2017-06-26 20:48:30 INFO  Serveur:906 - Enter unserilization
+2017-06-26 20:48:30 INFO  Serveur:912 - Begin unserilization
+2017-06-26 20:48:30 INFO  Serveur:915 - Success RepairCard unserilization
+2017-06-26 20:53:06 INFO  Serveur:32 - Server is listening on port 50000
+2017-06-26 20:53:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:53:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3d82c5f3
+2017-06-26 20:53:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:53:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@1b9e1916
+2017-06-26 20:53:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:53:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@4c98385c
+2017-06-26 20:53:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:53:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3f8f9dd6
+2017-06-26 20:53:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:53:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@ee7d9f1
+2017-06-26 20:53:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:53:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@c2e1f26
+2017-06-26 20:53:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:53:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@6f2b958e
+2017-06-26 20:53:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:53:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7de26db8
+2017-06-26 20:53:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:53:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@53bd815b
+2017-06-26 20:53:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:53:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3830f1c0
+2017-06-26 20:53:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:53:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@73a28541
+2017-06-26 20:53:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:53:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@33833882
+2017-06-26 20:53:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:53:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3b22cdd0
+2017-06-26 20:53:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:53:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@4aa8f0b4
+2017-06-26 20:53:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:53:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@368239c8
+2017-06-26 20:53:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:53:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@21588809
+2017-06-26 20:53:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:53:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@39a054a5
+2017-06-26 20:53:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:53:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7b1d7fff
+2017-06-26 20:53:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:53:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7382f612
+2017-06-26 20:53:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 20:53:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@67f89fa3
+2017-06-26 20:53:07 WARN  ConnectionPool:55 - Connection Pool is full. 20 connections created
+2017-06-26 20:53:07 INFO  ProcessData:54 - Retrieving connection from Pool
+2017-06-26 20:53:07 INFO  ProcessData:57 - Retrieving client socket
+2017-06-26 20:53:20 INFO  Serveur:113 - Authentification demand�e par le client
+2017-06-26 20:53:20 INFO  Serveur:103 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2017-06-26 20:53:20 INFO  Serveur:104 - 127.0.0.1
+2017-06-26 20:53:20 INFO  Serveur:75 - Envoie du JSON au serveur
+2017-06-26 20:53:20 INFO  Serveur:76 - {"identifier":"Authentication","data":["boss","boss"]}
+2017-06-26 20:53:20 INFO  ProcessData:64 - Reading JSON Client
+2017-06-26 20:53:20 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2017-06-26 20:53:20 INFO  ProcessData:54 - Retrieving connection from Pool
+2017-06-26 20:53:20 INFO  Serveur:25 - Afficage du JSON : 
+2017-06-26 20:53:20 INFO  Serveur:26 - {"identifier":"Authentication","data":["boss","boss"]}
+2017-06-26 20:53:20 INFO  Serveur:29 - 
+parcours du fichier Json :
+2017-06-26 20:53:20 INFO  ProcessData:57 - Retrieving client socket
+2017-06-26 20:53:20 INFO  Authentication:81 - Sending JSON succ�s to Client
+2017-06-26 20:53:20 INFO  Authentication:92 - Returning connection to pool
+2017-06-26 20:53:20 INFO  Serveur:85 - GrantAuth
+2017-06-26 20:53:20 INFO  Serveur:99 - Afficage du JSON : 
+2017-06-26 20:53:20 INFO  Serveur:100 - {"identifier":"GrantAuth","data":["GrantAuth","2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager"]}
+2017-06-26 20:53:20 INFO  Serveur:108 - 2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager
+2017-06-26 20:53:20 INFO  Serveur:274 - Enter unserilization
+2017-06-26 20:53:20 INFO  Serveur:288 - Begin unserilization
+2017-06-26 20:53:20 INFO  Serveur:290 - Success unserilization
+2017-06-26 20:53:21 INFO  Serveur:123 - DISPLAY TAB 4
+2017-06-26 20:53:33 INFO  Serveur:194 - Recuperation des pieces
+2017-06-26 20:53:33 INFO  Serveur:65 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2017-06-26 20:53:33 INFO  Serveur:66 - 127.0.0.1
+2017-06-26 20:53:33 INFO  Serveur:75 - Envoie du JSON au serveur
+2017-06-26 20:53:33 INFO  Serveur:76 - {"identifier":"SelectFirstFromWaitList","data":[]}
+2017-06-26 20:53:33 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2017-06-26 20:53:33 INFO  ProcessData:64 - Reading JSON Client
+2017-06-26 20:53:33 INFO  ProcessData:90 - Case Select first from wait list
+2017-06-26 20:53:33 INFO  Serveur:25 - Afficage du JSON : 
+2017-06-26 20:53:33 INFO  Serveur:26 - {"identifier":"SelectFirstFromWaitList","data":[]}
+2017-06-26 20:53:33 INFO  Serveur:29 - 
+parcours du fichier Json :
+2017-06-26 20:53:33 INFO  Serveur:115 - Fonctionnalit� non prise en charge pour l'instant
+2017-06-26 20:53:33 INFO  RepairCardController:64 - Sending JSON succ�s selectRepairCard to Client
+2017-06-26 20:53:33 INFO  RepairCardController:69 - Returning connection to pool
+2017-06-26 20:53:33 INFO  ProcessData:54 - Retrieving connection from Pool
+2017-06-26 20:53:33 INFO  ProcessData:57 - Retrieving client socket
+2017-06-26 20:53:33 INFO  Serveur:85 - SelectFirstFromWaitListOK
+2017-06-26 20:53:33 INFO  Serveur:190 - Afficage du resultat de mise � jour : 
+2017-06-26 20:53:33 INFO  Serveur:191 - {"identifier":"SelectFirstFromWaitListOK","data":["SelectFirstFromWaitListOK","0///VOI456"]}
+2017-06-26 20:53:33 INFO  Serveur:906 - Enter unserilization
+2017-06-26 20:53:33 INFO  Serveur:912 - Begin unserilization
+2017-06-26 20:53:33 INFO  Serveur:915 - Success RepairCard unserilization
+2017-06-26 20:53:33 INFO  Serveur:906 - Enter unserilization
+2017-06-26 20:53:33 INFO  Serveur:912 - Begin unserilization
+2017-06-26 20:53:33 INFO  Serveur:915 - Success RepairCard unserilization
+2017-06-26 20:53:33 INFO  Serveur:194 - Recuperation des pieces
+2017-06-26 20:53:33 INFO  Serveur:65 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2017-06-26 20:53:33 INFO  Serveur:66 - 127.0.0.1
+2017-06-26 20:53:33 INFO  Serveur:75 - Envoie du JSON au serveur
+2017-06-26 20:53:33 INFO  Serveur:76 - {"identifier":"SelectFirstFromWaitList","data":[]}
+2017-06-26 20:53:33 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2017-06-26 20:53:33 INFO  ProcessData:64 - Reading JSON Client
+2017-06-26 20:53:33 INFO  ProcessData:90 - Case Select first from wait list
+2017-06-26 20:53:33 INFO  Serveur:25 - Afficage du JSON : 
+2017-06-26 20:53:33 INFO  Serveur:26 - {"identifier":"SelectFirstFromWaitList","data":[]}
+2017-06-26 20:53:33 INFO  Serveur:29 - 
+parcours du fichier Json :
+2017-06-26 20:53:33 INFO  Serveur:115 - Fonctionnalit� non prise en charge pour l'instant
+2017-06-26 20:53:33 INFO  RepairCardController:64 - Sending JSON succ�s selectRepairCard to Client
+2017-06-26 20:53:33 INFO  RepairCardController:69 - Returning connection to pool
+2017-06-26 20:53:33 INFO  ProcessData:54 - Retrieving connection from Pool
+2017-06-26 20:53:33 INFO  ProcessData:57 - Retrieving client socket
+2017-06-26 20:53:33 INFO  Serveur:85 - SelectFirstFromWaitListOK
+2017-06-26 20:53:33 INFO  Serveur:190 - Afficage du resultat de mise � jour : 
+2017-06-26 20:53:33 INFO  Serveur:191 - {"identifier":"SelectFirstFromWaitListOK","data":["SelectFirstFromWaitListOK","0///VOI456"]}
+2017-06-26 20:53:33 INFO  Serveur:906 - Enter unserilization
+2017-06-26 20:53:33 INFO  Serveur:912 - Begin unserilization
+2017-06-26 20:53:33 INFO  Serveur:915 - Success RepairCard unserilization
+2017-06-26 20:53:33 INFO  Serveur:906 - Enter unserilization
+2017-06-26 20:53:33 INFO  Serveur:912 - Begin unserilization
+2017-06-26 20:53:33 INFO  Serveur:915 - Success RepairCard unserilization
+2017-06-26 21:00:07 INFO  Serveur:32 - Server is listening on port 50000
+2017-06-26 21:00:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 21:00:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3d82c5f3
+2017-06-26 21:00:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 21:00:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@1b9e1916
+2017-06-26 21:00:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 21:00:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@4c98385c
+2017-06-26 21:00:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 21:00:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3f8f9dd6
+2017-06-26 21:00:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 21:00:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@ee7d9f1
+2017-06-26 21:00:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 21:00:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@c2e1f26
+2017-06-26 21:00:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 21:00:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@6f2b958e
+2017-06-26 21:00:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 21:00:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7de26db8
+2017-06-26 21:00:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 21:00:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@53bd815b
+2017-06-26 21:00:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 21:00:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3830f1c0
+2017-06-26 21:00:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 21:00:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@73a28541
+2017-06-26 21:00:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 21:00:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@33833882
+2017-06-26 21:00:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 21:00:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3b22cdd0
+2017-06-26 21:00:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 21:00:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@4aa8f0b4
+2017-06-26 21:00:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 21:00:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@368239c8
+2017-06-26 21:00:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 21:00:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@21588809
+2017-06-26 21:00:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 21:00:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@39a054a5
+2017-06-26 21:00:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 21:00:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7b1d7fff
+2017-06-26 21:00:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 21:00:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7382f612
+2017-06-26 21:00:07 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2017-06-26 21:00:07 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@67f89fa3
+2017-06-26 21:00:07 WARN  ConnectionPool:55 - Connection Pool is full. 20 connections created
+2017-06-26 21:00:08 INFO  ProcessData:54 - Retrieving connection from Pool
+2017-06-26 21:00:08 INFO  ProcessData:57 - Retrieving client socket
+2017-06-26 21:00:17 INFO  Serveur:113 - Authentification demand�e par le client
+2017-06-26 21:00:17 INFO  Serveur:103 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2017-06-26 21:00:17 INFO  Serveur:104 - 127.0.0.1
+2017-06-26 21:00:17 INFO  Serveur:75 - Envoie du JSON au serveur
+2017-06-26 21:00:17 INFO  Serveur:76 - {"identifier":"Authentication","data":["boss","boss"]}
+2017-06-26 21:00:17 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2017-06-26 21:00:17 INFO  ProcessData:64 - Reading JSON Client
+2017-06-26 21:00:17 INFO  ProcessData:54 - Retrieving connection from Pool
+2017-06-26 21:00:17 INFO  Serveur:25 - Afficage du JSON : 
+2017-06-26 21:00:17 INFO  Serveur:26 - {"identifier":"Authentication","data":["boss","boss"]}
+2017-06-26 21:00:17 INFO  Serveur:29 - 
+parcours du fichier Json :
+2017-06-26 21:00:17 INFO  ProcessData:57 - Retrieving client socket
+2017-06-26 21:00:17 INFO  Authentication:81 - Sending JSON succ�s to Client
+2017-06-26 21:00:17 INFO  Authentication:92 - Returning connection to pool
+2017-06-26 21:00:17 INFO  Serveur:85 - GrantAuth
+2017-06-26 21:00:17 INFO  Serveur:99 - Afficage du JSON : 
+2017-06-26 21:00:17 INFO  Serveur:100 - {"identifier":"GrantAuth","data":["GrantAuth","2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager"]}
+2017-06-26 21:00:17 INFO  Serveur:108 - 2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager
+2017-06-26 21:00:17 INFO  Serveur:274 - Enter unserilization
+2017-06-26 21:00:17 INFO  Serveur:288 - Begin unserilization
+2017-06-26 21:00:17 INFO  Serveur:290 - Success unserilization
+2017-06-26 21:00:18 INFO  Serveur:123 - DISPLAY TAB 4
+2017-06-26 21:00:20 INFO  Serveur:194 - Recuperation des pieces
+2017-06-26 21:00:20 INFO  Serveur:65 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2017-06-26 21:00:20 INFO  Serveur:66 - 127.0.0.1
+2017-06-26 21:00:20 INFO  Serveur:75 - Envoie du JSON au serveur
+2017-06-26 21:00:20 INFO  Serveur:76 - {"identifier":"SelectFirstFromWaitList","data":[]}
+2017-06-26 21:00:20 INFO  ProcessData:64 - Reading JSON Client
+2017-06-26 21:00:20 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2017-06-26 21:00:20 INFO  ProcessData:90 - Case Select first from wait list
+2017-06-26 21:00:20 INFO  Serveur:25 - Afficage du JSON : 
+2017-06-26 21:00:20 INFO  Serveur:26 - {"identifier":"SelectFirstFromWaitList","data":[]}
+2017-06-26 21:00:20 INFO  Serveur:29 - 
+parcours du fichier Json :
+2017-06-26 21:00:20 INFO  Serveur:115 - Fonctionnalit� non prise en charge pour l'instant
+2017-06-26 21:00:20 INFO  RepairCardController:64 - Sending JSON succ�s selectRepairCard to Client
+2017-06-26 21:00:20 INFO  RepairCardController:69 - Returning connection to pool
+2017-06-26 21:00:20 INFO  ProcessData:54 - Retrieving connection from Pool
+2017-06-26 21:00:20 INFO  ProcessData:57 - Retrieving client socket
+2017-06-26 21:00:20 INFO  Serveur:85 - SelectFirstFromWaitListOK
+2017-06-26 21:00:20 INFO  Serveur:190 - Afficage du resultat de mise � jour : 
+2017-06-26 21:00:20 INFO  Serveur:191 - {"identifier":"SelectFirstFromWaitListOK","data":["SelectFirstFromWaitListOK","0///VOI456"]}
+2017-06-26 21:00:20 INFO  Serveur:906 - Enter unserilization
+2017-06-26 21:00:20 INFO  Serveur:912 - Begin unserilization
+2017-06-26 21:00:20 INFO  Serveur:915 - Success RepairCard unserilization
+2017-06-26 21:00:20 INFO  Serveur:906 - Enter unserilization
+2017-06-26 21:00:20 INFO  Serveur:912 - Begin unserilization
+2017-06-26 21:00:20 INFO  Serveur:915 - Success RepairCard unserilization

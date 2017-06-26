@@ -777,7 +777,7 @@ public class RepairCard {
 	
 	public static String serialize_query5(RepairCard rep){
 		
-				String serialized = rep.getidcard()+"///"+rep.getidcar();
+				String serialized = rep.getidcard()+"///"+rep.getCar().getNumePuce();
 				return serialized;
 			}
 

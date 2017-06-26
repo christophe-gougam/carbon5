@@ -92,7 +92,7 @@ public class PanelDetailOperation extends JPanel {
 
         jLabel3.setText("OPERATION__________________________________________________");
 
-        tfidVehicule.setText("");
+        tfidVehicule.setText(RepairCard.getPrioritaryCard().getidcar());
 
         tfidTechnicien.setText("");
 

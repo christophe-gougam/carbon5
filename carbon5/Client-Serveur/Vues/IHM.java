@@ -142,7 +142,7 @@ public class IHM extends JFrame {
         pan2.add(new PanDiagnostic(), listContent[0]);
         pan2.add(new PanParking(), listContent[1]);
         
-        pan2.add(new PanelDetailOperation(), listContent[3]);
+        //pan2.add(new PanelDetailOperation(), listContent[3]);
         pan2.add(new PanStock(), listContent[4]);
         
         
@@ -190,10 +190,10 @@ public class IHM extends JFrame {
                 //code
             	ArrayList<String> data = new ArrayList<String>();
             	String identifier = "SelectFirstFromWaitList";
-            	String identifier2 = "SelectAllParts";
+            	//String identifier2 = "SelectAllParts";
             	logger.info("Recuperation des pieces");
             	new ServerConnect(data, identifier, pan2);
-            	new ServerConnect(data, identifier2, pan2);
+            	//new ServerConnect(data, identifier2, pan2);
             	pan2.add(new PanelDetailOperation(), listContent[3]);
                 cl.show(pan2, listContent[3]);
                 liste1.setVisible(false);
