@@ -81,6 +81,16 @@ public class ProcessData implements Runnable{
 					t = new Thread(new CarController(con, message_distant, out));
 					t.start();
 				break;
+				case("SelectAllStates"):
+					logger.info("Case Select all states");
+					t = new Thread(new CardStateController(con, message_distant, out));
+					t.run();
+				break;
+				case("SelectFirstFromWaitList"):
+					logger.info("Case Select first from wait list");
+					t = new Thread(new RepairCardController(con, message_distant, out));
+					t.run();
+				break;
 				case("CreatePart"):
 					logger.info("Case create Part");
 					t = new Thread(new PartController(con, message_distant, out));

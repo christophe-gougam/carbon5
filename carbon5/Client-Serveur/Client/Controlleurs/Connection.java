@@ -185,6 +185,25 @@ public class Connection{
 		    		}	
 		    	}
                         break;
+			case "SelectFirstFromWaitListOK":
+				objet = new JSONObject(reponse);
+				logger.info("Afficage du resultat de mise ï¿½ jour : ");
+		    	logger.info(reponse);
+		    	tableau = objet.getJSONArray("data");
+		    	
+		    	System.out.println("tableau " + tableau.length());
+	    		System.out.println("Valeur tableau : " + tableau);
+	    		System.out.println("tableau.getString(1) " + tableau.getString(1));
+	    		RepairCard.prioritaryCard =  RepairCard.unSerialize_query5(tableau.getString(1));
+	    		System.out.println("id priorityCard : "+ RepairCard.prioritaryCard.getidcard() +" id Car : " + RepairCard.prioritaryCard.getidcar());
+		
+		    	for (int i =0; i<tableau.length()-1;i++){
+		    		RepairCard aRC = RepairCard.unSerialize_query5(tableau.getString(i+1));
+		    		if(!RepairCard.isInCollection(aRC.getidcard())){
+		    			RepairCard.addRepairCardToCo(aRC);
+		    		}	
+		    	}
+             break;
                         
                         case "SelectAllParkingsOK":
 				objet = new JSONObject(reponse);
@@ -198,6 +217,7 @@ public class Connection{
 		    		}	
 		    	}
                         break;
+                
                         
                         case "query1_OK":
 				objet = new JSONObject(reponse);
@@ -317,14 +337,14 @@ public class Connection{
 			break;
 			case "addPreferencesOK" : case "addPreferencesKO":
 				objet = new JSONObject(reponse);
-				logger.info("Afficage du resultat de mise à jour : ");
+				logger.info("Afficage du resultat de mise ï¿½ jour : ");
 		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 				JOptionPane.showMessageDialog(frame, tableau.get(0));
 			break;
 			case "SelectAllPreferencesOK" : case "SelectAllPreferencesKO":
 				objet = new JSONObject(reponse);
-				logger.info("Afficage du resultat de requête de préférence : ");
+				logger.info("Afficage du resultat de requï¿½te de prï¿½fï¿½rence : ");
 		    	logger.info(reponse);
 		    	tableau = objet.getJSONArray("data");
 		    	Preferences.chargePrefs(Preferences.unSerialize(tableau.getString(0)));
