@@ -5,6 +5,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -50,13 +51,13 @@ public class PanelDetailOperation extends JPanel {
         jLabel3 = new javax.swing.JLabel();
         
         tfidVehicule = new javax.swing.JTextField();//RepairCard.getPrioritaryCard().getidcar()
-        tfidTechnicien = new javax.swing.JTextField(User.getManager().getId());
-        jtfState = new javax.swing.JTextField();//RepairCard.getPrioritaryCard().getStatutCar()
+        tfidTechnicien = new javax.swing.JTextField(User.getManager().getLogin());
+        jtfState = new javax.swing.JTextField(RepairCard.getPrioritaryCard().getStatutCar());
         
         
-        jtfPiece1 = new javax.swing.JTextField();//RepairCard.getPrioritaryCard().getDefect().getDescription()
-        jtfPiece2 = new javax.swing.JTextField();
-        jtfPiece3 = new javax.swing.JTextField();
+        jtfPiece1 = new javax.swing.JTextField("Pare-brise");//RepairCard.getPrioritaryCard().getDefect().getDescription()
+        jtfPiece2 = new javax.swing.JTextField("Pneu");
+        jtfPiece3 = new javax.swing.JTextField("Ampoule");
         jLabel4 = new javax.swing.JLabel();
         lblQté1 = new javax.swing.JLabel();
         lblQté2 = new javax.swing.JLabel();
@@ -94,7 +95,9 @@ public class PanelDetailOperation extends JPanel {
 
         tfidVehicule.setText(RepairCard.getPrioritaryCard().getidcar());
 
-        tfidTechnicien.setText("");
+        tfidTechnicien.setText("1");
+        
+        jtfState.setText("En cours");
 
         jLabel4.setText("Pièce nécessaire");
 
@@ -302,18 +305,24 @@ public class PanelDetailOperation extends JPanel {
     	 */
     	public void actionPerformed(ActionEvent arg0){
     		//We substract jtfPiece1 to the original Stock of the referenced part.
-    		//Part.getAllParts().get(0).setStock(Part.getAllParts().get(0).getStock() - 1);
+    		Part.getAllParts().get(0).setStock(RepairCard.getPrioritaryCard().getPart().getStock() - 1);
     	
-    		if(Part.getAllParts().get(0).getStock() < 10){
+    		//Set varialble State of the current Part to "Réparé"
+    		RepairCard.getPrioritaryCard().setStatutCar("Réparé");
+    		
+    		//Verification of the used pieces stock
+    		if(RepairCard.getPrioritaryCard().getPart().getStock() < 10){
     			int result = JOptionPane.showConfirmDialog(null, 
     					   "Le stock de pièces choisi est désormais inférieur à 10, voulez-vous commander des pièces ?","Attention", JOptionPane.YES_NO_OPTION);
     			if(result == JOptionPane.NO_OPTION) {
     				JOptionPane jop1 = new JOptionPane();
     				jop1.showMessageDialog(null, "Opération validée", "Information", JOptionPane.INFORMATION_MESSAGE);
-    			//Set varialble State of the current Part to "Réparé"
+    			
+    				
     			    System.exit(0);
     			}
     			else{
+    				//Display add stock piece panel
     				PanEntreeStock jp = new PanEntreeStock();
     			}
     		}
@@ -340,8 +349,10 @@ public class PanelDetailOperation extends JPanel {
          * @see dispose()
          */
     	public void actionPerformed(ActionEvent e){
-            //Initialize varialble State of the current Part to "En attente"
+            //Initialize varialble State of the current Car to "En attente"
     		
+    		RepairCard.getPrioritaryCard().setStatutCar("En attente");
+			//tfidVehicule.setText(RepairCard.getWaitList().get(1));
     		
     	}
 

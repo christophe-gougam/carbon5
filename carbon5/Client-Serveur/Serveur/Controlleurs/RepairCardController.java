@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
+import Modele.Defect;
 import Modele.EcritureJson;
 import Modele.LectureJson;
 import Modele.RepairCard;
@@ -43,14 +44,23 @@ public class RepairCardController implements Runnable{
 			ArrayList<String> result = LectureJson.LectureFichier(in);
 			switch(identifier){
 
-			case("SelectFirstFromWaitList"):
-				
-					RepairCard first = RepairCard.getWaitList().get(0);
+				case("SelectFirstFromWaitList"):
 					
-					String firstSerialize = RepairCard.serialize_query5(first);
-					data.add(firstSerialize);
-				data.add(0, "SelectFirstFromWaitListOK");
-			break;
+						RepairCard first = RepairCard.getWaitList().get(0);
+						
+						String firstSerialize = RepairCard.serialize_query5(first);
+						data.add(firstSerialize);
+					data.add(0, "SelectFirstFromWaitListOK");
+				break;
+				
+//				case("SelectCarsDefect"):
+//					
+//					RepairCard first1 = RepairCard.getPrioritaryCard().getDefect();
+//					
+//					String first1Serialize = RepairCard.serialize_query6(first1);
+//					data.add(first1Serialize);
+//				data.add(0, "SelectCarsDefectOK");
+//				break;
 			}
 		}catch (Exception e) {
 			// TODO Auto-generated catch block

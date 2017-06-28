@@ -204,6 +204,21 @@ public class Connection{
 		    		}	
 		    	}
              break;
+			case "SelectCarsDefectOK":
+				objet = new JSONObject(reponse);
+				logger.info("Afficage du resultat de mise � jour : ");
+		    	logger.info(reponse);
+		    	tableau = objet.getJSONArray("data");
+		    	
+	    		RepairCard.carsDefect =  RepairCard.unSerialize_query6(tableau.getString(1));
+		
+		    	for (int i =0; i<tableau.length()-1;i++){
+		    		RepairCard aRC = RepairCard.unSerialize_query6(tableau.getString(i+1));
+		    		if(!RepairCard.isInCollection(aRC.getidcard())){
+		    			RepairCard.addRepairCardToCo(aRC);
+		    		}	
+		    	}
+             break;
                         
                         case "SelectAllParkingsOK":
 				objet = new JSONObject(reponse);

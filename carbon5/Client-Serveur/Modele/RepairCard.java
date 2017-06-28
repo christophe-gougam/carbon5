@@ -32,6 +32,7 @@ public class RepairCard {
 	private Set<CardState> listState = new HashSet<CardState>();
 	private Set<UrgencyDegree> listUD = new HashSet<UrgencyDegree>();
 	public static RepairCard prioritaryCard;
+	public static RepairCard carsDefect;
 
 	final static Logger logger = Logger.getLogger(Serveur.class);
 	private UrgencyDegree degree;
@@ -143,6 +144,12 @@ public class RepairCard {
 				this.idcard=IdCard;
 				this.idcar = IdCar;
 			}
+	
+	public RepairCard(int IdCard, Repairs rep, Defect def){
+		this.idcard=IdCard;
+		this.repair=rep;
+		this.defect=def;
+	}
 
 	public int getNbCar(){
 		return this.cumulCar;
@@ -152,6 +159,10 @@ public class RepairCard {
 		return this.statut;
 	}
 
+	public void setStatutCar(String newStatut){
+		this.statut = newStatut;
+	}
+	
 	public int getNumRep(){
 		return this.numRep;
 	}
@@ -780,6 +791,11 @@ public class RepairCard {
 				String serialized = rep.getidcard()+"///"+rep.getCar().getNumePuce();
 				return serialized;
 			}
+	
+	public static String serialize_query6(RepairCard rep){
+		String serialized = rep.idcard +"///"+rep.repair.serialize(rep.getRepair())+"///"+rep.defect.serialize(rep.getDefect());
+		return serialized;
+	}
 
 	/**
 	 * Method to unserialize the card and to create the object
@@ -912,6 +928,23 @@ public class RepairCard {
 		logger.info("Begin unserilization");
 		//creating the object repairCard with all other objects
 		RepairCard repairCard = new RepairCard(idcard, idcar);
+		logger.info("Success RepairCard unserilization");
+
+		return repairCard;
+	}
+	
+	public static RepairCard unSerialize_query6(String serialized) throws ParseException{
+		ArrayList<String> values = new ArrayList<String>();
+		logger.info("Enter unserilization");
+		for (String retval: serialized.split("///")){
+			values.add(retval);
+		}
+		int idcard = Integer.parseInt(values.get(0));
+		String repair = values.get(1);
+		String defect = values.get(2);
+		logger.info("Begin unserilization");
+		//creating the object repairCard with all other objects
+		RepairCard repairCard = new RepairCard(idcard, repair, defect);
 		logger.info("Success RepairCard unserilization");
 
 		return repairCard;
