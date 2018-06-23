@@ -1,3 +1,28 @@
-/carbon5/nbproject/private/
-/TP_note/nbproject/private/
-/TP_note/build/
+# Ignorer tous les fichiers class
+*.class
+
+# Ignorer les objets et les archives
+*.[oa]
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+
+# Properties
+*.properties
+
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
+lib/
