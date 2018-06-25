@@ -19,6 +19,10 @@ public class Salaire {
     private Date dateFin;
     private int tempsContratMois;
 
+    public Salaire() {
+
+    }
+
     public int getId() {
         return id;
     }
