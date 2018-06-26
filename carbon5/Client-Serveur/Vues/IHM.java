@@ -54,7 +54,8 @@ public class IHM extends JFrame {
     private JButton bouton5 = new JButton("Stock");
     private JButton bouton6 = new JButton("Piece detache");
     private JButton bouton7 = new JButton("Vehicule");
-    private JButton bouton8 = new JButton("Statistique");    
+    private JButton bouton8 = new JButton("Statistique");
+    private JButton bouton9 = new JButton("Performances");
     
     private JList<?> liste1;
     private String[] l1 = {"Entree","Sortie"};
@@ -107,6 +108,7 @@ public class IHM extends JFrame {
         
         pan1.add(liste3);
         pan1.add(bouton8);
+        pan1.add(bouton9);
         
         //setBackground buttons
 //        bouton1.setBackground(Color.red);
@@ -117,6 +119,7 @@ public class IHM extends JFrame {
         bouton6.setBackground(Color.red);
         bouton7.setBackground(Color.red);
         bouton8.setBackground(Color.red);
+        bouton9.setBackground(Color.red);
         
         //Add listener to buttons        
 //        bouton1.addActionListener(new Ecouteur());
@@ -127,6 +130,7 @@ public class IHM extends JFrame {
         bouton6.addActionListener(new Ecouteur());
         bouton7.addActionListener(new Ecouteur());    
         bouton8.addActionListener(new Ecouteur());
+        bouton9.addActionListener(new Ecouteur());
         
         //Add listener to list
         liste1.addListSelectionListener(new Liste1Listener());
