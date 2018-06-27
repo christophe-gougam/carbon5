@@ -67,7 +67,7 @@ public class IHM extends JFrame {
     private String[] l3 = {"Ajouter", "Modifier"};
     
     CardLayout cl = new CardLayout();
-    String[] listContent = {"C1","C2","C3","C4","C5","C6","C7","C8","C9","C10","C11","C12","C13","C14"};
+    String[] listContent = {"C1","C2","C3","C4","C5","C6","C7","C8","C9","C10","C11","C12","C13","C14","C15"};
     int indice = 0;
     
     public IHM() throws SQLException{
@@ -263,6 +263,16 @@ public class IHM extends JFrame {
             if(e.getSource() == bouton8){
                 //code
                 cl.show(pan2, listContent[13]);
+                liste1.setVisible(false);
+                liste2.setVisible(false);
+                liste3.setVisible(false);
+                pan.revalidate();
+            }
+            if(e.getSource() == bouton9){
+
+                pan2.add(new PanPerformances(), listContent[14]);
+
+                cl.show(pan2, listContent[14]);
                 liste1.setVisible(false);
                 liste2.setVisible(false);
                 liste3.setVisible(false);
