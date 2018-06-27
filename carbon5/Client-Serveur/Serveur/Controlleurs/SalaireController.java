@@ -40,7 +40,22 @@ public class SalaireController implements Runnable{
     public void run() {
 
 
-        //SalaireDAO test = new SalaireDAO(con);
+        SalaireDAO test = new SalaireDAO(con) {
+            @Override
+            public ArrayList<String> create(Salaire obj) {
+                return null;
+            }
+
+            @Override
+            public boolean update(Salaire obj) {
+                return false;
+            }
+
+            @Override
+            public boolean delete(Salaire obj) {
+                return false;
+            }
+        };
         try{
             String identifier = LectureJson.Identifier(in);
             ArrayList<String> result = LectureJson.LectureFichier(in);

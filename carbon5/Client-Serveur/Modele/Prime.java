@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -15,7 +16,7 @@ public class Prime {
 
     private int id;
     private int id_user;
-    private Date date_attribution;
+    private LocalDate date_attribution;
     private int montant_prime;
 
 
@@ -35,11 +36,11 @@ public class Prime {
         this.id_user = id_user;
     }
 
-    public Date getDate_attribution() {
+    public LocalDate getDate_attribution() {
         return date_attribution;
     }
 
-    public void setDate_attribution(Date date_attribution) {
+    public void setDate_attribution(LocalDate date_attribution) {
         this.date_attribution = date_attribution;
     }
 
@@ -51,7 +52,7 @@ public class Prime {
         this.montant_prime = montant_prime;
     }
 
-    public Prime(int id, int id_user, Date date_attribution, int montant_prime) {
+    public Prime(int id, int id_user, LocalDate date_attribution, int montant_prime) {
         this.id = id;
         this.id_user = id_user;
         this.date_attribution = date_attribution;
@@ -71,10 +72,10 @@ public class Prime {
         }
 
 
-        Date dateAttrib=null;
+        LocalDate dateAttrib=null;
         try {
             java.util.Date utilDate = new SimpleDateFormat("YYYY-MM-DD").parse(values.get(2).toString());
-            dateAttrib = new java.sql.Date(utilDate.getTime());
+            dateAttrib =  LocalDate.now();
         } catch (ParseException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
