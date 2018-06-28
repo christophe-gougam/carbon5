@@ -1,6 +1,5 @@
 package Modele;
 
-import Serveur.Controlleurs.SalaireController;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
@@ -11,7 +10,7 @@ import java.util.ArrayList;
  */
 public class SalaireDAO extends DAO<Salaire> {
 
-    final static Logger logger = Logger.getLogger(SalaireController.class);
+    final static Logger logger = Logger.getLogger(SalaireDAO.class);
 
     public SalaireDAO(Connection conn) {
         super(conn);
