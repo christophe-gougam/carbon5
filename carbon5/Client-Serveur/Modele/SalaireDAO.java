@@ -56,24 +56,13 @@ public class SalaireDAO extends DAO<Salaire> {
      */
     @Override
     public boolean update(Salaire salaire) {
-        Date now = new Date(new java.util.Date().getTime());
         String sql1 = "UPDATE Salaire SET date_fin = ? WHERE id_user = ?";
         try {
             PreparedStatement ps = this.connect.prepareStatement(sql1);
-            ps.setDate(1, now);
+            ps.setDate(1, new Date(new java.util.Date().getTime()));
             ps.setInt(2, salaire.getIdUser());
-            ps.execute();
-        } catch (SQLException e) {
-            logger.error(e);
-            return false;
-        }
-        String sql2 = "INSERT INTO Salaire (id_user, salaire_brut, date_debut, temps_contrat_mois) VALUES (?, ?, ?, ?)";
-        try {
-            PreparedStatement ps = this.connect.prepareStatement(sql2);
-            ps.setInt(1, salaire.getIdUser());
-            ps.setInt(2, salaire.getSalaireBrut());
-            ps.setDate(3, now);
-            ps.setInt(4, salaire.getTempsContratMois());
+            ps.executeUpdate();
+            create(salaire);
         } catch (SQLException e) {
             logger.error(e);
             return false;
@@ -88,9 +77,30 @@ public class SalaireDAO extends DAO<Salaire> {
     }
 
 
+    /**
+     * Creates a new row in table Salaire.
+     *
+     * @param salaire - the new salaire.
+     * @return the inserted ID in an ArrayList.
+     */
     @Override
     public ArrayList<String> create(Salaire salaire) {
-        return new ArrayList<>();
+        ArrayList<String> result = new ArrayList<>();
+        String sql2 = "INSERT INTO Salaire (id_user, salaire_brut, date_debut, temps_contrat_mois) VALUES (?, ?, ?, ?)";
+        try {
+            PreparedStatement ps = this.connect.prepareStatement(sql2);
+            ps.setInt(1, salaire.getIdUser());
+            ps.setInt(2, salaire.getSalaireBrut());
+            ps.setDate(3, new Date(new java.util.Date().getTime()));
+            ps.setInt(4, salaire.getTempsContratMois());
+            ps.executeUpdate();
+
+            ResultSet rs = ps.getGeneratedKeys();
+            result.add(String.valueOf(rs.getInt(1)));
+        } catch (SQLException e) {
+            logger.error(e);
+        }
+        return result;
     }
 
     @Override
