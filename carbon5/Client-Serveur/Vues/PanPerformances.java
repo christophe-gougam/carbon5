@@ -1,6 +1,10 @@
 package Vues;
 
+import Client.Controlleurs.ServerConnect;
+
+import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class PanPerformances extends javax.swing.JPanel {
 
@@ -219,10 +223,9 @@ public class PanPerformances extends javax.swing.JPanel {
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-        //Attribuer Button
-
-        PanChoixBonus pan = new PanChoixBonus();
+        ArrayList<String> data = new ArrayList<>();
+        data.add(this.jTextField1.getText());
+        new ServerConnect(data, "getWorkerPerformances", new JPanel());
     }
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {
