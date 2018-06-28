@@ -14,10 +14,8 @@
 *.iml
 *.iws
 
-
 # Properties
 *.properties
-
 
 # Mac
 .DS_Store
@@ -26,3 +24,6 @@
 log/
 target/
 lib/
+
+# Log files
+*.log
