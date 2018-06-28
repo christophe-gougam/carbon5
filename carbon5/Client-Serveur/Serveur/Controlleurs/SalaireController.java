@@ -67,14 +67,14 @@ public class SalaireController implements Runnable{
                     salaireBrut = Integer.parseInt(result.get(3));
                     Salaire salaireUpdate = new Salaire(id,idUser,salaireBrut,dateDebut,dateFin,tempsContratMois);
                     logger.info("Updating through DAO");
-                    //ret=test.update(salaireUpdate);
+                    ret=test.update(salaireUpdate);
                     if (ret)
                         data.add("ModificationSalaireOK");
                     else
                         data.add("ModificationSalaireKO");
                     break;
                 case("SelectSalaire"):
-                    //data = test.getSalaire();
+                    //data = test.find(salaireBrut);
                     data.add(0, "SelectSalaireOK");
                     break;
             }
@@ -96,9 +96,9 @@ public class SalaireController implements Runnable{
                 out.println(JsonMessage);
                 out.flush();
                 break;
-            case("SelectAllPartsOK"):
-                JsonMessage = EcritureJson.WriteJson("SelectAllPartsOK", data);
-                logger.info("Sending list of part to Client");
+            case("SelectSalaireOK"):
+                JsonMessage = EcritureJson.WriteJson("SelectSalaireOK", data);
+                logger.info("Sending salary to Client");
                 out.println(JsonMessage);
                 out.flush();
                 break;

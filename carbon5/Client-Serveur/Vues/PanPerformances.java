@@ -221,6 +221,8 @@ public class PanPerformances extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         //Attribuer Button
+
+        PanChoixBonus pan = new PanChoixBonus();
     }
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {

@@ -55,12 +55,12 @@ public abstract class SalaireDAO extends DAO<Salaire> {
     }
 
 
-   // /**
-     //* Allows to update the data of an entry in the database
-     //* @param obj
-     //* @return true
-     //*/
-    /*@Override
+    /**
+     * Allows to update the data of an entry in the database
+     * @param obj
+     * @return true
+     */
+    @Override
     public boolean update(Salaire obj) {
         try {
             if (obj.getSalaireBrut()!=1){
@@ -81,9 +81,8 @@ public abstract class SalaireDAO extends DAO<Salaire> {
                                 ResultSet.CONCUR_UPDATABLE
                         ).executeUpdate(
                         "UPDATE Salaire SET "+
-                                "NameSalaire ='" + obj.getNameSalaire() + "', " +
-                                "PurchasePrice ='" + obj.getPurchasePrice() + "' " +
-                                " WHERE Id = " + obj.getIdSalaire()
+                                "salaire_brut ='" + obj.getSalaireBrut() + "', " +
+                                " WHERE id_user = " + obj.getIdUser()
                 );
                 return true;
             }
@@ -93,7 +92,7 @@ public abstract class SalaireDAO extends DAO<Salaire> {
             return false;
         }
 
-    }*/
+    }
 
     @Override
     public Salaire find() {

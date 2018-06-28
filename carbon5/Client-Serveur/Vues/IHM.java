@@ -67,7 +67,7 @@ public class IHM extends JFrame {
     private String[] l3 = {"Ajouter", "Modifier"};
     
     CardLayout cl = new CardLayout();
-    String[] listContent = {"C1","C2","C3","C4","C5","C6","C7","C8","C9","C10","C11","C12","C13","C14","C15"};
+    String[] listContent = {"C1","C2","C3","C4","C5","C6","C7","C8","C9","C10","C11","C12","C13","C14","C15","C16"};
     int indice = 0;
     
     public IHM() throws SQLException{
@@ -157,6 +157,8 @@ public class IHM extends JFrame {
         pan2.add(new PanAjoutVehicule(), listContent[11]);
         pan2.add(new PanModifVehicule(), listContent[12]);
         pan2.add(Connection.panStat, listContent[13]);
+        pan2.add(new PanPerformances(), listContent[14]);
+
     }
     
     /*
@@ -278,6 +280,12 @@ public class IHM extends JFrame {
                 liste3.setVisible(false);
                 pan.revalidate();
             }
+//            pan2.add(new PanChoixBonus(), listContent[15]);
+//            cl.show(pan2, listContent[15]);
+//            liste1.setVisible(false);
+//            liste2.setVisible(false);
+//            liste3.setVisible(true);
+//            pan.revalidate();
         }  
     }
     
