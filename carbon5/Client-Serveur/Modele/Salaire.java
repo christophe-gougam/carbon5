@@ -19,10 +19,6 @@ public class Salaire {
     private Date dateFin;
     private int tempsContratMois;
 
-    public Salaire() {
-
-    }
-
     public int getId() {
         return id;
     }
@@ -71,6 +67,9 @@ public class Salaire {
         this.tempsContratMois = tempsContratMois;
     }
 
+    public Salaire() {
+    }
+
     public Salaire(int id, int idUser, int salaireBrut, Date dateDebut, Date dateFin, int tempsContratMois) {
         this.id = id;
         this.idUser = idUser;
@@ -80,38 +79,35 @@ public class Salaire {
         this.tempsContratMois = tempsContratMois;
     }
 
-    public static String serialize(Salaire salaire){
-        String serialize = salaire.getIdUser()+"///"+salaire.getSalaireBrut()+"///"+salaire.getDateDebut()+"///"+salaire.getDateFin()+"///"+salaire.getTempsContratMois();
-        return serialize;
+    public static String serialize(Salaire salaire) {
+        return salaire.getIdUser() + "///" + salaire.getSalaireBrut() + "///" + salaire.getDateDebut() + "///" + salaire.getDateFin() + "///" + salaire.getTempsContratMois();
     }
 
-    public static Salaire unSerialize(String serial){
+    public static Salaire unSerialize(String serial) {
         logger.info("Enter unserilization");
         ArrayList values = new ArrayList();
-        for (String retval: serial.split("///")){
+        for (String retval : serial.split("///")) {
             values.add(retval);
         }
 
-
-        Date dateDeb=null;
+        Date dateDeb = null;
         try {
             java.util.Date utilDate = new SimpleDateFormat("YYYY-MM-DD").parse(values.get(4).toString());
             dateDeb = new java.sql.Date(utilDate.getTime());
         } catch (ParseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error(e);
         }
-        Date dateFin=null;
+
+        Date dateFin = null;
         try {
             java.util.Date utilDate = new SimpleDateFormat("YYYY-MM-DD").parse(values.get(5).toString());
             dateFin = new java.sql.Date(utilDate.getTime());
         } catch (ParseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error(e);
         }
 
         logger.info("Begin unserilization");
-        Salaire salaire = new Salaire(Integer.parseInt(values.get(0).toString()),Integer.parseInt(values.get(1).toString()),Integer.parseInt(values.get(3).toString()), dateDeb,dateFin,Integer.parseInt(values.get(6).toString()));
+        Salaire salaire = new Salaire(Integer.parseInt(values.get(0).toString()), Integer.parseInt(values.get(1).toString()), Integer.parseInt(values.get(3).toString()), dateDeb, dateFin, Integer.parseInt(values.get(6).toString()));
         logger.info("Success unserilization");
         return salaire;
     }
