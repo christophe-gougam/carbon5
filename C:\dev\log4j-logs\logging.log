@@ -1,0 +1,1367 @@
+2018-06-28 11:15:44 INFO  Serveur:32 - Server is listening on port 50000
+2018-06-28 11:15:44 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 11:15:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@45fe3ee3
+2018-06-28 11:15:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 11:15:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@73a8dfcc
+2018-06-28 11:15:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 11:15:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@442d9b6e
+2018-06-28 11:15:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 11:15:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@41975e01
+2018-06-28 11:15:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 11:15:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3d012ddd
+2018-06-28 11:15:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 11:15:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@379619aa
+2018-06-28 11:15:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 11:15:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@36aa7bc2
+2018-06-28 11:15:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 11:15:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3830f1c0
+2018-06-28 11:15:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 11:15:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@73a28541
+2018-06-28 11:15:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 11:15:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@33833882
+2018-06-28 11:15:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 11:15:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3b22cdd0
+2018-06-28 11:15:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 11:15:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@4aa8f0b4
+2018-06-28 11:15:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 11:15:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@368239c8
+2018-06-28 11:15:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 11:15:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@2a33fae0
+2018-06-28 11:15:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 11:15:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@77468bd9
+2018-06-28 11:15:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 11:15:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7b1d7fff
+2018-06-28 11:15:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 11:15:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7382f612
+2018-06-28 11:15:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 11:15:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@67f89fa3
+2018-06-28 11:15:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 11:15:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@5f205aa
+2018-06-28 11:15:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 11:15:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@532760d8
+2018-06-28 11:15:45 WARN  ConnectionPool:55 - Connection Pool is full. 20 connections created
+2018-06-28 11:15:45 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 11:15:45 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 11:15:57 INFO  Serveur:113 - Authentification demand�e par le client
+2018-06-28 11:15:57 INFO  Serveur:103 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 11:15:57 INFO  Serveur:104 - 127.0.0.1
+2018-06-28 11:15:57 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 11:15:57 INFO  Serveur:76 - {"identifier":"Authentication","data":["boss","boss"]}
+2018-06-28 11:15:57 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 11:15:57 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 11:15:57 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 11:15:57 INFO  Serveur:25 - Afficage du JSON : 
+2018-06-28 11:15:57 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 11:15:57 INFO  Serveur:26 - {"identifier":"Authentication","data":["boss","boss"]}
+2018-06-28 11:15:57 INFO  Serveur:29 - 
+parcours du fichier Json :
+2018-06-28 11:15:57 INFO  Authentication:81 - Sending JSON succ�s to Client
+2018-06-28 11:15:57 INFO  Authentication:92 - Returning connection to pool
+2018-06-28 11:15:57 INFO  Serveur:85 - GrantAuth
+2018-06-28 11:15:57 INFO  Serveur:99 - Afficage du JSON : 
+2018-06-28 11:15:57 INFO  Serveur:100 - {"identifier":"GrantAuth","data":["GrantAuth","2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager"]}
+2018-06-28 11:15:57 INFO  Serveur:108 - 2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager
+2018-06-28 11:15:57 INFO  Serveur:274 - Enter unserilization
+2018-06-28 11:15:57 INFO  Serveur:288 - Begin unserilization
+2018-06-28 11:15:57 INFO  Serveur:290 - Success unserilization
+2018-06-28 11:15:59 INFO  Serveur:123 - DISPLAY TAB 4
+2018-06-28 14:07:45 INFO  Serveur:32 - Server is listening on port 50000
+2018-06-28 14:07:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:07:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@45fe3ee3
+2018-06-28 14:07:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:07:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@73a8dfcc
+2018-06-28 14:07:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:07:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@442d9b6e
+2018-06-28 14:07:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:07:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@41975e01
+2018-06-28 14:07:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:07:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3d012ddd
+2018-06-28 14:07:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:07:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@379619aa
+2018-06-28 14:07:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:07:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@36aa7bc2
+2018-06-28 14:07:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:07:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3830f1c0
+2018-06-28 14:07:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:07:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@73a28541
+2018-06-28 14:07:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:07:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@33833882
+2018-06-28 14:07:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:07:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3b22cdd0
+2018-06-28 14:07:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:07:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@4aa8f0b4
+2018-06-28 14:07:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:07:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@368239c8
+2018-06-28 14:07:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:07:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@2a33fae0
+2018-06-28 14:07:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:07:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@77468bd9
+2018-06-28 14:07:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:07:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7b1d7fff
+2018-06-28 14:07:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:07:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7382f612
+2018-06-28 14:07:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:07:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@67f89fa3
+2018-06-28 14:07:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:07:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@5f205aa
+2018-06-28 14:07:45 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:07:45 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@532760d8
+2018-06-28 14:07:45 WARN  ConnectionPool:55 - Connection Pool is full. 20 connections created
+2018-06-28 14:07:46 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 14:07:46 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 14:07:56 INFO  Serveur:113 - Authentification demand�e par le client
+2018-06-28 14:07:56 INFO  Serveur:103 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 14:07:56 INFO  Serveur:104 - 127.0.0.1
+2018-06-28 14:07:56 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 14:07:56 INFO  Serveur:76 - {"identifier":"Authentication","data":["boss","boss"]}
+2018-06-28 14:07:56 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 14:07:56 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 14:07:56 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 14:07:56 INFO  Serveur:25 - Afficage du JSON : 
+2018-06-28 14:07:56 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 14:07:56 INFO  Serveur:26 - {"identifier":"Authentication","data":["boss","boss"]}
+2018-06-28 14:07:56 INFO  Serveur:29 - 
+parcours du fichier Json :
+2018-06-28 14:07:56 INFO  Authentication:81 - Sending JSON succ�s to Client
+2018-06-28 14:07:56 INFO  Authentication:92 - Returning connection to pool
+2018-06-28 14:07:56 INFO  Serveur:85 - GrantAuth
+2018-06-28 14:07:56 INFO  Serveur:99 - Afficage du JSON : 
+2018-06-28 14:07:56 INFO  Serveur:100 - {"identifier":"GrantAuth","data":["GrantAuth","2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager"]}
+2018-06-28 14:07:56 INFO  Serveur:108 - 2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager
+2018-06-28 14:07:56 INFO  Serveur:274 - Enter unserilization
+2018-06-28 14:07:56 INFO  Serveur:288 - Begin unserilization
+2018-06-28 14:07:56 INFO  Serveur:290 - Success unserilization
+2018-06-28 14:07:57 INFO  Serveur:123 - DISPLAY TAB 4
+2018-06-28 14:18:10 INFO  Serveur:32 - Server is listening on port 50000
+2018-06-28 14:18:10 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:18:11 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@45fe3ee3
+2018-06-28 14:18:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:18:11 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@73a8dfcc
+2018-06-28 14:18:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:18:11 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@442d9b6e
+2018-06-28 14:18:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:18:11 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@41975e01
+2018-06-28 14:18:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:18:11 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3d012ddd
+2018-06-28 14:18:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:18:11 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@379619aa
+2018-06-28 14:18:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:18:11 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@36aa7bc2
+2018-06-28 14:18:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:18:11 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3830f1c0
+2018-06-28 14:18:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:18:11 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@73a28541
+2018-06-28 14:18:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:18:11 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@33833882
+2018-06-28 14:18:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:18:11 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3b22cdd0
+2018-06-28 14:18:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:18:11 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@4aa8f0b4
+2018-06-28 14:18:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:18:11 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@368239c8
+2018-06-28 14:18:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:18:11 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@2a33fae0
+2018-06-28 14:18:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:18:11 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@77468bd9
+2018-06-28 14:18:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:18:11 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7b1d7fff
+2018-06-28 14:18:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:18:11 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7382f612
+2018-06-28 14:18:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:18:11 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@67f89fa3
+2018-06-28 14:18:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:18:11 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@5f205aa
+2018-06-28 14:18:11 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:18:11 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@532760d8
+2018-06-28 14:18:11 WARN  ConnectionPool:55 - Connection Pool is full. 20 connections created
+2018-06-28 14:18:11 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 14:18:11 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 14:18:21 INFO  Serveur:113 - Authentification demand�e par le client
+2018-06-28 14:18:21 INFO  Serveur:103 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 14:18:21 INFO  Serveur:104 - 127.0.0.1
+2018-06-28 14:18:21 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 14:18:21 INFO  Serveur:76 - {"identifier":"Authentication","data":["boss","boss"]}
+2018-06-28 14:18:21 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 14:18:21 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 14:18:21 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 14:18:21 INFO  Serveur:25 - Afficage du JSON : 
+2018-06-28 14:18:21 INFO  Serveur:26 - {"identifier":"Authentication","data":["boss","boss"]}
+2018-06-28 14:18:21 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 14:18:21 INFO  Serveur:29 - 
+parcours du fichier Json :
+2018-06-28 14:18:21 INFO  Authentication:81 - Sending JSON succ�s to Client
+2018-06-28 14:18:21 INFO  Authentication:92 - Returning connection to pool
+2018-06-28 14:18:21 INFO  Serveur:85 - GrantAuth
+2018-06-28 14:18:21 INFO  Serveur:99 - Afficage du JSON : 
+2018-06-28 14:18:21 INFO  Serveur:100 - {"identifier":"GrantAuth","data":["GrantAuth","2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager"]}
+2018-06-28 14:18:21 INFO  Serveur:108 - 2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager
+2018-06-28 14:18:21 INFO  Serveur:274 - Enter unserilization
+2018-06-28 14:18:21 INFO  Serveur:288 - Begin unserilization
+2018-06-28 14:18:21 INFO  Serveur:290 - Success unserilization
+2018-06-28 14:18:22 INFO  Serveur:123 - DISPLAY TAB 4
+2018-06-28 14:38:21 INFO  Serveur:32 - Server is listening on port 50000
+2018-06-28 14:38:21 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:38:22 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@45fe3ee3
+2018-06-28 14:38:22 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:38:22 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@73a8dfcc
+2018-06-28 14:38:22 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:38:22 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@442d9b6e
+2018-06-28 14:38:22 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:38:22 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@41975e01
+2018-06-28 14:38:22 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:38:22 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3d012ddd
+2018-06-28 14:38:22 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:38:22 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@379619aa
+2018-06-28 14:38:22 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:38:22 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@36aa7bc2
+2018-06-28 14:38:22 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:38:22 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3830f1c0
+2018-06-28 14:38:22 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:38:22 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@73a28541
+2018-06-28 14:38:22 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:38:22 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@33833882
+2018-06-28 14:38:22 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:38:22 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3b22cdd0
+2018-06-28 14:38:22 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:38:22 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@4aa8f0b4
+2018-06-28 14:38:22 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:38:22 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@368239c8
+2018-06-28 14:38:22 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:38:22 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@2a33fae0
+2018-06-28 14:38:22 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:38:22 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@77468bd9
+2018-06-28 14:38:22 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:38:22 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7b1d7fff
+2018-06-28 14:38:22 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:38:22 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7382f612
+2018-06-28 14:38:22 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:38:22 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@67f89fa3
+2018-06-28 14:38:22 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:38:22 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@5f205aa
+2018-06-28 14:38:22 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 14:38:22 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@532760d8
+2018-06-28 14:38:22 WARN  ConnectionPool:55 - Connection Pool is full. 20 connections created
+2018-06-28 14:38:22 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 14:38:22 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 14:38:33 INFO  Serveur:113 - Authentification demand�e par le client
+2018-06-28 14:38:33 INFO  Serveur:103 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 14:38:33 INFO  Serveur:104 - 127.0.0.1
+2018-06-28 14:38:33 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 14:38:33 INFO  Serveur:76 - {"identifier":"Authentication","data":["boss","boss"]}
+2018-06-28 14:38:33 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 14:38:33 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 14:38:33 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 14:38:33 INFO  Serveur:25 - Afficage du JSON : 
+2018-06-28 14:38:33 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 14:38:33 INFO  Serveur:26 - {"identifier":"Authentication","data":["boss","boss"]}
+2018-06-28 14:38:33 INFO  Serveur:29 - 
+parcours du fichier Json :
+2018-06-28 14:38:33 INFO  Authentication:81 - Sending JSON succ�s to Client
+2018-06-28 14:38:33 INFO  Authentication:92 - Returning connection to pool
+2018-06-28 14:38:33 INFO  Serveur:85 - GrantAuth
+2018-06-28 14:38:33 INFO  Serveur:99 - Afficage du JSON : 
+2018-06-28 14:38:33 INFO  Serveur:100 - {"identifier":"GrantAuth","data":["GrantAuth","2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager"]}
+2018-06-28 14:38:33 INFO  Serveur:108 - 2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager
+2018-06-28 14:38:33 INFO  Serveur:274 - Enter unserilization
+2018-06-28 14:38:33 INFO  Serveur:288 - Begin unserilization
+2018-06-28 14:38:33 INFO  Serveur:290 - Success unserilization
+2018-06-28 14:38:34 INFO  Serveur:123 - DISPLAY TAB 4
+2018-06-28 19:21:40 INFO  Serveur:32 - Server is listening on port 50000
+2018-06-28 19:21:40 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 19:21:40 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@45fe3ee3
+2018-06-28 19:21:40 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 19:21:40 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@73a8dfcc
+2018-06-28 19:21:40 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 19:21:40 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@442d9b6e
+2018-06-28 19:21:40 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 19:21:40 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@41975e01
+2018-06-28 19:21:40 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 19:21:40 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3d012ddd
+2018-06-28 19:21:40 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 19:21:41 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@379619aa
+2018-06-28 19:21:41 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 19:21:41 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@36aa7bc2
+2018-06-28 19:21:41 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 19:21:41 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3830f1c0
+2018-06-28 19:21:41 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 19:21:41 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@73a28541
+2018-06-28 19:21:41 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 19:21:41 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@33833882
+2018-06-28 19:21:41 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 19:21:41 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3b22cdd0
+2018-06-28 19:21:41 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 19:21:41 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@4aa8f0b4
+2018-06-28 19:21:41 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 19:21:41 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@368239c8
+2018-06-28 19:21:41 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 19:21:41 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@2a33fae0
+2018-06-28 19:21:41 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 19:21:41 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@77468bd9
+2018-06-28 19:21:41 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 19:21:41 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7b1d7fff
+2018-06-28 19:21:41 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 19:21:41 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7382f612
+2018-06-28 19:21:41 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 19:21:41 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@67f89fa3
+2018-06-28 19:21:41 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 19:21:41 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@5f205aa
+2018-06-28 19:21:41 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 19:21:41 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@532760d8
+2018-06-28 19:21:41 WARN  ConnectionPool:55 - Connection Pool is full. 20 connections created
+2018-06-28 19:21:41 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 19:21:41 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 19:21:51 INFO  Serveur:113 - Authentification demand�e par le client
+2018-06-28 19:21:51 INFO  Serveur:103 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 19:21:51 INFO  Serveur:104 - 127.0.0.1
+2018-06-28 19:21:51 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 19:21:51 INFO  Serveur:76 - {"identifier":"Authentication","data":["boss","boss"]}
+2018-06-28 19:21:51 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 19:21:51 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 19:21:51 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 19:21:51 INFO  Serveur:25 - Afficage du JSON : 
+2018-06-28 19:21:51 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 19:21:51 INFO  Serveur:26 - {"identifier":"Authentication","data":["boss","boss"]}
+2018-06-28 19:21:51 INFO  Serveur:29 - 
+parcours du fichier Json :
+2018-06-28 19:21:51 INFO  Authentication:81 - Sending JSON succ�s to Client
+2018-06-28 19:21:51 INFO  Authentication:92 - Returning connection to pool
+2018-06-28 19:21:51 INFO  Serveur:85 - GrantAuth
+2018-06-28 19:21:51 INFO  Serveur:99 - Afficage du JSON : 
+2018-06-28 19:21:51 INFO  Serveur:100 - {"identifier":"GrantAuth","data":["GrantAuth","2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager"]}
+2018-06-28 19:21:51 INFO  Serveur:108 - 2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager
+2018-06-28 19:21:51 INFO  Serveur:274 - Enter unserilization
+2018-06-28 19:21:51 INFO  Serveur:288 - Begin unserilization
+2018-06-28 19:21:51 INFO  Serveur:290 - Success unserilization
+2018-06-28 19:21:52 INFO  Serveur:123 - DISPLAY TAB 4
+2018-06-28 21:04:32 INFO  Serveur:175 - Recuperation des parking
+2018-06-28 21:04:32 INFO  Serveur:65 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 21:04:32 INFO  Serveur:66 - 127.0.0.1
+2018-06-28 21:04:32 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 21:04:32 INFO  Serveur:76 - {"identifier":"SelectAllParkings","data":[]}
+2018-06-28 21:04:32 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 21:04:32 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 21:04:32 INFO  ProcessData:120 - Case Select all parkings
+2018-06-28 21:04:32 INFO  ParkingController:63 - Sending list of parking to Client
+2018-06-28 21:04:32 INFO  ParkingController:68 - Returning connection to pool
+2018-06-28 21:04:32 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 21:04:32 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 21:04:32 INFO  Serveur:85 - SelectAllParkingsOK
+2018-06-28 21:04:32 INFO  Serveur:225 - Affichage du resultat de mise à jour : 
+2018-06-28 21:04:32 INFO  Serveur:226 - {"identifier":"SelectAllParkingsOK","data":["SelectAllParkingsOK","2","1///Vehicule entrant///1000","2///Vehicule repare///1000"]}
+2018-06-28 21:04:36 INFO  Serveur:200 - Recuperation des pieces
+2018-06-28 21:04:36 INFO  Serveur:65 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 21:04:36 INFO  Serveur:66 - 127.0.0.1
+2018-06-28 21:04:36 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 21:04:36 INFO  Serveur:76 - {"identifier":"SelectFirstFromWaitList","data":[]}
+2018-06-28 21:04:36 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 21:04:36 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 21:04:36 INFO  ProcessData:90 - Case Select first from wait list
+2018-06-28 21:04:36 INFO  Serveur:25 - Afficage du JSON : 
+2018-06-28 21:04:36 INFO  Serveur:26 - {"identifier":"SelectFirstFromWaitList","data":[]}
+2018-06-28 21:04:36 INFO  Serveur:29 - 
+parcours du fichier Json :
+2018-06-28 21:04:36 INFO  Serveur:115 - Fonctionnalit� non prise en charge pour l'instant
+2018-06-28 21:04:36 INFO  RepairCardController:74 - Sending JSON succ�s selectRepairCard to Client
+2018-06-28 21:04:36 INFO  RepairCardController:79 - Returning connection to pool
+2018-06-28 21:04:36 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 21:04:36 INFO  Serveur:85 - SelectFirstFromWaitListOK
+2018-06-28 21:04:36 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 21:04:36 INFO  Serveur:190 - Afficage du resultat de mise � jour : 
+2018-06-28 21:04:36 INFO  Serveur:191 - {"identifier":"SelectFirstFromWaitListOK","data":["SelectFirstFromWaitListOK","0///VOI456"]}
+2018-06-28 21:04:36 INFO  Serveur:922 - Enter unserilization
+2018-06-28 21:04:36 INFO  Serveur:928 - Begin unserilization
+2018-06-28 21:04:36 INFO  Serveur:931 - Success RepairCard unserilization
+2018-06-28 21:04:36 INFO  Serveur:922 - Enter unserilization
+2018-06-28 21:04:36 INFO  Serveur:928 - Begin unserilization
+2018-06-28 21:04:36 INFO  Serveur:931 - Success RepairCard unserilization
+2018-06-28 21:04:56 INFO  Serveur:217 - R�cup�ration des pi�ces
+2018-06-28 21:04:56 INFO  Serveur:65 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 21:04:56 INFO  Serveur:66 - 127.0.0.1
+2018-06-28 21:04:56 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 21:04:56 INFO  Serveur:76 - {"identifier":"SelectAllParts","data":[]}
+2018-06-28 21:04:56 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 21:04:56 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 21:04:56 INFO  ProcessData:115 - Case Select all parts
+2018-06-28 21:04:56 INFO  Serveur:25 - Afficage du JSON : 
+2018-06-28 21:04:56 INFO  Serveur:26 - {"identifier":"SelectAllParts","data":[]}
+2018-06-28 21:04:56 INFO  Serveur:29 - 
+parcours du fichier Json :
+2018-06-28 21:04:56 INFO  Serveur:63 - retrieving all parts
+2018-06-28 21:04:56 INFO  PartController:112 - Sending list of part to Client
+2018-06-28 21:04:56 INFO  PartController:123 - Returning connection to pool
+2018-06-28 21:04:56 INFO  Serveur:85 - SelectAllPartsOK
+2018-06-28 21:04:56 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 21:04:56 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 21:04:56 INFO  Serveur:178 - Afficage du resultat de mise � jour : 
+2018-06-28 21:04:56 INFO  Serveur:179 - {"identifier":"SelectAllPartsOK","data":["SelectAllPartsOK","26","1///23///moteur///25.0","2///0///test///2.0","3///1///pneu///24.0","4///19///lampe///10.0","5///51///retroviseur///10.0","6///24///pedale///20.0","7///1///chaine///6.0","8///14///roue///2.0","9///1///frein///50.0","10///1///porte///36.0","11///1///antenne///49.0","12///1///piston///102.0","13///1///vitrine///21.0","14///1///test///24.0","15///1///ghost///22.0","16///1///fast///56.0","17///1///aller///8.0","18///1///cac///5.0","19///1///volant///45.0","21///1///cle///2.0","23///1///porte baggage///9.0","24///1///baterie///200.0","26///1///fils electrique///15.0","27///13///Levier///50.0","28///25///Boite de vitesse///200.0","29///40///Plaque///10.0"]}
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:04:56 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:04:56 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:04:56 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:05:59 INFO  Serveur:113 - Authentification demand�e par le client
+2018-06-28 21:05:59 INFO  Serveur:103 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 21:05:59 INFO  Serveur:104 - 127.0.0.1
+2018-06-28 21:05:59 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 21:05:59 INFO  Serveur:76 - {"identifier":"Authentication","data":["boss","boss"]}
+2018-06-28 21:05:59 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 21:05:59 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 21:05:59 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 21:05:59 INFO  Serveur:25 - Afficage du JSON : 
+2018-06-28 21:05:59 INFO  Serveur:26 - {"identifier":"Authentication","data":["boss","boss"]}
+2018-06-28 21:05:59 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 21:05:59 INFO  Serveur:29 - 
+parcours du fichier Json :
+2018-06-28 21:05:59 INFO  Authentication:81 - Sending JSON succ�s to Client
+2018-06-28 21:05:59 INFO  Authentication:92 - Returning connection to pool
+2018-06-28 21:05:59 INFO  Serveur:85 - GrantAuth
+2018-06-28 21:05:59 INFO  Serveur:99 - Afficage du JSON : 
+2018-06-28 21:05:59 INFO  Serveur:100 - {"identifier":"GrantAuth","data":["GrantAuth","2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager"]}
+2018-06-28 21:05:59 INFO  Serveur:108 - 2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager
+2018-06-28 21:05:59 INFO  Serveur:274 - Enter unserilization
+2018-06-28 21:05:59 INFO  Serveur:288 - Begin unserilization
+2018-06-28 21:05:59 INFO  Serveur:290 - Success unserilization
+2018-06-28 21:06:00 INFO  Serveur:123 - DISPLAY TAB 4
+2018-06-28 21:06:05 INFO  Serveur:175 - Recuperation des parking
+2018-06-28 21:06:05 INFO  Serveur:65 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 21:06:05 INFO  Serveur:66 - 127.0.0.1
+2018-06-28 21:06:05 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 21:06:05 INFO  Serveur:76 - {"identifier":"SelectAllParkings","data":[]}
+2018-06-28 21:06:05 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 21:06:05 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 21:06:05 INFO  ProcessData:120 - Case Select all parkings
+2018-06-28 21:06:05 INFO  ParkingController:63 - Sending list of parking to Client
+2018-06-28 21:06:05 INFO  ParkingController:68 - Returning connection to pool
+2018-06-28 21:06:05 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 21:06:05 INFO  Serveur:85 - SelectAllParkingsOK
+2018-06-28 21:06:05 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 21:06:05 INFO  Serveur:225 - Affichage du resultat de mise à jour : 
+2018-06-28 21:06:05 INFO  Serveur:226 - {"identifier":"SelectAllParkingsOK","data":["SelectAllParkingsOK","2","1///Vehicule entrant///1000","2///Vehicule repare///1000"]}
+2018-06-28 21:06:09 INFO  Serveur:217 - R�cup�ration des pi�ces
+2018-06-28 21:06:09 INFO  Serveur:65 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 21:06:09 INFO  Serveur:66 - 127.0.0.1
+2018-06-28 21:06:09 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 21:06:09 INFO  Serveur:76 - {"identifier":"SelectAllParts","data":[]}
+2018-06-28 21:06:09 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 21:06:09 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 21:06:09 INFO  ProcessData:115 - Case Select all parts
+2018-06-28 21:06:09 INFO  Serveur:25 - Afficage du JSON : 
+2018-06-28 21:06:09 INFO  Serveur:26 - {"identifier":"SelectAllParts","data":[]}
+2018-06-28 21:06:09 INFO  Serveur:29 - 
+parcours du fichier Json :
+2018-06-28 21:06:09 INFO  Serveur:63 - retrieving all parts
+2018-06-28 21:06:09 INFO  PartController:112 - Sending list of part to Client
+2018-06-28 21:06:09 INFO  PartController:123 - Returning connection to pool
+2018-06-28 21:06:09 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 21:06:09 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 21:06:09 INFO  Serveur:85 - SelectAllPartsOK
+2018-06-28 21:06:09 INFO  Serveur:178 - Afficage du resultat de mise � jour : 
+2018-06-28 21:06:09 INFO  Serveur:179 - {"identifier":"SelectAllPartsOK","data":["SelectAllPartsOK","26","1///23///moteur///25.0","2///0///test///2.0","3///1///pneu///24.0","4///19///lampe///10.0","5///51///retroviseur///10.0","6///24///pedale///20.0","7///1///chaine///6.0","8///14///roue///2.0","9///1///frein///50.0","10///1///porte///36.0","11///1///antenne///49.0","12///1///piston///102.0","13///1///vitrine///21.0","14///1///test///24.0","15///1///ghost///22.0","16///1///fast///56.0","17///1///aller///8.0","18///1///cac///5.0","19///1///volant///45.0","21///1///cle///2.0","23///1///porte baggage///9.0","24///1///baterie///200.0","26///1///fils electrique///15.0","27///13///Levier///50.0","28///25///Boite de vitesse///200.0","29///40///Plaque///10.0"]}
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:09 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:09 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:09 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:10 INFO  Serveur:200 - Recuperation des pieces
+2018-06-28 21:06:10 INFO  Serveur:65 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 21:06:10 INFO  Serveur:66 - 127.0.0.1
+2018-06-28 21:06:10 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 21:06:10 INFO  Serveur:76 - {"identifier":"SelectFirstFromWaitList","data":[]}
+2018-06-28 21:06:10 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 21:06:10 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 21:06:10 INFO  ProcessData:90 - Case Select first from wait list
+2018-06-28 21:06:10 INFO  Serveur:25 - Afficage du JSON : 
+2018-06-28 21:06:10 INFO  Serveur:26 - {"identifier":"SelectFirstFromWaitList","data":[]}
+2018-06-28 21:06:10 INFO  Serveur:29 - 
+parcours du fichier Json :
+2018-06-28 21:06:10 INFO  Serveur:115 - Fonctionnalit� non prise en charge pour l'instant
+2018-06-28 21:06:10 INFO  RepairCardController:74 - Sending JSON succ�s selectRepairCard to Client
+2018-06-28 21:06:10 INFO  RepairCardController:79 - Returning connection to pool
+2018-06-28 21:06:10 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 21:06:10 INFO  Serveur:85 - SelectFirstFromWaitListOK
+2018-06-28 21:06:10 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 21:06:10 INFO  Serveur:190 - Afficage du resultat de mise � jour : 
+2018-06-28 21:06:10 INFO  Serveur:191 - {"identifier":"SelectFirstFromWaitListOK","data":["SelectFirstFromWaitListOK","0///VOI456"]}
+2018-06-28 21:06:10 INFO  Serveur:922 - Enter unserilization
+2018-06-28 21:06:10 INFO  Serveur:928 - Begin unserilization
+2018-06-28 21:06:10 INFO  Serveur:931 - Success RepairCard unserilization
+2018-06-28 21:06:10 INFO  Serveur:922 - Enter unserilization
+2018-06-28 21:06:10 INFO  Serveur:928 - Begin unserilization
+2018-06-28 21:06:10 INFO  Serveur:931 - Success RepairCard unserilization
+2018-06-28 21:06:18 INFO  Serveur:253 - Chargement des listes deroulantes
+2018-06-28 21:06:18 INFO  Serveur:65 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 21:06:18 INFO  Serveur:66 - 127.0.0.1
+2018-06-28 21:06:18 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 21:06:18 INFO  Serveur:76 - {"identifier":"LoadAllComboBox","data":[]}
+2018-06-28 21:06:18 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 21:06:18 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 21:06:18 INFO  ProcessData:148 - Case Select all type car
+2018-06-28 21:06:18 INFO  Serveur:25 - Afficage du JSON : 
+2018-06-28 21:06:18 INFO  Serveur:26 - {"identifier":"LoadAllComboBox","data":[]}
+2018-06-28 21:06:18 INFO  Serveur:29 - 
+parcours du fichier Json :
+2018-06-28 21:06:18 INFO  Serveur:92 - retrieving all typeCar
+2018-06-28 21:06:18 INFO  CarController:216 - Sending list of type car to Client
+2018-06-28 21:06:18 INFO  CarController:217 - {"dataDefect":["31","1///Frein///1.5","2///Levier///0.5","3///Pneu///0.0","5///Electronique///10.0","6///Batterie///1.0","7///Boite de vitesse///6.0","8///Plaque Imatriculation///9.0","10///CLimatisation///2.0","11///Geometrie///1.0","12///Revision///0.0","13///Vidange///4.0","14///Filtration///10.0","16///Eclairage///6.0","17///Atelage///9.0","18///Distribution///7.0","19///Prestation///10.0","20///Echappement///1.0","21///SystÃƒÂ¨me de freinage///6.0","22///Controle///9.0","23///Diagnostics///7.0","24///EntretienEchappement///2.0","25///MontageAmortisseur///1.0","26///MontageBatterie///0.0","27///ChangerHydrolique///4.0","28///NettoyerFiltreAir///10.0","29///ChangementRoues///1.0","30///ReglageEclairage///6.0","31///RenovationPhare///9.0","32///ServiceCarteGrise///7.0","33///VidangeBoiteEtPont///10.0","34///Moteur///5.0"],"identifier":"LoadAllComboBoxOK","data":["LoadAllComboBoxOK","2","1///Voiture","2///Velo"],"allCar":["5","l78p///Velo///1234","VEL123///Velo///123123","VEL124///Velo///123124","VOI456///Voiture///456456","VOI458///Voiture///456458"],"placement":["24","1011///false///1","1012///false///1","1013///false///1","1015///false///1","1016///false///1","1017///false///1","1018///false///1","1019///false///1","1020///false///1","1021///false///1","1022///false///1","1023///false///1","1024///false///1","1025///false///1","1026///false///1","2001///false///2","2007///false///2","2020///false///2","2021///false///2","2022///false///2","2023///false///2","2024///false///2","2025///false///2","2026///false///2"]}
+2018-06-28 21:06:18 INFO  CarController:280 - Returning connection to pool
+2018-06-28 21:06:18 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 21:06:18 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 21:06:18 INFO  Serveur:85 - LoadAllComboBoxOK
+2018-06-28 21:06:18 INFO  Serveur:308 - Afficage du resultat
+2018-06-28 21:06:18 INFO  Serveur:309 - {"dataDefect":["31","1///Frein///1.5","2///Levier///0.5","3///Pneu///0.0","5///Electronique///10.0","6///Batterie///1.0","7///Boite de vitesse///6.0","8///Plaque Imatriculation///9.0","10///CLimatisation///2.0","11///Geometrie///1.0","12///Revision///0.0","13///Vidange///4.0","14///Filtration///10.0","16///Eclairage///6.0","17///Atelage///9.0","18///Distribution///7.0","19///Prestation///10.0","20///Echappement///1.0","21///SystÃƒÂ¨me de freinage///6.0","22///Controle///9.0","23///Diagnostics///7.0","24///EntretienEchappement///2.0","25///MontageAmortisseur///1.0","26///MontageBatterie///0.0","27///ChangerHydrolique///4.0","28///NettoyerFiltreAir///10.0","29///ChangementRoues///1.0","30///ReglageEclairage///6.0","31///RenovationPhare///9.0","32///ServiceCarteGrise///7.0","33///VidangeBoiteEtPont///10.0","34///Moteur///5.0"],"identifier":"LoadAllComboBoxOK","data":["LoadAllComboBoxOK","2","1///Voiture","2///Velo"],"allCar":["5","l78p///Velo///1234","VEL123///Velo///123123","VEL124///Velo///123124","VOI456///Voiture///456456","VOI458///Voiture///456458"],"placement":["24","1011///false///1","1012///false///1","1013///false///1","1015///false///1","1016///false///1","1017///false///1","1018///false///1","1019///false///1","1020///false///1","1021///false///1","1022///false///1","1023///false///1","1024///false///1","1025///false///1","1026///false///1","2001///false///2","2007///false///2","2020///false///2","2021///false///2","2022///false///2","2023///false///2","2024///false///2","2025///false///2","2026///false///2"]}
+2018-06-28 21:06:18 INFO  Serveur:195 - l78pVelo1234
+2018-06-28 21:06:18 INFO  Serveur:195 - VEL123Velo123123
+2018-06-28 21:06:18 INFO  Serveur:195 - VEL124Velo123124
+2018-06-28 21:06:18 INFO  Serveur:195 - VOI456Voiture456456
+2018-06-28 21:06:18 INFO  Serveur:195 - VOI458Voiture456458
+2018-06-28 21:06:18 INFO  Serveur:75 - Enter unserilization
+2018-06-28 21:06:18 INFO  Serveur:81 - Begin unserilization
+2018-06-28 21:06:18 INFO  Serveur:83 - Success unserilization
+2018-06-28 21:06:18 INFO  Serveur:75 - Enter unserilization
+2018-06-28 21:06:18 INFO  Serveur:81 - Begin unserilization
+2018-06-28 21:06:18 INFO  Serveur:83 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:88 - Afficher liste des pieces
+2018-06-28 21:06:29 INFO  Serveur:65 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 21:06:29 INFO  Serveur:66 - 127.0.0.1
+2018-06-28 21:06:29 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 21:06:29 INFO  Serveur:76 - {"identifier":"SelectAllParts","data":[]}
+2018-06-28 21:06:29 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 21:06:29 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 21:06:29 INFO  ProcessData:115 - Case Select all parts
+2018-06-28 21:06:29 INFO  Serveur:25 - Afficage du JSON : 
+2018-06-28 21:06:29 INFO  Serveur:26 - {"identifier":"SelectAllParts","data":[]}
+2018-06-28 21:06:29 INFO  Serveur:29 - 
+parcours du fichier Json :
+2018-06-28 21:06:29 INFO  Serveur:63 - retrieving all parts
+2018-06-28 21:06:29 INFO  PartController:112 - Sending list of part to Client
+2018-06-28 21:06:29 INFO  PartController:123 - Returning connection to pool
+2018-06-28 21:06:29 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 21:06:29 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 21:06:29 INFO  Serveur:85 - SelectAllPartsOK
+2018-06-28 21:06:29 INFO  Serveur:178 - Afficage du resultat de mise � jour : 
+2018-06-28 21:06:29 INFO  Serveur:179 - {"identifier":"SelectAllPartsOK","data":["SelectAllPartsOK","26","1///23///moteur///25.0","2///0///test///2.0","3///1///pneu///24.0","4///19///lampe///10.0","5///51///retroviseur///10.0","6///24///pedale///20.0","7///1///chaine///6.0","8///14///roue///2.0","9///1///frein///50.0","10///1///porte///36.0","11///1///antenne///49.0","12///1///piston///102.0","13///1///vitrine///21.0","14///1///test///24.0","15///1///ghost///22.0","16///1///fast///56.0","17///1///aller///8.0","18///1///cac///5.0","19///1///volant///45.0","21///1///cle///2.0","23///1///porte baggage///9.0","24///1///baterie///200.0","26///1///fils electrique///15.0","27///13///Levier///50.0","28///25///Boite de vitesse///200.0","29///40///Plaque///10.0"]}
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:29 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:06:29 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:06:29 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:06:34 INFO  Serveur:200 - Recuperation des pieces
+2018-06-28 21:06:34 INFO  Serveur:65 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 21:06:34 INFO  Serveur:66 - 127.0.0.1
+2018-06-28 21:06:34 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 21:06:34 INFO  Serveur:76 - {"identifier":"SelectFirstFromWaitList","data":[]}
+2018-06-28 21:06:34 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 21:06:34 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 21:06:34 INFO  ProcessData:90 - Case Select first from wait list
+2018-06-28 21:06:34 INFO  Serveur:25 - Afficage du JSON : 
+2018-06-28 21:06:34 INFO  Serveur:26 - {"identifier":"SelectFirstFromWaitList","data":[]}
+2018-06-28 21:06:34 INFO  Serveur:29 - 
+parcours du fichier Json :
+2018-06-28 21:06:34 INFO  Serveur:115 - Fonctionnalit� non prise en charge pour l'instant
+2018-06-28 21:06:34 INFO  RepairCardController:74 - Sending JSON succ�s selectRepairCard to Client
+2018-06-28 21:06:34 INFO  RepairCardController:79 - Returning connection to pool
+2018-06-28 21:06:34 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 21:06:34 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 21:06:34 INFO  Serveur:85 - SelectFirstFromWaitListOK
+2018-06-28 21:06:34 INFO  Serveur:190 - Afficage du resultat de mise � jour : 
+2018-06-28 21:06:34 INFO  Serveur:191 - {"identifier":"SelectFirstFromWaitListOK","data":["SelectFirstFromWaitListOK","0///VOI456"]}
+2018-06-28 21:06:34 INFO  Serveur:922 - Enter unserilization
+2018-06-28 21:06:34 INFO  Serveur:928 - Begin unserilization
+2018-06-28 21:06:34 INFO  Serveur:931 - Success RepairCard unserilization
+2018-06-28 21:06:34 INFO  Serveur:922 - Enter unserilization
+2018-06-28 21:06:34 INFO  Serveur:928 - Begin unserilization
+2018-06-28 21:06:34 INFO  Serveur:931 - Success RepairCard unserilization
+2018-06-28 21:07:53 INFO  Serveur:200 - Recuperation des pieces
+2018-06-28 21:07:53 INFO  Serveur:65 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 21:07:53 INFO  Serveur:66 - 127.0.0.1
+2018-06-28 21:07:53 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 21:07:53 INFO  Serveur:76 - {"identifier":"SelectFirstFromWaitList","data":[]}
+2018-06-28 21:07:53 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 21:07:53 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 21:07:53 INFO  ProcessData:90 - Case Select first from wait list
+2018-06-28 21:07:53 INFO  Serveur:25 - Afficage du JSON : 
+2018-06-28 21:07:53 INFO  Serveur:26 - {"identifier":"SelectFirstFromWaitList","data":[]}
+2018-06-28 21:07:53 INFO  Serveur:29 - 
+parcours du fichier Json :
+2018-06-28 21:07:53 INFO  Serveur:115 - Fonctionnalit� non prise en charge pour l'instant
+2018-06-28 21:07:53 INFO  RepairCardController:74 - Sending JSON succ�s selectRepairCard to Client
+2018-06-28 21:07:53 INFO  RepairCardController:79 - Returning connection to pool
+2018-06-28 21:07:53 INFO  Serveur:85 - SelectFirstFromWaitListOK
+2018-06-28 21:07:53 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 21:07:53 INFO  Serveur:190 - Afficage du resultat de mise � jour : 
+2018-06-28 21:07:53 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 21:07:53 INFO  Serveur:191 - {"identifier":"SelectFirstFromWaitListOK","data":["SelectFirstFromWaitListOK","0///VOI456"]}
+2018-06-28 21:07:53 INFO  Serveur:922 - Enter unserilization
+2018-06-28 21:07:53 INFO  Serveur:928 - Begin unserilization
+2018-06-28 21:07:53 INFO  Serveur:931 - Success RepairCard unserilization
+2018-06-28 21:07:53 INFO  Serveur:922 - Enter unserilization
+2018-06-28 21:07:53 INFO  Serveur:928 - Begin unserilization
+2018-06-28 21:07:53 INFO  Serveur:931 - Success RepairCard unserilization
+2018-06-28 21:08:08 INFO  Serveur:153 - Entr�e de stock
+2018-06-28 21:08:20 INFO  Serveur:65 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 21:08:20 INFO  Serveur:66 - 127.0.0.1
+2018-06-28 21:08:20 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 21:08:20 INFO  Serveur:76 - {"identifier":"addEntryStock","data":["test","1","2"]}
+2018-06-28 21:08:20 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 21:08:20 INFO  ProcessData:153 - Case entry stock
+2018-06-28 21:08:20 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 21:08:20 INFO  Serveur:25 - Afficage du JSON : 
+2018-06-28 21:08:20 INFO  Serveur:26 - {"identifier":"addEntryStock","data":["test","1","2"]}
+2018-06-28 21:08:20 INFO  Serveur:29 - 
+parcours du fichier Json :
+2018-06-28 21:08:20 INFO  Serveur:84 - Sending result entry stock
+2018-06-28 21:08:20 INFO  Serveur:96 - Returning connection to pool
+2018-06-28 21:08:20 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 21:08:20 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 21:08:20 INFO  Serveur:85 - addEntryStockOK
+2018-06-28 21:08:20 INFO  Serveur:341 - Afficage du resultat de mise � jour : 
+2018-06-28 21:08:20 INFO  Serveur:342 - {"identifier":"addEntryStockOK","data":["addEntryStockOK"]}
+2018-06-28 21:09:28 INFO  Serveur:113 - Authentification demand�e par le client
+2018-06-28 21:09:28 INFO  Serveur:103 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 21:09:28 INFO  Serveur:104 - 127.0.0.1
+2018-06-28 21:09:28 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 21:09:28 INFO  Serveur:76 - {"identifier":"Authentication","data":["boss","boss"]}
+2018-06-28 21:09:28 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 21:09:28 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 21:09:28 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 21:09:28 INFO  Serveur:25 - Afficage du JSON : 
+2018-06-28 21:09:28 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 21:09:28 INFO  Serveur:26 - {"identifier":"Authentication","data":["boss","boss"]}
+2018-06-28 21:09:28 INFO  Serveur:29 - 
+parcours du fichier Json :
+2018-06-28 21:09:28 INFO  Authentication:81 - Sending JSON succ�s to Client
+2018-06-28 21:09:28 INFO  Authentication:92 - Returning connection to pool
+2018-06-28 21:09:28 INFO  Serveur:85 - GrantAuth
+2018-06-28 21:09:28 INFO  Serveur:99 - Afficage du JSON : 
+2018-06-28 21:09:28 INFO  Serveur:100 - {"identifier":"GrantAuth","data":["GrantAuth","2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager"]}
+2018-06-28 21:09:28 INFO  Serveur:108 - 2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager
+2018-06-28 21:09:28 INFO  Serveur:274 - Enter unserilization
+2018-06-28 21:09:28 INFO  Serveur:288 - Begin unserilization
+2018-06-28 21:09:28 INFO  Serveur:290 - Success unserilization
+2018-06-28 21:09:29 INFO  Serveur:123 - DISPLAY TAB 4
+2018-06-28 21:09:30 INFO  Serveur:217 - R�cup�ration des pi�ces
+2018-06-28 21:09:30 INFO  Serveur:65 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 21:09:30 INFO  Serveur:66 - 127.0.0.1
+2018-06-28 21:09:30 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 21:09:30 INFO  Serveur:76 - {"identifier":"SelectAllParts","data":[]}
+2018-06-28 21:09:30 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 21:09:30 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 21:09:30 INFO  ProcessData:115 - Case Select all parts
+2018-06-28 21:09:30 INFO  Serveur:25 - Afficage du JSON : 
+2018-06-28 21:09:30 INFO  Serveur:26 - {"identifier":"SelectAllParts","data":[]}
+2018-06-28 21:09:30 INFO  Serveur:29 - 
+parcours du fichier Json :
+2018-06-28 21:09:30 INFO  Serveur:63 - retrieving all parts
+2018-06-28 21:09:30 INFO  PartController:112 - Sending list of part to Client
+2018-06-28 21:09:30 INFO  PartController:123 - Returning connection to pool
+2018-06-28 21:09:30 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 21:09:30 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 21:09:30 INFO  Serveur:85 - SelectAllPartsOK
+2018-06-28 21:09:30 INFO  Serveur:178 - Afficage du resultat de mise � jour : 
+2018-06-28 21:09:30 INFO  Serveur:179 - {"identifier":"SelectAllPartsOK","data":["SelectAllPartsOK","26","1///23///moteur///25.0","2///0///test///2.0","3///1///pneu///24.0","4///19///lampe///10.0","5///51///retroviseur///10.0","6///24///pedale///20.0","7///1///chaine///6.0","8///14///roue///2.0","9///1///frein///50.0","10///1///porte///36.0","11///1///antenne///49.0","12///1///piston///102.0","13///1///vitrine///21.0","14///1///test///24.0","15///1///ghost///22.0","16///1///fast///56.0","17///1///aller///8.0","18///1///cac///5.0","19///1///volant///45.0","21///1///cle///2.0","23///1///porte baggage///9.0","24///1///baterie///200.0","26///1///fils electrique///15.0","27///13///Levier///50.0","28///25///Boite de vitesse///200.0","29///40///Plaque///10.0"]}
+2018-06-28 21:09:30 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:30 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:30 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:09:30 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:30 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:30 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:09:30 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:30 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:30 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:09:30 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:30 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:30 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:09:30 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:30 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:30 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:09:30 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:30 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:30 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:09:30 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:30 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:30 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:09:31 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:31 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:31 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:09:31 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:31 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:31 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:09:31 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:31 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:31 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:09:31 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:31 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:31 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:09:31 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:31 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:31 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:09:31 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:31 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:31 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:09:31 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:31 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:31 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:09:31 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:31 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:31 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:09:31 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:31 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:31 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:09:31 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:31 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:31 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:09:31 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:31 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:31 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:09:31 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:31 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:31 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:09:31 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:31 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:31 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:09:31 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:31 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:31 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:09:31 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:31 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:31 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:09:31 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:31 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:31 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:09:31 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:31 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:31 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:09:31 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:31 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:31 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:09:31 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:09:31 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:09:31 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:88 - Afficher liste des pieces
+2018-06-28 21:10:20 INFO  Serveur:65 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 21:10:20 INFO  Serveur:66 - 127.0.0.1
+2018-06-28 21:10:20 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 21:10:20 INFO  Serveur:76 - {"identifier":"SelectAllParts","data":[]}
+2018-06-28 21:10:20 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 21:10:20 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 21:10:20 INFO  ProcessData:115 - Case Select all parts
+2018-06-28 21:10:20 INFO  Serveur:25 - Afficage du JSON : 
+2018-06-28 21:10:20 INFO  Serveur:26 - {"identifier":"SelectAllParts","data":[]}
+2018-06-28 21:10:20 INFO  Serveur:29 - 
+parcours du fichier Json :
+2018-06-28 21:10:20 INFO  Serveur:63 - retrieving all parts
+2018-06-28 21:10:20 INFO  PartController:112 - Sending list of part to Client
+2018-06-28 21:10:20 INFO  PartController:123 - Returning connection to pool
+2018-06-28 21:10:20 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 21:10:20 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 21:10:20 INFO  Serveur:85 - SelectAllPartsOK
+2018-06-28 21:10:20 INFO  Serveur:178 - Afficage du resultat de mise � jour : 
+2018-06-28 21:10:20 INFO  Serveur:179 - {"identifier":"SelectAllPartsOK","data":["SelectAllPartsOK","26","1///23///moteur///25.0","2///0///test///2.0","3///1///pneu///24.0","4///19///lampe///10.0","5///51///retroviseur///10.0","6///24///pedale///20.0","7///1///chaine///6.0","8///14///roue///2.0","9///1///frein///50.0","10///1///porte///36.0","11///1///antenne///49.0","12///1///piston///102.0","13///1///vitrine///21.0","14///1///test///24.0","15///1///ghost///22.0","16///1///fast///56.0","17///1///aller///8.0","18///1///cac///5.0","19///1///volant///45.0","21///1///cle///2.0","23///1///porte baggage///9.0","24///1///baterie///200.0","26///1///fils electrique///15.0","27///13///Levier///50.0","28///25///Boite de vitesse///200.0","29///40///Plaque///10.0"]}
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:10:20 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:10:20 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:10:20 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:49 INFO  Serveur:175 - Recuperation des parking
+2018-06-28 21:11:49 INFO  Serveur:65 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 21:11:49 INFO  Serveur:66 - 127.0.0.1
+2018-06-28 21:11:49 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 21:11:49 INFO  Serveur:76 - {"identifier":"SelectAllParkings","data":[]}
+2018-06-28 21:11:49 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 21:11:49 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 21:11:49 INFO  ProcessData:120 - Case Select all parkings
+2018-06-28 21:11:49 INFO  ParkingController:63 - Sending list of parking to Client
+2018-06-28 21:11:49 INFO  ParkingController:68 - Returning connection to pool
+2018-06-28 21:11:49 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 21:11:49 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 21:11:49 INFO  Serveur:85 - SelectAllParkingsOK
+2018-06-28 21:11:49 INFO  Serveur:225 - Affichage du resultat de mise à jour : 
+2018-06-28 21:11:49 INFO  Serveur:226 - {"identifier":"SelectAllParkingsOK","data":["SelectAllParkingsOK","2","1///Vehicule entrant///1000","2///Vehicule repare///1000"]}
+2018-06-28 21:11:54 INFO  Serveur:236 - R�cup�ration des pi�ces
+2018-06-28 21:11:54 INFO  Serveur:65 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 21:11:54 INFO  Serveur:66 - 127.0.0.1
+2018-06-28 21:11:54 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 21:11:54 INFO  Serveur:76 - {"identifier":"SelectAllParts","data":[]}
+2018-06-28 21:11:54 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 21:11:54 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 21:11:54 INFO  ProcessData:115 - Case Select all parts
+2018-06-28 21:11:54 INFO  Serveur:25 - Afficage du JSON : 
+2018-06-28 21:11:54 INFO  Serveur:26 - {"identifier":"SelectAllParts","data":[]}
+2018-06-28 21:11:54 INFO  Serveur:29 - 
+parcours du fichier Json :
+2018-06-28 21:11:54 INFO  Serveur:63 - retrieving all parts
+2018-06-28 21:11:54 INFO  PartController:112 - Sending list of part to Client
+2018-06-28 21:11:54 INFO  PartController:123 - Returning connection to pool
+2018-06-28 21:11:54 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 21:11:54 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 21:11:54 INFO  Serveur:85 - SelectAllPartsOK
+2018-06-28 21:11:54 INFO  Serveur:178 - Afficage du resultat de mise � jour : 
+2018-06-28 21:11:54 INFO  Serveur:179 - {"identifier":"SelectAllPartsOK","data":["SelectAllPartsOK","26","1///23///moteur///25.0","2///0///test///2.0","3///1///pneu///24.0","4///19///lampe///10.0","5///51///retroviseur///10.0","6///24///pedale///20.0","7///1///chaine///6.0","8///14///roue///2.0","9///1///frein///50.0","10///1///porte///36.0","11///1///antenne///49.0","12///1///piston///102.0","13///1///vitrine///21.0","14///1///test///24.0","15///1///ghost///22.0","16///1///fast///56.0","17///1///aller///8.0","18///1///cac///5.0","19///1///volant///45.0","21///1///cle///2.0","23///1///porte baggage///9.0","24///1///baterie///200.0","26///1///fils electrique///15.0","27///13///Levier///50.0","28///25///Boite de vitesse///200.0","29///40///Plaque///10.0"]}
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:54 INFO  Serveur:129 - Enter unserilization
+2018-06-28 21:11:54 INFO  Serveur:135 - Begin unserilization
+2018-06-28 21:11:54 INFO  Serveur:137 - Success unserilization
+2018-06-28 21:11:56 INFO  Serveur:253 - Chargement des listes deroulantes
+2018-06-28 21:11:56 INFO  Serveur:65 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 21:11:56 INFO  Serveur:66 - 127.0.0.1
+2018-06-28 21:11:56 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 21:11:56 INFO  Serveur:76 - {"identifier":"LoadAllComboBox","data":[]}
+2018-06-28 21:11:56 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 21:11:56 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 21:11:56 INFO  ProcessData:148 - Case Select all type car
+2018-06-28 21:11:56 INFO  Serveur:25 - Afficage du JSON : 
+2018-06-28 21:11:56 INFO  Serveur:26 - {"identifier":"LoadAllComboBox","data":[]}
+2018-06-28 21:11:56 INFO  Serveur:29 - 
+parcours du fichier Json :
+2018-06-28 21:11:56 INFO  Serveur:92 - retrieving all typeCar
+2018-06-28 21:11:56 INFO  CarController:216 - Sending list of type car to Client
+2018-06-28 21:11:56 INFO  CarController:217 - {"dataDefect":["31","1///Frein///1.5","2///Levier///0.5","3///Pneu///0.0","5///Electronique///10.0","6///Batterie///1.0","7///Boite de vitesse///6.0","8///Plaque Imatriculation///9.0","10///CLimatisation///2.0","11///Geometrie///1.0","12///Revision///0.0","13///Vidange///4.0","14///Filtration///10.0","16///Eclairage///6.0","17///Atelage///9.0","18///Distribution///7.0","19///Prestation///10.0","20///Echappement///1.0","21///SystÃƒÂ¨me de freinage///6.0","22///Controle///9.0","23///Diagnostics///7.0","24///EntretienEchappement///2.0","25///MontageAmortisseur///1.0","26///MontageBatterie///0.0","27///ChangerHydrolique///4.0","28///NettoyerFiltreAir///10.0","29///ChangementRoues///1.0","30///ReglageEclairage///6.0","31///RenovationPhare///9.0","32///ServiceCarteGrise///7.0","33///VidangeBoiteEtPont///10.0","34///Moteur///5.0"],"identifier":"LoadAllComboBoxOK","data":["LoadAllComboBoxOK","2","1///Voiture","2///Velo"],"allCar":["5","l78p///Velo///1234","VEL123///Velo///123123","VEL124///Velo///123124","VOI456///Voiture///456456","VOI458///Voiture///456458"],"placement":["24","1011///false///1","1012///false///1","1013///false///1","1015///false///1","1016///false///1","1017///false///1","1018///false///1","1019///false///1","1020///false///1","1021///false///1","1022///false///1","1023///false///1","1024///false///1","1025///false///1","1026///false///1","2001///false///2","2007///false///2","2020///false///2","2021///false///2","2022///false///2","2023///false///2","2024///false///2","2025///false///2","2026///false///2"]}
+2018-06-28 21:11:56 INFO  CarController:280 - Returning connection to pool
+2018-06-28 21:11:56 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 21:11:56 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 21:11:56 INFO  Serveur:85 - LoadAllComboBoxOK
+2018-06-28 21:11:56 INFO  Serveur:308 - Afficage du resultat
+2018-06-28 21:11:56 INFO  Serveur:309 - {"dataDefect":["31","1///Frein///1.5","2///Levier///0.5","3///Pneu///0.0","5///Electronique///10.0","6///Batterie///1.0","7///Boite de vitesse///6.0","8///Plaque Imatriculation///9.0","10///CLimatisation///2.0","11///Geometrie///1.0","12///Revision///0.0","13///Vidange///4.0","14///Filtration///10.0","16///Eclairage///6.0","17///Atelage///9.0","18///Distribution///7.0","19///Prestation///10.0","20///Echappement///1.0","21///SystÃƒÂ¨me de freinage///6.0","22///Controle///9.0","23///Diagnostics///7.0","24///EntretienEchappement///2.0","25///MontageAmortisseur///1.0","26///MontageBatterie///0.0","27///ChangerHydrolique///4.0","28///NettoyerFiltreAir///10.0","29///ChangementRoues///1.0","30///ReglageEclairage///6.0","31///RenovationPhare///9.0","32///ServiceCarteGrise///7.0","33///VidangeBoiteEtPont///10.0","34///Moteur///5.0"],"identifier":"LoadAllComboBoxOK","data":["LoadAllComboBoxOK","2","1///Voiture","2///Velo"],"allCar":["5","l78p///Velo///1234","VEL123///Velo///123123","VEL124///Velo///123124","VOI456///Voiture///456456","VOI458///Voiture///456458"],"placement":["24","1011///false///1","1012///false///1","1013///false///1","1015///false///1","1016///false///1","1017///false///1","1018///false///1","1019///false///1","1020///false///1","1021///false///1","1022///false///1","1023///false///1","1024///false///1","1025///false///1","1026///false///1","2001///false///2","2007///false///2","2020///false///2","2021///false///2","2022///false///2","2023///false///2","2024///false///2","2025///false///2","2026///false///2"]}
+2018-06-28 21:11:56 INFO  Serveur:195 - l78pVelo1234
+2018-06-28 21:11:56 INFO  Serveur:195 - VEL123Velo123123
+2018-06-28 21:11:56 INFO  Serveur:195 - VEL124Velo123124
+2018-06-28 21:11:56 INFO  Serveur:195 - VOI456Voiture456456
+2018-06-28 21:11:56 INFO  Serveur:195 - VOI458Voiture456458
+2018-06-28 21:11:56 INFO  Serveur:75 - Enter unserilization
+2018-06-28 21:11:56 INFO  Serveur:81 - Begin unserilization
+2018-06-28 21:11:56 INFO  Serveur:83 - Success unserilization
+2018-06-28 21:11:56 INFO  Serveur:75 - Enter unserilization
+2018-06-28 21:11:56 INFO  Serveur:81 - Begin unserilization
+2018-06-28 21:11:56 INFO  Serveur:83 - Success unserilization
+2018-06-28 21:16:05 INFO  Serveur:91 - Afficher liste des vehicules
+2018-06-28 21:16:05 INFO  Serveur:65 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 21:16:05 INFO  Serveur:66 - 127.0.0.1
+2018-06-28 21:16:05 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 21:16:05 INFO  Serveur:76 - {"identifier":"LoadAllComboBox","data":[]}
+2018-06-28 21:16:05 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 21:16:05 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 21:16:05 INFO  ProcessData:148 - Case Select all type car
+2018-06-28 21:16:05 INFO  Serveur:25 - Afficage du JSON : 
+2018-06-28 21:16:05 INFO  Serveur:26 - {"identifier":"LoadAllComboBox","data":[]}
+2018-06-28 21:16:05 INFO  Serveur:29 - 
+parcours du fichier Json :
+2018-06-28 21:16:05 INFO  Serveur:92 - retrieving all typeCar
+2018-06-28 21:16:05 INFO  CarController:216 - Sending list of type car to Client
+2018-06-28 21:16:05 INFO  CarController:217 - {"dataDefect":["31","1///Frein///1.5","2///Levier///0.5","3///Pneu///0.0","5///Electronique///10.0","6///Batterie///1.0","7///Boite de vitesse///6.0","8///Plaque Imatriculation///9.0","10///CLimatisation///2.0","11///Geometrie///1.0","12///Revision///0.0","13///Vidange///4.0","14///Filtration///10.0","16///Eclairage///6.0","17///Atelage///9.0","18///Distribution///7.0","19///Prestation///10.0","20///Echappement///1.0","21///SystÃƒÂ¨me de freinage///6.0","22///Controle///9.0","23///Diagnostics///7.0","24///EntretienEchappement///2.0","25///MontageAmortisseur///1.0","26///MontageBatterie///0.0","27///ChangerHydrolique///4.0","28///NettoyerFiltreAir///10.0","29///ChangementRoues///1.0","30///ReglageEclairage///6.0","31///RenovationPhare///9.0","32///ServiceCarteGrise///7.0","33///VidangeBoiteEtPont///10.0","34///Moteur///5.0"],"identifier":"LoadAllComboBoxOK","data":["LoadAllComboBoxOK","2","1///Voiture","2///Velo"],"allCar":["5","l78p///Velo///1234","VEL123///Velo///123123","VEL124///Velo///123124","VOI456///Voiture///456456","VOI458///Voiture///456458"],"placement":["24","1011///false///1","1012///false///1","1013///false///1","1015///false///1","1016///false///1","1017///false///1","1018///false///1","1019///false///1","1020///false///1","1021///false///1","1022///false///1","1023///false///1","1024///false///1","1025///false///1","1026///false///1","2001///false///2","2007///false///2","2020///false///2","2021///false///2","2022///false///2","2023///false///2","2024///false///2","2025///false///2","2026///false///2"]}
+2018-06-28 21:16:05 INFO  CarController:280 - Returning connection to pool
+2018-06-28 21:16:05 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 21:16:05 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 21:16:05 INFO  Serveur:85 - LoadAllComboBoxOK
+2018-06-28 21:16:05 INFO  Serveur:308 - Afficage du resultat
+2018-06-28 21:16:05 INFO  Serveur:309 - {"dataDefect":["31","1///Frein///1.5","2///Levier///0.5","3///Pneu///0.0","5///Electronique///10.0","6///Batterie///1.0","7///Boite de vitesse///6.0","8///Plaque Imatriculation///9.0","10///CLimatisation///2.0","11///Geometrie///1.0","12///Revision///0.0","13///Vidange///4.0","14///Filtration///10.0","16///Eclairage///6.0","17///Atelage///9.0","18///Distribution///7.0","19///Prestation///10.0","20///Echappement///1.0","21///SystÃƒÂ¨me de freinage///6.0","22///Controle///9.0","23///Diagnostics///7.0","24///EntretienEchappement///2.0","25///MontageAmortisseur///1.0","26///MontageBatterie///0.0","27///ChangerHydrolique///4.0","28///NettoyerFiltreAir///10.0","29///ChangementRoues///1.0","30///ReglageEclairage///6.0","31///RenovationPhare///9.0","32///ServiceCarteGrise///7.0","33///VidangeBoiteEtPont///10.0","34///Moteur///5.0"],"identifier":"LoadAllComboBoxOK","data":["LoadAllComboBoxOK","2","1///Voiture","2///Velo"],"allCar":["5","l78p///Velo///1234","VEL123///Velo///123123","VEL124///Velo///123124","VOI456///Voiture///456456","VOI458///Voiture///456458"],"placement":["24","1011///false///1","1012///false///1","1013///false///1","1015///false///1","1016///false///1","1017///false///1","1018///false///1","1019///false///1","1020///false///1","1021///false///1","1022///false///1","1023///false///1","1024///false///1","1025///false///1","1026///false///1","2001///false///2","2007///false///2","2020///false///2","2021///false///2","2022///false///2","2023///false///2","2024///false///2","2025///false///2","2026///false///2"]}
+2018-06-28 21:16:05 INFO  Serveur:195 - l78pVelo1234
+2018-06-28 21:16:05 INFO  Serveur:195 - VEL123Velo123123
+2018-06-28 21:16:05 INFO  Serveur:195 - VEL124Velo123124
+2018-06-28 21:16:05 INFO  Serveur:195 - VOI456Voiture456456
+2018-06-28 21:16:05 INFO  Serveur:195 - VOI458Voiture456458
+2018-06-28 21:16:05 INFO  Serveur:75 - Enter unserilization
+2018-06-28 21:16:05 INFO  Serveur:81 - Begin unserilization
+2018-06-28 21:16:05 INFO  Serveur:83 - Success unserilization
+2018-06-28 21:16:05 INFO  Serveur:75 - Enter unserilization
+2018-06-28 21:16:05 INFO  Serveur:81 - Begin unserilization
+2018-06-28 21:16:05 INFO  Serveur:83 - Success unserilization
+2018-06-28 21:32:42 INFO  Serveur:32 - Server is listening on port 50000
+2018-06-28 21:32:42 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:32:42 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@45fe3ee3
+2018-06-28 21:32:42 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:32:42 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@73a8dfcc
+2018-06-28 21:32:42 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:32:42 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@442d9b6e
+2018-06-28 21:32:42 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:32:42 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@41975e01
+2018-06-28 21:32:42 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:32:42 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3d012ddd
+2018-06-28 21:32:42 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:32:42 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@379619aa
+2018-06-28 21:32:42 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:32:42 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@36aa7bc2
+2018-06-28 21:32:42 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:32:42 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3830f1c0
+2018-06-28 21:32:42 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:32:42 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@73a28541
+2018-06-28 21:32:42 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:32:42 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@33833882
+2018-06-28 21:32:42 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:32:42 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3b22cdd0
+2018-06-28 21:32:42 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:32:42 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@4aa8f0b4
+2018-06-28 21:32:42 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:32:42 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@368239c8
+2018-06-28 21:32:42 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:32:42 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@2a33fae0
+2018-06-28 21:32:42 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:32:42 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@77468bd9
+2018-06-28 21:32:42 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:32:42 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7b1d7fff
+2018-06-28 21:32:42 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:32:42 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7382f612
+2018-06-28 21:32:42 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:32:42 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@67f89fa3
+2018-06-28 21:32:42 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:32:42 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@5f205aa
+2018-06-28 21:32:42 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:32:42 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@532760d8
+2018-06-28 21:32:42 WARN  ConnectionPool:55 - Connection Pool is full. 20 connections created
+2018-06-28 21:32:43 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 21:32:43 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 21:32:57 INFO  Serveur:113 - Authentification demand�e par le client
+2018-06-28 21:32:57 INFO  Serveur:103 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 21:32:57 INFO  Serveur:104 - 127.0.0.1
+2018-06-28 21:32:57 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 21:32:57 INFO  Serveur:76 - {"identifier":"Authentication","data":["boss","boss"]}
+2018-06-28 21:32:57 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 21:32:57 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 21:32:57 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 21:32:57 INFO  Serveur:25 - Afficage du JSON : 
+2018-06-28 21:32:57 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 21:32:57 INFO  Serveur:26 - {"identifier":"Authentication","data":["boss","boss"]}
+2018-06-28 21:32:57 INFO  Serveur:29 - 
+parcours du fichier Json :
+2018-06-28 21:32:57 INFO  Authentication:81 - Sending JSON succ�s to Client
+2018-06-28 21:32:57 INFO  Authentication:92 - Returning connection to pool
+2018-06-28 21:32:57 INFO  Serveur:85 - GrantAuth
+2018-06-28 21:32:57 INFO  Serveur:99 - Afficage du JSON : 
+2018-06-28 21:32:57 INFO  Serveur:100 - {"identifier":"GrantAuth","data":["GrantAuth","2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager"]}
+2018-06-28 21:32:57 INFO  Serveur:108 - 2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager
+2018-06-28 21:32:57 INFO  Serveur:274 - Enter unserilization
+2018-06-28 21:32:57 INFO  Serveur:288 - Begin unserilization
+2018-06-28 21:32:57 INFO  Serveur:290 - Success unserilization
+2018-06-28 21:32:58 INFO  Serveur:123 - DISPLAY TAB 4
+2018-06-28 21:39:05 INFO  Serveur:32 - Server is listening on port 50000
+2018-06-28 21:39:05 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:39:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@45fe3ee3
+2018-06-28 21:39:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:39:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@73a8dfcc
+2018-06-28 21:39:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:39:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@442d9b6e
+2018-06-28 21:39:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:39:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@41975e01
+2018-06-28 21:39:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:39:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3d012ddd
+2018-06-28 21:39:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:39:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@379619aa
+2018-06-28 21:39:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:39:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@36aa7bc2
+2018-06-28 21:39:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:39:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3830f1c0
+2018-06-28 21:39:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:39:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@73a28541
+2018-06-28 21:39:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:39:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@33833882
+2018-06-28 21:39:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:39:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@3b22cdd0
+2018-06-28 21:39:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:39:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@4aa8f0b4
+2018-06-28 21:39:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:39:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@368239c8
+2018-06-28 21:39:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:39:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@2a33fae0
+2018-06-28 21:39:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:39:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@77468bd9
+2018-06-28 21:39:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:39:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7b1d7fff
+2018-06-28 21:39:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:39:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@7382f612
+2018-06-28 21:39:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:39:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@67f89fa3
+2018-06-28 21:39:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:39:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@5f205aa
+2018-06-28 21:39:06 INFO  ConnectionPool:51 - Connection Pool is NOT full. Proceeding with adding new connections
+2018-06-28 21:39:06 INFO  ConnectionPool:115 - Connection: com.mysql.jdbc.JDBC4Connection@532760d8
+2018-06-28 21:39:06 WARN  ConnectionPool:55 - Connection Pool is full. 20 connections created
+2018-06-28 21:39:07 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 21:39:07 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 21:39:32 INFO  Serveur:113 - Authentification demand�e par le client
+2018-06-28 21:39:32 INFO  Serveur:103 - Ouverture de la socket avec l'adresse/port du serveur et tentative de connexion
+2018-06-28 21:39:32 INFO  Serveur:104 - 127.0.0.1
+2018-06-28 21:39:32 INFO  Serveur:75 - Envoie du JSON au serveur
+2018-06-28 21:39:32 INFO  Serveur:76 - {"identifier":"Authentication","data":["boss","boss"]}
+2018-06-28 21:39:32 INFO  Serveur:80 - Reception du JSON envoy� du serveur
+2018-06-28 21:39:32 INFO  ProcessData:64 - Reading JSON Client
+2018-06-28 21:39:32 INFO  ProcessData:54 - Retrieving connection from Pool
+2018-06-28 21:39:32 INFO  Serveur:25 - Afficage du JSON : 
+2018-06-28 21:39:32 INFO  ProcessData:57 - Retrieving client socket
+2018-06-28 21:39:32 INFO  Serveur:26 - {"identifier":"Authentication","data":["boss","boss"]}
+2018-06-28 21:39:32 INFO  Serveur:29 - 
+parcours du fichier Json :
+2018-06-28 21:39:32 INFO  Authentication:81 - Sending JSON succ�s to Client
+2018-06-28 21:39:32 INFO  Authentication:92 - Returning connection to pool
+2018-06-28 21:39:32 INFO  Serveur:85 - GrantAuth
+2018-06-28 21:39:32 INFO  Serveur:99 - Afficage du JSON : 
+2018-06-28 21:39:32 INFO  Serveur:100 - {"identifier":"GrantAuth","data":["GrantAuth","2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager"]}
+2018-06-28 21:39:32 INFO  Serveur:108 - 2///john///doe///azerty///azerty///94000///boss///azrryt///2017-06-12///1.0///1///manager
+2018-06-28 21:39:32 INFO  Serveur:274 - Enter unserilization
+2018-06-28 21:39:32 INFO  Serveur:288 - Begin unserilization
+2018-06-28 21:39:32 INFO  Serveur:290 - Success unserilization
+2018-06-28 21:39:34 INFO  Serveur:123 - DISPLAY TAB 4
