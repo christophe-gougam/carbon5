@@ -26,3 +26,6 @@
 log/
 target/
 lib/
+
+# Log files
+*.log
