@@ -3,9 +3,7 @@ package Modele;
 import Serveur.Controlleurs.SalaireController;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 /**
@@ -44,49 +42,43 @@ public class SalaireDAO extends DAO<Salaire> {
                         result.getInt("temps_contrat_mois")
                 );
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e);
         }
         return Salaire;
     }
 
 
     /**
-     * Allows to update the data of an entry in the database
+     * Allows to update the salary in the database.
      *
-     * @param obj
-     * @return true
+     * @param salaire the new employee salary.
+     * @return true in case of successful update.
      */
     @Override
-    public boolean update(Salaire obj) {
+    public boolean update(Salaire salaire) {
+        Date now = new Date(new java.util.Date().getTime());
+        String sql1 = "UPDATE Salaire SET date_fin = ? WHERE id_user = ?";
         try {
-            if (obj.getSalaireBrut() != 1) {
-                this.connect
-                        .createStatement(
-                                ResultSet.TYPE_SCROLL_INSENSITIVE,
-                                ResultSet.CONCUR_UPDATABLE
-                        ).executeUpdate(
-                        "UPDATE Salaire SET salaire_brut ='" + obj.getSalaireBrut() + "' " +
-                                " WHERE id_user = '" + obj.getIdUser() + "' "
-                );
-                return true;
-            } else {
-                this.connect
-                        .createStatement(
-                                ResultSet.TYPE_SCROLL_INSENSITIVE,
-                                ResultSet.CONCUR_UPDATABLE
-                        ).executeUpdate(
-                        "UPDATE Salaire SET " +
-                                "salaire_brut ='" + obj.getSalaireBrut() + "', " +
-                                " WHERE id_user = " + obj.getIdUser()
-                );
-                return true;
-            }
-
+            PreparedStatement ps = this.connect.prepareStatement(sql1);
+            ps.setDate(1, now);
+            ps.setInt(2, salaire.getIdUser());
+            ps.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e);
             return false;
         }
-
+        String sql2 = "INSERT INTO Salaire (id_user, salaire_brut, date_debut, temps_contrat_mois) VALUES (?, ?, ?, ?)";
+        try {
+            PreparedStatement ps = this.connect.prepareStatement(sql2);
+            ps.setInt(1, salaire.getIdUser());
+            ps.setInt(2, salaire.getSalaireBrut());
+            ps.setDate(3, now);
+            ps.setInt(4, salaire.getTempsContratMois());
+        } catch (SQLException e) {
+            logger.error(e);
+            return false;
+        }
+        return true;
     }
 
     @Override
