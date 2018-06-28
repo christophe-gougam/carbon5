@@ -12,14 +12,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class SalaireController implements Runnable{
+public class SalaireController implements Runnable {
 
     String in;
     private PrintWriter out = null;
     public Thread t2;
     final static Logger logger = Logger.getLogger(SalaireController.class);
 
-    Connection con=null;
+    Connection con = null;
     ArrayList<String> data = new ArrayList<String>();
     String JsonMessage;
     LocalDate date;
@@ -31,72 +31,57 @@ public class SalaireController implements Runnable{
     int tempsContratMois;
     boolean ret;
 
-    public SalaireController(Connection con, String in, PrintWriter out){
-        this.con=con;
+    public SalaireController(Connection con, String in, PrintWriter out) {
+        this.con = con;
         this.in = in;
-        this.out=out;
+        this.out = out;
     }
 
     public void run() {
 
 
-        SalaireDAO test = new SalaireDAO(con) {
-            @Override
-            public ArrayList<String> create(Salaire obj) {
-                return null;
-            }
-
-            @Override
-            public boolean update(Salaire obj) {
-                return false;
-            }
-
-            @Override
-            public boolean delete(Salaire obj) {
-                return false;
-            }
-        };
-        try{
+        SalaireDAO test = new SalaireDAO(con);
+        try {
             String identifier = LectureJson.Identifier(in);
             ArrayList<String> result = LectureJson.LectureFichier(in);
-            switch(identifier){
+            switch (identifier) {
 
 
-                case("ModificationSalaire"):
+                case ("ModificationSalaire"):
                     id = Integer.parseInt(result.get(0));
                     salaireBrut = Integer.parseInt(result.get(3));
-                    Salaire salaireUpdate = new Salaire(id,idUser,salaireBrut,dateDebut,dateFin,tempsContratMois);
+                    Salaire salaireUpdate = new Salaire(id, idUser, salaireBrut, dateDebut, dateFin, tempsContratMois);
                     logger.info("Updating through DAO");
-                    ret=test.update(salaireUpdate);
+                    ret = test.update(salaireUpdate);
                     if (ret)
                         data.add("ModificationSalaireOK");
                     else
                         data.add("ModificationSalaireKO");
                     break;
-                case("SelectSalaire"):
+                case ("SelectSalaire"):
                     //data = test.find(salaireBrut);
                     data.add(0, "SelectSalaireOK");
                     break;
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
-        switch(data.get(0)){
-            case("ModificationSalaireOK"):
+        switch (data.get(0)) {
+            case ("ModificationSalaireOK"):
                 JsonMessage = EcritureJson.WriteJson("ModificationSalaireOK", data);
                 logger.info("Sending JSON succ�s to Client");
                 out.println(JsonMessage);
                 out.flush();
                 break;
-            case("ModificationSalaireKO"):
+            case ("ModificationSalaireKO"):
                 JsonMessage = EcritureJson.WriteJson("ModificationSalaireKO", data);
                 logger.info("Erreur lors de la mise � jour de ce salaire");
                 out.println(JsonMessage);
                 out.flush();
                 break;
-            case("SelectSalaireOK"):
+            case ("SelectSalaireOK"):
                 JsonMessage = EcritureJson.WriteJson("SelectSalaireOK", data);
                 logger.info("Sending salary to Client");
                 out.println(JsonMessage);
